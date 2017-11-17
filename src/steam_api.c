@@ -12,9 +12,9 @@ void SteamAPI_Shutdown(void)
 
 }
 
-int SteamAPI_RestartAppIfNecessary(uint32_t unOwnAppID)
+int SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)
 {
-	(void)unOwnAppID;
+	(void)app_id;
 
 	/* The app was started through the Steam client. */
 	return 0;

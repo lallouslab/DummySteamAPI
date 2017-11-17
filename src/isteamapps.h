@@ -15,8 +15,8 @@ struct ISteamApps
 	int (*BIsVACBanned)(struct ISteamAppsImpl *This);
 	const char *(*GetCurrentGameLanguage)(struct ISteamAppsImpl *This);
 	const char *(*GetAvailableGameLanguages)(struct ISteamAppsImpl *This);
-	int (*BIsSubscribedApp)(struct ISteamAppsImpl *This, uint32_t app_id);
-	int (*BIsDlcInstalled)(struct ISteamAppsImpl *This, uint32_t app_id);
+	int (*BIsSubscribedApp)(struct ISteamAppsImpl *This, steam_app_id_t app_id);
+	int (*BIsDlcInstalled)(struct ISteamAppsImpl *This, steam_app_id_t app_id);
 };
 
 struct ISteamAppsImpl *SteamApps(void);

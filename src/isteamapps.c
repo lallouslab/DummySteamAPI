@@ -48,14 +48,14 @@ static const char *ISteamApps_GetAvailableGameLanguages(struct ISteamAppsImpl *T
 	return "french,english";
 }
 
-static int ISteamApps_BIsSubscribedApp(struct ISteamAppsImpl *This, uint32_t app_id)
+static int ISteamApps_BIsSubscribedApp(struct ISteamAppsImpl *This, steam_app_id_t app_id)
 {
 	log_enter_notimpl("(This = %p, app_id = %u)", VOIDPTR(This), app_id);
 
 	return 1;
 }
 
-static int ISteamApps_BIsDlcInstalled(struct ISteamAppsImpl *This, uint32_t app_id)
+static int ISteamApps_BIsDlcInstalled(struct ISteamAppsImpl *This, steam_app_id_t app_id)
 {
 	log_enter_notimpl("(This = %p, app_id = %u)", VOIDPTR(This), app_id);
 
