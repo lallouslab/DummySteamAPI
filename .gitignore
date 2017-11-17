@@ -1,0 +1,21 @@
+/out/libsteam_api*
+
+/Makefile.conf
+/makesys.cache
+
+# TGT/HOST
+*.exe
+*.so
+*.dll
+*.dylib
+*.a
+*.c.o
+*.cpp.o
+*.s.o
+*.S.o
+*.rc.o
+*.rc.res
+
+# TEST
+*.ok
+*.notok

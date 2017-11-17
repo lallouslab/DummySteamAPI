@@ -1,0 +1,67 @@
+build-all-HOST: $(HOSTOBJS-y) $(HOSTBINS-y) $(HOSTBINS-CXX-y) $(HOSTSTATICLIBS-y) $(HOSTOBJCOPYBIN_BINS-y)
+
+GEN_OBJS-HOST := $(strip $(HOSTOBJS-y) $(foreach bin,$(HOSTBINS-y) $(HOSTBINS-CXX-y) $(HOSTSTATICLIBS-y),$(OBJS-$(bin)-y)))
+GEN_FILES-HOST := $(strip $(GEN_OBJS-HOST) $(HOSTBINS-y) $(HOSTBINS-CXX-y) $(HOSTSTATICLIBS-y) $(HOSTOBJCOPYBIN_BINS-y))
+ALL_TARGETS += $(GEN_FILES-HOST)
+
+clean-all-HOST:
+	$(V_ECHO_CMD)$(if $(GEN_FILES-HOST),echo " RM              $(GEN_FILES-HOST)")
+	$(V_SILENT_CMD)$(if $(GEN_FILES-HOST),rm -f $(GEN_FILES-HOST))
+
+$(HOSTBINS-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTCCLD        $@"
+	$(V_SILENT_CMD)$(HOSTCCLD) -o $@ $(OBJS-$@-y) $(LIBS-$@-y) $(HOSTLDFLAGS-y) $(LDFLAGS-$@-y)
+
+$(HOSTBINS-CXX-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTCXXLD       $@"
+	$(V_SILENT_CMD)$(HOSTCXXLD) -o $@ $(OBJS-$@-y) $(LIBS-$@-y) $(HOSTCXXLDFLAGS-y) $(LDFLAGS-$@-y)
+
+$(HOSTSTATICLIBS-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
+	$(V_SILENT_CMD)rm -f $@
+	$(V_ECHO_CMD)echo " HOSTAR          $@"
+	$(V_SILENT_CMD)$(HOSTAR) q $@ $(OBJS-$@-y) $(LIBS-$@-y)
+	$(V_ECHO_CMD)echo " HOSTRANLIB      $@"
+	$(V_SILENT_CMD)$(HOSTRANLIB) $@
+
+$(HOSTOBJCOPYBIN_BINS-y): $$(IN-$$@-y) $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTOBJCOPY.bin $@"
+	$(V_SILENT_CMD)$(HOSTOBJCOPY) -O binary $(IN-$@-y) $@
+
+depize = $(LOCALCACHEDIR)$(dir $1)$(notdir $1).deps
+
+GENDEPS :=
+$(foreach obj, $(GEN_OBJS-HOST), $(if $(wildcard $(call depize,$(obj))), $(eval GENDEPS += $(call depize,$(obj))), $(eval .PHONY: $(obj))))
+include $(GENDEPS)
+
+# sort removes the duplicate entries.
+GENDEPSDIRS := $(sort $(foreach obj, $(GEN_OBJS-HOST), $(dir $(call depize,$(obj)))))
+
+$(GENDEPSDIRS):
+	$(V_ECHO_CMD)echo " MKDIR           $@"
+	$(V_SILENT_CMD)mkdir -p $@
+
+$(foreach dir, $(GENDEPSDIRS), $(if $(wildcard $(dir)),, $(eval $(GEN_OBJS-HOST): $(dir))))
+
+$(filter %.host.c.o,$(GEN_OBJS-HOST)): %.host.c.o: %.c $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTCC          $@"
+	$(V_SILENT_CMD)$(HOSTCCDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(HOSTCFLAGS-y) $(CFLAGS-$@-y)
+
+$(filter %.host.cpp.o,$(GEN_OBJS-HOST)): %.host.cpp.o: %.cpp $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTCXX         $@"
+	$(V_SILENT_CMD)$(HOSTCXXDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(HOSTCXXFLAGS-y) $(CXXFLAGS-$@-y)
+
+$(filter %.host.s.o,$(GEN_OBJS-HOST)): %.host.s.o: %.s $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTCC          $@"
+	$(V_SILENT_CMD)$(HOSTCCDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(HOSTCFLAGS-y) $(CFLAGS-$@-y)
+
+$(filter %.host.S.o,$(GEN_OBJS-HOST)): %.host.S.o: %.S $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTCC          $@"
+	$(V_SILENT_CMD)$(HOSTCCDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(HOSTCFLAGS-y) $(CFLAGS-$@-y)
+
+$(filter %.host.rc.o,$(GEN_OBJS-HOST)): %.host.rc.o: %.rc $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTWINDRES     $@"
+	$(V_SILENT_CMD)$(HOSTWINDRES) --preprocessor="$(HOSTCPPDEPS) -x c" --preprocessor-arg="-MF" --preprocessor-arg="$(call depize,$@)" --preprocessor-arg="-MT" --preprocessor-arg="$@" $< $@
+
+$(filter %.host.rc.res,$(GEN_OBJS-HOST)): %.host.rc.res: %.rc $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " HOSTWINDRES     $@"
+	$(V_SILENT_CMD)$(HOSTWINDRES) --preprocessor="$(HOSTCPPDEPS) -x c" --preprocessor-arg="-MF" --preprocessor-arg="$(call depize,$@)" --preprocessor-arg="-MT" --preprocessor-arg="$@" $< $@

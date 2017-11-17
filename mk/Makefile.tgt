@@ -1,0 +1,67 @@
+build-all-TGT: $(OBJS-y) $(BINS-y) $(BINS-CXX-y) $(STATICLIBS-y) $(OBJCOPYBIN_BINS-y)
+
+GEN_OBJS-TGT := $(strip $(OBJS-y) $(foreach bin,$(BINS-y) $(BINS-CXX-y) $(STATICLIBS-y),$(OBJS-$(bin)-y)))
+GEN_FILES-TGT := $(strip $(GEN_OBJS-TGT) $(BINS-y) $(BINS-CXX-y) $(STATICLIBS-y) $(OBJCOPYBIN_BINS-y))
+ALL_TARGETS += $(GEN_FILES-TGT)
+
+clean-all-TGT:
+	$(V_ECHO_CMD)$(if $(GEN_FILES-TGT),echo " RM              $(GEN_FILES-TGT)")
+	$(V_SILENT_CMD)$(if $(GEN_FILES-TGT),rm -f $(GEN_FILES-TGT))
+
+$(BINS-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " CCLD            $@"
+	$(V_SILENT_CMD)$(CCLD) -o $@ $(OBJS-$@-y) $(LIBS-$@-y) $(LDFLAGS-y) $(LDFLAGS-$@-y)
+
+$(BINS-CXX-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " CXXLD           $@"
+	$(V_SILENT_CMD)$(CXXLD) -o $@ $(OBJS-$@-y) $(LIBS-$@-y) $(CXXLDFLAGS-y) $(LDFLAGS-$@-y)
+
+$(STATICLIBS-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
+	$(V_SILENT_CMD)rm -f $@
+	$(V_ECHO_CMD)echo " AR              $@"
+	$(V_SILENT_CMD)$(AR) q $@ $(OBJS-$@-y) $(LIBS-$@-y)
+	$(V_ECHO_CMD)echo " RANLIB          $@"
+	$(V_SILENT_CMD)$(RANLIB) $@
+
+$(OBJCOPYBIN_BINS-y): $$(IN-$$@-y) $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " OBJCOPY.bin     $@"
+	$(V_SILENT_CMD)$(OBJCOPY) -O binary $(IN-$@-y) $@
+
+depize = $(LOCALCACHEDIR)$(dir $1)$(notdir $1).deps
+
+GENDEPS :=
+$(foreach obj, $(GEN_OBJS-TGT), $(if $(wildcard $(call depize,$(obj))), $(eval GENDEPS += $(call depize,$(obj))), $(eval .PHONY: $(obj))))
+include $(GENDEPS)
+
+# sort removes the duplicate entries.
+GENDEPSDIRS := $(sort $(foreach obj, $(GEN_OBJS-TGT), $(dir $(call depize,$(obj)))))
+
+$(GENDEPSDIRS):
+	$(V_ECHO_CMD)echo " MKDIR           $@"
+	$(V_SILENT_CMD)mkdir -p $@
+
+$(foreach dir, $(GENDEPSDIRS), $(if $(wildcard $(dir)),, $(eval $(GEN_OBJS-TGT): $(dir))))
+
+$(filter %.c.o,$(GEN_OBJS-TGT)): %.c.o: %.c $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " CC              $@"
+	$(V_SILENT_CMD)$(CCDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(CFLAGS-y) $(CFLAGS-$@-y)
+
+$(filter %.cpp.o,$(GEN_OBJS-TGT)): %.cpp.o: %.cpp $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " CXX             $@"
+	$(V_SILENT_CMD)$(CXXDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(CXXFLAGS-y) $(CXXFLAGS-$@-y)
+
+$(filter %.s.o,$(GEN_OBJS-TGT)): %.s.o: %.s $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " CC              $@"
+	$(V_SILENT_CMD)$(CCDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(CFLAGS-y) $(CFLAGS-$@-y)
+
+$(filter %.S.o,$(GEN_OBJS-TGT)): %.S.o: %.S $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " CC              $@"
+	$(V_SILENT_CMD)$(CCDEPS) -c -MF "$(call depize,$@)" -MT "$@" -o "$@" $< $(CFLAGS-y) $(CFLAGS-$@-y)
+
+$(filter %.rc.o,$(GEN_OBJS-TGT)): %.rc.o: %.rc $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " WINDRES         $@"
+	$(V_SILENT_CMD)$(WINDRES) --preprocessor="$(CPPDEPS) -x c" --preprocessor-arg="-MF" --preprocessor-arg="$(call depize,$@)" --preprocessor-arg="-MT" --preprocessor-arg="$@" $< $@
+
+$(filter %.rc.res,$(GEN_OBJS-TGT)): %.rc.res: %.rc $$(DEPS-$$@-y)
+	$(V_ECHO_CMD)echo " WINDRES         $@"
+	$(V_SILENT_CMD)$(WINDRES) --preprocessor="$(CPPDEPS) -x c" --preprocessor-arg="-MF" --preprocessor-arg="$(call depize,$@)" --preprocessor-arg="-MT" --preprocessor-arg="$@" $< $@

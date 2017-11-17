@@ -1,0 +1,66 @@
+# Copy to Makefile.conf to make it work
+
+##### Configure values here #####
+
+MAKE := make
+
+CC          ?= gcc
+CPP         ?= cpp
+CCLD        ?= $(CC)
+CXX         ?= g++
+CXXLD       ?= $(CXX)
+AR          ?= ar
+RANLIB      ?= ranlib
+WINDRES     ?= windres
+OBJCOPY     ?= objcopy
+HOSTCC      ?= gcc
+HOSTCPP     ?= cpp
+HOSTCCLD    ?= $(HOSTCC)
+HOSTCXX     ?= g++
+HOSTCXXLD   ?= $(HOSTCXX)
+HOSTAR      ?= ar
+HOSTRANLIB  ?= ranlib
+HOSTWINDRES ?= windres
+HOSTOBJCOPY ?= objcopy
+
+CFLAGS ?=
+CFLAGS_DBG ?= -g
+CFLAGS_OPT ?= -O0
+CFLAGS-y := -std=c99 -Wall -Wextra -pedantic $(CFLAGS) $(CFLAGS_DBG) $(CFLAGS_OPT)
+
+LDFLAGS ?=
+LDFLAGS-y := $(LDFLAGS)
+
+CXXFLAGS ?= $(CFLAGS)
+CXXFLAGS_DBG ?= $(CFLAGS_DBG)
+CXXFLAGS_OPT ?= $(CFLAGS_OPT)
+CXXFLAGS-y := -std=c++11 -Wall -Wextra -pedantic $(CXXFLAGS) $(CXXFLAGS_DBG) $(CXXFLAGS_OPT)
+
+OS ?= linux
+
+
+##### Do NOT edit anything after this comment #####
+
+CFLAGS-y += -I$(TOP) -I$(TOP)/include
+LDFLAGS_SHARED := -shared
+STATIC_LIB_EXT := .a
+
+ifeq ("x$(OS)", "xlinux")
+  CONFIG_OS_LINUX   := y
+  DYN_LIB_EXT := .so
+  EXE_EXT :=
+  CFLAGS-y += -DCONFIG_OS_LINUX
+else ifeq ("x$(OS)", "xwindows")
+  CONFIG_OS_WINDOWS := y
+  DYN_LIB_EXT := .dll
+  EXE_EXT := .exe
+  CFLAGS-y += -DCONFIG_OS_WINDOWS
+  LDFLAGS-y += -static-libgcc
+else ifeq ("x$(OS)", "xmacosx")
+  CONFIG_OS_MACOSX  := y
+  DYN_LIB_EXT := .dylib
+  EXE_EXT :=
+  CFLAGS-y += -DCONFIG_OS_MACOSX
+else
+  $(error Unknown or undefined $$(OS): "$(OS)")
+endif
