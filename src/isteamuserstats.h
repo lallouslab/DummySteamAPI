@@ -7,17 +7,17 @@ struct ISteamUserStatsImpl;
 
 struct ISteamUserStats
 {
-	int (*RequestCurrentStats)(struct ISteamUserStatsImpl *This);
-	int (*GetStatI32)(struct ISteamUserStatsImpl *This, const char *name, int32_t *data);
-	int (*GetStatFloat)(struct ISteamUserStatsImpl *This, const char *name, float *data);
-	int (*SetStatI32)(struct ISteamUserStatsImpl *This, const char *name, int32_t data);
-	int (*SetStatFloat)(struct ISteamUserStatsImpl *This, const char *name, float data);
-	int (*UpdateAvgRateStat)(struct ISteamUserStatsImpl *This, const char *name, float count_this_session, float session_length);
-	int (*GetAchievement)(struct ISteamUserStatsImpl *This, const char *name, int *achieved);
-	int (*SetAchievement)(struct ISteamUserStatsImpl *This, const char *name);
-	int (*ClearAchievement)(struct ISteamUserStatsImpl *This, const char *name);
-	int (*GetAchievementAndUnlockTime)(struct ISteamUserStatsImpl *This, const char *name, int *achieved, uint32_t *unlock_time);
-	int (*StoreStats)(struct ISteamUserStatsImpl *This);
+	steam_bool_t (*RequestCurrentStats)(struct ISteamUserStatsImpl *This);
+	steam_bool_t (*GetStatI32)(struct ISteamUserStatsImpl *This, const char *name, int32_t *data);
+	steam_bool_t (*GetStatFloat)(struct ISteamUserStatsImpl *This, const char *name, float *data);
+	steam_bool_t (*SetStatI32)(struct ISteamUserStatsImpl *This, const char *name, int32_t data);
+	steam_bool_t (*SetStatFloat)(struct ISteamUserStatsImpl *This, const char *name, float data);
+	steam_bool_t (*UpdateAvgRateStat)(struct ISteamUserStatsImpl *This, const char *name, float count_this_session, float session_length);
+	steam_bool_t (*GetAchievement)(struct ISteamUserStatsImpl *This, const char *name, steam_bool_t *achieved);
+	steam_bool_t (*SetAchievement)(struct ISteamUserStatsImpl *This, const char *name);
+	steam_bool_t (*ClearAchievement)(struct ISteamUserStatsImpl *This, const char *name);
+	steam_bool_t (*GetAchievementAndUnlockTime)(struct ISteamUserStatsImpl *This, const char *name, steam_bool_t *achieved, uint32_t *unlock_time);
+	steam_bool_t (*StoreStats)(struct ISteamUserStatsImpl *This);
 };
 
 struct ISteamUserStatsImpl *SteamUserStats(void);

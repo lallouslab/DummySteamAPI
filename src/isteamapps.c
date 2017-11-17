@@ -6,32 +6,32 @@ struct ISteamAppsImpl
 	const struct ISteamApps *iface;
 };
 
-static int ISteamApps_BIsSubscribed(struct ISteamAppsImpl *This)
+static steam_bool_t ISteamApps_BIsSubscribed(struct ISteamAppsImpl *This)
 {
 	log_enter_notimpl("(This = %p)", VOIDPTR(This));
 
-	return 1;
+	return STEAM_TRUE;
 }
 
-static int ISteamApps_BIsLowViolence(struct ISteamAppsImpl *This)
+static steam_bool_t ISteamApps_BIsLowViolence(struct ISteamAppsImpl *This)
 {
 	log_enter_notimpl("(This = %p)", VOIDPTR(This));
 
-	return 1;
+	return STEAM_TRUE;
 }
 
-static int ISteamApps_BIsCybercafe(struct ISteamAppsImpl *This)
+static steam_bool_t ISteamApps_BIsCybercafe(struct ISteamAppsImpl *This)
 {
 	log_enter_notimpl("(This = %p)", VOIDPTR(This));
 
-	return 0;
+	return STEAM_FALSE;
 }
 
-static int ISteamApps_BIsVACBanned(struct ISteamAppsImpl *This)
+static steam_bool_t ISteamApps_BIsVACBanned(struct ISteamAppsImpl *This)
 {
 	log_enter_notimpl("(This = %p)", VOIDPTR(This));
 
-	return 0;
+	return STEAM_FALSE;
 }
 
 static const char *ISteamApps_GetCurrentGameLanguage(struct ISteamAppsImpl *This)
@@ -48,18 +48,18 @@ static const char *ISteamApps_GetAvailableGameLanguages(struct ISteamAppsImpl *T
 	return "french,english";
 }
 
-static int ISteamApps_BIsSubscribedApp(struct ISteamAppsImpl *This, steam_app_id_t app_id)
+static steam_bool_t ISteamApps_BIsSubscribedApp(struct ISteamAppsImpl *This, steam_app_id_t app_id)
 {
 	log_enter_notimpl("(This = %p, app_id = %u)", VOIDPTR(This), app_id);
 
-	return 1;
+	return STEAM_TRUE;
 }
 
-static int ISteamApps_BIsDlcInstalled(struct ISteamAppsImpl *This, steam_app_id_t app_id)
+static steam_bool_t ISteamApps_BIsDlcInstalled(struct ISteamAppsImpl *This, steam_app_id_t app_id)
 {
 	log_enter_notimpl("(This = %p, app_id = %u)", VOIDPTR(This), app_id);
 
-	return 0;
+	return STEAM_FALSE;
 }
 
 static const struct ISteamApps ISteamApps_vtbl = {

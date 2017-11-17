@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-int SteamAPI_Init(void)
+#include "steam.h"
+
+steam_bool_t SteamAPI_Init(void)
 {
-	return 1;
+	return STEAM_TRUE;
 }
 
 void SteamAPI_Shutdown(void)
@@ -12,12 +14,12 @@ void SteamAPI_Shutdown(void)
 
 }
 
-int SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)
+steam_bool_t SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)
 {
 	(void)app_id;
 
 	/* The app was started through the Steam client. */
-	return 0;
+	return STEAM_FALSE;
 }
 
 void SteamAPI_RunCallbacks(void)
