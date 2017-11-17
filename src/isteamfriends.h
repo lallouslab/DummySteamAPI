@@ -15,4 +15,4 @@ struct ISteamFriends
 
 struct ISteamFriendsImpl *SteamFriends(void);
 
-#endif
+#endif /* ISTEAMFRIENDS_H */
