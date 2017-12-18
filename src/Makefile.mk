@@ -1,7 +1,7 @@
 SUBDIRS-y :=
 EXTDIRS-y :=
 
-libsteam_api := ../out/libsteam_api$(DYN_LIB_EXT)
+libsteam_api := ../bin/libsteam_api$(DYN_LIB_EXT)
 
 BINS-y := $(libsteam_api)
 

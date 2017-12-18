@@ -14,4 +14,4 @@ make -C "${DIR}"
 
 echo -e "\033[1;92mLaunching Human Resource Machine with DummySteamAPI...\033[0m"
 
-LD_PRELOAD="${DIR}/out/libsteam_api.so:${LD_PRELOAD}" exec "${HRM_BIN64}"
+LD_PRELOAD="${DIR}/bin/libsteam_api.so:${LD_PRELOAD}" exec "${HRM_BIN64}"

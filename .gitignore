@@ -1,4 +1,4 @@
-/out/libsteam_api*
+/bin/libsteam_api*
 
 /Makefile.conf
 /makesys.cache
