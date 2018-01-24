@@ -1,0 +1,43 @@
+#ifndef ISTEAMAPPS006_H
+#define ISTEAMAPPS006_H 1
+
+#include "steam.h"
+
+#include "ISteamApps.h"
+
+#define STEAMAPPS_INTERFACE_VERSION_006 "STEAMAPPS_INTERFACE_VERSION006"
+
+struct ISteamApps006
+{
+	steam_bool_t (*BIsSubscribed)(struct ISteamApps *This);
+	steam_bool_t (*BIsLowViolence)(struct ISteamApps *This);
+	steam_bool_t (*BIsCybercafe)(struct ISteamApps *This);
+	steam_bool_t (*BIsVACBanned)(struct ISteamApps *This);
+	const char *(*GetCurrentGameLanguage)(struct ISteamApps *This);
+	const char *(*GetAvailableGameLanguages)(struct ISteamApps *This);
+	steam_bool_t (*BIsSubscribedApp)(struct ISteamApps *This, steam_app_id_t app_id);
+	steam_bool_t (*BIsDlcInstalled)(struct ISteamApps *This, steam_app_id_t app_id);
+	void *GetEarliestPurchaseUnixTime;
+	void *BIsSubscribedFromFreeWeekend;
+	void *GetDLCCount;
+	void *BGetDLCDataByIndex;
+	void *InstallDLC;
+	void *UninstallDLC;
+	void *RequestAppProofOfPurchaseKey;
+	void *GetCurrentBetaName;
+	void *MarkContentCorrupt;
+	void *GetInstalledDepots;
+	void *GetAppInstallDir;
+	void *BIsAppInstalled;
+	void *GetAppOwner;
+	void *GetLaunchQueryParam;
+	void *GetDlcDownloadProgress;
+};
+
+static inline struct ISteamApps006 *get_ISteamApps006_from_ISteamApps(struct ISteamApps *iface) {
+	return (struct ISteamApps006 *)iface->iface;
+}
+
+struct ISteamApps *SteamApps006(void);
+
+#endif /* ISTEAMAPPS006_H */

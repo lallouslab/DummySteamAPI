@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Uncomment the lines and set the right values
+
+# Do not spam the console output with logs.
+# Default value: 1
+export SILENT=1
+
+# STEAM_USER_ID is the name of the directory inside /home/guillaume/.local/share/Steam/userdata
+# export STEAM_USER_ID=0

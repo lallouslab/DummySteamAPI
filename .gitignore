@@ -1,5 +1,7 @@
 /bin/libsteam_api*
 
+/config.sh
+
 /Makefile.conf
 /makesys.cache
 

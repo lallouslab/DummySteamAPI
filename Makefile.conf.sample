@@ -26,10 +26,11 @@ HOSTOBJCOPY ?= objcopy
 CFLAGS ?=
 CFLAGS_DBG ?= -g
 CFLAGS_OPT ?= -O0
-CFLAGS-y := -std=c99 -Wall -Wextra -pedantic $(CFLAGS) $(CFLAGS_DBG) $(CFLAGS_OPT)
+CFLAGS-y := -std=c11 -Wall -Wextra -pedantic $(CFLAGS) $(CFLAGS_DBG) $(CFLAGS_OPT)
 
 LDFLAGS ?=
-LDFLAGS-y := $(LDFLAGS)
+LDFLAGS_DBG ?= -g
+LDFLAGS-y := -Wl,--no-undefined $(LDFLAGS) $(LDFLAGS_DBG)
 
 CXXFLAGS ?= $(CFLAGS)
 CXXFLAGS_DBG ?= $(CFLAGS_DBG)
