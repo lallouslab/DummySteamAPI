@@ -6,5 +6,5 @@
 # Default value: 1
 export SILENT=1
 
-# STEAM_USER_ID is the name of the directory inside /home/guillaume/.local/share/Steam/userdata
+# STEAM_USER_ID is the name of the directory inside ${HOME}/.steam/steam/userdata
 # export STEAM_USER_ID=0
