@@ -19,7 +19,7 @@ $(HOSTBINS-CXX-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
 $(HOSTSTATICLIBS-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
 	$(V_SILENT_CMD)rm -f $@
 	$(V_ECHO_CMD)echo " HOSTAR          $@"
-	$(V_SILENT_CMD)$(HOSTAR) q $@ $(OBJS-$@-y) $(LIBS-$@-y)
+	$(V_SILENT_CMD)echo "CREATE $@\n$(foreach lib,$(LIBS-$@-y),ADDLIB $(lib)\n)$(foreach obj,$(OBJS-$@-y),ADDMOD $(obj)\n)SAVE\nEND" | $(HOSTAR) -M
 	$(V_ECHO_CMD)echo " HOSTRANLIB      $@"
 	$(V_SILENT_CMD)$(HOSTRANLIB) $@
 
