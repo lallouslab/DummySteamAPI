@@ -24,8 +24,34 @@
 #define WARN(str, ...) do { fprintf(stderr, "WARN: %s:%u: " str "\n", __FILE__, __LINE__, __VA_ARGS__); } while (0)
 #define WARN0(str) do { WARN(str "%c", '\0'); } while (0)
 
+typedef void (*PFN_VOID)(void);
+
 static inline const char *debug_str(const char *str) {
 	return str ? str : "(null)";
+}
+
+static inline PFN_VOID voidptr_to_pfn(void *ptr) {
+	union
+	{
+		void *voidptr;
+		PFN_VOID pfn;
+	} s;
+
+	s.voidptr = ptr;
+
+	return s.pfn;
+}
+
+static inline void *pfn_to_voidptr(PFN_VOID pfn) {
+	union
+	{
+		void *voidptr;
+		PFN_VOID pfn;
+	} s;
+
+	s.pfn = pfn;
+
+	return s.voidptr;
 }
 
 #endif /* UTILS_H */
