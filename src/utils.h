@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #define EXPORT __attribute__((visibility("default")))
+#define CONSTRUCTOR __attribute__((constructor))
 
 #define VOIDPTR(x) ((void *)x)
 #define INVAL_PTR VOIDPTR(0xbeefbeef)
