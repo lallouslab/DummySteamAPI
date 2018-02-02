@@ -29,6 +29,4 @@ export LD_PRELOAD="${DIR}/bin/libsteam_api.so:${LD_PRELOAD}"
 
 cd "${LIS_DIR}/bin"
 
-mv ../lib/x86_64/libsteam_api.so ../lib/x86_64/libsteam_api.so.dis >/dev/null 2>&1 || true
 "${LIS_BIN64}"
-mv -f ../lib/x86_64/libsteam_api.so.dis ../lib/x86_64/libsteam_api.so >/dev/null 2>&1 || true
