@@ -6,6 +6,7 @@ libos_linux := libos_linux$(STATIC_LIB_EXT)
 STATICLIBS-y := $(libos_linux)
 
 objs := \
+	dl_override.c.o \
 	linux.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I../..
