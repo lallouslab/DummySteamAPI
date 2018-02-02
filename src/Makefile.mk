@@ -16,7 +16,8 @@ SUBDIRS-y := \
 	ISteamUnifiedMessages \
 	ISteamUser \
 	ISteamUserStats \
-	ISteamUtils
+	ISteamUtils \
+	os
 EXTDIRS-y :=
 
 libsteam_api := ../bin/libsteam_api$(DYN_LIB_EXT)
@@ -41,7 +42,8 @@ libs := \
 	ISteamUnifiedMessages/libsteamunifiedmessages$(STATIC_LIB_EXT) \
 	ISteamUser/libsteamuser$(STATIC_LIB_EXT) \
 	ISteamUserStats/libsteamuserstats$(STATIC_LIB_EXT) \
-	ISteamUtils/libsteamutils$(STATIC_LIB_EXT)
+	ISteamUtils/libsteamutils$(STATIC_LIB_EXT) \
+	os/libos$(STATIC_LIB_EXT)
 
 objs := \
 	callbacks.c.o \
