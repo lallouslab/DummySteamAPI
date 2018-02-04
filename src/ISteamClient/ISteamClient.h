@@ -9,6 +9,7 @@ struct ISteamClient
 };
 
 struct ISteamClient *SteamClient_generic(const char *version);
+void SteamClient_set_version(const char *version);
 extern struct ISteamClient *SteamClient(void);
 
 #endif /* ISTEAMCLIENT_H */

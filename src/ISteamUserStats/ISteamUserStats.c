@@ -8,6 +8,8 @@
 #include "ISteamUserStats_priv.h"
 #include "ISteamUserStats011.h"
 
+static const char *steam_user_stats_version = NULL;
+
 steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
@@ -169,9 +171,23 @@ struct ISteamUserStats *SteamUserStats_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamUserStats_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_user_stats_version = version;
+}
+
 EXPORT struct ISteamUserStats *SteamUserStats(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamUserStats011();
+	if (!steam_user_stats_version)
+	{
+		steam_user_stats_version = STEAMUSERSTATS_INTERFACE_VERSION_011;
+
+		WARN("ISteamUserStats: No version specified, defaulting to %s.", steam_user_stats_version);
+	}
+
+	return SteamUserStats_generic(steam_user_stats_version);
 }

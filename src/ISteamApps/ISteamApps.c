@@ -8,6 +8,8 @@
 #include "ISteamApps003.h"
 #include "ISteamApps006.h"
 
+static const char *steam_apps_version = NULL;
+
 steam_bool_t ISteamApps_BIsCybercafe(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
@@ -114,9 +116,23 @@ struct ISteamApps *SteamApps_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamApps_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_apps_version = version;
+}
+
 EXPORT struct ISteamApps *SteamApps(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamApps006();
+	if (!steam_apps_version)
+	{
+		steam_apps_version = STEAMAPPS_INTERFACE_VERSION_006;
+
+		WARN("ISteamApps: No version specified, defaulting to %s.", steam_apps_version);
+	}
+
+	return SteamApps_generic(steam_apps_version);
 }

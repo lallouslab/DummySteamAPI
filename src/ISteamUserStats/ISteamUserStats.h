@@ -9,6 +9,7 @@ struct ISteamUserStats
 };
 
 struct ISteamUserStats *SteamUserStats_generic(const char *version);
+void SteamUserStats_set_version(const char *version);
 extern struct ISteamUserStats *SteamUserStats(void);
 
 #endif /* ISTEAMUSERSTATS_H */

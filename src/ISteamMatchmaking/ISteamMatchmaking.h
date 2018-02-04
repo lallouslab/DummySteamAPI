@@ -9,6 +9,7 @@ struct ISteamMatchmaking
 };
 
 struct ISteamMatchmaking *SteamMatchmaking_generic(const char *version);
+void SteamMatchmaking_set_version(const char *version);
 extern struct ISteamMatchmaking *SteamMatchmaking(void);
 
 #endif /* ISTEAMMATCHMAKING_H */

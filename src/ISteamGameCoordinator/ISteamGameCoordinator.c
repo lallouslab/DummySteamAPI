@@ -6,6 +6,8 @@
 #include "ISteamGameCoordinator_priv.h"
 #include "ISteamGameCoordinator001.h"
 
+static const char *steam_game_coordinator_version = NULL;
+
 steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size)
 {
 	struct ISteamGameCoordinatorImpl *This = impl_from_ISteamGameCoordinator(iface);
@@ -49,9 +51,23 @@ struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamGameCoordinator_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_game_coordinator_version = version;
+}
+
 EXPORT struct ISteamGameCoordinator *SteamGameCoordinator(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamGameCoordinator001();
+	if (!steam_game_coordinator_version)
+	{
+		steam_game_coordinator_version = STEAMGAMECOORDINATOR_INTERFACE_VERSION_001;
+
+		WARN("ISteamGameCoordinator: No version specified, defaulting to %s.", steam_game_coordinator_version);
+	}
+
+	return SteamGameCoordinator_generic(steam_game_coordinator_version);
 }

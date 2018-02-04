@@ -9,6 +9,7 @@ struct ISteamUnifiedMessages
 #define STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_PREFIX "STEAMUNIFIEDMESSAGES_INTERFACE_VERSION"
 
 struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version);
+void SteamUnifiedMessages_set_version(const char *version);
 extern struct ISteamUnifiedMessages *SteamUnifiedMessages(void);
 
 #endif /* ISTEAMUNIFIEDMESSAGES_H */

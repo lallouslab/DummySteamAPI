@@ -9,6 +9,7 @@ struct ISteamUGC
 };
 
 struct ISteamUGC *SteamUGC_generic(const char *version);
+void SteamUGC_set_version(const char *version);
 extern struct ISteamUGC *SteamUGC(void);
 
 #endif /* ISTEAMUGC_H */

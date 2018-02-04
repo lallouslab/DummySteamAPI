@@ -6,6 +6,8 @@
 #include "ISteamScreenshots_priv.h"
 #include "ISteamScreenshots001.h"
 
+static const char *steam_screenshots_version = NULL;
+
 steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshots *iface, steam_bool_t enable)
 {
 	struct ISteamScreenshotsImpl *This = impl_from_ISteamScreenshots(iface);
@@ -47,9 +49,23 @@ struct ISteamScreenshots *SteamScreenshots_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamScreenshots_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_screenshots_version = version;
+}
+
 EXPORT struct ISteamScreenshots *SteamScreenshots(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamScreenshots001();
+	if (!steam_screenshots_version)
+	{
+		steam_screenshots_version = STEAMSCREENSHOTS_INTERFACE_VERSION_001;
+
+		WARN("ISteamScreenshots: No version specified, defaulting to %s.", steam_screenshots_version);
+	}
+
+	return SteamScreenshots_generic(steam_screenshots_version);
 }

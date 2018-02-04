@@ -9,6 +9,7 @@ struct ISteamApps
 };
 
 struct ISteamApps *SteamApps_generic(const char *version);
+void SteamApps_set_version(const char *version);
 extern struct ISteamApps *SteamApps(void);
 
 #endif /* ISTEAMAPPS_H */

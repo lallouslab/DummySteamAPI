@@ -6,6 +6,8 @@
 #include "ISteamUnifiedMessages_priv.h"
 #include "ISteamUnifiedMessages001.h"
 
+static const char *steam_unified_messages_version = NULL;
+
 struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version)
 {
 	static const struct
@@ -38,9 +40,23 @@ struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamUnifiedMessages_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_unified_messages_version = version;
+}
+
 EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamUnifiedMessages001();
+	if (!steam_unified_messages_version)
+	{
+		steam_unified_messages_version = STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_001;
+
+		WARN("ISteamUnifiedMessages: No version specified, defaulting to %s.", steam_unified_messages_version);
+	}
+
+	return SteamUnifiedMessages_generic(steam_unified_messages_version);
 }

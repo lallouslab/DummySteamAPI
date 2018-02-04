@@ -7,6 +7,8 @@
 #include "ISteamMatchmaking001.h"
 #include "ISteamMatchmaking009.h"
 
+static const char *steam_matchmaking_version = NULL;
+
 int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface)
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
@@ -49,9 +51,23 @@ struct ISteamMatchmaking *SteamMatchmaking_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamMatchmaking_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_matchmaking_version = version;
+}
+
 EXPORT struct ISteamMatchmaking *SteamMatchmaking(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamMatchmaking009();
+	if (!steam_matchmaking_version)
+	{
+		steam_matchmaking_version = STEAMMATCHMAKING_INTERFACE_VERSION_009;
+
+		WARN("ISteamMatchmaking: No version specified, defaulting to %s.", steam_matchmaking_version);
+	}
+
+	return SteamMatchmaking_generic(steam_matchmaking_version);
 }

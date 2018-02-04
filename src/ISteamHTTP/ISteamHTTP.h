@@ -9,6 +9,7 @@ struct ISteamHTTP
 };
 
 struct ISteamHTTP *SteamHTTP_generic(const char *version);
+void SteamHTTP_set_version(const char *version);
 extern struct ISteamHTTP *SteamHTTP(void);
 
 #endif /* ISTEAMHTTP_H */

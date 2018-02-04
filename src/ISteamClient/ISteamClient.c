@@ -24,6 +24,8 @@
 #include "../ISteamUserStats/ISteamUserStats.h"
 #include "../ISteamUtils/ISteamUtils.h"
 
+static const char *steam_client_version = NULL;
+
 steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *iface)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -378,9 +380,23 @@ struct ISteamClient *SteamClient_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamClient_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_client_version = version;
+}
+
 EXPORT struct ISteamClient *SteamClient(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamClient016();
+	if (!steam_client_version)
+	{
+		steam_client_version = STEAMCLIENT_INTERFACE_VERSION_016;
+
+		WARN("ISteamClient: No version specified, defaulting to %s.", steam_client_version);
+	}
+
+	return SteamClient_generic(steam_client_version);
 }

@@ -9,6 +9,7 @@ struct ISteamUser
 };
 
 struct ISteamUser *SteamUser_generic(const char *version);
+void SteamUser_set_version(const char *version);
 extern struct ISteamUser *SteamUser(void);
 
 #endif /* ISTEAMUSER_H */

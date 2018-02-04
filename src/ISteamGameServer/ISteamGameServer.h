@@ -9,6 +9,7 @@ struct ISteamGameServer
 };
 
 struct ISteamGameServer *SteamGameServer_generic(const char *version);
+void SteamGameServer_set_version(const char *version);
 extern struct ISteamGameServer *SteamGameServer(void);
 
 #endif /* ISTEAMGAMESERVER_H */

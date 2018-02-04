@@ -6,6 +6,8 @@
 #include "ISteamGameServerStats_priv.h"
 #include "ISteamGameServerStats001.h"
 
+static const char *steam_game_server_stats_version = NULL;
+
 struct ISteamGameServerStats *SteamGameServerStats_generic(const char *version)
 {
 	static const struct
@@ -38,9 +40,23 @@ struct ISteamGameServerStats *SteamGameServerStats_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamGameServerStats_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_game_server_stats_version = version;
+}
+
 EXPORT struct ISteamGameServerStats *SteamGameServerStats(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamGameServerStats001();
+	if (!steam_game_server_stats_version)
+	{
+		steam_game_server_stats_version = STEAMGAMESERVERSTATS_INTERFACE_VERSION_001;
+
+		WARN("ISteamGameServerStats: No version specified, defaulting to %s.", steam_game_server_stats_version);
+	}
+
+	return SteamGameServerStats_generic(steam_game_server_stats_version);
 }

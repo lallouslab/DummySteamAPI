@@ -6,6 +6,8 @@
 #include "ISteamUGC_priv.h"
 #include "ISteamUGC001.h"
 
+static const char *steam_ugc_version = NULL;
+
 struct ISteamUGC *SteamUGC_generic(const char *version)
 {
 	static const struct
@@ -38,9 +40,23 @@ struct ISteamUGC *SteamUGC_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamUGC_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_ugc_version = version;
+}
+
 EXPORT struct ISteamUGC *SteamUGC(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamUGC001();
+	if (!steam_ugc_version)
+	{
+		steam_ugc_version = STEAMUGC_INTERFACE_VERSION_001;
+
+		WARN("ISteamUGC: No version specified, defaulting to %s.", steam_ugc_version);
+	}
+
+	return SteamUGC_generic(steam_ugc_version);
 }

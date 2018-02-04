@@ -8,6 +8,8 @@
 #include "ISteamRemoteStorage012.h"
 #include "ISteamRemoteStorage013.h"
 
+static const char *steam_remote_storage_version = NULL;
+
 steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
@@ -88,9 +90,23 @@ struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamRemoteStorage_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_remote_storage_version = version;
+}
+
 EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamRemoteStorage013();
+	if (!steam_remote_storage_version)
+	{
+		steam_remote_storage_version = STEAMREMOTESTORAGE_INTERFACE_VERSION_013;
+
+		WARN("ISteamRemoteStorage: No version specified, defaulting to %s.", steam_remote_storage_version);
+	}
+
+	return SteamRemoteStorage_generic(steam_remote_storage_version);
 }

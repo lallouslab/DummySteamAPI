@@ -9,6 +9,7 @@ struct ISteamNetworking
 };
 
 struct ISteamNetworking *SteamNetworking_generic(const char *version);
+void SteamNetworking_set_version(const char *version);
 extern struct ISteamNetworking *SteamNetworking(void);
 
 #endif /* ISTEAMNETWORKING_H */

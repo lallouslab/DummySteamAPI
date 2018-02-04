@@ -9,6 +9,7 @@ struct ISteamRemoteStorage
 };
 
 struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version);
+void SteamRemoteStorage_set_version(const char *version);
 extern struct ISteamRemoteStorage *SteamRemoteStorage(void);
 
 #endif /* ISTEAMREMOTESTORAGE_H */

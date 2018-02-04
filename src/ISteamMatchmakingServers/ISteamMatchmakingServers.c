@@ -7,6 +7,8 @@
 #include "ISteamMatchmakingServers001.h"
 #include "ISteamMatchmakingServers002.h"
 
+static const char *steam_matchmaking_servers_version = NULL;
+
 struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version)
 {
 	static const struct
@@ -40,9 +42,23 @@ struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *ver
 	return INVAL_PTR;
 }
 
+void SteamMatchmakingServers_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_matchmaking_servers_version = version;
+}
+
 EXPORT struct ISteamMatchmakingServers *SteamMatchmakingServers(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamMatchmakingServers002();
+	if (!steam_matchmaking_servers_version)
+	{
+		steam_matchmaking_servers_version = STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_002;
+
+		WARN("ISteamMatchmakingServers: No version specified, defaulting to %s.", steam_matchmaking_servers_version);
+	}
+
+	return SteamMatchmakingServers_generic(steam_matchmaking_servers_version);
 }

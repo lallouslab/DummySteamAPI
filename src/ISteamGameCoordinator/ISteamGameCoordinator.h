@@ -9,6 +9,7 @@ struct ISteamGameCoordinator
 };
 
 struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version);
+void SteamGameCoordinator_set_version(const char *version);
 extern struct ISteamGameCoordinator *SteamGameCoordinator(void);
 
 #endif /* ISTEAMGAMECOORDINATOR_H */

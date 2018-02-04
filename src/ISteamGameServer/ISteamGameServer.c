@@ -8,6 +8,8 @@
 #include "ISteamGameServer012.h"
 
 
+static const char *steam_game_server_version = NULL;
+
 struct ISteamGameServer *SteamGameServer_generic(const char *version)
 {
 	static const struct
@@ -41,9 +43,23 @@ struct ISteamGameServer *SteamGameServer_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamGameServer_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_game_server_version = version;
+}
+
 EXPORT struct ISteamGameServer *SteamGameServer(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamGameServer012();
+	if (!steam_game_server_version)
+	{
+		steam_game_server_version = STEAMGAMESERVER_INTERFACE_VERSION_012;
+
+		WARN("ISteamGameServer: No version specified, defaulting to %s.", steam_game_server_version);
+	}
+
+	return SteamGameServer_generic(steam_game_server_version);
 }

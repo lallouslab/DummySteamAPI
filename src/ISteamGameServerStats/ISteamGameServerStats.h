@@ -9,6 +9,7 @@ struct ISteamGameServerStats
 };
 
 struct ISteamGameServerStats *SteamGameServerStats_generic(const char *version);
+void SteamGameServerStats_set_version(const char *version);
 extern struct ISteamGameServerStats *SteamGameServerStats(void);
 
 #endif /* ISTEAMGAMESERVERSTATS_H */

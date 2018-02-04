@@ -9,6 +9,7 @@ struct ISteamScreenshots
 };
 
 extern struct ISteamScreenshots *SteamScreenshots_generic(const char *version);
+void SteamScreenshots_set_version(const char *version);
 extern struct ISteamScreenshots *SteamScreenshots(void);
 
 #endif /* ISTEAMSCREENSHOTS_H */

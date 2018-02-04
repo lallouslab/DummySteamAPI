@@ -7,6 +7,8 @@
 #include "ISteamHTTP001.h"
 #include "ISteamHTTP002.h"
 
+static const char *steam_http_version = NULL;
+
 struct ISteamHTTP *SteamHTTP_generic(const char *version)
 {
 	static const struct
@@ -40,9 +42,23 @@ struct ISteamHTTP *SteamHTTP_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamHTTP_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_http_version = version;
+}
+
 EXPORT struct ISteamHTTP *SteamHTTP(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamHTTP002();
+	if (!steam_http_version)
+	{
+		steam_http_version = STEAMHTTP_INTERFACE_VERSION_002;
+
+		WARN("ISteamHTTP: No version specified, defaulting to %s.", steam_http_version);
+	}
+
+	return SteamHTTP_generic(steam_http_version);
 }

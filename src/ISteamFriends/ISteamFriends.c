@@ -7,6 +7,8 @@
 #include "ISteamFriends001.h"
 #include "ISteamFriends014.h"
 
+static const char *steam_friends_version = NULL;
+
 const char *ISteamFriends_GetPersonaName(struct ISteamFriends *iface)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
@@ -103,9 +105,23 @@ struct ISteamFriends *SteamFriends_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamFriends_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_friends_version = version;
+}
+
 EXPORT struct ISteamFriends *SteamFriends(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamFriends014();
+	if (!steam_friends_version)
+	{
+		steam_friends_version = STEAMFRIENDS_INTERFACE_VERSION_014;
+
+		WARN("ISteamFriends: No version specified, defaulting to %s.", steam_friends_version);
+	}
+
+	return SteamFriends_generic(steam_friends_version);
 }

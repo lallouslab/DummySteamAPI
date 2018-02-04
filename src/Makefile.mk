@@ -47,6 +47,7 @@ libs := \
 
 objs := \
 	callbacks.c.o \
+	setup_ifaces.c.o \
 	steam_api.c.o \
 	steam_gameserver.c.o \
 	utils.c.o

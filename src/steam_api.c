@@ -4,6 +4,7 @@
 #include <inttypes.h>
 
 #include "os/os.h"
+#include "setup_ifaces.h"
 #include "steam.h"
 #include "utils.h"
 #include "steam_gameserver.h"
@@ -15,6 +16,7 @@ EXPORT steam_bool_t SteamAPI_Init(void)
 	LOG_ENTER0("()");
 
 	dsa_os_init();
+	dsa_set_default_interfaces_version();
 
 	if (g_pSteamClientGameServer != INVAL_PTR)
 		return STEAM_TRUE;
@@ -31,6 +33,7 @@ EXPORT steam_bool_t SteamAPI_InitSafe(void)
 	LOG_ENTER0("()");
 
 	dsa_os_init();
+	dsa_set_default_interfaces_version();
 
 	if (g_pSteamClientGameServer != INVAL_PTR)
 		return STEAM_TRUE;

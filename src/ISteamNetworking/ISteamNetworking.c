@@ -7,6 +7,8 @@
 #include "ISteamNetworking001.h"
 #include "ISteamNetworking005.h"
 
+static const char *steam_networking_version = NULL;
+
 steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels)
 {
 	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
@@ -61,9 +63,23 @@ struct ISteamNetworking *SteamNetworking_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamNetworking_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_networking_version = version;
+}
+
 EXPORT struct ISteamNetworking *SteamNetworking(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamNetworking005();
+	if (!steam_networking_version)
+	{
+		steam_networking_version = STEAMNETWORKING_INTERFACE_VERSION_005;
+
+		WARN("ISteamNetworking: No version specified, defaulting to %s.", steam_networking_version);
+	}
+
+	return SteamNetworking_generic(steam_networking_version);
 }

@@ -10,6 +10,8 @@
 #include "ISteamUtils001.h"
 #include "ISteamUtils006.h"
 
+static const char *steam_utils_version = NULL;
+
 uint32_t ISteamUtils_GetSecondsSinceAppActive(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
@@ -128,9 +130,23 @@ struct ISteamUtils *SteamUtils_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamUtils_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_utils_version = version;
+}
+
 EXPORT struct ISteamUtils *SteamUtils(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamUtils006();
+	if (!steam_utils_version)
+	{
+		steam_utils_version = STEAMUTILS_INTERFACE_VERSION_006;
+
+		WARN("ISteamUtils: No version specified, defaulting to %s.", steam_utils_version);
+	}
+
+	return SteamUtils_generic(steam_utils_version);
 }

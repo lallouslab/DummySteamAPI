@@ -9,6 +9,7 @@ struct ISteamMatchmakingServers
 };
 
 struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version);
+void SteamMatchmakingServers_set_version(const char *version);
 extern struct ISteamMatchmakingServers *SteamMatchmakingServers(void);
 
 #endif /* ISTEAMMATCHMAKINGSERVERS_H */

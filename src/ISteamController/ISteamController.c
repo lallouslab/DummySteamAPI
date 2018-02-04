@@ -6,6 +6,8 @@
 #include "ISteamController_priv.h"
 #include "ISteamController001.h"
 
+static const char *steam_controller_version = NULL;
+
 steam_bool_t ISteamController_Init(struct ISteamController *iface, const char *path_to_cfg)
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
@@ -86,9 +88,23 @@ struct ISteamController *SteamController_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamController_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_controller_version = version;
+}
+
 EXPORT struct ISteamController *SteamController(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamController001();
+	if (!steam_controller_version)
+	{
+		steam_controller_version = STEAMCONTROLLER_INTERFACE_VERSION_001;
+
+		WARN("ISteamController: No version specified, defaulting to %s.", steam_controller_version);
+	}
+
+	return SteamController_generic(steam_controller_version);
 }

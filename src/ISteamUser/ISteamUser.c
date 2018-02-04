@@ -12,6 +12,8 @@
 #include "ISteamUser017.h"
 #include "ISteamUser018.h"
 
+static const char *steam_user_version = NULL;
+
 steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
@@ -165,9 +167,23 @@ struct ISteamUser *SteamUser_generic(const char *version)
 	return INVAL_PTR;
 }
 
+void SteamUser_set_version(const char *version)
+{
+	LOG_ENTER("(version = %s)", debug_str(version));
+
+	steam_user_version = version;
+}
+
 EXPORT struct ISteamUser *SteamUser(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamUser018();
+	if (!steam_user_version)
+	{
+		steam_user_version = STEAMUSER_INTERFACE_VERSION_018;
+
+		WARN("ISteamUser: No version specified, defaulting to %s.", steam_user_version);
+	}
+
+	return SteamUser_generic(steam_user_version);
 }

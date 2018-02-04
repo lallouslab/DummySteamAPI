@@ -9,6 +9,7 @@ struct ISteamFriends
 };
 
 struct ISteamFriends *SteamFriends_generic(const char *version);
+void SteamFriends_set_version(const char *version);
 extern struct ISteamFriends *SteamFriends(void);
 
 #endif /* ISTEAMFRIENDS_H */

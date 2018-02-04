@@ -10,6 +10,7 @@ struct ISteamController
 };
 
 struct ISteamController *SteamController_generic(const char *version);
+void SteamController_set_version(const char *version);
 extern struct ISteamController *SteamController(void);
 
 #endif /* ISTEAMCONTROLLER_H */

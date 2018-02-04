@@ -9,6 +9,7 @@ struct ISteamUtils
 };
 
 struct ISteamUtils *SteamUtils_generic(const char *version);
+void SteamUtils_set_version(const char *version);
 extern struct ISteamUtils *SteamUtils(void);
 
 #endif /* ISTEAMUTILS_H */
