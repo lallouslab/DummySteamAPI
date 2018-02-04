@@ -7,7 +7,8 @@ STATICLIBS-y := $(libsteamscreenshots)
 
 objs := \
 	ISteamScreenshots.c.o \
-	ISteamScreenshots001.c.o
+	ISteamScreenshots001.c.o \
+	ISteamScreenshots002.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 
