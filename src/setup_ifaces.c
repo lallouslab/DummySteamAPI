@@ -165,7 +165,7 @@ int dsa_set_default_interfaces_version(void)
 				if (ifaces[j].iface_set_default_version)
 					ifaces[j].iface_set_default_version(ifaces[j].name);
 
-				i += name_len;
+				i += name_len - 1;
 				break;
 			}
 			j++;
