@@ -6,6 +6,7 @@
 #include "ISteamRemoteStorage_priv.h"
 #include "ISteamRemoteStorage001.h"
 #include "ISteamRemoteStorage012.h"
+#include "ISteamRemoteStorage013.h"
 
 steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size)
 {
@@ -62,6 +63,7 @@ struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version)
 	} ifaces[] = {
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_001, SteamRemoteStorage001 },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_012, SteamRemoteStorage012 },
+		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_013, SteamRemoteStorage013 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -90,5 +92,5 @@ EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 {
 	LOG_ENTER0("()");
 
-	return SteamRemoteStorage012();
+	return SteamRemoteStorage013();
 }
