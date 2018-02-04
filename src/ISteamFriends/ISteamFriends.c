@@ -64,6 +64,15 @@ steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, void
 	return STEAM_FALSE;
 }
 
+steam_bool_t ISteamFriends_SetRichPresence(struct ISteamFriends *iface, const char *key, const char *value)
+{
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, key = %s, value = %s)", VOIDPTR(This), debug_str(key), debug_str(value));
+
+	return STEAM_TRUE;
+}
+
 steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);

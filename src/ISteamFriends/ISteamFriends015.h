@@ -52,7 +52,7 @@ struct ISteamFriends015Vtbl
 	void *GetClanOfficerCount;
 	void *GetClanOfficerByIndex;
 	void *GetUserRestrictions;
-	void *SetRichPresence;
+	steam_bool_t (*SetRichPresence)(struct ISteamFriends *iface, const char *key, const char *value);
 	void *ClearRichPresence;
 	void *GetFriendRichPresence;
 	void *GetFriendRichPresenceKeyCount;
