@@ -6,6 +6,7 @@
 #include "ISteamClient_priv.h"
 #include "ISteamClient006.h"
 #include "ISteamClient016.h"
+#include "ISteamClient017.h"
 #include "../ISteamApps/ISteamApps.h"
 #include "../ISteamController/ISteamController.h"
 #include "../ISteamFriends/ISteamFriends.h"
@@ -356,6 +357,7 @@ struct ISteamClient *SteamClient_generic(const char *version)
 	} ifaces[] = {
 		{ STEAMCLIENT_INTERFACE_VERSION_006, SteamClient006 },
 		{ STEAMCLIENT_INTERFACE_VERSION_016, SteamClient016 },
+		{ STEAMCLIENT_INTERFACE_VERSION_017, SteamClient017 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -393,7 +395,7 @@ EXPORT struct ISteamClient *SteamClient(void)
 
 	if (!steam_client_version)
 	{
-		steam_client_version = STEAMCLIENT_INTERFACE_VERSION_016;
+		steam_client_version = STEAMCLIENT_INTERFACE_VERSION_017;
 
 		WARN("ISteamClient: No version specified, defaulting to %s.", steam_client_version);
 	}
