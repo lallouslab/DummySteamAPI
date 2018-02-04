@@ -55,4 +55,6 @@ static inline void *pfn_to_voidptr(PFN_VOID pfn) {
 	return s.voidptr;
 }
 
+long dsa_utils_file_get_size(FILE *fp);
+
 #endif /* UTILS_H */

@@ -48,7 +48,8 @@ libs := \
 objs := \
 	callbacks.c.o \
 	steam_api.c.o \
-	steam_gameserver.c.o
+	steam_gameserver.c.o \
+	utils.c.o
 
 CFLAGS-y += -fPIC -I.
 LDFLAGS-$(libsteam_api)-y += $(LDFLAGS_SHARED) -Wl,--whole-archive $(libs) -Wl,--no-whole-archive
