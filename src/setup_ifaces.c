@@ -55,6 +55,7 @@
 #include "ISteamUtils/ISteamUtils.h"
 #include "ISteamUtils/ISteamUtils001.h"
 #include "ISteamUtils/ISteamUtils006.h"
+#include "ISteamUtils/ISteamUtils007.h"
 #include "setup_ifaces.h"
 #include "utils.h"
 
@@ -100,6 +101,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMUSERSTATS_INTERFACE_VERSION_011, SteamUserStats_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_001, SteamUtils_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_006, SteamUtils_set_version },
+		{ STEAMUTILS_INTERFACE_VERSION_007, SteamUtils_set_version },
 		{ NULL, NULL }
 	};
 	int result = -1;

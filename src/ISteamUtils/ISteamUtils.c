@@ -9,6 +9,7 @@
 #include "ISteamUtils_priv.h"
 #include "ISteamUtils001.h"
 #include "ISteamUtils006.h"
+#include "ISteamUtils007.h"
 
 static const char *steam_utils_version = NULL;
 
@@ -106,6 +107,7 @@ struct ISteamUtils *SteamUtils_generic(const char *version)
 	} ifaces[] = {
 		{ STEAMUTILS_INTERFACE_VERSION_001, SteamUtils001 },
 		{ STEAMUTILS_INTERFACE_VERSION_006, SteamUtils006 },
+		{ STEAMUTILS_INTERFACE_VERSION_007, SteamUtils007 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -143,7 +145,7 @@ EXPORT struct ISteamUtils *SteamUtils(void)
 
 	if (!steam_utils_version)
 	{
-		steam_utils_version = STEAMUTILS_INTERFACE_VERSION_006;
+		steam_utils_version = STEAMUTILS_INTERFACE_VERSION_007;
 
 		WARN("ISteamUtils: No version specified, defaulting to %s.", steam_utils_version);
 	}
