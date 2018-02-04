@@ -19,7 +19,6 @@ make -C "${DIR}"
 
 echo -e "\033[1;92mLaunching Human Resource Machine with DummySteamAPI...\033[0m"
 
-export LD_LIBRARY_PATH="${DIR}/bin:${LD_LIBRARY_PATH}"
 export LD_PRELOAD="${DIR}/bin/libsteam_api.so:${LD_PRELOAD}"
 
 . "${DIR}/common.sh"

@@ -22,7 +22,7 @@ make -C "${DIR}"
 
 echo -e "\033[1;92mLaunching Life Is Strange with DummySteamAPI...\033[0m"
 
-export LD_LIBRARY_PATH="${DIR}/bin:${LIS_LIB64}:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${LIS_LIB64}:${LD_LIBRARY_PATH}"
 export LD_PRELOAD="${DIR}/bin/libsteam_api.so:${LD_PRELOAD}"
 
 . "${DIR}/common.sh"
