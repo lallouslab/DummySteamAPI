@@ -5,7 +5,7 @@
 
 struct ISteamApps
 {
-	const void *iface;
+	const void *vtbl;
 };
 
 struct ISteamApps *SteamApps_generic(const char *version);

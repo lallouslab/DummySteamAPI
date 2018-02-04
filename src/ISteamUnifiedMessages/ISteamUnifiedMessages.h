@@ -1,11 +1,14 @@
 #ifndef ISTEAMUNIFIEDMESSAGES_H
 #define ISTEAMUNIFIEDMESSAGES_H 1
 
-struct ISteamUnifiedMessagesImpl;
+struct ISteamUnifiedMessages
+{
+	const void *vtbl;
+};
 
 #define STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_PREFIX "STEAMUNIFIEDMESSAGES_INTERFACE_VERSION"
 
-struct ISteamUnifiedMessagesImpl *SteamUnifiedMessages_generic(const char *version);
-extern struct ISteamUnifiedMessagesImpl *SteamUnifiedMessages(void);
+struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version);
+extern struct ISteamUnifiedMessages *SteamUnifiedMessages(void);
 
 #endif /* ISTEAMUNIFIEDMESSAGES_H */

@@ -7,7 +7,7 @@
 
 #define STEAMHTTP_INTERFACE_VERSION_001 "STEAMHTTP_INTERFACE_VERSION001"
 
-struct ISteamHTTP001
+struct ISteamHTTP001Vtbl
 {
 	void *CreateHTTPRequest;
 	void *SetHTTPRequestContextValue;
@@ -26,6 +26,10 @@ struct ISteamHTTP001
 	void *SetHTTPRequestRawPostBody;
 };
 
-struct ISteamHTTPImpl *SteamHTTP001(void);
+static inline struct ISteamHTTP001Vtbl *get_ISteamHTTP001Vtbl_from_ISteamHTTP(struct ISteamHTTP *iface) {
+	return (struct ISteamHTTP001Vtbl *)iface->vtbl;
+}
+
+struct ISteamHTTP *SteamHTTP001(void);
 
 #endif /* ISTEAMHTTP001_H */

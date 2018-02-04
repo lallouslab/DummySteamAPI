@@ -7,16 +7,16 @@
 
 #define STEAMFRIENDS_INTERFACE_VERSION_014 "SteamFriends014"
 
-struct ISteamFriends014
+struct ISteamFriends014Vtbl
 {
-	const char *(*GetPersonaName)(struct ISteamFriendsImpl *This);
+	const char *(*GetPersonaName)(struct ISteamFriends *iface);
 	void *SetPersonaName;
-	uint32_t (*GetPersonaState)(struct ISteamFriendsImpl *This);
-	int (*GetFriendCount)(struct ISteamFriendsImpl *This, int friend_flags);
+	uint32_t (*GetPersonaState)(struct ISteamFriends *iface);
+	int (*GetFriendCount)(struct ISteamFriends *iface, int friend_flags);
 	void *GetFriendByIndex;
 	void *GetFriendRelationship;
 	void *GetFriendPersonaState;
-	const char *(*GetFriendPersonaName)(struct ISteamFriendsImpl *This, void /* CSteamID */ *steam_id_friend);
+	const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
 	void *GetFriendGamePlayed3;
 	void *GetFriendPersonaNameHistory;
 	void *GetPlayerNickname;
@@ -52,7 +52,7 @@ struct ISteamFriends014
 	void *GetFriendRichPresenceKeyCount;
 	void *GetFriendRichPresenceKeyByIndex;
 	void *RequestFriendRichPresence;
-	steam_bool_t (*InviteUserToGame)(struct ISteamFriendsImpl *This, void /* CSteamID */ *steam_id_friend, const char *connect_str);
+	steam_bool_t (*InviteUserToGame)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str);
 	void *GetCoplayFriendCount;
 	void *GetCoplayFriend;
 	void *GetFriendCoplayTime;
@@ -75,6 +75,10 @@ struct ISteamFriends014
 	void *EnumerateFollowingList;
 };
 
-struct ISteamFriendsImpl *SteamFriends014(void);
+static inline struct ISteamFriends014Vtbl *get_ISteamFriends014Vtbl_from_ISteamApps(struct ISteamFriends *iface) {
+	return (struct ISteamFriends014Vtbl *)iface->vtbl;
+}
+
+struct ISteamFriends *SteamFriends014(void);
 
 #endif /* ISTEAMFRIENDS014_H */

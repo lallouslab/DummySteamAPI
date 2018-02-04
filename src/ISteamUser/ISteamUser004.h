@@ -7,15 +7,15 @@
 
 #define STEAMUSER_INTERFACE_VERSION_004 "SteamUser004"
 
-struct ISteamUser004
+struct ISteamUser004Vtbl
 {
-	steam_user_t (*GetHSteamUser)(struct ISteamUserImpl *This);
+	steam_user_t (*GetHSteamUser)(struct ISteamUser *iface);
 	void *LogOn;
 	void *LogOff;
-	steam_bool_t (*BLoggedOn)(struct ISteamUserImpl *This);
+	steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
 	void *GetLogonState;
 	void *BConnected;
-	void (*GetSteamID)(union CSteamID *ret, struct ISteamUserImpl *This);
+	void (*GetSteamID)(union CSteamID *ret, struct ISteamUser *iface);
 	void *IsVACBanned;
 	void *RequireShowVACBannedMessage;
 	void *AcknowledgeVACBanning;
@@ -37,6 +37,10 @@ struct ISteamUser004
 	void *RequestLegacyCDKey;
 };
 
-struct ISteamUserImpl *SteamUser004(void);
+static inline struct ISteamUser004Vtbl *get_ISteamUser004Vtbl_from_ISteamUser(struct ISteamUser *iface) {
+	return (struct ISteamUser004Vtbl *)iface->vtbl;
+}
+
+struct ISteamUser *SteamUser004(void);
 
 #endif /* ISTEAMUSER004_H */

@@ -6,12 +6,12 @@
 #include "ISteamUnifiedMessages_priv.h"
 #include "ISteamUnifiedMessages001.h"
 
-struct ISteamUnifiedMessagesImpl *SteamUnifiedMessages_generic(const char *version)
+struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamUnifiedMessagesImpl *(*iface_getter)(void);
+		struct ISteamUnifiedMessages *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_001, SteamUnifiedMessages001 },
 		{ NULL, NULL }
@@ -38,7 +38,7 @@ struct ISteamUnifiedMessagesImpl *SteamUnifiedMessages_generic(const char *versi
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamUnifiedMessagesImpl *SteamUnifiedMessages(void)
+EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages(void)
 {
 	LOG_ENTER0("()");
 

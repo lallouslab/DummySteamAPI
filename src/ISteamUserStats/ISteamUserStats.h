@@ -3,9 +3,12 @@
 
 #define STEAMUSERSTATS_INTERFACE_VERSION_PREFIX "STEAMUSERSTATS_INTERFACE_VERSION"
 
-struct ISteamUserStatsImpl;
+struct ISteamUserStats
+{
+	const void *vtbl;
+};
 
-struct ISteamUserStatsImpl *SteamUserStats_generic(const char *version);
-extern struct ISteamUserStatsImpl *SteamUserStats(void);
+struct ISteamUserStats *SteamUserStats_generic(const char *version);
+extern struct ISteamUserStats *SteamUserStats(void);
 
 #endif /* ISTEAMUSERSTATS_H */

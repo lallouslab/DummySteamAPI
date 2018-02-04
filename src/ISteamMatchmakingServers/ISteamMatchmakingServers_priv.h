@@ -2,10 +2,17 @@
 #define ISTEAMMATCHMAKINGSERVERS_PRIV_H 1
 
 #include "steam.h"
+#include "utils.h"
+
+#include "ISteamMatchmakingServers.h"
 
 struct ISteamMatchmakingServersImpl
 {
-	const void *iface;
+	struct ISteamMatchmakingServers base;
 };
+
+static inline struct ISteamMatchmakingServersImpl *impl_from_ISteamMatchmakingServers(struct ISteamMatchmakingServers *iface) {
+	return CONTAINER_OF(iface, struct ISteamMatchmakingServersImpl, base);
+}
 
 #endif /* ISTEAMMATCHMAKINGSERVERS_PRIV_H */

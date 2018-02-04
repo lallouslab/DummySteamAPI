@@ -7,7 +7,7 @@
 
 #define STEAMGAMESERVER_INTERFACE_VERSION_011 "SteamGameServer011"
 
-struct ISteamGameServer011
+struct ISteamGameServer011Vtbl
 {
 	void *InitGameServer;
 	void *SetProduct;
@@ -55,6 +55,10 @@ struct ISteamGameServer011
 	void *ComputeNewPlayerCompatibility;
 };
 
-struct ISteamGameServerImpl *SteamGameServer011(void);
+static inline struct ISteamGameServer011Vtbl *get_ISteamGameServer011Vtbl_from_ISteamGameServer(struct ISteamGameServer *iface) {
+	return (struct ISteamGameServer011Vtbl *)iface->vtbl;
+}
+
+struct ISteamGameServer *SteamGameServer011(void);
 
 #endif /* ISTEAMGAMESERVER011_H */

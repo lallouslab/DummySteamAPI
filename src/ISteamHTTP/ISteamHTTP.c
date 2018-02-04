@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
@@ -8,12 +7,12 @@
 #include "ISteamHTTP001.h"
 #include "ISteamHTTP002.h"
 
-struct ISteamHTTPImpl *SteamHTTP_generic(const char *version)
+struct ISteamHTTP *SteamHTTP_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamHTTPImpl *(*iface_getter)(void);
+		struct ISteamHTTP *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMHTTP_INTERFACE_VERSION_001, SteamHTTP001 },
 		{ STEAMHTTP_INTERFACE_VERSION_002, SteamHTTP002 },
@@ -41,7 +40,7 @@ struct ISteamHTTPImpl *SteamHTTP_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamHTTPImpl *SteamHTTP(void)
+EXPORT struct ISteamHTTP *SteamHTTP(void)
 {
 	LOG_ENTER0("()");
 

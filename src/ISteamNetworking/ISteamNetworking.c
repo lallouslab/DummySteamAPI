@@ -7,8 +7,10 @@
 #include "ISteamNetworking001.h"
 #include "ISteamNetworking005.h"
 
-steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworkingImpl *This, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels)
+steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels)
 {
+	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, pub_dest = %p, cub_dest = %u, cub_msg_size = %p, steam_id_remote = %p, nchannels = %d)", VOIDPTR(This), pub_dest, cub_dest, VOIDPTR(cub_msg_size), VOIDPTR(steam_id_remote), nchannels);
 
 	*cub_msg_size = 0;
@@ -17,19 +19,21 @@ steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworkingImpl *This, v
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamNetworking_AllowP2PPacketRelay(struct ISteamNetworkingImpl *This, steam_bool_t allow)
+steam_bool_t ISteamNetworking_AllowP2PPacketRelay(struct ISteamNetworking *iface, steam_bool_t allow)
 {
+	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, allow = %u)", VOIDPTR(This), allow);
 
 	return STEAM_TRUE;
 }
 
-struct ISteamNetworkingImpl *SteamNetworking_generic(const char *version)
+struct ISteamNetworking *SteamNetworking_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamNetworkingImpl *(*iface_getter)(void);
+		struct ISteamNetworking *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMNETWORKING_INTERFACE_VERSION_001, SteamNetworking001 },
 		{ STEAMNETWORKING_INTERFACE_VERSION_005, SteamNetworking005 },
@@ -57,7 +61,7 @@ struct ISteamNetworkingImpl *SteamNetworking_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamNetworkingImpl *SteamNetworking(void)
+EXPORT struct ISteamNetworking *SteamNetworking(void)
 {
 	LOG_ENTER0("()");
 

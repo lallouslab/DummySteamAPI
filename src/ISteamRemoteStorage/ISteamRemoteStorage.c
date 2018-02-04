@@ -7,29 +7,37 @@
 #include "ISteamRemoteStorage001.h"
 #include "ISteamRemoteStorage012.h"
 
-steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorageImpl *This, const char *filename, const void *data, int32_t size)
+steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size)
 {
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, filename = %s, data = %p, size = %" PRIu32 ")", VOIDPTR(This), debug_str(filename), data, size);
 
 	return STEAM_FALSE;
 }
 
-int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorageImpl *This, const char *filename)
+int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const char *filename)
 {
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, filename = %s)", VOIDPTR(This), debug_str(filename));
 
 	return 0;
 }
 
-int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorageImpl *This)
+int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface)
 {
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return 0;
 }
 
-steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorageImpl *This, int32_t *total_bytes, int32_t *available_bytes)
+steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes)
 {
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, total_bytes = %p, available_bytes = %p)", VOIDPTR(This), VOIDPTR(total_bytes), VOIDPTR(available_bytes));
 
 	*total_bytes = 0;
@@ -38,17 +46,19 @@ steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorageImpl *This, 
 	return STEAM_TRUE;
 }
 
-void ISteamRemoteStorage_SetCloudEnabledForApp(struct ISteamRemoteStorageImpl *This, steam_bool_t enabled)
+void ISteamRemoteStorage_SetCloudEnabledForApp(struct ISteamRemoteStorage *iface, steam_bool_t enabled)
 {
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, enabled = %d)", VOIDPTR(This), enabled);
 }
 
-struct ISteamRemoteStorageImpl *SteamRemoteStorage_generic(const char *version)
+struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamRemoteStorageImpl *(*iface_getter)(void);
+		struct ISteamRemoteStorage *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_001, SteamRemoteStorage001 },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_012, SteamRemoteStorage012 },
@@ -76,7 +86,7 @@ struct ISteamRemoteStorageImpl *SteamRemoteStorage_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamRemoteStorageImpl *SteamRemoteStorage(void)
+EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 {
 	LOG_ENTER0("()");
 

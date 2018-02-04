@@ -3,9 +3,12 @@
 
 #define STEAMUSER_INTERFACE_VERSION_PREFIX "SteamUser"
 
-struct ISteamUserImpl;
+struct ISteamUser
+{
+	const void *vtbl;
+};
 
-struct ISteamUserImpl *SteamUser_generic(const char *version);
-extern struct ISteamUserImpl *SteamUser(void);
+struct ISteamUser *SteamUser_generic(const char *version);
+extern struct ISteamUser *SteamUser(void);
 
 #endif /* ISTEAMUSER_H */

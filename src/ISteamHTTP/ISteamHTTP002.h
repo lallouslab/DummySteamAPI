@@ -7,7 +7,7 @@
 
 #define STEAMHTTP_INTERFACE_VERSION_002 "STEAMHTTP_INTERFACE_VERSION002"
 
-struct ISteamHTTP002
+struct ISteamHTTP002Vtbl
 {
 	void *CreateHTTPRequest;
 	void *SetHTTPRequestContextValue;
@@ -36,6 +36,10 @@ struct ISteamHTTP002
 	void *GetHTTPRequestWasTimedOut;
 };
 
-struct ISteamHTTPImpl *SteamHTTP002(void);
+static inline struct ISteamHTTP002Vtbl *get_ISteamHTTP002Vtbl_from_ISteamHTTP(struct ISteamHTTP *iface) {
+	return (struct ISteamHTTP002Vtbl *)iface->vtbl;
+}
+
+struct ISteamHTTP *SteamHTTP002(void);
 
 #endif /* ISTEAMHTTP002_H */

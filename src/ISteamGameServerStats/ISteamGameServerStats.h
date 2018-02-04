@@ -3,9 +3,12 @@
 
 #define STEAMGAMESERVERSTATS_INTERFACE_VERSION_PREFIX "SteamGameServerStats"
 
-struct ISteamGameServerStatsImpl;
+struct ISteamGameServerStats
+{
+	const void *vtbl;
+};
 
-struct ISteamGameServerStatsImpl *SteamGameServerStats_generic(const char *version);
-extern struct ISteamGameServerStatsImpl *SteamGameServerStats(void);
+struct ISteamGameServerStats *SteamGameServerStats_generic(const char *version);
+extern struct ISteamGameServerStats *SteamGameServerStats(void);
 
 #endif /* ISTEAMGAMESERVERSTATS_H */

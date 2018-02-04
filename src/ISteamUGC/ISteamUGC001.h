@@ -7,7 +7,7 @@
 
 #define STEAMUGC_INTERFACE_VERSION_001 "STEAMUGC_INTERFACE_VERSION001"
 
-struct ISteamUGC001
+struct ISteamUGC001Vtbl
 {
 	void *CreateQueryUserUGCRequest;
 	void *CreateQueryAllUGCRequest;
@@ -25,8 +25,8 @@ struct ISteamUGC001
 	void *RequestUGCDetails;
 };
 
-static inline struct ISteamUGC001 *get_ISteamUGC001_from_ISteamUGC(struct ISteamUGC *iface) {
-	return (struct ISteamUGC001 *)iface->iface;
+static inline struct ISteamUGC001Vtbl *get_ISteamUGC001Vtbl_from_ISteamUGC(struct ISteamUGC *iface) {
+	return (struct ISteamUGC001Vtbl *)iface->vtbl;
 }
 
 struct ISteamUGC *SteamUGC001(void);

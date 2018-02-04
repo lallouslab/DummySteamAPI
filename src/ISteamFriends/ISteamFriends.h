@@ -3,9 +3,12 @@
 
 #define STEAMFRIENDS_INTERFACE_VERSION_PREFIX "SteamFriends"
 
-struct ISteamFriendsImpl;
+struct ISteamFriends
+{
+	const void *vtbl;
+};
 
-struct ISteamFriendsImpl *SteamFriends_generic(const char *version);
-extern struct ISteamFriendsImpl *SteamFriends(void);
+struct ISteamFriends *SteamFriends_generic(const char *version);
+extern struct ISteamFriends *SteamFriends(void);
 
 #endif /* ISTEAMFRIENDS_H */

@@ -12,22 +12,27 @@
 #include "ISteamUser017.h"
 #include "ISteamUser018.h"
 
-steam_user_t ISteamUser_GetHSteamUser(struct ISteamUserImpl *This)
+steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface)
 {
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return 1;
 }
 
-steam_bool_t ISteamUser_BLoggedOn(struct ISteamUserImpl *This)
+steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface)
 {
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return STEAM_TRUE;
 }
 
-void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUserImpl *This)
+void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
 {
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	const char *user_id;
 
 	LOG_ENTER("(ret = %p, This = %p)", VOIDPTR(ret), VOIDPTR(This));
@@ -45,19 +50,21 @@ void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUserImpl *This)
 	ret->bits.account_id = strtoul(user_id, NULL, 0);
 }
 
-union CSteamID ISteamUser_GetSteamID018(struct ISteamUserImpl *This)
+union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
 {
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	union CSteamID steam_id;
 
 	LOG_ENTER("(This = %p)", VOIDPTR(This));
 
-	ISteamUser_GetSteamID(&steam_id, This);
+	ISteamUser_GetSteamID(&steam_id, iface);
 
 	return steam_id;
 }
 
-steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUserImpl *This, char *buf, int buf_len)
+steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len)
 {
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	const char *home_dir;
 	const char steam_userdata_dir[] = "/.local/share/Steam/userdata/";
 	const char *user_id;
@@ -109,8 +116,9 @@ steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUserImpl *This, char *buf
 	return STEAM_TRUE;
 }
 
-steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUserImpl *This, void *data, int data_size)
+steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
 {
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	struct
 	{
 		enum steam_result result;
@@ -123,12 +131,12 @@ steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUserImpl *Thi
 	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_ENCRYPTED_APP_TICKET_RESPONSE, STEAM_FALSE, &encrypted_app_ticket_response, sizeof(encrypted_app_ticket_response));
 }
 
-struct ISteamUserImpl *SteamUser_generic(const char *version)
+struct ISteamUser *SteamUser_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamUserImpl *(*iface_getter)(void);
+		struct ISteamUser *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUSER_INTERFACE_VERSION_004, SteamUser004 },
 		{ STEAMUSER_INTERFACE_VERSION_017, SteamUser017 },
@@ -157,7 +165,7 @@ struct ISteamUserImpl *SteamUser_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamUserImpl *SteamUser(void)
+EXPORT struct ISteamUser *SteamUser(void)
 {
 	LOG_ENTER0("()");
 

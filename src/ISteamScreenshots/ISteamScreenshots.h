@@ -3,9 +3,12 @@
 
 #define STEAMSCREENSHOTS_INTERFACE_VERSION_PREFIX "STEAMSCREENSHOTS_INTERFACE_VERSION"
 
-struct ISteamScreenshotsImpl;
+struct ISteamScreenshots
+{
+	const void *vtbl;
+};
 
-extern struct ISteamScreenshotsImpl *SteamScreenshots_generic(const char *version);
-extern struct ISteamScreenshotsImpl *SteamScreenshots(void);
+extern struct ISteamScreenshots *SteamScreenshots_generic(const char *version);
+extern struct ISteamScreenshots *SteamScreenshots(void);
 
 #endif /* ISTEAMSCREENSHOTS_H */

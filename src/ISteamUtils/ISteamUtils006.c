@@ -3,7 +3,7 @@
 #include "ISteamUtils006.h"
 #include "ISteamUtils_priv.h"
 
-static const struct ISteamUtils006 ISteamUtils006_vtbl = {
+static const struct ISteamUtils006Vtbl ISteamUtils006_vtbl = {
 	ISteamUtils_GetSecondsSinceAppActive,
 	INVAL_PTR,
 	ISteamUtils_GetConnectedUniverse,
@@ -31,11 +31,11 @@ static const struct ISteamUtils006 ISteamUtils006_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamUtilsImpl *SteamUtils006(void)
+struct ISteamUtils *SteamUtils006(void)
 {
 	static struct ISteamUtilsImpl impl;
 
-	impl.iface = &ISteamUtils006_vtbl;
+	impl.base.vtbl = &ISteamUtils006_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

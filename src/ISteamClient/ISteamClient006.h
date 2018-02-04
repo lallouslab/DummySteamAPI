@@ -14,33 +14,33 @@
 
 #define STEAMCLIENT_INTERFACE_VERSION_006 "SteamClient006"
 
-struct ISteamClient006
+struct ISteamClient006Vtbl
 {
-	steam_handle_pipe_t (*CreateSteamPipe)(struct ISteamClient *This);
+	steam_handle_pipe_t (*CreateSteamPipe)(struct ISteamClient *iface);
 	void *BReleaseSteamPipe;
 	void *CreateGlobalUser;
 	void *ConnectToGlobalUser;
 	void *CreateLocalUser;
 	void *ReleaseUser;
-	struct ISteamUserImpl *(*GetISteamUser)(struct ISteamClient *This, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamUser *(*GetISteamUser)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *GetIVAC;
-	struct ISteamGameServerImpl *(*GetISteamGameServer)(struct ISteamClient *This, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamGameServer *(*GetISteamGameServer)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *SetLocalIPBinding;
 	void *GetUniverseName;
-	struct ISteamFriendsImpl *(*GetISteamFriends)(struct ISteamClient *This, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
-	struct ISteamUtilsImpl *(*GetISteamUtils)(struct ISteamClient *This, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamFriends *(*GetISteamFriends)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamUtils *(*GetISteamUtils)(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version);
 	void *GetISteamBilling;
-	struct ISteamMatchmakingImpl *(*GetISteamMatchmaking)(struct ISteamClient *This, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
-	struct ISteamApps *(*GetISteamApps)(struct ISteamClient *This, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamMatchmaking *(*GetISteamMatchmaking)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamApps *(*GetISteamApps)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *GetISteamContentServer;
 	void *GetISteamMasterServerUpdater;
-	struct ISteamMatchmakingServersImpl *(*GetISteamMatchmakingServers)(struct ISteamClient *This, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+	struct ISteamMatchmakingServers *(*GetISteamMatchmakingServers)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *RunFrame;
 	void *GetIPCCallCount;
 };
 
-static inline struct ISteamClient006 *get_ISteamClient006_from_ISteamClient(struct ISteamClient *iface) {
-	return (struct ISteamClient006 *)iface->iface;
+static inline struct ISteamClient006Vtbl *get_ISteamClient006Vtbl_from_ISteamClient(struct ISteamClient *iface) {
+	return (struct ISteamClient006Vtbl *)iface->vtbl;
 }
 
 struct ISteamClient *SteamClient006(void);

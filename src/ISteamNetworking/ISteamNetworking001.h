@@ -7,7 +7,7 @@
 
 #define STEAMNETWORKING_INTERFACE_VERSION_001 "SteamNetworking001"
 
-struct ISteamNetworking001
+struct ISteamNetworking001Vtbl
 {
 	void *CreateListenSocket;
 	void *CreateP2PConnectionSocket;
@@ -23,6 +23,10 @@ struct ISteamNetworking001
 	void *GetListenSocketInfo;
 };
 
-struct ISteamNetworkingImpl *SteamNetworking001(void);
+static inline struct ISteamNetworking001Vtbl *get_ISteamNetworking001Vtbl_from_ISteamNetworking(struct ISteamNetworking *iface) {
+	return (struct ISteamNetworking001Vtbl *)iface->vtbl;
+}
+
+struct ISteamNetworking *SteamNetworking001(void);
 
 #endif /* ISTEAMNETWORKING001_H */

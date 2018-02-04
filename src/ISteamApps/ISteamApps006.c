@@ -3,7 +3,7 @@
 #include "ISteamApps006.h"
 #include "ISteamApps_priv.h"
 
-static const struct ISteamApps006 ISteamApps006_vtbl = {
+static const struct ISteamApps006Vtbl ISteamApps006_vtbl = {
 	ISteamApps_BIsSubscribed,
 	ISteamApps_BIsLowViolence,
 	ISteamApps_BIsCybercafe,
@@ -33,7 +33,7 @@ struct ISteamApps *SteamApps006(void)
 {
 	static struct ISteamAppsImpl impl;
 
-	impl.base.iface = &ISteamApps006_vtbl;
+	impl.base.vtbl = &ISteamApps006_vtbl;
 
 	return &impl.base;
 }

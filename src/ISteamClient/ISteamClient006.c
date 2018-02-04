@@ -3,7 +3,7 @@
 #include "ISteamClient006.h"
 #include "ISteamClient_priv.h"
 
-static const struct ISteamClient006 ISteamClient006_vtbl = {
+static const struct ISteamClient006Vtbl ISteamClient006_vtbl = {
 	ISteamClient_CreateSteamPipe,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -31,7 +31,7 @@ struct ISteamClient *SteamClient006(void)
 {
 	static struct ISteamClientImpl impl;
 
-	impl.base.iface = &ISteamClient006_vtbl;
+	impl.base.vtbl = &ISteamClient006_vtbl;
 
 	return &impl.base;
 }

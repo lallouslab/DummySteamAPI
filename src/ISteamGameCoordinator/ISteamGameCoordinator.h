@@ -3,9 +3,12 @@
 
 #define STEAMGAMECOORDINATOR_INTERFACE_VERSION_PREFIX "SteamGameCoordinator"
 
-struct ISteamGameCoordinatorImpl;
+struct ISteamGameCoordinator
+{
+	const void *vtbl;
+};
 
-struct ISteamGameCoordinatorImpl *SteamGameCoordinator_generic(const char *version);
-extern struct ISteamGameCoordinatorImpl *SteamGameCoordinator(void);
+struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version);
+extern struct ISteamGameCoordinator *SteamGameCoordinator(void);
 
 #endif /* ISTEAMGAMECOORDINATOR_H */

@@ -3,7 +3,7 @@
 #include "ISteamNetworking001.h"
 #include "ISteamNetworking_priv.h"
 
-static const struct ISteamNetworking001 ISteamNetworking001_vtbl = {
+static const struct ISteamNetworking001Vtbl ISteamNetworking001_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -18,11 +18,11 @@ static const struct ISteamNetworking001 ISteamNetworking001_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamNetworkingImpl *SteamNetworking001(void)
+struct ISteamNetworking *SteamNetworking001(void)
 {
 	static struct ISteamNetworkingImpl impl;
 
-	impl.iface = &ISteamNetworking001_vtbl;
+	impl.base.vtbl = &ISteamNetworking001_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

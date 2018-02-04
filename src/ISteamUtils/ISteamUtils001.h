@@ -7,17 +7,21 @@
 
 #define STEAMUTILS_INTERFACE_VERSION_001 "SteamUtils001"
 
-struct ISteamUtils001
+struct ISteamUtils001Vtbl
 {
-	uint32_t (*GetSecondsSinceAppActive)(struct ISteamUtilsImpl *This);
+	uint32_t (*GetSecondsSinceAppActive)(struct ISteamUtils *iface);
 	void *GetSecondsSinceComputerActive;
-	enum steam_universe (*GetConnectedUniverse)(struct ISteamUtilsImpl *This);
+	enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
 	void *GetServerRealTime;
 	void *GetIPCountry;
 	void *GetImageSize;
 	void *GetImageRGBA;
 };
 
-struct ISteamUtilsImpl *SteamUtils001(void);
+static inline struct ISteamUtils001Vtbl *get_ISteamUtils001Vtbl_from_ISteamUtils(struct ISteamUtils *iface) {
+	return (struct ISteamUtils001Vtbl *)iface->vtbl;
+}
+
+struct ISteamUtils *SteamUtils001(void);
 
 #endif /* ISTEAMUTILS001_H */

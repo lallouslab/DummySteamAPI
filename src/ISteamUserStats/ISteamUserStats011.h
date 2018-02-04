@@ -7,25 +7,25 @@
 
 #define STEAMUSERSTATS_INTERFACE_VERSION_011 "STEAMUSERSTATS_INTERFACE_VERSION011"
 
-struct ISteamUserStats011
+struct ISteamUserStats011Vtbl
 {
-	steam_bool_t (*RequestCurrentStats)(struct ISteamUserStatsImpl *This);
-	steam_bool_t (*GetStatI32)(struct ISteamUserStatsImpl *This, const char *name, int32_t *data);
-	steam_bool_t (*GetStatFloat)(struct ISteamUserStatsImpl *This, const char *name, float *data);
-	steam_bool_t (*SetStatI32)(struct ISteamUserStatsImpl *This, const char *name, int32_t data);
-	steam_bool_t (*SetStatFloat)(struct ISteamUserStatsImpl *This, const char *name, float data);
-	steam_bool_t (*UpdateAvgRateStat)(struct ISteamUserStatsImpl *This, const char *name, float count_this_session, float session_length);
-	steam_bool_t (*GetAchievement)(struct ISteamUserStatsImpl *This, const char *name, steam_bool_t *achieved);
-	steam_bool_t (*SetAchievement)(struct ISteamUserStatsImpl *This, const char *name);
-	steam_bool_t (*ClearAchievement)(struct ISteamUserStatsImpl *This, const char *name);
-	steam_bool_t (*GetAchievementAndUnlockTime)(struct ISteamUserStatsImpl *This, const char *name, steam_bool_t *achieved, uint32_t *unlock_time);
-	steam_bool_t (*StoreStats)(struct ISteamUserStatsImpl *This);
+	steam_bool_t (*RequestCurrentStats)(struct ISteamUserStats *iface);
+	steam_bool_t (*GetStatI32)(struct ISteamUserStats *iface, const char *name, int32_t *data);
+	steam_bool_t (*GetStatFloat)(struct ISteamUserStats *iface, const char *name, float *data);
+	steam_bool_t (*SetStatI32)(struct ISteamUserStats *iface, const char *name, int32_t data);
+	steam_bool_t (*SetStatFloat)(struct ISteamUserStats *iface, const char *name, float data);
+	steam_bool_t (*UpdateAvgRateStat)(struct ISteamUserStats *iface, const char *name, float count_this_session, float session_length);
+	steam_bool_t (*GetAchievement)(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved);
+	steam_bool_t (*SetAchievement)(struct ISteamUserStats *iface, const char *name);
+	steam_bool_t (*ClearAchievement)(struct ISteamUserStats *iface, const char *name);
+	steam_bool_t (*GetAchievementAndUnlockTime)(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved, uint32_t *unlock_time);
+	steam_bool_t (*StoreStats)(struct ISteamUserStats *iface);
 	void *GetAchievementIcon;
 	void *GetAchievementDisplayAttribute;
 	void *IndicateAchievementProgress;
 	void *GetNumAchievements;
 	void *GetAchievementName;
-	steam_api_call_t (*RequestUserStats)(struct ISteamUserStatsImpl *This, union CSteamID steam_id_user);
+	steam_api_call_t (*RequestUserStats)(struct ISteamUserStats *iface, union CSteamID steam_id_user);
 	void *GetUserStatI32;
 	void *GetUserStatFloat;
 	void *GetUserAchievement;
@@ -54,6 +54,10 @@ struct ISteamUserStats011
 	void *GetGlobalStatHistorySouble;
 };
 
-struct ISteamUserStatsImpl *SteamUserStats011(void);
+static inline struct ISteamUserStats011Vtbl *get_ISteamUserStats011Vtbl_from_ISteamUserStats(struct ISteamUserStats *iface) {
+	return (struct ISteamUserStats011Vtbl *)iface->vtbl;
+}
+
+struct ISteamUserStats *SteamUserStats011(void);
 
 #endif /* ISTEAMUSERSTATS011_H */

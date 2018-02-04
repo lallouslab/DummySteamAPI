@@ -7,9 +7,9 @@
 
 #define STEAMREMOTESTORAGE_INTERFACE_VERSION_012 "STEAMREMOTESTORAGE_INTERFACE_VERSION012"
 
-struct ISteamRemoteStorage012
+struct ISteamRemoteStorage012Vtbl
 {
-	steam_bool_t (*FileWrite)(struct ISteamRemoteStorageImpl *This, const char *filename, const void *data, int32_t size);
+	steam_bool_t (*FileWrite)(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size);
 	void *FileRead;
 	void *FileForget;
 	void *FileDelete;
@@ -21,15 +21,15 @@ struct ISteamRemoteStorage012
 	void *FileWriteStreamCancel;
 	void *FileExists;
 	void *FilePersisted;
-	int32_t (*GetFileSize)(struct ISteamRemoteStorageImpl *This, const char *filename);
+	int32_t (*GetFileSize)(struct ISteamRemoteStorage *iface, const char *filename);
 	void *GetFileTimestamp;
 	void *GetSyncPlatforms;
-	int32_t (*GetFileCount)(struct ISteamRemoteStorageImpl *This);
+	int32_t (*GetFileCount)(struct ISteamRemoteStorage *iface);
 	void *GetFileNameAndSize;
-	steam_bool_t (*GetQuota)(struct ISteamRemoteStorageImpl *This, int32_t *total_bytes, int32_t *available_bytes);
+	steam_bool_t (*GetQuota)(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes);
 	void *IsCloudEnabledForAccount;
 	void *IsCloudEnabledForApp;
-	void (*SetCloudEnabledForApp)(struct ISteamRemoteStorageImpl *This, steam_bool_t enabled);
+	void (*SetCloudEnabledForApp)(struct ISteamRemoteStorage *iface, steam_bool_t enabled);
 	void *UGCDownload;
 	void *GetUGCDownloadProgress;
 	void *GetUGCDetails;
@@ -63,6 +63,10 @@ struct ISteamRemoteStorage012
 	void *UGCDownloadToLocation;
 };
 
-struct ISteamRemoteStorageImpl *SteamRemoteStorage012(void);
+static inline struct ISteamRemoteStorage012Vtbl *get_ISteamRemoteStorage012Vtbl_from_ISteamRemoteStorage(struct ISteamRemoteStorage *iface) {
+	return (struct ISteamRemoteStorage012Vtbl *)iface->vtbl;
+}
+
+struct ISteamRemoteStorage *SteamRemoteStorage012(void);
 
 #endif /* ISTEAMREMOTESTORAGE012_H */

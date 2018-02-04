@@ -2,12 +2,19 @@
 #define ISTEAMGAMECOORDINATOR_PRIV_H 1
 
 #include "steam.h"
+#include "utils.h"
+
+#include "ISteamGameCoordinator.h"
 
 struct ISteamGameCoordinatorImpl
 {
-	const void *iface;
+	struct ISteamGameCoordinator base;
 };
 
-steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinatorImpl *This, uint32_t *msg_size);
+static inline struct ISteamGameCoordinatorImpl *impl_from_ISteamGameCoordinator(struct ISteamGameCoordinator *iface) {
+	return CONTAINER_OF(iface, struct ISteamGameCoordinatorImpl, base);
+}
+
+steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size);
 
 #endif /* ISTEAMGAMECOORDINATOR_PRIV_H */

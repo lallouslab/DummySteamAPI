@@ -3,7 +3,7 @@
 #include "ISteamMatchmaking001.h"
 #include "ISteamMatchmaking_priv.h"
 
-static const struct ISteamMatchmaking001 ISteamMatchmaking001_vtbl = {
+static const struct ISteamMatchmaking001Vtbl ISteamMatchmaking001_vtbl = {
 	ISteamMatchmaking_GetFavoriteGameCount,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -28,11 +28,11 @@ static const struct ISteamMatchmaking001 ISteamMatchmaking001_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamMatchmakingImpl *SteamMatchmaking001(void)
+struct ISteamMatchmaking *SteamMatchmaking001(void)
 {
 	static struct ISteamMatchmakingImpl impl;
 
-	impl.iface = &ISteamMatchmaking001_vtbl;
+	impl.base.vtbl = &ISteamMatchmaking001_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

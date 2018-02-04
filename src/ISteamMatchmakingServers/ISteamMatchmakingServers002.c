@@ -3,7 +3,7 @@
 #include "ISteamMatchmakingServers002.h"
 #include "ISteamMatchmakingServers_priv.h"
 
-static const struct ISteamMatchmakingServers002 ISteamMatchmakingServers002_vtbl = {
+static const struct ISteamMatchmakingServers002Vtbl ISteamMatchmakingServers002_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -23,11 +23,11 @@ static const struct ISteamMatchmakingServers002 ISteamMatchmakingServers002_vtbl
 	INVAL_PTR
 };
 
-struct ISteamMatchmakingServersImpl *SteamMatchmakingServers002(void)
+struct ISteamMatchmakingServers *SteamMatchmakingServers002(void)
 {
 	static struct ISteamMatchmakingServersImpl impl;
 
-	impl.iface = &ISteamMatchmakingServers002_vtbl;
+	impl.base.vtbl = &ISteamMatchmakingServers002_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

@@ -1,15 +1,20 @@
 #ifndef ISTEAMHTTP_PRIV_H
 #define ISTEAMHTTP_PRIV_H 1
 
-#include <stdint.h>
-
 #include "steam.h"
+#include "utils.h"
+
+#include "ISteamHTTP.h"
 
 struct ISteamHTTPImpl
 {
-	const void *iface;
+	struct ISteamHTTP base;
 };
 
-extern struct ISteamHTTPImpl *SteamHTTP(void);
+static inline struct ISteamHTTPImpl *impl_from_ISteamHTTP(struct ISteamHTTP *iface) {
+	return CONTAINER_OF(iface, struct ISteamHTTPImpl, base);
+}
+
+extern struct ISteamHTTP *SteamHTTP(void);
 
 #endif /* ISTEAMHTTP_PRIV_H */

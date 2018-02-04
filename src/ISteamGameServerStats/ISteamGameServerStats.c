@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
@@ -7,12 +6,12 @@
 #include "ISteamGameServerStats_priv.h"
 #include "ISteamGameServerStats001.h"
 
-struct ISteamGameServerStatsImpl *SteamGameServerStats_generic(const char *version)
+struct ISteamGameServerStats *SteamGameServerStats_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamGameServerStatsImpl *(*iface_getter)(void);
+		struct ISteamGameServerStats *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMGAMESERVERSTATS_INTERFACE_VERSION_001, SteamGameServerStats001 },
 		{ NULL, NULL }
@@ -39,7 +38,7 @@ struct ISteamGameServerStatsImpl *SteamGameServerStats_generic(const char *versi
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamGameServerStatsImpl *SteamGameServerStats(void)
+EXPORT struct ISteamGameServerStats *SteamGameServerStats(void)
 {
 	LOG_ENTER0("()");
 

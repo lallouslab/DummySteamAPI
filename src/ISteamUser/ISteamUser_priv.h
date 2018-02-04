@@ -2,17 +2,24 @@
 #define ISTEAMUSER_PRIV_H 1
 
 #include "steam.h"
+#include "utils.h"
+
+#include "ISteamUser.h"
 
 struct ISteamUserImpl
 {
-	const void *iface;
+	struct ISteamUser base;
 };
 
-steam_user_t ISteamUser_GetHSteamUser(struct ISteamUserImpl *This);
-steam_bool_t ISteamUser_BLoggedOn(struct ISteamUserImpl *This);
-void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUserImpl *This);
-union CSteamID ISteamUser_GetSteamID018(struct ISteamUserImpl *This);
-steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUserImpl *This, char *buf, int buf_len);
-steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUserImpl *This, void *data, int data_size);
+static inline struct ISteamUserImpl *impl_from_ISteamUser(struct ISteamUser *iface) {
+	return CONTAINER_OF(iface, struct ISteamUserImpl, base);
+}
+
+steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface);
+steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface);
+void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface);
+union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface);
+steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len);
+steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size);
 
 #endif /* ISTEAMUSER_PRIV_H */

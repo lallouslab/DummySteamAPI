@@ -3,7 +3,7 @@
 #include "ISteamUserStats011.h"
 #include "ISteamUserStats_priv.h"
 
-static const struct ISteamUserStats011 ISteamUserStats011_vtbl = {
+static const struct ISteamUserStats011Vtbl ISteamUserStats011_vtbl = {
 	ISteamUserStats_RequestCurrentStats,
 	ISteamUserStats_GetStatI32,
 	ISteamUserStats_GetStatFloat,
@@ -49,11 +49,11 @@ static const struct ISteamUserStats011 ISteamUserStats011_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamUserStatsImpl *SteamUserStats011(void)
+struct ISteamUserStats *SteamUserStats011(void)
 {
 	static struct ISteamUserStatsImpl impl;
 
-	impl.iface = &ISteamUserStats011_vtbl;
+	impl.base.vtbl = &ISteamUserStats011_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

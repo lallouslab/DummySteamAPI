@@ -5,7 +5,7 @@
 
 struct ISteamClient
 {
-	const void *iface;
+	const void *vtbl;
 };
 
 struct ISteamClient *SteamClient_generic(const char *version);

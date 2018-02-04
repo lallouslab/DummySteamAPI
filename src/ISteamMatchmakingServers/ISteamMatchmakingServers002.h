@@ -7,7 +7,7 @@
 
 #define STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_002 "SteamMatchMakingServers002"
 
-struct ISteamMatchmakingServers002
+struct ISteamMatchmakingServers002Vtbl
 {
 	void *RequestInternetServerList;
 	void *RequestLANServerList;
@@ -28,6 +28,10 @@ struct ISteamMatchmakingServers002
 	void *CancelServerQuery;
 };
 
-struct ISteamMatchmakingServersImpl *SteamMatchmakingServers002(void);
+static inline struct ISteamMatchmakingServers002Vtbl *get_ISteamMatchmakingServers002Vtbl_from_ISteamMatchmakingServers(struct ISteamMatchmakingServers *iface) {
+	return (struct ISteamMatchmakingServers002Vtbl *)iface->vtbl;
+}
+
+struct ISteamMatchmakingServers *SteamMatchmakingServers002(void);
 
 #endif /* ISTEAMMATCHMAKINGSERVERS002_H */

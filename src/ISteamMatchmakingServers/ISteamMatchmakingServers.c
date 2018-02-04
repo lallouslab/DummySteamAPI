@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
@@ -8,12 +7,12 @@
 #include "ISteamMatchmakingServers001.h"
 #include "ISteamMatchmakingServers002.h"
 
-struct ISteamMatchmakingServersImpl *SteamMatchmakingServers_generic(const char *version)
+struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamMatchmakingServersImpl *(*iface_getter)(void);
+		struct ISteamMatchmakingServers *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_001, SteamMatchmakingServers001 },
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_002, SteamMatchmakingServers002 },
@@ -41,7 +40,7 @@ struct ISteamMatchmakingServersImpl *SteamMatchmakingServers_generic(const char 
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamMatchmakingServersImpl *SteamMatchmakingServers(void)
+EXPORT struct ISteamMatchmakingServers *SteamMatchmakingServers(void)
 {
 	LOG_ENTER0("()");
 

@@ -7,7 +7,7 @@
 
 #define STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_001 "STEAMUNIFIEDMESSAGES_INTERFACE_VERSION001"
 
-struct ISteamUnifiedMessages001
+struct ISteamUnifiedMessages001Vtbl
 {
 	void *SendMethod;
 	void *GetMethodResponseInfo;
@@ -16,6 +16,10 @@ struct ISteamUnifiedMessages001
 	void *SendNotification;
 };
 
-struct ISteamUnifiedMessagesImpl *SteamUnifiedMessages001(void);
+static inline struct ISteamUnifiedMessages001Vtbl *get_ISteamUnifiedMessages001Vtbl_from_ISteamUnifiedMessages(struct ISteamUnifiedMessages *iface) {
+	return (struct ISteamUnifiedMessages001Vtbl *)iface->vtbl;
+}
+
+struct ISteamUnifiedMessages *SteamUnifiedMessages001(void);
 
 #endif /* ISTEAMUNIFIEDMESSAGES001_H */

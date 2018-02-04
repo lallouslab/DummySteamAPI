@@ -7,16 +7,16 @@
 
 #define STEAMNETWORKING_INTERFACE_VERSION_005 "SteamNetworking005"
 
-struct ISteamNetworking005
+struct ISteamNetworking005Vtbl
 {
 	void *SendP2PPacket;
 	void *IsP2PPacketAvailable;
-	steam_bool_t (*ReadP2PPacket)(struct ISteamNetworkingImpl *This, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels);
+	steam_bool_t (*ReadP2PPacket)(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels);
 	void *AcceptP2PSessionWithUser;
 	void *CloseP2PSessionWithUser;
 	void *CloseP2PChannelWithUser;
 	void *GetP2PSessionState;
-	steam_bool_t (*AllowP2PPacketRelay)(struct ISteamNetworkingImpl *This, steam_bool_t allow);
+	steam_bool_t (*AllowP2PPacketRelay)(struct ISteamNetworking *iface, steam_bool_t allow);
 	void *CreateListenSocket;
 	void *CreateP2PConnectionSocket;
 	void *CreateConnectionSocket;
@@ -33,6 +33,10 @@ struct ISteamNetworking005
 	void *GetMaxPacketSize;
 };
 
-struct ISteamNetworkingImpl *SteamNetworking005(void);
+static inline struct ISteamNetworking005Vtbl *get_ISteamNetworking005Vtbl_from_ISteamNetworking(struct ISteamNetworking *iface) {
+	return (struct ISteamNetworking005Vtbl *)iface->vtbl;
+}
+
+struct ISteamNetworking *SteamNetworking005(void);
 
 #endif /* ISTEAMNETWORKING005_H */

@@ -7,11 +7,11 @@
 
 #define STEAMFRIENDS_INTERFACE_VERSION_001 "SteamFriends001"
 
-struct ISteamFriends001
+struct ISteamFriends001Vtbl
 {
-	const char *(*GetPersonaName)(struct ISteamFriendsImpl *This);
+	const char *(*GetPersonaName)(struct ISteamFriends *iface);
 	void *SetPersonaName;
-	uint32_t (*GetPersonaState)(struct ISteamFriendsImpl *This);
+	uint32_t (*GetPersonaState)(struct ISteamFriends *iface);
 	void *SetPersonaState;
 	void *AddFriend;
 	void *RemoveFriend;
@@ -19,7 +19,7 @@ struct ISteamFriends001
 	void *GetFriendRelationship;
 	void *GetFriendPersonaState;
 	void *GetFriendGamePlayed0;
-	const char *(*GetFriendPersonaName)(struct ISteamFriendsImpl *This, void /* CSteamID */ *steam_id_friend);
+	const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
 	void *AddFriendByName;
 	void *GetFriendCount;
 	void *GetFriendByIndex;
@@ -38,6 +38,10 @@ struct ISteamFriends001
 	void *GetFriendGamePlayed2;
 };
 
-struct ISteamFriendsImpl *SteamFriends001(void);
+static inline struct ISteamFriends001Vtbl *get_ISteamFriends001Vtbl_from_ISteamApps(struct ISteamFriends *iface) {
+	return (struct ISteamFriends001Vtbl *)iface->vtbl;
+}
+
+struct ISteamFriends *SteamFriends001(void);
 
 #endif /* ISTEAMFRIENDS001_H */

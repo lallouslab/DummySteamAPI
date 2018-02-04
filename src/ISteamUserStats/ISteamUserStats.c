@@ -8,86 +8,110 @@
 #include "ISteamUserStats_priv.h"
 #include "ISteamUserStats011.h"
 
-steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStatsImpl *This)
+steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStatsImpl *This, const char *name, int32_t *data)
+steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const char *name, int32_t *data)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStatsImpl *This, const char *name, float *data)
+steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStats *iface, const char *name, float *data)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_SetStatI32(struct ISteamUserStatsImpl *This, const char *name, int32_t data)
+steam_bool_t ISteamUserStats_SetStatI32(struct ISteamUserStats *iface, const char *name, int32_t data)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %" PRIi32 ")", VOIDPTR(This), debug_str(name), data);
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_SetStatFloat(struct ISteamUserStatsImpl *This, const char *name, float data)
+steam_bool_t ISteamUserStats_SetStatFloat(struct ISteamUserStats *iface, const char *name, float data)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %f)", VOIDPTR(This), debug_str(name), data);
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_UpdateAvgRateStat(struct ISteamUserStatsImpl *This, const char *name, float count_this_session, float session_length)
+steam_bool_t ISteamUserStats_UpdateAvgRateStat(struct ISteamUserStats *iface, const char *name, float count_this_session, float session_length)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, count_this_session = %f, session_length = %f)", VOIDPTR(This), debug_str(name), count_this_session, session_length);
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_GetAchievement(struct ISteamUserStatsImpl *This, const char *name, steam_bool_t *achieved)
+steam_bool_t ISteamUserStats_GetAchievement(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(achieved));
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStatsImpl *This, const char *name)
+steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStats *iface, const char *name)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s)", VOIDPTR(This), debug_str(name));
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStatsImpl *This, const char *name)
+steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStats *iface, const char *name)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s)", VOIDPTR(This), debug_str(name));
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStatsImpl *This, const char *name, steam_bool_t *achieved, uint32_t *unlock_time)
+steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved, uint32_t *unlock_time)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s, achieved = %p, unlock_time = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(achieved), VOIDPTR(unlock_time));
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStatsImpl *This)
+steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return STEAM_FALSE;
 }
 
 /* XXX BUG: steam_id_user is not a ptr */
-steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStatsImpl *This, union CSteamID steam_id_user)
+steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
 {
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
 	const char *game_id;
 
 	struct
@@ -113,12 +137,12 @@ steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStatsImpl *Th
 	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, STEAM_FALSE, &user_stats_received, sizeof(user_stats_received));
 }
 
-struct ISteamUserStatsImpl *SteamUserStats_generic(const char *version)
+struct ISteamUserStats *SteamUserStats_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamUserStatsImpl *(*iface_getter)(void);
+		struct ISteamUserStats *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUSERSTATS_INTERFACE_VERSION_011, SteamUserStats011 },
 		{ NULL, NULL }
@@ -145,7 +169,7 @@ struct ISteamUserStatsImpl *SteamUserStats_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamUserStatsImpl *SteamUserStats(void)
+EXPORT struct ISteamUserStats *SteamUserStats(void)
 {
 	LOG_ENTER0("()");
 

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
@@ -8,19 +7,21 @@
 #include "ISteamMatchmaking001.h"
 #include "ISteamMatchmaking009.h"
 
-int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmakingImpl *This)
+int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface)
 {
+	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return 0;
 }
 
-struct ISteamMatchmakingImpl *SteamMatchmaking_generic(const char *version)
+struct ISteamMatchmaking *SteamMatchmaking_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamMatchmakingImpl *(*iface_getter)(void);
+		struct ISteamMatchmaking *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_001, SteamMatchmaking001 },
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_009, SteamMatchmaking009 },
@@ -48,7 +49,7 @@ struct ISteamMatchmakingImpl *SteamMatchmaking_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamMatchmakingImpl *SteamMatchmaking(void)
+EXPORT struct ISteamMatchmaking *SteamMatchmaking(void)
 {
 	LOG_ENTER0("()");
 

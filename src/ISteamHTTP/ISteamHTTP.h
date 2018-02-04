@@ -3,9 +3,12 @@
 
 #define STEAMHTTP_INTERFACE_VERSION_PREFIX "STEAMHTTP_INTERFACE_VERSION"
 
-struct ISteamHTTPImpl;
+struct ISteamHTTP
+{
+	const void *vtbl;
+};
 
-struct ISteamHTTPImpl *SteamHTTP_generic(const char *version);
-extern struct ISteamHTTPImpl *SteamHTTP(void);
+struct ISteamHTTP *SteamHTTP_generic(const char *version);
+extern struct ISteamHTTP *SteamHTTP(void);
 
 #endif /* ISTEAMHTTP_H */

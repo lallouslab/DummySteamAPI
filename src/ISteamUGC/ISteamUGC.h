@@ -5,7 +5,7 @@
 
 struct ISteamUGC
 {
-	const void *iface;
+	const void *vtbl;
 };
 
 struct ISteamUGC *SteamUGC_generic(const char *version);

@@ -3,9 +3,12 @@
 
 #define STEAMUTILS_INTERFACE_VERSION_PREFIX "SteamUtils"
 
-struct ISteamUtilsImpl;
+struct ISteamUtils
+{
+	const void *vtbl;
+};
 
-struct ISteamUtilsImpl *SteamUtils_generic(const char *version);
-extern struct ISteamUtilsImpl *SteamUtils(void);
+struct ISteamUtils *SteamUtils_generic(const char *version);
+extern struct ISteamUtils *SteamUtils(void);
 
 #endif /* ISTEAMUTILS_H */

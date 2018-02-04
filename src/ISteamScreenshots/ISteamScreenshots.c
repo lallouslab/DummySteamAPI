@@ -6,19 +6,21 @@
 #include "ISteamScreenshots_priv.h"
 #include "ISteamScreenshots001.h"
 
-steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshotsImpl *This, steam_bool_t enable)
+steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshots *iface, steam_bool_t enable)
 {
+	struct ISteamScreenshotsImpl *This = impl_from_ISteamScreenshots(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, enable = %d)", VOIDPTR(This), enable);
 
 	return STEAM_TRUE;
 }
 
-struct ISteamScreenshotsImpl *SteamScreenshots_generic(const char *version)
+struct ISteamScreenshots *SteamScreenshots_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamScreenshotsImpl *(*iface_getter)(void);
+		struct ISteamScreenshots *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_001, SteamScreenshots001 },
 		{ NULL, NULL }
@@ -45,7 +47,7 @@ struct ISteamScreenshotsImpl *SteamScreenshots_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamScreenshotsImpl *SteamScreenshots(void)
+EXPORT struct ISteamScreenshots *SteamScreenshots(void)
 {
 	LOG_ENTER0("()");
 

@@ -1,7 +1,7 @@
 #include "ISteamController001.h"
 #include "ISteamController_priv.h"
 
-static const struct ISteamController001 ISteamController001_vtbl = {
+static const struct ISteamController001Vtbl ISteamController001_vtbl = {
 	ISteamController_Init,
 	ISteamController_Shutdown,
 	ISteamController_RunFrame,
@@ -10,11 +10,11 @@ static const struct ISteamController001 ISteamController001_vtbl = {
 	ISteamController_SetOverrideMode
 };
 
-struct ISteamControllerImpl *SteamController001(void)
+struct ISteamController *SteamController001(void)
 {
 	static struct ISteamControllerImpl impl;
 
-	impl.iface = &ISteamController001_vtbl;
+	impl.base.vtbl = &ISteamController001_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

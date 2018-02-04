@@ -7,16 +7,20 @@
 
 #define STEAMSCREENSHOTS_INTERFACE_VERSION_001 "STEAMSCREENSHOTS_INTERFACE_VERSION001"
 
-struct ISteamScreenshots001
+struct ISteamScreenshots001Vtbl
 {
 	void *WriteScreenshot;
 	void *AddScreenshotToLibrary;
 	void *TriggerScreenshot;
-	steam_bool_t (*HookScreenshots)(struct ISteamScreenshotsImpl *This, steam_bool_t enable);
+	steam_bool_t (*HookScreenshots)(struct ISteamScreenshots *iface, steam_bool_t enable);
 	void *SetLocation;
 	void *TagUser;
 };
 
-struct ISteamScreenshotsImpl *SteamScreenshots001(void);
+static inline struct ISteamScreenshots001Vtbl *get_ISteamScreenshots001Vtbl_from_ISteamScreenshots(struct ISteamScreenshots *iface) {
+	return (struct ISteamScreenshots001Vtbl *)iface->vtbl;
+}
+
+struct ISteamScreenshots *SteamScreenshots001(void);
 
 #endif /* ISTEAMSCREENSHOTS001_H */

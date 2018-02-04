@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
@@ -8,61 +7,75 @@
 #include "ISteamFriends001.h"
 #include "ISteamFriends014.h"
 
-const char *ISteamFriends_GetPersonaName(struct ISteamFriendsImpl *This)
+const char *ISteamFriends_GetPersonaName(struct ISteamFriends *iface)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return "Me";
 }
 
-steam_api_call_t ISteamFriends_SetPersonaName(struct ISteamFriendsImpl *This, const char *name)
+steam_api_call_t ISteamFriends_SetPersonaName(struct ISteamFriends *iface, const char *name)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, name = %s)", VOIDPTR(This), debug_str(name));
 
 	return 0;
 }
 
-uint32_t ISteamFriends_GetPersonaState(struct ISteamFriendsImpl *This)
+uint32_t ISteamFriends_GetPersonaState(struct ISteamFriends *iface)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return 0;
 }
 
-int ISteamFriends_GetFriendCount(struct ISteamFriendsImpl *This, int flags)
+int ISteamFriends_GetFriendCount(struct ISteamFriends *iface, int flags)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, flags = %#x)", VOIDPTR(This), flags);
 
 	return 0;
 }
 
-const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriendsImpl *This, void /* CSteamID */ *steam_id_friend)
+const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p)", VOIDPTR(This), steam_id_friend);
 
 	return "";
 }
 
-steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriendsImpl *This, void /* CSteamID */ *steam_id_friend, void /* FriendGameInfo_t */ *friend_game_info)
+steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, void /* FriendGameInfo_t */ *friend_game_info)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p, friend_game_info = %p)", VOIDPTR(This), steam_id_friend, friend_game_info);
 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriendsImpl *This, void /* CSteamID */ *steam_id_friend, const char *connect_str)
+steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str)
 {
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p, connect_str = %p)", VOIDPTR(This), steam_id_friend, debug_str(connect_str));
 
 	return STEAM_FALSE;
 }
 
-struct ISteamFriendsImpl *SteamFriends_generic(const char *version)
+struct ISteamFriends *SteamFriends_generic(const char *version)
 {
 	static const struct
 	{
 		const char *name;
-		struct ISteamFriendsImpl *(*iface_getter)(void);
+		struct ISteamFriends *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMFRIENDS_INTERFACE_VERSION_001, SteamFriends001 },
 		{ STEAMFRIENDS_INTERFACE_VERSION_014, SteamFriends014 },
@@ -90,7 +103,7 @@ struct ISteamFriendsImpl *SteamFriends_generic(const char *version)
 	return INVAL_PTR;
 }
 
-EXPORT struct ISteamFriendsImpl *SteamFriends(void)
+EXPORT struct ISteamFriends *SteamFriends(void)
 {
 	LOG_ENTER0("()");
 

@@ -3,7 +3,7 @@
 #include "ISteamUser004.h"
 #include "ISteamUser_priv.h"
 
-static const struct ISteamUser004 ISteamUser004_vtbl = {
+static const struct ISteamUser004Vtbl ISteamUser004_vtbl = {
 	ISteamUser_GetHSteamUser,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -32,11 +32,11 @@ static const struct ISteamUser004 ISteamUser004_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamUserImpl *SteamUser004(void)
+struct ISteamUser *SteamUser004(void)
 {
 	static struct ISteamUserImpl impl;
 
-	impl.iface = &ISteamUser004_vtbl;
+	impl.base.vtbl = &ISteamUser004_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

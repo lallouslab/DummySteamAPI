@@ -3,9 +3,12 @@
 
 #define STEAMNETWORKING_INTERFACE_VERSION_PREFIX "SteamNetworking"
 
-struct ISteamNetworkingImpl;
+struct ISteamNetworking
+{
+	const void *vtbl;
+};
 
-struct ISteamNetworkingImpl *SteamNetworking_generic(const char *version);
-extern struct ISteamNetworkingImpl *SteamNetworking(void);
+struct ISteamNetworking *SteamNetworking_generic(const char *version);
+extern struct ISteamNetworking *SteamNetworking(void);
 
 #endif /* ISTEAMNETWORKING_H */

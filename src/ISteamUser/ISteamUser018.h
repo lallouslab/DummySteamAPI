@@ -7,15 +7,15 @@
 
 #define STEAMUSER_INTERFACE_VERSION_018 "SteamUser018"
 
-struct ISteamUser018
+struct ISteamUser018Vtbl
 {
-	steam_user_t (*GetHSteamUser)(struct ISteamUserImpl *This);
-	steam_bool_t (*BLoggedOn)(struct ISteamUserImpl *This);
-	union CSteamID (*GetSteamID)(struct ISteamUserImpl *This);
+	steam_user_t (*GetHSteamUser)(struct ISteamUser *iface);
+	steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
+	union CSteamID (*GetSteamID)(struct ISteamUser *iface);
 	void *InitiateGameConnection;
 	void *TerminateGameConnection;
 	void *TrackAppUsageEvent;
-	steam_bool_t (*GetUserDataFolder)(struct ISteamUserImpl *This, char *buf, int buf_size);
+	steam_bool_t (*GetUserDataFolder)(struct ISteamUser *iface, char *buf, int buf_size);
 	void *StartVoiceRecording;
 	void *StopVoiceRecording;
 	void *GetAvailableVoice;
@@ -29,13 +29,17 @@ struct ISteamUser018
 	void *UserHasLicenseForApp;
 	void *BIsBehindNAT;
 	void *AdvertiseGame;
-	steam_api_call_t (*RequestEncryptedAppTicket)(struct ISteamUserImpl *This, void *data, int data_size);
+	steam_api_call_t (*RequestEncryptedAppTicket)(struct ISteamUser *iface, void *data, int data_size);
 	void *GetEncryptedAppTicket;
 	void *GetGameBadgeLevel;
 	void *GetPlayerSteamLevel;
 	void *RequestStoreAuthURL;
 };
 
-struct ISteamUserImpl *SteamUser018(void);
+static inline struct ISteamUser018Vtbl *get_ISteamUser018Vtbl_from_ISteamUser(struct ISteamUser *iface) {
+	return (struct ISteamUser018Vtbl *)iface->vtbl;
+}
+
+struct ISteamUser *SteamUser018(void);
 
 #endif /* ISTEAMUSER018_H */

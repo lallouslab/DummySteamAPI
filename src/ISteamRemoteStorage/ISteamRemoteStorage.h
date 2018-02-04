@@ -3,9 +3,12 @@
 
 #define STEAMREMOTESTORAGE_INTERFACE_VERSION_PREFIX "STEAMREMOTESTORAGE_INTERFACE_VERSION"
 
-struct ISteamRemoteStorageImpl;
+struct ISteamRemoteStorage
+{
+	const void *vtbl;
+};
 
-struct ISteamRemoteStorageImpl *SteamRemoteStorage_generic(const char *version);
-extern struct ISteamRemoteStorageImpl *SteamRemoteStorage(void);
+struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version);
+extern struct ISteamRemoteStorage *SteamRemoteStorage(void);
 
 #endif /* ISTEAMREMOTESTORAGE_H */

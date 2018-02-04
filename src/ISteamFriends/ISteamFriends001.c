@@ -3,7 +3,7 @@
 #include "ISteamFriends001.h"
 #include "ISteamFriends_priv.h"
 
-static const struct ISteamFriends001 ISteamFriends001_vtbl = {
+static const struct ISteamFriends001Vtbl ISteamFriends001_vtbl = {
 	ISteamFriends_GetPersonaName,
 	INVAL_PTR,
 	ISteamFriends_GetPersonaState,
@@ -33,11 +33,11 @@ static const struct ISteamFriends001 ISteamFriends001_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamFriendsImpl *SteamFriends001(void)
+struct ISteamFriends *SteamFriends001(void)
 {
 	static struct ISteamFriendsImpl impl;
 
-	impl.iface = &ISteamFriends001_vtbl;
+	impl.base.vtbl = &ISteamFriends001_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

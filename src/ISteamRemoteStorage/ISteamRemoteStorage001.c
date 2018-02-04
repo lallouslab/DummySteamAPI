@@ -3,7 +3,7 @@
 #include "ISteamRemoteStorage001.h"
 #include "ISteamRemoteStorage_priv.h"
 
-static const struct ISteamRemoteStorage001 ISteamRemoteStorage001_vtbl = {
+static const struct ISteamRemoteStorage001Vtbl ISteamRemoteStorage001_vtbl = {
 	INVAL_PTR,
 	ISteamRemoteStorage_GetFileSize,
 	INVAL_PTR,
@@ -14,11 +14,11 @@ static const struct ISteamRemoteStorage001 ISteamRemoteStorage001_vtbl = {
 	ISteamRemoteStorage_GetQuota
 };
 
-struct ISteamRemoteStorageImpl *SteamRemoteStorage001(void)
+struct ISteamRemoteStorage *SteamRemoteStorage001(void)
 {
 	static struct ISteamRemoteStorageImpl impl;
 
-	impl.iface = &ISteamRemoteStorage001_vtbl;
+	impl.base.vtbl = &ISteamRemoteStorage001_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

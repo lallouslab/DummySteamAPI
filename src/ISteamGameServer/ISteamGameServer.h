@@ -3,9 +3,12 @@
 
 #define STEAMGAMESERVER_INTERFACE_VERSION_PREFIX "SteamGameServer"
 
-struct ISteamGameServerImpl;
+struct ISteamGameServer
+{
+	const void *vtbl;
+};
 
-struct ISteamGameServerImpl *SteamGameServer_generic(const char *version);
-extern struct ISteamGameServerImpl *SteamGameServer(void);
+struct ISteamGameServer *SteamGameServer_generic(const char *version);
+extern struct ISteamGameServer *SteamGameServer(void);
 
 #endif /* ISTEAMGAMESERVER_H */

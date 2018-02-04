@@ -3,7 +3,7 @@
 #include "ISteamGameServer012.h"
 #include "ISteamGameServer_priv.h"
 
-static const struct ISteamGameServer012 ISteamGameServer012_vtbl = {
+static const struct ISteamGameServer012Vtbl ISteamGameServer012_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -50,11 +50,11 @@ static const struct ISteamGameServer012 ISteamGameServer012_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamGameServerImpl *SteamGameServer012(void)
+struct ISteamGameServer *SteamGameServer012(void)
 {
 	static struct ISteamGameServerImpl impl;
 
-	impl.iface = &ISteamGameServer012_vtbl;
+	impl.base.vtbl = &ISteamGameServer012_vtbl;
 
-	return &impl;
+	return &impl.base;
 }

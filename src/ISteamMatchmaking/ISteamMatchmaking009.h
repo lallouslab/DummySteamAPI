@@ -7,9 +7,9 @@
 
 #define STEAMMATCHMAKING_INTERFACE_VERSION_009 "SteamMatchMaking009"
 
-struct ISteamMatchmaking009
+struct ISteamMatchmaking009Vtbl
 {
-	int (*GetFavoriteGameCount)(struct ISteamMatchmakingImpl *This);
+	int (*GetFavoriteGameCount)(struct ISteamMatchmaking *iface);
 	void *GetFavoriteGame;
 	void *AddFavoriteGame;
 	void *RemoveFavoriteGame;
@@ -49,6 +49,10 @@ struct ISteamMatchmaking009
 	void *SetLinkedLobby;
 };
 
-struct ISteamMatchmakingImpl *SteamMatchmaking009(void);
+static inline struct ISteamMatchmaking009Vtbl *get_ISteamMatchmaking009Vtbl_from_ISteamMatchmaking(struct ISteamMatchmaking *iface) {
+	return (struct ISteamMatchmaking009Vtbl *)iface->vtbl;
+}
+
+struct ISteamMatchmaking *SteamMatchmaking009(void);
 
 #endif /* ISTEAMMATCHMAKING009_H */

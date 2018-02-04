@@ -4,9 +4,12 @@
 #define STEAMCONTROLLER_INTERFACE_VERSION_PREFIX0 "STEAMCONTROLLER_INTERFACE_VERSION"
 #define STEAMCONTROLLER_INTERFACE_VERSION_PREFIX1 "SteamController"
 
-struct ISteamControllerImpl;
+struct ISteamController
+{
+	const void *vtbl;
+};
 
-struct ISteamControllerImpl *SteamController_generic(const char *version);
-extern struct ISteamControllerImpl *SteamController(void);
+struct ISteamController *SteamController_generic(const char *version);
+extern struct ISteamController *SteamController(void);
 
 #endif /* ISTEAMCONTROLLER_H */

@@ -3,9 +3,12 @@
 
 #define STEAMMATCHMAKING_INTERFACE_VERSION_PREFIX "SteamMatchMaking"
 
-struct ISteamMatchmakingImpl;
+struct ISteamMatchmaking
+{
+	const void *vtbl;
+};
 
-struct ISteamMatchmakingImpl *SteamMatchmaking_generic(const char *version);
-extern struct ISteamMatchmakingImpl *SteamMatchmaking(void);
+struct ISteamMatchmaking *SteamMatchmaking_generic(const char *version);
+extern struct ISteamMatchmaking *SteamMatchmaking(void);
 
 #endif /* ISTEAMMATCHMAKING_H */
