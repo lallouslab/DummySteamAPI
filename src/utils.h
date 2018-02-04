@@ -13,17 +13,17 @@
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 #define CONTAINER_OF(ptr, type, member) ((type *)((uintptr_t)(ptr) - offsetof(type, member)))
 
-#define LOG_ENTER(str, ...) do { fprintf(stderr, "%s" str "\n", __func__, __VA_ARGS__); } while (0)
-#define LOG_ENTER0(str) do { LOG_ENTER(str "%c", '\0'); } while (0)
-
-#define LOG_ENTER_NOTIMPL(str, ...) do { LOG_ENTER(str ": Not implemented yet!", __VA_ARGS__); } while (0)
-#define LOG_ENTER0_NOTIMPL(str) do { LOG_ENTER_NOTIMPL(str "%c", '\0'); } while (0)
-
 #define DEBUG(str, ...) do { fprintf(stderr, "DEBUG: %s:%u: " str "\n", __FILE__, __LINE__, __VA_ARGS__); } while (0)
-#define DEBUG0(str) do { DEBUG(str "%c", '\0'); } while (0)
+#define DEBUG0(str) DEBUG(str "%s", "");
 
 #define WARN(str, ...) do { fprintf(stderr, "WARN: %s:%u: " str "\n", __FILE__, __LINE__, __VA_ARGS__); } while (0)
-#define WARN0(str) do { WARN(str "%c", '\0'); } while (0)
+#define WARN0(str) WARN(str "%s", "");
+
+#define LOG_ENTER(str, ...) DEBUG("%s" str, __func__, __VA_ARGS__)
+#define LOG_ENTER0(str) LOG_ENTER(str "%s", "")
+
+#define LOG_ENTER_NOTIMPL(str, ...) LOG_ENTER(str ": Not implemented yet!", __VA_ARGS__)
+#define LOG_ENTER0_NOTIMPL(str) LOG_ENTER_NOTIMPL(str "%s", "")
 
 typedef void (*PFN_VOID)(void);
 
