@@ -7,6 +7,7 @@
 #include "ISteamApps001.h"
 #include "ISteamApps003.h"
 #include "ISteamApps006.h"
+#include "ISteamApps007.h"
 
 static const char *steam_apps_version = NULL;
 
@@ -92,6 +93,7 @@ struct ISteamApps *SteamApps_generic(const char *version)
 		{ STEAMAPPS_INTERFACE_VERSION_001, SteamApps001 },
 		{ STEAMAPPS_INTERFACE_VERSION_003, SteamApps003 },
 		{ STEAMAPPS_INTERFACE_VERSION_006, SteamApps006 },
+		{ STEAMAPPS_INTERFACE_VERSION_007, SteamApps007 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -129,7 +131,7 @@ EXPORT struct ISteamApps *SteamApps(void)
 
 	if (!steam_apps_version)
 	{
-		steam_apps_version = STEAMAPPS_INTERFACE_VERSION_006;
+		steam_apps_version = STEAMAPPS_INTERFACE_VERSION_007;
 
 		WARN("ISteamApps: No version specified, defaulting to %s.", steam_apps_version);
 	}
