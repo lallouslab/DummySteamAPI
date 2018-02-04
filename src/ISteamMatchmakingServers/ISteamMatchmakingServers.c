@@ -22,7 +22,7 @@ struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *ver
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -37,14 +37,14 @@ struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *ver
 		i++;
 	}
 
-	WARN("Unable to find ISteamMatchmakingServers version \"%s\".", version);
+	WARN("Unable to find ISteamMatchmakingServers version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamMatchmakingServers_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_matchmaking_servers_version = version;
 }
@@ -57,7 +57,7 @@ EXPORT struct ISteamMatchmakingServers *SteamMatchmakingServers(void)
 	{
 		steam_matchmaking_servers_version = STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_002;
 
-		WARN("ISteamMatchmakingServers: No version specified, defaulting to %s.", steam_matchmaking_servers_version);
+		WARN("ISteamMatchmakingServers: No version specified, defaulting to \"%s\".", debug_str(steam_matchmaking_servers_version));
 	}
 
 	return SteamMatchmakingServers_generic(steam_matchmaking_servers_version);

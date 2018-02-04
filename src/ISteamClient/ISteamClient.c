@@ -40,7 +40,7 @@ struct ISteamApps *ISteamClient_GetISteamApps(struct ISteamClient *iface, steam_
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamApps_generic(version);
 }
@@ -49,7 +49,7 @@ struct ISteamClient *ISteamClient_GetISteamClient(struct ISteamClient *iface, st
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_pipe, debug_str(version));
 
 	return SteamClient_generic(version);
 }
@@ -58,7 +58,7 @@ struct ISteamController *ISteamClient_GetISteamController(struct ISteamClient *i
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamController_generic(version);
 }
@@ -67,7 +67,7 @@ struct ISteamFriends *ISteamClient_GetISteamFriends(struct ISteamClient *iface, 
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamFriends_generic(version);
 }
@@ -76,7 +76,7 @@ struct ISteamGameCoordinator *ISteamClient_GetISteamGameCoordinator(struct IStea
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamGameCoordinator_generic(version);
 }
@@ -85,7 +85,7 @@ struct ISteamGameServer *ISteamClient_GetISteamGameServer(struct ISteamClient *i
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamGameServer_generic(version);
 }
@@ -94,7 +94,7 @@ struct ISteamGameServerStats *ISteamClient_GetISteamGameServerStats(struct IStea
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamGameServerStats_generic(version);
 }
@@ -224,7 +224,7 @@ void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_u
 	};
 	int i;
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -246,7 +246,7 @@ struct ISteamHTTP *ISteamClient_GetISteamHTTP(struct ISteamClient *iface, steam_
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamHTTP_generic(version);
 }
@@ -255,7 +255,7 @@ struct ISteamMatchmaking *ISteamClient_GetISteamMatchmaking(struct ISteamClient 
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamMatchmaking_generic(version);
 }
@@ -264,7 +264,7 @@ struct ISteamMatchmakingServers *ISteamClient_GetISteamMatchmakingServers(struct
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamMatchmakingServers_generic(version);
 }
@@ -273,7 +273,7 @@ struct ISteamNetworking *ISteamClient_GetISteamNetworking(struct ISteamClient *i
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamNetworking_generic(version);
 }
@@ -282,7 +282,7 @@ struct ISteamRemoteStorage *ISteamClient_GetISteamRemoteStorage(struct ISteamCli
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamRemoteStorage_generic(version);
 }
@@ -291,7 +291,7 @@ struct ISteamScreenshots *ISteamClient_GetISteamScreenshots(struct ISteamClient 
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamScreenshots_generic(version);
 }
@@ -300,7 +300,7 @@ struct ISteamUGC *ISteamClient_GetISteamUGC(struct ISteamClient *iface, steam_us
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamUGC_generic(version);
 }
@@ -309,7 +309,7 @@ struct ISteamUnifiedMessages *ISteamClient_GetISteamUnifiedMessages(struct IStea
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamUnifiedMessages_generic(version);
 }
@@ -318,7 +318,7 @@ struct ISteamUser *ISteamClient_GetISteamUser(struct ISteamClient *iface, steam_
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamUser_generic(version);
 }
@@ -327,7 +327,7 @@ struct ISteamUserStats *ISteamClient_GetISteamUserStats(struct ISteamClient *ifa
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamUserStats_generic(version);
 }
@@ -336,7 +336,7 @@ struct ISteamUtils *ISteamClient_GetISteamUtils(struct ISteamClient *iface, stea
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER("(This = %p, steam_pipe = %u, version = %s)", VOIDPTR(This), steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_pipe, debug_str(version));
 
 	return SteamUtils_generic(version);
 }
@@ -362,7 +362,7 @@ struct ISteamClient *SteamClient_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -384,7 +384,7 @@ struct ISteamClient *SteamClient_generic(const char *version)
 
 void SteamClient_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_client_version = version;
 }
@@ -397,7 +397,7 @@ EXPORT struct ISteamClient *SteamClient(void)
 	{
 		steam_client_version = STEAMCLIENT_INTERFACE_VERSION_017;
 
-		WARN("ISteamClient: No version specified, defaulting to %s.", steam_client_version);
+		WARN("ISteamClient: No version specified, defaulting to \"%s\".", debug_str(steam_client_version));
 	}
 
 	return SteamClient_generic(steam_client_version);

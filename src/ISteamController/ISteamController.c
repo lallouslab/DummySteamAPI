@@ -12,7 +12,7 @@ steam_bool_t ISteamController_Init(struct ISteamController *iface, const char *p
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, path_to_cfg = %s)", VOIDPTR(This), path_to_cfg);
+	LOG_ENTER_NOTIMPL("(This = %p, path_to_cfg = \"%s\")", VOIDPTR(This), debug_str(path_to_cfg));
 
 	return STEAM_TRUE;
 }
@@ -53,7 +53,7 @@ void ISteamController_SetOverrideMode(struct ISteamController *iface, const char
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, mode = %s)", VOIDPTR(This), mode);
+	LOG_ENTER_NOTIMPL("(This = %p, mode = \"%s\")", VOIDPTR(This), debug_str(mode));
 }
 
 struct ISteamController *SteamController_generic(const char *version)
@@ -68,7 +68,7 @@ struct ISteamController *SteamController_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -83,14 +83,14 @@ struct ISteamController *SteamController_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamController version \"%s\".", version);
+	WARN("Unable to find ISteamController version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamController_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_controller_version = version;
 }
@@ -103,7 +103,7 @@ EXPORT struct ISteamController *SteamController(void)
 	{
 		steam_controller_version = STEAMCONTROLLER_INTERFACE_VERSION_001;
 
-		WARN("ISteamController: No version specified, defaulting to %s.", steam_controller_version);
+		WARN("ISteamController: No version specified, defaulting to \"%s\".", debug_str(steam_controller_version));
 	}
 
 	return SteamController_generic(steam_controller_version);

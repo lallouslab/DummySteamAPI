@@ -14,7 +14,7 @@ steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, co
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, filename = %s, data = %p, size = %" PRIu32 ")", VOIDPTR(This), debug_str(filename), data, size);
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\", data = %p, size = %" PRIu32 ")", VOIDPTR(This), debug_str(filename), data, size);
 
 	return STEAM_FALSE;
 }
@@ -23,7 +23,7 @@ int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, filename = %s)", VOIDPTR(This), debug_str(filename));
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\")", VOIDPTR(This), debug_str(filename));
 
 	return 0;
 }
@@ -70,7 +70,7 @@ struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -85,14 +85,14 @@ struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamRemoteStorage version \"%s\".", version);
+	WARN("Unable to find ISteamRemoteStorage version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamRemoteStorage_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_remote_storage_version = version;
 }
@@ -105,7 +105,7 @@ EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 	{
 		steam_remote_storage_version = STEAMREMOTESTORAGE_INTERFACE_VERSION_013;
 
-		WARN("ISteamRemoteStorage: No version specified, defaulting to %s.", steam_remote_storage_version);
+		WARN("ISteamRemoteStorage: No version specified, defaulting to \"%s\".", debug_str(steam_remote_storage_version));
 	}
 
 	return SteamRemoteStorage_generic(steam_remote_storage_version);

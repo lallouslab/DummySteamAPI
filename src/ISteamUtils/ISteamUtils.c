@@ -112,7 +112,7 @@ struct ISteamUtils *SteamUtils_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -127,14 +127,14 @@ struct ISteamUtils *SteamUtils_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamUtils version \"%s\".", version);
+	WARN("Unable to find ISteamUtils version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamUtils_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_utils_version = version;
 }
@@ -147,7 +147,7 @@ EXPORT struct ISteamUtils *SteamUtils(void)
 	{
 		steam_utils_version = STEAMUTILS_INTERFACE_VERSION_007;
 
-		WARN("ISteamUtils: No version specified, defaulting to %s.", steam_utils_version);
+		WARN("ISteamUtils: No version specified, defaulting to \"%s\".", debug_str(steam_utils_version));
 	}
 
 	return SteamUtils_generic(steam_utils_version);

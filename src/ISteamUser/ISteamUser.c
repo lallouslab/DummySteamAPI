@@ -147,7 +147,7 @@ struct ISteamUser *SteamUser_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -169,7 +169,7 @@ struct ISteamUser *SteamUser_generic(const char *version)
 
 void SteamUser_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_user_version = version;
 }
@@ -182,7 +182,7 @@ EXPORT struct ISteamUser *SteamUser(void)
 	{
 		steam_user_version = STEAMUSER_INTERFACE_VERSION_018;
 
-		WARN("ISteamUser: No version specified, defaulting to %s.", steam_user_version);
+		WARN("ISteamUser: No version specified, defaulting to \"%s\".", debug_str(steam_user_version));
 	}
 
 	return SteamUser_generic(steam_user_version);

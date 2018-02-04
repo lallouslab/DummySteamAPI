@@ -22,7 +22,7 @@ struct ISteamHTTP *SteamHTTP_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -37,14 +37,14 @@ struct ISteamHTTP *SteamHTTP_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamHTTP version \"%s\".", version);
+	WARN("Unable to find ISteamHTTP version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamHTTP_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_http_version = version;
 }
@@ -57,7 +57,7 @@ EXPORT struct ISteamHTTP *SteamHTTP(void)
 	{
 		steam_http_version = STEAMHTTP_INTERFACE_VERSION_002;
 
-		WARN("ISteamHTTP: No version specified, defaulting to %s.", steam_http_version);
+		WARN("ISteamHTTP: No version specified, defaulting to \"%s\".", debug_str(steam_http_version));
 	}
 
 	return SteamHTTP_generic(steam_http_version);

@@ -23,7 +23,7 @@ steam_api_call_t ISteamFriends_SetPersonaName(struct ISteamFriends *iface, const
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s)", VOIDPTR(This), debug_str(name));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
 
 	return 0;
 }
@@ -68,7 +68,7 @@ steam_bool_t ISteamFriends_SetRichPresence(struct ISteamFriends *iface, const ch
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, key = %s, value = %s)", VOIDPTR(This), debug_str(key), debug_str(value));
+	LOG_ENTER_NOTIMPL("(This = %p, key = \"%s\", value = \"%s\")", VOIDPTR(This), debug_str(key), debug_str(value));
 
 	return STEAM_TRUE;
 }
@@ -96,7 +96,7 @@ struct ISteamFriends *SteamFriends_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -111,14 +111,14 @@ struct ISteamFriends *SteamFriends_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamFriends version \"%s\".", version);
+	WARN("Unable to find ISteamFriends version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamFriends_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_friends_version = version;
 }
@@ -131,7 +131,7 @@ EXPORT struct ISteamFriends *SteamFriends(void)
 	{
 		steam_friends_version = STEAMFRIENDS_INTERFACE_VERSION_015;
 
-		WARN("ISteamFriends: No version specified, defaulting to %s.", steam_friends_version);
+		WARN("ISteamFriends: No version specified, defaulting to \"%s\".", debug_str(steam_friends_version));
 	}
 
 	return SteamFriends_generic(steam_friends_version);

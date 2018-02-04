@@ -20,7 +20,7 @@ struct ISteamUGC *SteamUGC_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -35,14 +35,14 @@ struct ISteamUGC *SteamUGC_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamUGC version \"%s\".", version);
+	WARN("Unable to find ISteamUGC version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamUGC_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_ugc_version = version;
 }
@@ -55,7 +55,7 @@ EXPORT struct ISteamUGC *SteamUGC(void)
 	{
 		steam_ugc_version = STEAMUGC_INTERFACE_VERSION_001;
 
-		WARN("ISteamUGC: No version specified, defaulting to %s.", steam_ugc_version);
+		WARN("ISteamUGC: No version specified, defaulting to \"%s\".", debug_str(steam_ugc_version));
 	}
 
 	return SteamUGC_generic(steam_ugc_version);

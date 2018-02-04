@@ -23,7 +23,7 @@ struct ISteamGameServer *SteamGameServer_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -38,14 +38,14 @@ struct ISteamGameServer *SteamGameServer_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamGameServer version \"%s\".", version);
+	WARN("Unable to find ISteamGameServer version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamGameServer_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_game_server_version = version;
 }
@@ -58,7 +58,7 @@ EXPORT struct ISteamGameServer *SteamGameServer(void)
 	{
 		steam_game_server_version = STEAMGAMESERVER_INTERFACE_VERSION_012;
 
-		WARN("ISteamGameServer: No version specified, defaulting to %s.", steam_game_server_version);
+		WARN("ISteamGameServer: No version specified, defaulting to \"%s\".", debug_str(steam_game_server_version));
 	}
 
 	return SteamGameServer_generic(steam_game_server_version);

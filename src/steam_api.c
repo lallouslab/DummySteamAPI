@@ -84,7 +84,7 @@ EXPORT void SteamAPI_WriteMiniDump(uint32_t excp_code, void *excp_info, uint32_t
 
 EXPORT void SteamAPI_SetMiniDumpComment(const char *msg)
 {
-	LOG_ENTER_NOTIMPL("(msg = %s)", msg);
+	LOG_ENTER_NOTIMPL("(msg = \"%s\")", debug_str(msg));
 }
 
 EXPORT void SteamAPI_RegisterCallback(struct CCallbackBase *callback, enum steam_callback_type type)
@@ -150,5 +150,5 @@ EXPORT void SteamAPI_SetTryCatchCallbacks(steam_bool_t enable)
 
 EXPORT void SteamAPI_UseBreakpadCrashHandler(const char *version, const char *date, char const *time, steam_bool_t is_full_memory_dump, void *context, void *pre_minidump_callback)
 {
-	LOG_ENTER_NOTIMPL("(version = %s, date = %s, time = %s, is_full_memory_dump = %u, context = %p, pre_minidump_callback = %p)", version, date, time, is_full_memory_dump, context, pre_minidump_callback);
+	LOG_ENTER_NOTIMPL("(version = \"%s\", date = \"%s\", time = \"%s\", is_full_memory_dump = %u, context = %p, pre_minidump_callback = %p)", debug_str(version), debug_str(date), debug_str(time), is_full_memory_dump, context, pre_minidump_callback);
 }

@@ -31,7 +31,7 @@ struct ISteamScreenshots *SteamScreenshots_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -46,14 +46,14 @@ struct ISteamScreenshots *SteamScreenshots_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamScreenshots version \"%s\".", version);
+	WARN("Unable to find ISteamScreenshots version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamScreenshots_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_screenshots_version = version;
 }
@@ -66,7 +66,7 @@ EXPORT struct ISteamScreenshots *SteamScreenshots(void)
 	{
 		steam_screenshots_version = STEAMSCREENSHOTS_INTERFACE_VERSION_002;
 
-		WARN("ISteamScreenshots: No version specified, defaulting to %s.", steam_screenshots_version);
+		WARN("ISteamScreenshots: No version specified, defaulting to \"%s\".", debug_str(steam_screenshots_version));
 	}
 
 	return SteamScreenshots_generic(steam_screenshots_version);

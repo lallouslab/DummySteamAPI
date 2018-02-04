@@ -43,7 +43,7 @@ struct ISteamNetworking *SteamNetworking_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -58,14 +58,14 @@ struct ISteamNetworking *SteamNetworking_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamNetworking version \"%s\".\n", version);
+	WARN("Unable to find ISteamNetworking version \"%s\".\n", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamNetworking_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_networking_version = version;
 }
@@ -78,7 +78,7 @@ EXPORT struct ISteamNetworking *SteamNetworking(void)
 	{
 		steam_networking_version = STEAMNETWORKING_INTERFACE_VERSION_005;
 
-		WARN("ISteamNetworking: No version specified, defaulting to %s.", steam_networking_version);
+		WARN("ISteamNetworking: No version specified, defaulting to \"%s\".", debug_str(steam_networking_version));
 	}
 
 	return SteamNetworking_generic(steam_networking_version);

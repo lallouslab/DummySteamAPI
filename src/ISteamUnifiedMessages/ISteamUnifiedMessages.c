@@ -20,7 +20,7 @@ struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -42,7 +42,7 @@ struct ISteamUnifiedMessages *SteamUnifiedMessages_generic(const char *version)
 
 void SteamUnifiedMessages_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_unified_messages_version = version;
 }
@@ -55,7 +55,7 @@ EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages(void)
 	{
 		steam_unified_messages_version = STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_001;
 
-		WARN("ISteamUnifiedMessages: No version specified, defaulting to %s.", steam_unified_messages_version);
+		WARN("ISteamUnifiedMessages: No version specified, defaulting to \"%s\".", debug_str(steam_unified_messages_version));
 	}
 
 	return SteamUnifiedMessages_generic(steam_unified_messages_version);

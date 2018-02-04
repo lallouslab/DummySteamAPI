@@ -23,7 +23,7 @@ steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const cha
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
 
 	return STEAM_FALSE;
 }
@@ -32,7 +32,7 @@ steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStats *iface, const c
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
 
 	return STEAM_FALSE;
 }
@@ -41,7 +41,7 @@ steam_bool_t ISteamUserStats_SetStatI32(struct ISteamUserStats *iface, const cha
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %" PRIi32 ")", VOIDPTR(This), debug_str(name), data);
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", data = %" PRIi32 ")", VOIDPTR(This), debug_str(name), data);
 
 	return STEAM_FALSE;
 }
@@ -50,7 +50,7 @@ steam_bool_t ISteamUserStats_SetStatFloat(struct ISteamUserStats *iface, const c
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %f)", VOIDPTR(This), debug_str(name), data);
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", data = %f)", VOIDPTR(This), debug_str(name), data);
 
 	return STEAM_FALSE;
 }
@@ -59,7 +59,7 @@ steam_bool_t ISteamUserStats_UpdateAvgRateStat(struct ISteamUserStats *iface, co
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, count_this_session = %f, session_length = %f)", VOIDPTR(This), debug_str(name), count_this_session, session_length);
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", count_this_session = %f, session_length = %f)", VOIDPTR(This), debug_str(name), count_this_session, session_length);
 
 	return STEAM_FALSE;
 }
@@ -68,7 +68,7 @@ steam_bool_t ISteamUserStats_GetAchievement(struct ISteamUserStats *iface, const
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(achieved));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(achieved));
 
 	return STEAM_FALSE;
 }
@@ -77,7 +77,7 @@ steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStats *iface, const
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s)", VOIDPTR(This), debug_str(name));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
 
 	return STEAM_FALSE;
 }
@@ -86,7 +86,7 @@ steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStats *iface, con
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s)", VOIDPTR(This), debug_str(name));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
 
 	return STEAM_FALSE;
 }
@@ -95,7 +95,7 @@ steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStats 
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, name = %s, achieved = %p, unlock_time = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(achieved), VOIDPTR(unlock_time));
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", achieved = %p, unlock_time = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(achieved), VOIDPTR(unlock_time));
 
 	return STEAM_FALSE;
 }
@@ -151,7 +151,7 @@ struct ISteamUserStats *SteamUserStats_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -173,7 +173,7 @@ struct ISteamUserStats *SteamUserStats_generic(const char *version)
 
 void SteamUserStats_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_user_stats_version = version;
 }
@@ -186,7 +186,7 @@ EXPORT struct ISteamUserStats *SteamUserStats(void)
 	{
 		steam_user_stats_version = STEAMUSERSTATS_INTERFACE_VERSION_011;
 
-		WARN("ISteamUserStats: No version specified, defaulting to %s.", steam_user_stats_version);
+		WARN("ISteamUserStats: No version specified, defaulting to \"%s\".", debug_str(steam_user_stats_version));
 	}
 
 	return SteamUserStats_generic(steam_user_stats_version);

@@ -98,7 +98,7 @@ struct ISteamApps *SteamApps_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -113,14 +113,14 @@ struct ISteamApps *SteamApps_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamApps version \"%s\".", version);
+	WARN("Unable to find ISteamApps version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamApps_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_apps_version = version;
 }
@@ -133,7 +133,7 @@ EXPORT struct ISteamApps *SteamApps(void)
 	{
 		steam_apps_version = STEAMAPPS_INTERFACE_VERSION_007;
 
-		WARN("ISteamApps: No version specified, defaulting to %s.", steam_apps_version);
+		WARN("ISteamApps: No version specified, defaulting to \"%s\".", debug_str(steam_apps_version));
 	}
 
 	return SteamApps_generic(steam_apps_version);

@@ -31,7 +31,7 @@ struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version)
 	};
 	int i;
 
-	LOG_ENTER("(version = %s)", version);
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	i = 0;
 	while (ifaces[i].name)
@@ -46,14 +46,14 @@ struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version)
 		i++;
 	}
 
-	WARN("Unable to find ISteamGameCoordinator version \"%s\".", version);
+	WARN("Unable to find ISteamGameCoordinator version \"%s\".", debug_str(version));
 
 	return INVAL_PTR;
 }
 
 void SteamGameCoordinator_set_version(const char *version)
 {
-	LOG_ENTER("(version = %s)", debug_str(version));
+	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
 	steam_game_coordinator_version = version;
 }
@@ -66,7 +66,7 @@ EXPORT struct ISteamGameCoordinator *SteamGameCoordinator(void)
 	{
 		steam_game_coordinator_version = STEAMGAMECOORDINATOR_INTERFACE_VERSION_001;
 
-		WARN("ISteamGameCoordinator: No version specified, defaulting to %s.", steam_game_coordinator_version);
+		WARN("ISteamGameCoordinator: No version specified, defaulting to \"%s\".", debug_str(steam_game_coordinator_version));
 	}
 
 	return SteamGameCoordinator_generic(steam_game_coordinator_version);
