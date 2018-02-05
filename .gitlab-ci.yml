@@ -15,7 +15,8 @@ stages:
   <<: *build-targets-common
   artifacts:
     paths:
-      - out/libsteam_api.so
+      - bin/libsteam_api.so
+      - launch*.sh
 
 build-linux-i686:
   <<: *build-linux-targets-common
