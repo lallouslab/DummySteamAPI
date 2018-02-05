@@ -2,13 +2,14 @@
 #define UTILS_H 1
 
 #include <stddef.h> /* offsetof() */
+#include <stdlib.h>
 #include <stdio.h>
 
 #define EXPORT __attribute__((visibility("default")))
 #define CONSTRUCTOR __attribute__((constructor))
 
 #define VOIDPTR(x) ((void *)x)
-#define INVAL_PTR VOIDPTR(0xbeefbeef)
+#define INVAL_PTR NULL
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 #define CONTAINER_OF(ptr, type, member) ((type *)((uintptr_t)(ptr) - offsetof(type, member)))
