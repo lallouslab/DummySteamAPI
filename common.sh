@@ -1,5 +1,11 @@
 #!/bin/bash
 
-if [ -n "${SILENT}" -a "${SILENT}" != "0" ]; then
-	exec >/dev/null 2>&1
-fi 
+if [ ! -f "${DSA_DIR}/config.sh" ]; then
+	cp "${DSA_DIR}/config.sh.sample" "${DSA_DIR}/config.sh"
+fi
+
+if [ ! -f "${DSA_DIR}/Makefile.conf" ]; then
+	make -C "${DSA_DIR}" defconfig
+fi
+
+make -C "${DSA_DIR}"

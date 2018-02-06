@@ -2,9 +2,14 @@
 
 # Uncomment the lines and set the right values
 
-# Do not spam the console output with logs.
+# Set the log verbosity.
+#
+# Possible values:
+#   0: None
+#   1: WARN
+#   2: DEBUG
 # Default value: 1
-export SILENT=1
+# export DSA_LOG_LEVEL=1
 
 # STEAM_USER_ID is the name of the directory inside ${HOME}/.steam/steam/userdata
 # export STEAM_USER_ID=0
