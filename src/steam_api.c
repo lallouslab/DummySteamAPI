@@ -11,12 +11,34 @@
 #include "CCallback.h"
 #include "callbacks.h"
 
+static int dsa_init(void)
+{
+	int result;
+
+	result = dsa_os_init();
+	if (result < 0)
+		return result;
+
+	result = dsa_utils_init();
+	if (result < 0)
+		return result;
+
+	result = dsa_set_default_interfaces_version();
+	if (result < 0)
+		return result;
+
+	return 0;
+}
+
 EXPORT steam_bool_t SteamAPI_Init(void)
 {
+	int result;
+
 	LOG_ENTER0("()");
 
-	dsa_os_init();
-	dsa_set_default_interfaces_version();
+	result = dsa_init();
+	if (result < 0)
+		return STEAM_FALSE;
 
 	if (g_pSteamClientGameServer != INVAL_PTR)
 		return STEAM_TRUE;
@@ -30,10 +52,13 @@ EXPORT steam_bool_t SteamAPI_Init(void)
 
 EXPORT steam_bool_t SteamAPI_InitSafe(void)
 {
+	int result;
+
 	LOG_ENTER0("()");
 
-	dsa_os_init();
-	dsa_set_default_interfaces_version();
+	result = dsa_init();
+	if (result < 0)
+		return STEAM_FALSE;
 
 	if (g_pSteamClientGameServer != INVAL_PTR)
 		return STEAM_TRUE;
