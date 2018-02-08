@@ -55,7 +55,8 @@ void SteamGameCoordinator_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_game_coordinator_version = version;
+	if (!steam_game_coordinator_version)
+		steam_game_coordinator_version = version;
 }
 
 EXPORT struct ISteamGameCoordinator *SteamGameCoordinator(void)

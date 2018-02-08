@@ -122,7 +122,8 @@ void SteamApps_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_apps_version = version;
+	if (!steam_apps_version)
+		steam_apps_version = version;
 }
 
 EXPORT struct ISteamApps *SteamApps(void)

@@ -92,7 +92,8 @@ void SteamController_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_controller_version = version;
+	if (!steam_controller_version)
+		steam_controller_version = version;
 }
 
 EXPORT struct ISteamController *SteamController(void)

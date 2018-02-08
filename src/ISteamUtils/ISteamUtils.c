@@ -136,7 +136,8 @@ void SteamUtils_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_utils_version = version;
+	if (!steam_utils_version)
+		steam_utils_version = version;
 }
 
 EXPORT struct ISteamUtils *SteamUtils(void)

@@ -94,7 +94,8 @@ void SteamRemoteStorage_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_remote_storage_version = version;
+	if (!steam_remote_storage_version)
+		steam_remote_storage_version = version;
 }
 
 EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)

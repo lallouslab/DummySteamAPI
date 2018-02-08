@@ -46,7 +46,8 @@ void SteamMatchmakingServers_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_matchmaking_servers_version = version;
+	if (!steam_matchmaking_servers_version)
+		steam_matchmaking_servers_version = version;
 }
 
 EXPORT struct ISteamMatchmakingServers *SteamMatchmakingServers(void)

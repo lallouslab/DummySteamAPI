@@ -386,7 +386,8 @@ void SteamClient_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_client_version = version;
+	if (!steam_client_version)
+		steam_client_version = version;
 }
 
 EXPORT struct ISteamClient *SteamClient(void)

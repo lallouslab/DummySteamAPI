@@ -171,7 +171,8 @@ void SteamUser_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_user_version = version;
+	if (!steam_user_version)
+		steam_user_version = version;
 }
 
 EXPORT struct ISteamUser *SteamUser(void)

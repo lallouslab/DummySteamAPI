@@ -44,7 +44,8 @@ void SteamUnifiedMessages_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_unified_messages_version = version;
+	if (!steam_unified_messages_version)
+		steam_unified_messages_version = version;
 }
 
 EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages(void)

@@ -47,7 +47,8 @@ void SteamGameServer_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_game_server_version = version;
+	if (!steam_game_server_version)
+		steam_game_server_version = version;
 }
 
 EXPORT struct ISteamGameServer *SteamGameServer(void)

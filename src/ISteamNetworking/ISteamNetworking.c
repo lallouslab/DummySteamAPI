@@ -67,7 +67,8 @@ void SteamNetworking_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_networking_version = version;
+	if (!steam_networking_version)
+		steam_networking_version = version;
 }
 
 EXPORT struct ISteamNetworking *SteamNetworking(void)

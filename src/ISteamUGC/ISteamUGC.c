@@ -44,7 +44,8 @@ void SteamUGC_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	steam_ugc_version = version;
+	if (!steam_ugc_version)
+		steam_ugc_version = version;
 }
 
 EXPORT struct ISteamUGC *SteamUGC(void)
