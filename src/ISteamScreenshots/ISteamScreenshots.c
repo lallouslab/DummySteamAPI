@@ -61,6 +61,8 @@ void SteamScreenshots_set_version(const char *version)
 
 EXPORT struct ISteamScreenshots *SteamScreenshots(void)
 {
+	static struct ISteamScreenshots *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_screenshots_version)
@@ -70,5 +72,8 @@ EXPORT struct ISteamScreenshots *SteamScreenshots(void)
 		WARN("ISteamScreenshots: No version specified, defaulting to \"%s\".", debug_str(steam_screenshots_version));
 	}
 
-	return SteamScreenshots_generic(steam_screenshots_version);
+	if (!cached_iface)
+		cached_iface = SteamScreenshots_generic(steam_screenshots_version);
+
+	return cached_iface;
 }

@@ -61,6 +61,8 @@ void SteamGameCoordinator_set_version(const char *version)
 
 EXPORT struct ISteamGameCoordinator *SteamGameCoordinator(void)
 {
+	static struct ISteamGameCoordinator*cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_game_coordinator_version)
@@ -70,5 +72,8 @@ EXPORT struct ISteamGameCoordinator *SteamGameCoordinator(void)
 		WARN("ISteamGameCoordinator: No version specified, defaulting to \"%s\".", debug_str(steam_game_coordinator_version));
 	}
 
-	return SteamGameCoordinator_generic(steam_game_coordinator_version);
+	if (!cached_iface)
+		cached_iface = SteamGameCoordinator_generic(steam_game_coordinator_version);
+
+	return cached_iface;
 }

@@ -73,6 +73,8 @@ void SteamNetworking_set_version(const char *version)
 
 EXPORT struct ISteamNetworking *SteamNetworking(void)
 {
+	static struct ISteamNetworking *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_networking_version)
@@ -82,5 +84,8 @@ EXPORT struct ISteamNetworking *SteamNetworking(void)
 		WARN("ISteamNetworking: No version specified, defaulting to \"%s\".", debug_str(steam_networking_version));
 	}
 
-	return SteamNetworking_generic(steam_networking_version);
+	if (!cached_iface)
+		cached_iface = SteamNetworking_generic(steam_networking_version);
+
+	return cached_iface;
 }

@@ -98,6 +98,8 @@ void SteamController_set_version(const char *version)
 
 EXPORT struct ISteamController *SteamController(void)
 {
+	static struct ISteamController *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_controller_version)
@@ -107,5 +109,8 @@ EXPORT struct ISteamController *SteamController(void)
 		WARN("ISteamController: No version specified, defaulting to \"%s\".", debug_str(steam_controller_version));
 	}
 
-	return SteamController_generic(steam_controller_version);
+	if (!cached_iface)
+		cached_iface = SteamController_generic(steam_controller_version);
+
+	return cached_iface;
 }

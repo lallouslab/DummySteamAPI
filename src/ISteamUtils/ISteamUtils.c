@@ -142,6 +142,8 @@ void SteamUtils_set_version(const char *version)
 
 EXPORT struct ISteamUtils *SteamUtils(void)
 {
+	static struct ISteamUtils *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_utils_version)
@@ -151,5 +153,8 @@ EXPORT struct ISteamUtils *SteamUtils(void)
 		WARN("ISteamUtils: No version specified, defaulting to \"%s\".", debug_str(steam_utils_version));
 	}
 
-	return SteamUtils_generic(steam_utils_version);
+	if (!cached_iface)
+		cached_iface = SteamUtils_generic(steam_utils_version);
+
+	return cached_iface;
 }

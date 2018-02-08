@@ -128,6 +128,8 @@ void SteamApps_set_version(const char *version)
 
 EXPORT struct ISteamApps *SteamApps(void)
 {
+	static struct ISteamApps *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_apps_version)
@@ -137,5 +139,8 @@ EXPORT struct ISteamApps *SteamApps(void)
 		WARN("ISteamApps: No version specified, defaulting to \"%s\".", debug_str(steam_apps_version));
 	}
 
-	return SteamApps_generic(steam_apps_version);
+	if (!cached_iface)
+		cached_iface = SteamApps_generic(steam_apps_version);
+
+	return cached_iface;
 }

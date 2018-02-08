@@ -53,6 +53,8 @@ void SteamGameServer_set_version(const char *version)
 
 EXPORT struct ISteamGameServer *SteamGameServer(void)
 {
+	static struct ISteamGameServer *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_game_server_version)
@@ -62,5 +64,8 @@ EXPORT struct ISteamGameServer *SteamGameServer(void)
 		WARN("ISteamGameServer: No version specified, defaulting to \"%s\".", debug_str(steam_game_server_version));
 	}
 
-	return SteamGameServer_generic(steam_game_server_version);
+	if (!cached_iface)
+		cached_iface = SteamGameServer_generic(steam_game_server_version);
+
+	return cached_iface;
 }

@@ -392,6 +392,8 @@ void SteamClient_set_version(const char *version)
 
 EXPORT struct ISteamClient *SteamClient(void)
 {
+	static struct ISteamClient *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_client_version)
@@ -401,5 +403,8 @@ EXPORT struct ISteamClient *SteamClient(void)
 		WARN("ISteamClient: No version specified, defaulting to \"%s\".", debug_str(steam_client_version));
 	}
 
-	return SteamClient_generic(steam_client_version);
+	if (!cached_iface)
+		cached_iface = SteamClient_generic(steam_client_version);
+
+	return cached_iface;
 }

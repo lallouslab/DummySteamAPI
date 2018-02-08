@@ -50,6 +50,8 @@ void SteamUGC_set_version(const char *version)
 
 EXPORT struct ISteamUGC *SteamUGC(void)
 {
+	static struct ISteamUGC *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_ugc_version)
@@ -59,5 +61,8 @@ EXPORT struct ISteamUGC *SteamUGC(void)
 		WARN("ISteamUGC: No version specified, defaulting to \"%s\".", debug_str(steam_ugc_version));
 	}
 
-	return SteamUGC_generic(steam_ugc_version);
+	if (!cached_iface)
+		cached_iface = SteamUGC_generic(steam_ugc_version);
+
+	return cached_iface;
 }

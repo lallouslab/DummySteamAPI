@@ -100,6 +100,8 @@ void SteamRemoteStorage_set_version(const char *version)
 
 EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 {
+	static struct ISteamRemoteStorage *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_remote_storage_version)
@@ -109,5 +111,8 @@ EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 		WARN("ISteamRemoteStorage: No version specified, defaulting to \"%s\".", debug_str(steam_remote_storage_version));
 	}
 
-	return SteamRemoteStorage_generic(steam_remote_storage_version);
+	if (!cached_iface)
+		cached_iface = SteamRemoteStorage_generic(steam_remote_storage_version);
+
+	return cached_iface;
 }

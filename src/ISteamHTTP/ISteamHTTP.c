@@ -52,6 +52,8 @@ void SteamHTTP_set_version(const char *version)
 
 EXPORT struct ISteamHTTP *SteamHTTP(void)
 {
+	static struct ISteamHTTP *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_http_version)
@@ -61,5 +63,8 @@ EXPORT struct ISteamHTTP *SteamHTTP(void)
 		WARN("ISteamHTTP: No version specified, defaulting to \"%s\".", debug_str(steam_http_version));
 	}
 
-	return SteamHTTP_generic(steam_http_version);
+	if (!cached_iface)
+		cached_iface = SteamHTTP_generic(steam_http_version);
+
+	return cached_iface;
 }

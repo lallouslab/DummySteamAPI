@@ -177,6 +177,8 @@ void SteamUser_set_version(const char *version)
 
 EXPORT struct ISteamUser *SteamUser(void)
 {
+	static struct ISteamUser *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_user_version)
@@ -186,5 +188,8 @@ EXPORT struct ISteamUser *SteamUser(void)
 		WARN("ISteamUser: No version specified, defaulting to \"%s\".", debug_str(steam_user_version));
 	}
 
-	return SteamUser_generic(steam_user_version);
+	if (!cached_iface)
+		cached_iface = SteamUser_generic(steam_user_version);
+
+	return cached_iface;
 }

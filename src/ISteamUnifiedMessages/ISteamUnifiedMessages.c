@@ -50,6 +50,8 @@ void SteamUnifiedMessages_set_version(const char *version)
 
 EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages(void)
 {
+	static struct ISteamUnifiedMessages *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_unified_messages_version)
@@ -59,5 +61,8 @@ EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages(void)
 		WARN("ISteamUnifiedMessages: No version specified, defaulting to \"%s\".", debug_str(steam_unified_messages_version));
 	}
 
-	return SteamUnifiedMessages_generic(steam_unified_messages_version);
+	if (!cached_iface)
+		cached_iface = SteamUnifiedMessages_generic(steam_unified_messages_version);
+
+	return cached_iface;
 }

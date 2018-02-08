@@ -52,6 +52,8 @@ void SteamMatchmakingServers_set_version(const char *version)
 
 EXPORT struct ISteamMatchmakingServers *SteamMatchmakingServers(void)
 {
+	static struct ISteamMatchmakingServers *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_matchmaking_servers_version)
@@ -61,5 +63,8 @@ EXPORT struct ISteamMatchmakingServers *SteamMatchmakingServers(void)
 		WARN("ISteamMatchmakingServers: No version specified, defaulting to \"%s\".", debug_str(steam_matchmaking_servers_version));
 	}
 
-	return SteamMatchmakingServers_generic(steam_matchmaking_servers_version);
+	if (!cached_iface)
+		cached_iface = SteamMatchmakingServers_generic(steam_matchmaking_servers_version);
+
+	return cached_iface;
 }

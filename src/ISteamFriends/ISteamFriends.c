@@ -126,6 +126,8 @@ void SteamFriends_set_version(const char *version)
 
 EXPORT struct ISteamFriends *SteamFriends(void)
 {
+	static struct ISteamFriends *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_friends_version)
@@ -135,5 +137,8 @@ EXPORT struct ISteamFriends *SteamFriends(void)
 		WARN("ISteamFriends: No version specified, defaulting to \"%s\".", debug_str(steam_friends_version));
 	}
 
-	return SteamFriends_generic(steam_friends_version);
+	if (!cached_iface)
+		cached_iface = SteamFriends_generic(steam_friends_version);
+
+	return cached_iface;
 }

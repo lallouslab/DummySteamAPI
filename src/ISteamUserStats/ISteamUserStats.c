@@ -181,6 +181,8 @@ void SteamUserStats_set_version(const char *version)
 
 EXPORT struct ISteamUserStats *SteamUserStats(void)
 {
+	static struct ISteamUserStats *cached_iface = NULL;
+
 	LOG_ENTER0("()");
 
 	if (!steam_user_stats_version)
@@ -190,5 +192,8 @@ EXPORT struct ISteamUserStats *SteamUserStats(void)
 		WARN("ISteamUserStats: No version specified, defaulting to \"%s\".", debug_str(steam_user_stats_version));
 	}
 
-	return SteamUserStats_generic(steam_user_stats_version);
+	if (!cached_iface)
+		cached_iface = SteamUserStats_generic(steam_user_stats_version);
+
+	return cached_iface;
 }
