@@ -1,9 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <sys/stat.h> /* mkdir() */
-
 #include "callbacks.h"
+#include "os/os.h"
 #include "utils.h"
 
 #include "ISteamUser.h"
@@ -113,7 +112,7 @@ steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, i
 
 	DEBUG("UserDataFolder: \"%s\"", buf);
 
-	mkdir(buf, 0777);
+	dsa_os_mkdir(buf);
 
 	return STEAM_TRUE;
 }
