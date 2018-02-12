@@ -121,7 +121,7 @@ steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, i
 steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
-	struct
+	PACKED_STRUCT
 	{
 		enum steam_result result;
 	} encrypted_app_ticket_response;

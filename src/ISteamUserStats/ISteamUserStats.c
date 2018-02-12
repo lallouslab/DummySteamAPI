@@ -117,7 +117,7 @@ steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface,
 
 	const char *game_id;
 
-	struct
+	PACKED_STRUCT
 	{
 		uint64_t game_id;
 		enum steam_result result;
