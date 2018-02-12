@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define EXPORT __attribute__((visibility("default")))
 #define CONSTRUCTOR __attribute__((constructor))
+#define EXPORT __attribute__((visibility("default")))
+#define PACKED_STRUCT struct __attribute__((packed))
 
 #define INVAL_PTR NULL
 #define VOIDPTR(x) ((void *)x)
