@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "debug.h"
 #include "utils.h"
 #include "steam.h"
 

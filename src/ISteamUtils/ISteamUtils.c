@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "callbacks.h"
+#include "debug.h"
 #include "utils.h"
 
 #include "ISteamUtils.h"

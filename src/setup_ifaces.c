@@ -57,6 +57,7 @@
 #include "ISteamUtils/ISteamUtils001.h"
 #include "ISteamUtils/ISteamUtils006.h"
 #include "ISteamUtils/ISteamUtils007.h"
+#include "debug.h"
 #include "setup_ifaces.h"
 #include "utils.h"
 

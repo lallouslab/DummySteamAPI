@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "debug.h"
 #include "utils.h"
 
 #define LIBSTEAM_API_LIB_NAME "libsteam_api.so"

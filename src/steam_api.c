@@ -4,12 +4,13 @@
 #include <inttypes.h>
 
 #include "os/os.h"
-#include "setup_ifaces.h"
-#include "steam.h"
-#include "utils.h"
-#include "steam_gameserver.h"
 #include "CCallback.h"
 #include "callbacks.h"
+#include "debug.h"
+#include "setup_ifaces.h"
+#include "steam.h"
+#include "steam_gameserver.h"
+#include "utils.h"
 
 static int dsa_init(void)
 {

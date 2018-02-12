@@ -1,5 +1,6 @@
 #include <string.h>
 
+#include "debug.h"
 #include "utils.h"
 
 #include "ISteamRemoteStorage.h"

@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "callbacks.h"
+#include "debug.h"
 #include "os/os.h"
 #include "utils.h"
 
