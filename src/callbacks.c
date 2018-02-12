@@ -1,16 +1,19 @@
 #include <stdint.h>
 
-#include "list.h"
-#include "steam.h"
 #include "CCallback.h"
 #include "callbacks.h"
+#include "debug.h"
+#include "list.h"
+#include "steam.h"
 
 struct call_output
 {
 	enum steam_callback_type type;
-	steam_bool_t is_api_call;
+	steam_bool_t is_api_call : 1;
+	steam_bool_t is_handled_api_call : 1;
+	steam_bool_t is_handled_callbacks : 1;
+	steam_bool_t io_failure : 1;
 	steam_api_call_t api_call;
-	steam_bool_t io_failure;
 	void *data;
 	int data_size;
 };
@@ -118,8 +121,10 @@ void callbacks_dispatch_callback_output(enum steam_callback_type type, void *dat
 
 	out.type = type;
 	out.is_api_call = STEAM_FALSE;
-	out.api_call = 0;
+	out.is_handled_api_call = STEAM_FALSE;
+	out.is_handled_callbacks = STEAM_FALSE;
 	out.io_failure = STEAM_FALSE;
+	out.api_call = 0;
 	out.data = data;
 	out.data_size = data_size;
 
@@ -137,8 +142,10 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 
 	out.type = type;
 	out.is_api_call = STEAM_TRUE;
-	out.api_call = ++cur_api_call;
+	out.is_handled_api_call = STEAM_FALSE;
+	out.is_handled_callbacks = STEAM_FALSE;
 	out.io_failure = io_failure;
+	out.api_call = ++cur_api_call;
 	out.data = data;
 	out.data_size = data_size;
 
@@ -149,14 +156,12 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 	return out.api_call;
 }
 
-steam_bool_t callbacks_api_call_result_output_available(steam_api_call_t api_call, steam_bool_t *io_failure)
+static steam_bool_t api_call_result_get_output(steam_bool_t only_check, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *io_failure)
 {
-	return callbacks_api_call_result_get_output(STEAM_TRUE, api_call, NULL, 0, 0, io_failure);
-}
+	steam_bool_t result = STEAM_FALSE;
 
-steam_bool_t callbacks_api_call_result_get_output(steam_bool_t only_check, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *io_failure)
-{
-	*io_failure = STEAM_FALSE;
+	if (io_failure)
+		*io_failure = STEAM_FALSE;
 
 	list_lock(&call_outputs);
 
@@ -166,29 +171,42 @@ steam_bool_t callbacks_api_call_result_get_output(steam_bool_t only_check, steam
 
 		out = list_get_data(elem);
 
-		if (out->api_call == api_call
-				&& (only_check ||
-					(out->data_size == data_size
-						&& out->type == type_expected)))
+		if (out->api_call != api_call)
+			continue;
+
+		if (!only_check)
 		{
-			if (data)
-				memcpy(data, out->data, out->data_size);
-
-			if (io_failure)
-				*io_failure = out->io_failure;
-
-			if (!only_check)
-				list_remove(&call_outputs, elem);
-
-			list_unlock(&call_outputs);
-
-			return STEAM_TRUE;
+			if (out->data_size != data_size
+					|| out->type != type_expected)
+				continue;
 		}
+
+		if (data)
+			memcpy(data, out->data, out->data_size);
+
+		if (io_failure)
+			*io_failure = out->io_failure;
+
+		if (!only_check)
+			list_remove(&call_outputs, elem);
+
+		result = STEAM_TRUE;
+		break;
 	}
 
 	list_unlock(&call_outputs);
 
-	return STEAM_FALSE;
+	return result;
+}
+
+steam_bool_t callbacks_api_call_result_is_output_available(steam_api_call_t api_call, steam_bool_t *io_failure)
+{
+	return api_call_result_get_output(STEAM_TRUE, api_call, NULL, 0, 0, io_failure);
+}
+
+steam_bool_t callbacks_api_call_result_get_output(steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *io_failure)
+{
+	return api_call_result_get_output(STEAM_FALSE, api_call, data, data_size, type_expected, io_failure);
 }
 
 static steam_bool_t handle_callback_output(struct call_output *out)
@@ -198,8 +216,10 @@ static steam_bool_t handle_callback_output(struct call_output *out)
 	if (out->type >= STEAM_CALLBACK_TYPE_MAX)
 		return STEAM_FALSE;
 
-	if (out->is_api_call)
-		return STEAM_FALSE;
+	if (out->is_handled_callbacks)
+		return STEAM_TRUE;
+
+	list_lock(&callbacks[out->type]);
 
 	for (struct list_elem *elem = list_head(&callbacks[out->type]); elem; elem = list_next(elem))
 	{
@@ -214,8 +234,11 @@ static steam_bool_t handle_callback_output(struct call_output *out)
 
 		callback->vtbl->Run0(callback, out->data);
 
+		out->is_handled_callbacks = STEAM_TRUE;
 		handled = STEAM_TRUE;
 	}
+
+	list_unlock(&callbacks[out->type]);
 
 	return handled;
 }
@@ -229,6 +252,11 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 
 	if (!out->is_api_call)
 		return STEAM_FALSE;
+
+	if (out->is_handled_api_call)
+		return STEAM_TRUE;
+
+	list_lock(&api_call_results);
 
 	for (struct list_elem *elem = list_head(&api_call_results); elem; elem = list_next(elem))
 	{
@@ -246,48 +274,46 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 			size = callback->vtbl->GetCallbackSizeBytes(callback);
 			if (size == out->data_size)
 			{
-				callback->vtbl->Run1(callback, STEAM_FALSE, out->api_call, out->data);
+				callback->vtbl->Run1(callback, out->io_failure, out->api_call, out->data);
 
 				unreg_api_call_result(callback, elem);
 
+				out->is_handled_api_call = STEAM_TRUE;
 				handled = STEAM_TRUE;
 			}
-
 		}
 	}
+
+	list_unlock(&api_call_results);
 
 	return handled;
 }
 
 void callbacks_run(void)
 {
-	struct list_elem *elem;
-	struct list_elem *prev_elem = NULL;
+	struct list_elem *next_elem;
 
 	list_lock(&call_outputs);
 
-	for (elem = list_head(&call_outputs); elem; elem = list_next(elem))
+	for (struct list_elem *elem = list_head(&call_outputs); elem; elem = next_elem)
 	{
 		struct call_output *out = list_get_data(elem);
-		steam_bool_t handled;
+
+		next_elem = list_next(elem);
 
 		if (out->type >= STEAM_CALLBACK_TYPE_MAX)
 			continue;
 
-		if (!out->is_api_call)
-			handled = handle_callback_output(out);
-		else
-			handled = handle_api_call_result_output(out);
+		handle_api_call_result_output(out);
+		handle_callback_output(out);
 
-		if (!handled)
+		if (out->is_api_call && !out->is_handled_api_call)
 			continue;
 
-		prev_elem = list_prev(elem);
-		if (prev_elem)
-			list_remove(&call_outputs, prev_elem);
+		if (!out->is_handled_api_call && !out->is_handled_callbacks)
+			continue;
 
-		if (!list_next(elem))
-			list_remove(&call_outputs, elem);
+		list_remove(&call_outputs, elem);
 	}
 
 	list_unlock(&call_outputs);

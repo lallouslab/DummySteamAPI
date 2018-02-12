@@ -62,16 +62,16 @@ steam_bool_t ISteamUtils_IsAPICallCompleted(struct ISteamUtils *iface, steam_api
 
 	LOG_ENTER("(This = %p, api_call = %" PRIu64 ", failed = %p)", VOIDPTR(This), api_call, VOIDPTR(failed));
 
-	return callbacks_api_call_result_output_available(api_call, failed);
+	return callbacks_api_call_result_is_output_available(api_call, failed);
 }
 
 steam_bool_t ISteamUtils_GetAPICallResult(struct ISteamUtils *iface, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *failed)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
-	LOG_ENTER("(This = %p, api_call = %" PRIu64 ", data = %p, data_size = %d, type_expected = %d, failed = %p)", VOIDPTR(This), api_call, data, data_size, type_expected, VOIDPTR(failed));
+	LOG_ENTER("(This = %p, api_call = %" PRIu64 ", data = %p, data_size = %d, type_expected = %s (%u), failed = %p)", VOIDPTR(This), api_call, data, data_size, dsa_debug_steam_callback_type(type_expected), type_expected, VOIDPTR(failed));
 
-	return callbacks_api_call_result_get_output(STEAM_FALSE, api_call, data, data_size, type_expected, failed);
+	return callbacks_api_call_result_get_output(api_call, data, data_size, type_expected, failed);
 }
 
 void ISteamUtils_SetWarningMessageHook(struct ISteamUtils *iface, void *callback)
