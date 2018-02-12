@@ -115,7 +115,7 @@ EXPORT void SteamAPI_SetMiniDumpComment(const char *msg)
 
 EXPORT void SteamAPI_RegisterCallback(struct CCallbackBase *callback, enum steam_callback_type type)
 {
-	LOG_ENTER("(callback = %p, type = %d)", VOIDPTR(callback), type);
+	LOG_ENTER("(callback = %p, type = %s (%d))", VOIDPTR(callback), dsa_debug_steam_callback_type(type), type);
 
 	callbacks_register_callback(callback, type);
 }
