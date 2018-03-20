@@ -21,6 +21,7 @@ struct list
 	struct list_elem *tail;
 };
 
+
 static inline int list_init(struct list *l) {
 	atomic_store(&l->locked, 0);
 	l->head = NULL;
@@ -95,7 +96,7 @@ static inline int list_push(struct list *l, void *data, size_t data_size) {
 	return 0;
 }
 
-static int list_remove(struct list *l, struct list_elem *elem) {
+static inline int list_remove(struct list *l, struct list_elem *elem) {
 	if (!elem)
 		return -1;
 
