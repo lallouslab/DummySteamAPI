@@ -9,7 +9,7 @@
 #   1: WARN
 #   2: DEBUG
 # Default value: 1
-# export DSA_LOG_LEVEL=1
+export DSA_LOG_LEVEL=1
 
 # STEAM_USER_ID is the name of the directory inside ${HOME}/.steam/steam/userdata
-# export STEAM_USER_ID=0
+export STEAM_USER_ID=1
