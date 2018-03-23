@@ -67,22 +67,18 @@ union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
 steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
-	const char *home_dir;
-	const char steam_userdata_dir[] = "/.local/share/Steam/userdata/";
+	const char *steam_dir;
+	const char userdata_dir[] = "/userdata/";
 	const char *user_id;
 	const char *app_id;
+	char *str;
 	int str_size;
 
 	LOG_ENTER("This = %p, buf = %p, buf_len = %d)", VOIDPTR(This), VOIDPTR(buf), buf_len);
 
 	buf[0] = '\0';
 
-	home_dir = getenv("HOME");
-	if (!home_dir)
-	{
-		WARN0("HOME is not set.");
-		return STEAM_FALSE;
-	}
+	steam_dir = dsa_os_get_steam_dir();
 
 	user_id = getenv("STEAM_USER_ID");
 	if (!user_id)
@@ -98,18 +94,18 @@ steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, i
 		return STEAM_FALSE;
 	}
 
-	str_size = strlen(home_dir) + (sizeof(steam_userdata_dir) - 1) + strlen(user_id) + 1 + strlen(app_id) + 1;
+	str = dsa_utils_concat(steam_dir, userdata_dir, user_id, "/", app_id, NULL);
+
+	str_size = strlen(str) + 1;
 	if (str_size > buf_len)
 	{
 		WARN("buf_len (%d) < str_size (%u)!", buf_len, str_size);
 		return STEAM_FALSE;
 	}
 
-	strcat(buf, home_dir);
-	strcat(buf, steam_userdata_dir);
-	strcat(buf, user_id);
-	strcat(buf, "/");
-	strcat(buf, app_id);
+	memcpy(buf, str, str_size);
+
+	free(str);
 
 	DEBUG("UserDataFolder: \"%s\"", buf);
 
