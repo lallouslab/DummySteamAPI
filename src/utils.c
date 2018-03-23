@@ -5,6 +5,17 @@
 #include "debug.h"
 #include "utils.h"
 
+int dsa_utils_init(void)
+{
+	const char *data;
+
+	data = getenv("DSA_LOG_LEVEL");
+	if (data)
+		dsa_debug_set_log_level(strtoul(data, NULL, 0));
+
+	return 0;
+}
+
 long dsa_utils_file_get_size(FILE *fp)
 {
 	long old, size;
@@ -17,15 +28,15 @@ long dsa_utils_file_get_size(FILE *fp)
 	return size;
 }
 
-int dsa_utils_init(void)
+void dsa_utils_free_ptr(void *ptr)
 {
-	const char *data;
+	void **p = ptr;
 
-	data = getenv("DSA_LOG_LEVEL");
-	if (data)
-		dsa_debug_set_log_level(strtoul(data, NULL, 0));
+	if (!*p)
+		return;
 
-	return 0;
+	free(*p);
+	*p = NULL;
 }
 
 char *dsa_utils_strdup(const char *s)

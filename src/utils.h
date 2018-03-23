@@ -40,8 +40,9 @@ static inline void *pfn_to_voidptr(PFN_VOID pfn) {
 	return s.voidptr;
 }
 
-long dsa_utils_file_get_size(FILE *fp);
 int dsa_utils_init(void);
+long dsa_utils_file_get_size(FILE *fp);
+void dsa_utils_free_ptr(void *ptr);
 char *dsa_utils_strdup(const char *str);
 
 #endif /* UTILS_H */
