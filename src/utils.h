@@ -42,5 +42,6 @@ static inline void *pfn_to_voidptr(PFN_VOID pfn) {
 
 long dsa_utils_file_get_size(FILE *fp);
 int dsa_utils_init(void);
+char *dsa_utils_strdup(const char *str);
 
 #endif /* UTILS_H */

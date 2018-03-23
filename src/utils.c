@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "debug.h"
 #include "utils.h"
@@ -25,4 +26,21 @@ int dsa_utils_init(void)
 		dsa_debug_set_log_level(strtoul(data, NULL, 0));
 
 	return 0;
+}
+
+char *dsa_utils_strdup(const char *s)
+{
+	size_t size;
+	char *dst;
+
+	if (!s)
+		return NULL;
+
+	size = strlen(s) + 1;
+
+	dst = malloc(size);
+	if (!dst)
+		return NULL;
+
+	return memcpy(dst, s, size);
 }
