@@ -16,6 +16,8 @@ static struct
 
 EXPORT int dsa_os_init(void)
 {
+	const char steam_dir[] = "/.local/share/Steam";
+
 	/* home_dir */
 
 	os_ctx.home_dir = dsa_utils_strdup(getenv("HOME"));
@@ -34,12 +36,22 @@ EXPORT int dsa_os_init(void)
 		os_ctx.home_dir = dsa_utils_strdup("${HOME}");
 	}
 
+	/* steam_dir */
+
+	os_ctx.steam_dir = dsa_utils_concat(os_ctx.home_dir, steam_dir, NULL);
+	if (!os_ctx.steam_dir)
+	{
+		WARN0("Failed to define steam directory.");
+		os_ctx.steam_dir = dsa_utils_strdup("${STEAM_DIR}");
+	}
+
 	return 0;
 }
 
 EXPORT int dsa_os_deinit(void)
 {
 	dsa_utils_free_ptr(&os_ctx.home_dir);
+	dsa_utils_free_ptr(&os_ctx.steam_dir);
 
 	return 0;
 }
@@ -47,6 +59,11 @@ EXPORT int dsa_os_deinit(void)
 EXPORT const char *dsa_os_get_home_dir(void)
 {
 	return os_ctx.home_dir;
+}
+
+EXPORT const char *dsa_os_get_steam_dir(void)
+{
+	return os_ctx.steam_dir;
 }
 
 EXPORT int dsa_os_mkdir(const char *path)
