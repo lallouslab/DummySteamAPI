@@ -31,6 +31,17 @@ static int dsa_init(void)
 	return 0;
 }
 
+static int dsa_deinit(void)
+{
+	int result;
+
+	result = dsa_os_deinit();
+	if (result < 0)
+		return result;
+
+	return 0;
+}
+
 EXPORT steam_bool_t SteamAPI_Init(void)
 {
 	int result;
@@ -81,6 +92,8 @@ EXPORT steam_bool_t SteamAPI_IsSteamRunning(void)
 EXPORT void SteamAPI_Shutdown(void)
 {
 	LOG_ENTER0("()");
+
+	dsa_deinit();
 }
 
 EXPORT steam_bool_t SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)
