@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,6 +15,55 @@ int dsa_utils_init(void)
 		dsa_debug_set_log_level(strtoul(data, NULL, 0));
 
 	return 0;
+}
+
+char *dsa_utils_concat(const char *s1, ...)
+{
+	va_list ap;
+	const char *s;
+	size_t size = 0;
+	char *dst;
+	char *d;
+
+	va_start(ap, s1);
+
+	s = s1;
+
+	while (s)
+	{
+		size += strlen(s);
+
+		s = va_arg(ap, const char *);
+	}
+
+	va_end(ap);
+
+	dst = malloc(size + 1);
+	if (!dst)
+		return NULL;
+
+	d = dst;
+
+	va_start(ap, s1);
+
+	s = s1;
+
+	while (s)
+	{
+		size_t len;
+
+		len = strlen(s);
+		memcpy(d, s, len);
+		d += len;
+
+		s = va_arg(ap, const char *);
+	}
+
+	va_end(ap);
+
+	*d = '\0';
+
+	return dst;
 }
 
 long dsa_utils_file_get_size(FILE *fp)
