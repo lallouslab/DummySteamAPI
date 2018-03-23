@@ -6,6 +6,7 @@
 #include "ISteamClient.h"
 #include "ISteamClient_priv.h"
 #include "ISteamClient006.h"
+#include "ISteamClient014.h"
 #include "ISteamClient016.h"
 #include "ISteamClient017.h"
 #include "../ISteamApps/ISteamApps.h"
@@ -357,6 +358,7 @@ struct ISteamClient *SteamClient_generic(const char *version)
 		struct ISteamClient *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMCLIENT_INTERFACE_VERSION_006, SteamClient006 },
+		{ STEAMCLIENT_INTERFACE_VERSION_014, SteamClient014 },
 		{ STEAMCLIENT_INTERFACE_VERSION_016, SteamClient016 },
 		{ STEAMCLIENT_INTERFACE_VERSION_017, SteamClient017 },
 		{ NULL, NULL }

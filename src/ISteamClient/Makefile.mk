@@ -8,6 +8,7 @@ STATICLIBS-y := $(libsteamclient)
 objs := \
 	ISteamClient.c.o \
 	ISteamClient006.c.o \
+	ISteamClient014.c.o \
 	ISteamClient016.c.o \
 	ISteamClient017.c.o
 
