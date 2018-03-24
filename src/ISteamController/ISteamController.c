@@ -6,6 +6,7 @@
 #include "ISteamController.h"
 #include "ISteamController_priv.h"
 #include "ISteamController001.h"
+#include "ISteamController003.h"
 
 static const char *steam_controller_version = NULL;
 
@@ -65,6 +66,7 @@ struct ISteamController *SteamController_generic(const char *version)
 		struct ISteamController *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMCONTROLLER_INTERFACE_VERSION_001, SteamController001 },
+		{ STEAMCONTROLLER_INTERFACE_VERSION_003, SteamController003 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -105,7 +107,7 @@ EXPORT struct ISteamController *SteamController(void)
 
 	if (!steam_controller_version)
 	{
-		steam_controller_version = STEAMCONTROLLER_INTERFACE_VERSION_001;
+		steam_controller_version = STEAMCONTROLLER_INTERFACE_VERSION_003;
 
 		WARN("ISteamController: No version specified, defaulting to \"%s\".", debug_str(steam_controller_version));
 	}

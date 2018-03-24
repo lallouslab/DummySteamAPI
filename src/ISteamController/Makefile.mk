@@ -7,7 +7,8 @@ STATICLIBS-y := $(libsteamcontroller)
 
 objs := \
 	ISteamController.c.o \
-	ISteamController001.c.o
+	ISteamController001.c.o \
+	ISteamController003.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 
