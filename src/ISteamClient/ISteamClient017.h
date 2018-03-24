@@ -52,7 +52,7 @@ struct ISteamClient017Vtbl
 	struct ISteamAppList *(*GetISteamAppList)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamMusic *(*GetISteamMusic)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamMusicRemote *(*GetISteamMusicRemote)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
-	void *GetISteamHTMLSurface;
+	struct ISteamHTMLSurface *(*GetISteamHTMLSurface)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *Set_SteamAPI_CPostAPIResultInProcess;
 	void *Remove_SteamAPI_CPostAPIResultInProcess;
 	void *Set_SteamAPI_CCheckCallbackRegisteredInProcess;

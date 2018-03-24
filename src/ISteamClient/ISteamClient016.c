@@ -34,7 +34,7 @@ static const struct ISteamClient016Vtbl ISteamClient016_vtbl = {
 	ISteamClient_GetISteamAppList,
 	ISteamClient_GetISteamMusic,
 	ISteamClient_GetISteamMusicRemote,
-	INVAL_PTR,
+	ISteamClient_GetISteamHTMLSurface,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR

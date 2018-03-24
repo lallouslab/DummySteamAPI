@@ -274,6 +274,15 @@ void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_u
 	return INVAL_PTR;
 }
 
+struct ISteamHTMLSurface *ISteamClient_GetISteamHTMLSurface(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+
+	return NULL;
+}
+
 struct ISteamHTTP *ISteamClient_GetISteamHTTP(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
