@@ -400,6 +400,15 @@ struct ISteamUtils *ISteamClient_GetISteamUtils(struct ISteamClient *iface, stea
 	return SteamUtils_generic(version);
 }
 
+struct ISteamVideo *ISteamClient_GetISteamVideo(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+
+	return NULL;
+}
+
 void ISteamClient_SetWarningMessageHook(struct ISteamClient *iface, void *callback)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);

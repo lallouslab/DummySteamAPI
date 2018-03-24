@@ -59,6 +59,7 @@ struct ISteamUnifiedMessages *ISteamClient_GetISteamUnifiedMessages(struct IStea
 struct ISteamUser *ISteamClient_GetISteamUser(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamUserStats *ISteamClient_GetISteamUserStats(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamUtils *ISteamClient_GetISteamUtils(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version);
+struct ISteamVideo *ISteamClient_GetISteamVideo(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 void ISteamClient_SetWarningMessageHook(struct ISteamClient *iface, void *callback);
 
 #endif /* ISTEAMCLIENT_PRIV_H */
