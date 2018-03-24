@@ -11,6 +11,7 @@ SUBDIRS-y := \
 	ISteamMatchmaking \
 	ISteamMatchmakingServers \
 	ISteamMusic \
+	ISteamMusicRemote \
 	ISteamNetworking \
 	ISteamRemoteStorage \
 	ISteamScreenshots \
@@ -39,6 +40,7 @@ libs := \
 	ISteamMatchmaking/libsteammatchmaking$(STATIC_LIB_EXT) \
 	ISteamMatchmakingServers/libsteammatchmakingservers$(STATIC_LIB_EXT) \
 	ISteamMusic/libsteammusic$(STATIC_LIB_EXT) \
+	ISteamMusicRemote/libsteammusicremote$(STATIC_LIB_EXT) \
 	ISteamNetworking/libsteamnetworking$(STATIC_LIB_EXT) \
 	ISteamRemoteStorage/libsteamremotestorage$(STATIC_LIB_EXT) \
 	ISteamScreenshots/libsteamscreenshots$(STATIC_LIB_EXT) \

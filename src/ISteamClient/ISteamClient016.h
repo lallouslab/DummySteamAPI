@@ -11,6 +11,8 @@
 #include "../ISteamGameServer/ISteamGameServer.h"
 #include "../ISteamMatchmaking/ISteamMatchmaking.h"
 #include "../ISteamMatchmakingServers/ISteamMatchmakingServers.h"
+#include "../ISteamMusic/ISteamMusic.h"
+#include "../ISteamMusicRemote/ISteamMusicRemote.h"
 #include "../ISteamNetworking/ISteamNetworking.h"
 #include "../ISteamUser/ISteamUser.h"
 #include "../ISteamUserStats/ISteamUserStats.h"
@@ -49,7 +51,7 @@ struct ISteamClient016Vtbl
 	struct ISteamUGC *(*GetISteamUGC)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamAppList *(*GetISteamAppList)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamMusic *(*GetISteamMusic)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
-	void *GetISteamMusicRemote;
+	struct ISteamMusicRemote *(*GetISteamMusicRemote)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *GetISteamHTMLSurface;
 	void *Set_SteamAPI_CPostAPIResultInProcess;
 	void *Remove_SteamAPI_CPostAPIResultInProcess;

@@ -39,6 +39,8 @@
 #include "ISteamMatchmakingServers/ISteamMatchmakingServers002.h"
 #include "ISteamMusic/ISteamMusic.h"
 #include "ISteamMusic/ISteamMusic001.h"
+#include "ISteamMusicRemote/ISteamMusicRemote.h"
+#include "ISteamMusicRemote/ISteamMusicRemote001.h"
 #include "ISteamNetworking/ISteamNetworking.h"
 #include "ISteamNetworking/ISteamNetworking001.h"
 #include "ISteamNetworking/ISteamNetworking005.h"
@@ -100,6 +102,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_001, SteamMatchmakingServers_set_version },
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_002, SteamMatchmakingServers_set_version },
 		{ STEAMMUSIC_INTERFACE_VERSION_001, SteamMusic_set_version },
+		{ STEAMMUSICREMOTE_INTERFACE_VERSION_001, SteamMusicRemote_set_version },
 		{ STEAMNETWORKING_INTERFACE_VERSION_001, SteamNetworking_set_version },
 		{ STEAMNETWORKING_INTERFACE_VERSION_005, SteamNetworking_set_version },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_001, SteamRemoteStorage_set_version },
