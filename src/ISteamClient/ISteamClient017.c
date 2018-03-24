@@ -38,7 +38,7 @@ static const struct ISteamClient017Vtbl ISteamClient017_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamClient_GetISteamInventory,
 	ISteamClient_GetISteamVideo,
 	INVAL_PTR
 };

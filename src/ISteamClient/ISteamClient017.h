@@ -56,7 +56,7 @@ struct ISteamClient017Vtbl
 	void *Set_SteamAPI_CPostAPIResultInProcess;
 	void *Remove_SteamAPI_CPostAPIResultInProcess;
 	void *Set_SteamAPI_CCheckCallbackRegisteredInProcess;
-	void *GetISteamInventory;
+	struct ISteamInventory *(*GetISteamInventory)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamVideo *(*GetISteamVideo)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *GetISteamParentalSettings;
 };
