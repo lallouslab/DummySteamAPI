@@ -54,7 +54,7 @@ static const struct ISteamUGC007Vtbl ISteamUGC007_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_GetNumSubscribedItems,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
