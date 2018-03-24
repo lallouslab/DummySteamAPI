@@ -4,6 +4,7 @@
 #include "steam.h"
 #include "utils.h"
 
+#include "../ISteamAppList/ISteamAppList.h"
 #include "../ISteamApps/ISteamApps.h"
 #include "../ISteamClient/ISteamClient.h"
 #include "../ISteamController/ISteamController.h"
@@ -33,6 +34,7 @@ static inline struct ISteamClientImpl *impl_from_ISteamClient(struct ISteamClien
 }
 
 steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *iface);
+struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamApps *ISteamClient_GetISteamApps(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamClient *ISteamClient_GetISteamClient(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamController *ISteamClient_GetISteamController(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);

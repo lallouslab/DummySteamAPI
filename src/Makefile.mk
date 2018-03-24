@@ -1,4 +1,5 @@
 SUBDIRS-y := \
+	ISteamAppList \
 	ISteamApps \
 	ISteamClient \
 	ISteamController \
@@ -25,6 +26,7 @@ libsteam_api := ../bin/libsteam_api$(DYN_LIB_EXT)
 BINS-y := $(libsteam_api)
 
 libs := \
+	ISteamAppList/libsteamapplist$(STATIC_LIB_EXT) \
 	ISteamApps/libsteamapps$(STATIC_LIB_EXT) \
 	ISteamClient/libsteamclient$(STATIC_LIB_EXT) \
 	ISteamController/libsteamcontroller$(STATIC_LIB_EXT) \

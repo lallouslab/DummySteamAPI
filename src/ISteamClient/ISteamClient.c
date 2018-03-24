@@ -9,6 +9,7 @@
 #include "ISteamClient014.h"
 #include "ISteamClient016.h"
 #include "ISteamClient017.h"
+#include "../ISteamAppList/ISteamAppList.h"
 #include "../ISteamApps/ISteamApps.h"
 #include "../ISteamController/ISteamController.h"
 #include "../ISteamFriends/ISteamFriends.h"
@@ -36,6 +37,15 @@ steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *iface)
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return 1;
+}
+
+struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+
+	return SteamAppList_generic(version);
 }
 
 struct ISteamApps *ISteamClient_GetISteamApps(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -99,6 +109,11 @@ struct ISteamGameServerStats *ISteamClient_GetISteamGameServerStats(struct IStea
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamGameServerStats_generic(version);
+}
+
+static void *get_generic_ISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return VOIDPTR(ISteamClient_GetISteamAppList(iface, steam_user, steam_pipe, debug_str(version)));
 }
 
 static void *get_generic_ISteamApps(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -203,6 +218,7 @@ void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_u
 		const char *name;
 		void *(*iface_getter)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	} ifaces[] = {
+		{ STEAMAPPLIST_INTERFACE_VERSION_PREFIX,            get_generic_ISteamAppList },
 		{ STEAMAPPS_INTERFACE_VERSION_PREFIX,               get_generic_ISteamApps },
 		{ STEAMCLIENT_INTERFACE_VERSION_PREFIX,             get_generic_ISteamClient },
 		{ STEAMCONTROLLER_INTERFACE_VERSION_PREFIX0,        get_generic_ISteamController },

@@ -4,6 +4,7 @@
 #include "steam.h"
 
 #include "ISteamClient.h"
+#include "../ISteamAppList/ISteamAppList.h"
 #include "../ISteamApps/ISteamApps.h"
 #include "../ISteamFriends/ISteamFriends.h"
 #include "../ISteamGameCoordinator/ISteamGameCoordinator.h"
@@ -46,7 +47,7 @@ struct ISteamClient014Vtbl
 	struct ISteamUnifiedMessages *(*GetISteamUnifiedMessages)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamController *(*GetISteamController)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	struct ISteamUGC *(*GetISteamUGC)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
-	void *GetISteamAppList;
+	struct ISteamAppList *(*GetISteamAppList)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *GetISteamMusic;
 };
 

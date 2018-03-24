@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "ISteamAppList/ISteamAppList.h"
+#include "ISteamAppList/ISteamAppList001.h"
 #include "ISteamApps/ISteamApps.h"
 #include "ISteamApps/ISteamApps001.h"
 #include "ISteamApps/ISteamApps003.h"
@@ -71,6 +73,7 @@ int dsa_set_default_interfaces_version(void)
 		const char *name;
 		void (*iface_set_default_version)(const char *);
 	} ifaces[] = {
+		{ STEAMAPPLIST_INTERFACE_VERSION_001, SteamAppList_set_version },
 		{ STEAMAPPS_INTERFACE_VERSION_001, SteamApps_set_version },
 		{ STEAMAPPS_INTERFACE_VERSION_003, SteamApps_set_version },
 		{ STEAMAPPS_INTERFACE_VERSION_006, SteamApps_set_version },
