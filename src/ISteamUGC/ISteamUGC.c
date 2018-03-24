@@ -6,6 +6,7 @@
 #include "ISteamUGC.h"
 #include "ISteamUGC_priv.h"
 #include "ISteamUGC001.h"
+#include "ISteamUGC007.h"
 
 static const char *steam_ugc_version = NULL;
 
@@ -17,6 +18,7 @@ struct ISteamUGC *SteamUGC_generic(const char *version)
 		struct ISteamUGC *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUGC_INTERFACE_VERSION_001, SteamUGC001 },
+		{ STEAMUGC_INTERFACE_VERSION_007, SteamUGC007 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -57,7 +59,7 @@ EXPORT struct ISteamUGC *SteamUGC(void)
 
 	if (!steam_ugc_version)
 	{
-		steam_ugc_version = STEAMUGC_INTERFACE_VERSION_001;
+		steam_ugc_version = STEAMUGC_INTERFACE_VERSION_007;
 
 		WARN("ISteamUGC: No version specified, defaulting to \"%s\".", debug_str(steam_ugc_version));
 	}
