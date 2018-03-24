@@ -19,6 +19,7 @@
 #include "../ISteamHTTP/ISteamHTTP.h"
 #include "../ISteamMatchmaking/ISteamMatchmaking.h"
 #include "../ISteamMatchmakingServers/ISteamMatchmakingServers.h"
+#include "../ISteamMusic/ISteamMusic.h"
 #include "../ISteamNetworking/ISteamNetworking.h"
 #include "../ISteamScreenshots/ISteamScreenshots.h"
 #include "../ISteamRemoteStorage/ISteamRemoteStorage.h"
@@ -168,6 +169,11 @@ static void *get_generic_ISteamMatchmakingServers(struct ISteamClient *iface, st
 	return VOIDPTR(ISteamClient_GetISteamMatchmakingServers(iface, steam_user, steam_pipe, debug_str(version)));
 }
 
+static void *get_generic_ISteamMusic(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return VOIDPTR(ISteamClient_GetISteamMusic(iface, steam_user, steam_pipe, debug_str(version)));
+}
+
 static void *get_generic_ISteamNetworking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	return VOIDPTR(ISteamClient_GetISteamNetworking(iface, steam_user, steam_pipe, debug_str(version)));
@@ -230,6 +236,7 @@ void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_u
 		{ STEAMHTTP_INTERFACE_VERSION_PREFIX,               get_generic_ISteamHTTP },
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_PREFIX,        get_generic_ISteamMatchmaking },
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_PREFIX, get_generic_ISteamMatchmakingServers },
+		{ STEAMMUSIC_INTERFACE_VERSION_PREFIX,              get_generic_ISteamMusic },
 		{ STEAMNETWORKING_INTERFACE_VERSION_PREFIX,         get_generic_ISteamNetworking },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_PREFIX,      get_generic_ISteamRemoteStorage },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_PREFIX,        get_generic_ISteamScreenshots },
@@ -285,6 +292,15 @@ struct ISteamMatchmakingServers *ISteamClient_GetISteamMatchmakingServers(struct
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamMatchmakingServers_generic(version);
+}
+
+struct ISteamMusic *ISteamClient_GetISteamMusic(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+
+	return SteamMusic_generic(version);
 }
 
 struct ISteamNetworking *ISteamClient_GetISteamNetworking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)

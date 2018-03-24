@@ -32,7 +32,7 @@ static const struct ISteamClient014Vtbl ISteamClient014_vtbl = {
 	ISteamClient_GetISteamController,
 	ISteamClient_GetISteamUGC,
 	ISteamClient_GetISteamAppList,
-	INVAL_PTR
+	ISteamClient_GetISteamMusic
 };
 
 struct ISteamClient *SteamClient014(void)

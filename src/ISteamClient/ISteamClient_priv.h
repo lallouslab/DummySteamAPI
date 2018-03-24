@@ -15,6 +15,7 @@
 #include "../ISteamHTTP/ISteamHTTP.h"
 #include "../ISteamMatchmaking/ISteamMatchmaking.h"
 #include "../ISteamMatchmakingServers/ISteamMatchmakingServers.h"
+#include "../ISteamMusic/ISteamMusic.h"
 #include "../ISteamNetworking/ISteamNetworking.h"
 #include "../ISteamRemoteStorage/ISteamRemoteStorage.h"
 #include "../ISteamScreenshots/ISteamScreenshots.h"
@@ -46,6 +47,7 @@ void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_u
 struct ISteamHTTP *ISteamClient_GetISteamHTTP(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamMatchmaking *ISteamClient_GetISteamMatchmaking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamMatchmakingServers *ISteamClient_GetISteamMatchmakingServers(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
+struct ISteamMusic *ISteamClient_GetISteamMusic(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamNetworking *ISteamClient_GetISteamNetworking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamRemoteStorage *ISteamClient_GetISteamRemoteStorage(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 struct ISteamScreenshots *ISteamClient_GetISteamScreenshots(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
