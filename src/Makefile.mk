@@ -52,6 +52,7 @@ libs := \
 	os/libos$(STATIC_LIB_EXT)
 
 objs := \
+	CCallback.c.o \
 	callbacks.c.o \
 	debug.c.o \
 	setup_ifaces.c.o \

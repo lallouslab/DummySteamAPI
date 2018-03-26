@@ -111,6 +111,9 @@ struct CCallResult
 	steam_api_call_t api_call;
 	void *obj;
 	steam_api_call_callback_t callback;
+
+	/* DSA-specific */
+	size_t data_size;
 };
 
 struct CCallback
@@ -118,6 +121,9 @@ struct CCallback
 	struct CCallbackBase base;
 	void *obj;
 	steam_callback_t callback;
+
+	/* DSA-specific */
+	size_t data_size;
 };
 
 struct CCallbackManual
@@ -139,5 +145,20 @@ static inline struct CCallbackManual *CCallbackManual_from_CCallback(struct CCal
 {
 	return CONTAINER_OF(iface, struct CCallbackManual, base);
 }
+
+void CCallbackBase(struct CCallbackBase *iface);
+enum steam_callback_type CCallbackBase_GetICallback(struct CCallbackBase *iface);
+void CCallResult(struct CCallResult *iface, enum steam_callback_type type, size_t data_size);
+void CCallResult_dtor(struct CCallResult *iface);
+void CCallResult_Set(struct CCallResult *iface, steam_api_call_t api_call, void *obj, steam_api_call_callback_t callback);
+steam_bool_t CCallResult_IsActive(struct CCallResult *iface);
+void CCallResult_Cancel(struct CCallResult *iface);
+void CCallback(struct CCallback *iface, void *obj, steam_callback_t callback, size_t data_size, steam_bool_t is_game_server);
+void CCallback_dtor(struct CCallback *iface);
+void CCallback_Register(struct CCallback *iface, void *obj, steam_callback_t callback);
+void CCallback_Unregister(struct CCallback *iface);
+void CCallback_SetGameserverFlag(struct CCallback *iface);
+void CCallbackManual(struct CCallbackManual *iface, size_t data_size, steam_bool_t is_game_server);
+void CCallbackManual_dtor(struct CCallbackManual *iface);
 
 #endif /* CCALLBACK_H */
