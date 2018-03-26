@@ -22,11 +22,9 @@ EXPORT steam_bool_t SteamGameServer_Init(uint32_t ip, uint16_t steam_port, uint1
 
 EXPORT steam_bool_t SteamGameServer_InitSafe(uint32_t ip, uint16_t steam_port, uint16_t game_port, uint16_t query_port, enum steam_game_server_mode server_mode, const char *version)
 {
-	LOG_ENTER_NOTIMPL("(ip = %#x, steam_port = %u, game_port = %u, query_port = %u, server_mode = %u, version = \"%s\")", ip, steam_port, game_port, query_port, server_mode, debug_str(version));
+	LOG_ENTER("(ip = %#x, steam_port = %u, game_port = %u, query_port = %u, server_mode = %u, version = \"%s\")", ip, steam_port, game_port, query_port, server_mode, debug_str(version));
 
-	g_pSteamClientGameServer = SteamClient();
-
-	return STEAM_TRUE;
+	return SteamGameServer_Init(ip, steam_port, game_port, query_port, server_mode, version);
 }
 
 EXPORT uint32_t SteamGameServer_GetIPCCallCount(void)
