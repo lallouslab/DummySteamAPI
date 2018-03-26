@@ -10,8 +10,7 @@ struct call_output
 {
 	enum steam_callback_type type;
 	steam_bool_t is_api_call : 1;
-	steam_bool_t is_handled_api_call : 1;
-	steam_bool_t is_handled_callbacks : 1;
+	steam_bool_t is_handled : 1;
 	steam_bool_t io_failure : 1;
 	steam_api_call_t api_call;
 	void *data;
@@ -121,8 +120,7 @@ void callbacks_dispatch_callback_output(enum steam_callback_type type, void *dat
 
 	out.type = type;
 	out.is_api_call = STEAM_FALSE;
-	out.is_handled_api_call = STEAM_FALSE;
-	out.is_handled_callbacks = STEAM_FALSE;
+	out.is_handled = STEAM_FALSE;
 	out.io_failure = STEAM_FALSE;
 	out.api_call = 0;
 	out.data = data;
@@ -142,8 +140,7 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 
 	out.type = type;
 	out.is_api_call = STEAM_TRUE;
-	out.is_handled_api_call = STEAM_FALSE;
-	out.is_handled_callbacks = STEAM_FALSE;
+	out.is_handled = STEAM_FALSE;
 	out.io_failure = io_failure;
 	out.api_call = ++cur_api_call;
 	out.data = data;
@@ -216,7 +213,10 @@ static steam_bool_t handle_callback_output(struct call_output *out)
 	if (out->type >= STEAM_CALLBACK_TYPE_MAX)
 		return STEAM_FALSE;
 
-	if (out->is_handled_callbacks)
+	if (out->is_api_call)
+		return STEAM_FALSE;
+
+	if (out->is_handled)
 		return STEAM_TRUE;
 
 	list_lock(&callbacks[out->type]);
@@ -234,7 +234,7 @@ static steam_bool_t handle_callback_output(struct call_output *out)
 
 		callback->vtbl->Run0(callback, out->data);
 
-		out->is_handled_callbacks = STEAM_TRUE;
+		out->is_handled = STEAM_TRUE;
 		handled = STEAM_TRUE;
 	}
 
@@ -253,7 +253,7 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 	if (!out->is_api_call)
 		return STEAM_FALSE;
 
-	if (out->is_handled_api_call)
+	if (out->is_handled)
 		return STEAM_TRUE;
 
 	list_lock(&api_call_results);
@@ -278,7 +278,7 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 
 				unreg_api_call_result(callback, elem);
 
-				out->is_handled_api_call = STEAM_TRUE;
+				out->is_handled = STEAM_TRUE;
 				handled = STEAM_TRUE;
 			}
 		}
@@ -304,13 +304,12 @@ void callbacks_run(void)
 		if (out->type >= STEAM_CALLBACK_TYPE_MAX)
 			continue;
 
-		handle_api_call_result_output(out);
-		handle_callback_output(out);
+		if (out->is_api_call)
+			handle_api_call_result_output(out);
+		else
+			handle_callback_output(out);
 
-		if (out->is_api_call && !out->is_handled_api_call)
-			continue;
-
-		if (!out->is_handled_api_call && !out->is_handled_callbacks)
+		if (!out->is_handled)
 			continue;
 
 		list_remove(&call_outputs, elem);
