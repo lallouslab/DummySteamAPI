@@ -88,8 +88,8 @@ enum steam_callback_flags
 
 struct CCallbackBase;
 
-typedef void (*steam_api_call_callback_t)(void *params, steam_bool_t io_failure);
-typedef void (*steam_callback_t)(void *params);
+typedef void (*steam_api_call_callback_t)(void *obj, void *param, steam_bool_t io_failure);
+typedef void (*steam_callback_t)(void *obj, void *param);
 
 struct CCallbackBaseVtbl
 {
@@ -110,14 +110,14 @@ struct CCallResult
 	struct CCallbackBase base;
 	steam_api_call_t api_call;
 	void *obj;
-	steam_api_call_callback_t *callback;
+	steam_api_call_callback_t callback;
 };
 
 struct CCallback
 {
 	struct CCallbackBase base;
 	void *obj;
-	steam_callback_t *callback;
+	steam_callback_t callback;
 };
 
 struct CCallbackManual
@@ -125,19 +125,19 @@ struct CCallbackManual
 	struct CCallback base;
 };
 
-static inline struct CCallResult *CCallResult_from_CCallbackBase(struct CCallbackBase *base)
+static inline struct CCallResult *CCallResult_from_CCallbackBase(struct CCallbackBase *iface)
 {
-	return CONTAINER_OF(base, struct CCallResult, base);
+	return CONTAINER_OF(iface, struct CCallResult, base);
 }
 
-static inline struct CCallback *CCallback_from_CCallbackBase(struct CCallbackBase *base)
+static inline struct CCallback *CCallback_from_CCallbackBase(struct CCallbackBase *iface)
 {
-	return CONTAINER_OF(base, struct CCallback, base);
+	return CONTAINER_OF(iface, struct CCallback, base);
 }
 
-static inline struct CCallbackManual *CCallbackManual_from_CCallback(struct CCallback *base)
+static inline struct CCallbackManual *CCallbackManual_from_CCallback(struct CCallback *iface)
 {
-	return CONTAINER_OF(base, struct CCallbackManual, base);
+	return CONTAINER_OF(iface, struct CCallbackManual, base);
 }
 
 #endif /* CCALLBACK_H */
