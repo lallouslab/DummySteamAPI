@@ -65,22 +65,9 @@ EXPORT steam_bool_t SteamAPI_Init(void)
 
 EXPORT steam_bool_t SteamAPI_InitSafe(void)
 {
-	int result;
-
 	LOG_ENTER0("()");
 
-	result = dsa_init();
-	if (result < 0)
-		return STEAM_FALSE;
-
-	if (g_pSteamClientGameServer != INVAL_PTR)
-		return STEAM_TRUE;
-
-	g_pSteamClientGameServer = SteamClient();
-
-	callbacks_init();
-
-	return STEAM_TRUE;
+	return SteamAPI_Init();
 }
 
 EXPORT steam_bool_t SteamAPI_IsSteamRunning(void)
