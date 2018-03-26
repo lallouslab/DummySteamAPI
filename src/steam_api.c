@@ -9,6 +9,7 @@
 #include "debug.h"
 #include "setup_ifaces.h"
 #include "steam.h"
+#include "steam_api.h"
 #include "steam_gameserver.h"
 #include "utils.h"
 
