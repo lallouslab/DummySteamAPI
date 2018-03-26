@@ -50,6 +50,14 @@ enum steam_game_id_type
 	STEAM_GAME_ID_TYPE_P2P = 3u
 };
 
+enum steam_game_server_mode
+{
+	STEAM_GAME_SERVER_MODE_INVALID = 0,
+	STEAM_GAME_SERVER_MODE_NO_AUTH = 1,
+	STEAM_GAME_SERVER_MODE_AUTH = 2,
+	STEAM_GAME_SERVER_MODE_SECAUTH = 3
+};
+
 enum steam_notification_position
 {
 	STEAM_NOTIFICATION_POSITION_TOP_LEFT = 0u,
