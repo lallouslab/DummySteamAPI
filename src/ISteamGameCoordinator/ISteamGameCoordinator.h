@@ -5,7 +5,11 @@
 
 struct ISteamGameCoordinator
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamGameCoordinator001Vtbl *v001;
+	} vtbl;
 };
 
 struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version);

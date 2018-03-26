@@ -36,10 +36,6 @@ struct ISteamApps007Vtbl
 	void *RequestAllProofOfPurchaseKeys;
 };
 
-static inline struct ISteamApps007Vtbl *get_ISteamApps007Vtbl_from_ISteamApps(struct ISteamApps *iface) {
-	return (struct ISteamApps007Vtbl *)iface->vtbl;
-}
-
 struct ISteamApps *SteamApps007(void);
 
 #endif /* ISTEAMAPPS007_H */

@@ -5,7 +5,14 @@
 
 struct ISteamClient
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamClient006Vtbl *v006;
+		const struct ISteamClient014Vtbl *v014;
+		const struct ISteamClient016Vtbl *v016;
+		const struct ISteamClient017Vtbl *v017;
+	} vtbl;
 };
 
 struct ISteamClient *SteamClient_generic(const char *version);

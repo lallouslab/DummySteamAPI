@@ -35,7 +35,7 @@ struct ISteamHTTP *SteamHTTP002(void)
 {
 	static struct ISteamHTTPImpl impl;
 
-	impl.base.vtbl = &ISteamHTTP002_vtbl;
+	impl.base.vtbl.v002 = &ISteamHTTP002_vtbl;
 
 	return &impl.base;
 }

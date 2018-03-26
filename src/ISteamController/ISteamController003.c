@@ -27,7 +27,7 @@ struct ISteamController *SteamController003(void)
 {
 	static struct ISteamControllerImpl impl;
 
-	impl.base.vtbl = &ISteamController003_vtbl;
+	impl.base.vtbl.v003 = &ISteamController003_vtbl;
 
 	return &impl.base;
 }

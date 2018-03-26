@@ -19,10 +19,6 @@ struct ISteamRemoteStorage001Vtbl
 	steam_bool_t (*GetQuota)(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes);
 };
 
-static inline struct ISteamRemoteStorage001Vtbl *get_ISteamRemoteStorage001Vtbl_from_ISteamRemoteStorage(struct ISteamRemoteStorage *iface) {
-	return (struct ISteamRemoteStorage001Vtbl *)iface->vtbl;
-}
-
 struct ISteamRemoteStorage *SteamRemoteStorage001(void);
 
 #endif /* ISTEAMREMOTESTORAGE001_H */

@@ -5,7 +5,11 @@
 
 struct ISteamAppList
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamAppList001Vtbl *v001;
+	} vtbl;
 };
 
 struct ISteamAppList *SteamAppList_generic(const char *version);

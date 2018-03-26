@@ -69,10 +69,6 @@ struct ISteamUGC007Vtbl
 	void *SuspendDownloads;
 };
 
-static inline struct ISteamUGC007Vtbl *get_ISteamUGC007Vtbl_from_ISteamUGC(struct ISteamUGC *iface) {
-	return (struct ISteamUGC007Vtbl *)iface->vtbl;
-}
-
 struct ISteamUGC *SteamUGC007(void);
 
 #endif /* ISTEAMUGC007_H */

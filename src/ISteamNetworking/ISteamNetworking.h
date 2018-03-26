@@ -5,7 +5,12 @@
 
 struct ISteamNetworking
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamNetworking001Vtbl *v001;
+		const struct ISteamNetworking005Vtbl *v005;
+	} vtbl;
 };
 
 struct ISteamNetworking *SteamNetworking_generic(const char *version);

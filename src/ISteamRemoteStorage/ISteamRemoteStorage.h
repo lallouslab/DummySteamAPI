@@ -5,7 +5,13 @@
 
 struct ISteamRemoteStorage
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamRemoteStorage001Vtbl *v001;
+		const struct ISteamRemoteStorage012Vtbl *v012;
+		const struct ISteamRemoteStorage013Vtbl *v013;
+	} vtbl;
 };
 
 struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version);

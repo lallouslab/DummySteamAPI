@@ -15,7 +15,7 @@ EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages001(void)
 {
 	static struct ISteamUnifiedMessagesImpl impl;
 
-	impl.base.vtbl = &ISteamUnifiedMessages001_vtbl;
+	impl.base.vtbl.v001 = &ISteamUnifiedMessages001_vtbl;
 
 	return &impl.base;
 }

@@ -23,10 +23,6 @@ struct ISteamNetworking001Vtbl
 	void *GetListenSocketInfo;
 };
 
-static inline struct ISteamNetworking001Vtbl *get_ISteamNetworking001Vtbl_from_ISteamNetworking(struct ISteamNetworking *iface) {
-	return (struct ISteamNetworking001Vtbl *)iface->vtbl;
-}
-
 struct ISteamNetworking *SteamNetworking001(void);
 
 #endif /* ISTEAMNETWORKING001_H */

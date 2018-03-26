@@ -3,7 +3,11 @@
 
 struct ISteamUnifiedMessages
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamUnifiedMessages001Vtbl *v001;
+	} vtbl;
 };
 
 #define STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_PREFIX "STEAMUNIFIEDMESSAGES_INTERFACE_VERSION"

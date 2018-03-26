@@ -5,7 +5,11 @@
 
 struct ISteamGameServerStats
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamGameServerStats001Vtbl *v001;
+	} vtbl;
 };
 
 struct ISteamGameServerStats *SteamGameServerStats_generic(const char *version);

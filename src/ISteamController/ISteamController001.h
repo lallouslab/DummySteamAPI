@@ -17,10 +17,6 @@ struct ISteamController001Vtbl
 	void (*SetOverrideMode)(struct ISteamController *iface, const char *mode);
 };
 
-static inline struct ISteamController001Vtbl *get_ISteamController001Vtbl_from_ISteamController(struct ISteamController *iface) {
-	return (struct ISteamController001Vtbl *)iface->vtbl;
-}
-
 struct ISteamController *SteamController001(void);
 
 #endif /* ISTEAMCONTROLLER001_H */

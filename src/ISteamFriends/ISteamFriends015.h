@@ -83,10 +83,6 @@ struct ISteamFriends015Vtbl
 	void *IsClanOfficialGameGroup;
 };
 
-static inline struct ISteamFriends015Vtbl *get_ISteamFriends015Vtbl_from_ISteamApps(struct ISteamFriends *iface) {
-	return (struct ISteamFriends015Vtbl *)iface->vtbl;
-}
-
 struct ISteamFriends *SteamFriends015(void);
 
 #endif /* ISTEAMFRIENDS015_H */

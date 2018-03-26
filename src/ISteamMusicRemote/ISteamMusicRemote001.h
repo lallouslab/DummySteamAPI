@@ -43,10 +43,6 @@ struct ISteamMusicRemote001Vtbl
 	void *PlaylistDidChange;
 };
 
-static inline struct ISteamMusicRemote001Vtbl *get_ISteamMusicRemote001Vtbl_from_ISteamMusicRemote(struct ISteamMusicRemote *iface) {
-	return (struct ISteamMusicRemote001Vtbl *)iface->vtbl;
-}
-
 struct ISteamMusicRemote *SteamMusicRemote001(void);
 
 #endif /* ISTEAMMUSICREMOTE001_H */

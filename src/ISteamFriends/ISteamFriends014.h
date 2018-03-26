@@ -75,10 +75,6 @@ struct ISteamFriends014Vtbl
 	void *EnumerateFollowingList;
 };
 
-static inline struct ISteamFriends014Vtbl *get_ISteamFriends014Vtbl_from_ISteamApps(struct ISteamFriends *iface) {
-	return (struct ISteamFriends014Vtbl *)iface->vtbl;
-}
-
 struct ISteamFriends *SteamFriends014(void);
 
 #endif /* ISTEAMFRIENDS014_H */

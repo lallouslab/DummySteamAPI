@@ -62,7 +62,7 @@ struct ISteamRemoteStorage *SteamRemoteStorage012(void)
 {
 	static struct ISteamRemoteStorageImpl impl;
 
-	impl.base.vtbl = &ISteamRemoteStorage012_vtbl;
+	impl.base.vtbl.v012 = &ISteamRemoteStorage012_vtbl;
 
 	return &impl.base;
 }

@@ -49,10 +49,6 @@ struct ISteamMatchmaking009Vtbl
 	void *SetLinkedLobby;
 };
 
-static inline struct ISteamMatchmaking009Vtbl *get_ISteamMatchmaking009Vtbl_from_ISteamMatchmaking(struct ISteamMatchmaking *iface) {
-	return (struct ISteamMatchmaking009Vtbl *)iface->vtbl;
-}
-
 struct ISteamMatchmaking *SteamMatchmaking009(void);
 
 #endif /* ISTEAMMATCHMAKING009_H */

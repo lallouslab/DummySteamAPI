@@ -20,10 +20,6 @@ struct ISteamMusic001Vtbl
 	void *GetVolume;
 };
 
-static inline struct ISteamMusic001Vtbl *get_ISteamMusic001Vtbl_from_ISteamMusic(struct ISteamMusic *iface) {
-	return (struct ISteamMusic001Vtbl *)iface->vtbl;
-}
-
 struct ISteamMusic *SteamMusic001(void);
 
 #endif /* ISTEAMMUSIC001_H */

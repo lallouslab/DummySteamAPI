@@ -5,7 +5,12 @@
 
 struct ISteamMatchmakingServers
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamMatchmakingServers001Vtbl *v001;
+		const struct ISteamMatchmakingServers002Vtbl *v002;
+	} vtbl;
 };
 
 struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version);

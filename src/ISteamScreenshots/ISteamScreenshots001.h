@@ -17,10 +17,6 @@ struct ISteamScreenshots001Vtbl
 	void *TagUser;
 };
 
-static inline struct ISteamScreenshots001Vtbl *get_ISteamScreenshots001Vtbl_from_ISteamScreenshots(struct ISteamScreenshots *iface) {
-	return (struct ISteamScreenshots001Vtbl *)iface->vtbl;
-}
-
 struct ISteamScreenshots *SteamScreenshots001(void);
 
 #endif /* ISTEAMSCREENSHOTS001_H */

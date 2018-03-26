@@ -66,10 +66,6 @@ struct ISteamRemoteStorage013Vtbl
 	void *UGCDownloadToLocation;
 };
 
-static inline struct ISteamRemoteStorage013Vtbl *get_ISteamRemoteStorage013Vtbl_from_ISteamRemoteStorage(struct ISteamRemoteStorage *iface) {
-	return (struct ISteamRemoteStorage013Vtbl *)iface->vtbl;
-}
-
 struct ISteamRemoteStorage *SteamRemoteStorage013(void);
 
 #endif /* ISTEAMREMOTESTORAGE013_H */

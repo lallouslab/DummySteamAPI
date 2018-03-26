@@ -16,10 +16,6 @@ struct ISteamUnifiedMessages001Vtbl
 	void *SendNotification;
 };
 
-static inline struct ISteamUnifiedMessages001Vtbl *get_ISteamUnifiedMessages001Vtbl_from_ISteamUnifiedMessages(struct ISteamUnifiedMessages *iface) {
-	return (struct ISteamUnifiedMessages001Vtbl *)iface->vtbl;
-}
-
 struct ISteamUnifiedMessages *SteamUnifiedMessages001(void);
 
 #endif /* ISTEAMUNIFIEDMESSAGES001_H */

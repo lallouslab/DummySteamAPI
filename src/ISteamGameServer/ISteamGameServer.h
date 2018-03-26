@@ -5,7 +5,12 @@
 
 struct ISteamGameServer
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamGameServer011Vtbl *v011;
+		const struct ISteamGameServer012Vtbl *v012;
+	} vtbl;
 };
 
 struct ISteamGameServer *SteamGameServer_generic(const char *version);

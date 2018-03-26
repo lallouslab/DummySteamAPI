@@ -39,7 +39,7 @@ struct ISteamClient *SteamClient014(void)
 {
 	static struct ISteamClientImpl impl;
 
-	impl.base.vtbl = &ISteamClient014_vtbl;
+	impl.base.vtbl.v014 = &ISteamClient014_vtbl;
 
 	return &impl.base;
 }

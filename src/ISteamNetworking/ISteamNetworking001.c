@@ -22,7 +22,7 @@ struct ISteamNetworking *SteamNetworking001(void)
 {
 	static struct ISteamNetworkingImpl impl;
 
-	impl.base.vtbl = &ISteamNetworking001_vtbl;
+	impl.base.vtbl.v001 = &ISteamNetworking001_vtbl;
 
 	return &impl.base;
 }

@@ -5,7 +5,13 @@
 
 struct ISteamUser
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamUser004Vtbl *v004;
+		const struct ISteamUser017Vtbl *v017;
+		const struct ISteamUser018Vtbl *v018;
+	} vtbl;
 };
 
 struct ISteamUser *SteamUser_generic(const char *version);

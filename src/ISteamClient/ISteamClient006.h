@@ -39,10 +39,6 @@ struct ISteamClient006Vtbl
 	void *GetIPCCallCount;
 };
 
-static inline struct ISteamClient006Vtbl *get_ISteamClient006Vtbl_from_ISteamClient(struct ISteamClient *iface) {
-	return (struct ISteamClient006Vtbl *)iface->vtbl;
-}
-
 struct ISteamClient *SteamClient006(void);
 
 #endif /* ISTEAMCLIENT006_H */

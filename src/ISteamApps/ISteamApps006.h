@@ -34,10 +34,6 @@ struct ISteamApps006Vtbl
 	void *GetDlcDownloadProgress;
 };
 
-static inline struct ISteamApps006Vtbl *get_ISteamApps006Vtbl_from_ISteamApps(struct ISteamApps *iface) {
-	return (struct ISteamApps006Vtbl *)iface->vtbl;
-}
-
 struct ISteamApps *SteamApps006(void);
 
 #endif /* ISTEAMAPPS006_H */

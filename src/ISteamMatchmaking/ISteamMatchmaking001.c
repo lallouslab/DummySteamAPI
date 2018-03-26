@@ -32,7 +32,7 @@ struct ISteamMatchmaking *SteamMatchmaking001(void)
 {
 	static struct ISteamMatchmakingImpl impl;
 
-	impl.base.vtbl = &ISteamMatchmaking001_vtbl;
+	impl.base.vtbl.v001 = &ISteamMatchmaking001_vtbl;
 
 	return &impl.base;
 }

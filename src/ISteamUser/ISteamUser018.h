@@ -36,10 +36,6 @@ struct ISteamUser018Vtbl
 	void *RequestStoreAuthURL;
 };
 
-static inline struct ISteamUser018Vtbl *get_ISteamUser018Vtbl_from_ISteamUser(struct ISteamUser *iface) {
-	return (struct ISteamUser018Vtbl *)iface->vtbl;
-}
-
 struct ISteamUser *SteamUser018(void);
 
 #endif /* ISTEAMUSER018_H */

@@ -61,10 +61,6 @@ struct ISteamClient017Vtbl
 	void *GetISteamParentalSettings;
 };
 
-static inline struct ISteamClient017Vtbl *get_ISteamClient017Vtbl_from_ISteamClient(struct ISteamClient *iface) {
-	return (struct ISteamClient017Vtbl *)iface->vtbl;
-}
-
 struct ISteamClient *SteamClient017(void);
 
 #endif /* ISTEAMCLIENT017_H */

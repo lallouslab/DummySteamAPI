@@ -37,10 +37,6 @@ struct ISteamUtils006Vtbl
 	void *IsSteamRunningInVR;
 };
 
-static inline struct ISteamUtils006Vtbl *get_ISteamUtils006Vtbl_from_ISteamUtils(struct ISteamUtils *iface) {
-	return (struct ISteamUtils006Vtbl *)iface->vtbl;
-}
-
 struct ISteamUtils *SteamUtils006(void);
 
 #endif /* ISTEAMUTILS006_H */

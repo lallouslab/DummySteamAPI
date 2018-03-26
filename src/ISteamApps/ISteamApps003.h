@@ -19,10 +19,6 @@ struct ISteamApps003Vtbl
 	steam_bool_t (*BIsDlcInstalled)(struct ISteamApps *iface, steam_app_id_t app_id);
 };
 
-static inline struct ISteamApps003Vtbl *get_ISteamApps003Vtbl_from_ISteamApps(struct ISteamApps *iface) {
-	return (struct ISteamApps003Vtbl *)iface->vtbl;
-}
-
 struct ISteamApps *SteamApps003(void);
 
 #endif /* ISTEAMAPPS003_H */

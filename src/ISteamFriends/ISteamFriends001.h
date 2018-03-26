@@ -38,10 +38,6 @@ struct ISteamFriends001Vtbl
 	void *GetFriendGamePlayed2;
 };
 
-static inline struct ISteamFriends001Vtbl *get_ISteamFriends001Vtbl_from_ISteamApps(struct ISteamFriends *iface) {
-	return (struct ISteamFriends001Vtbl *)iface->vtbl;
-}
-
 struct ISteamFriends *SteamFriends001(void);
 
 #endif /* ISTEAMFRIENDS001_H */

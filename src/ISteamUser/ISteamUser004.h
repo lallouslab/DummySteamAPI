@@ -37,10 +37,6 @@ struct ISteamUser004Vtbl
 	void *RequestLegacyCDKey;
 };
 
-static inline struct ISteamUser004Vtbl *get_ISteamUser004Vtbl_from_ISteamUser(struct ISteamUser *iface) {
-	return (struct ISteamUser004Vtbl *)iface->vtbl;
-}
-
 struct ISteamUser *SteamUser004(void);
 
 #endif /* ISTEAMUSER004_H */

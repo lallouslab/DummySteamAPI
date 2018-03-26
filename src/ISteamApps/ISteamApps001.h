@@ -12,10 +12,6 @@ struct ISteamApps001Vtbl
 	void *GetAppData;
 };
 
-static inline struct ISteamApps001Vtbl *get_ISteamApps001Vtbl_from_ISteamApps(struct ISteamApps *iface) {
-	return (struct ISteamApps001Vtbl *)iface->vtbl;
-}
-
 struct ISteamApps *SteamApps001(void);
 
 #endif /* ISTEAMAPPS001_H */

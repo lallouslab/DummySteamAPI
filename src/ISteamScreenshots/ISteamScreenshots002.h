@@ -18,10 +18,6 @@ struct ISteamScreenshots002Vtbl
 	void *TagPublishedFile;
 };
 
-static inline struct ISteamScreenshots002Vtbl *get_ISteamScreenshots002Vtbl_from_ISteamScreenshots(struct ISteamScreenshots *iface) {
-	return (struct ISteamScreenshots002Vtbl *)iface->vtbl;
-}
-
 struct ISteamScreenshots *SteamScreenshots002(void);
 
 #endif /* ISTEAMSCREENSHOTS002_H */

@@ -5,7 +5,11 @@
 
 struct ISteamMusicRemote
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamMusicRemote001Vtbl *v001;
+	} vtbl;
 };
 
 struct ISteamMusicRemote *SteamMusicRemote_generic(const char *version);

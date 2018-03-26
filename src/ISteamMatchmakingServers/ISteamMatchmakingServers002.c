@@ -27,7 +27,7 @@ struct ISteamMatchmakingServers *SteamMatchmakingServers002(void)
 {
 	static struct ISteamMatchmakingServersImpl impl;
 
-	impl.base.vtbl = &ISteamMatchmakingServers002_vtbl;
+	impl.base.vtbl.v002 = &ISteamMatchmakingServers002_vtbl;
 
 	return &impl.base;
 }

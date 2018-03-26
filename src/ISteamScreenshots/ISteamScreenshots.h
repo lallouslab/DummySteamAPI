@@ -5,7 +5,12 @@
 
 struct ISteamScreenshots
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamScreenshots001Vtbl *v001;
+		const struct ISteamScreenshots002Vtbl *v002;
+	} vtbl;
 };
 
 extern struct ISteamScreenshots *SteamScreenshots_generic(const char *version);

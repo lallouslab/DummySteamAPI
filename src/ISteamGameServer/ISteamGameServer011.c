@@ -54,7 +54,7 @@ struct ISteamGameServer *SteamGameServer011(void)
 {
 	static struct ISteamGameServerImpl impl;
 
-	impl.base.vtbl = &ISteamGameServer011_vtbl;
+	impl.base.vtbl.v011 = &ISteamGameServer011_vtbl;
 
 	return &impl.base;
 }

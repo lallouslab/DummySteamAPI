@@ -18,10 +18,6 @@ struct ISteamUtils001Vtbl
 	void *GetImageRGBA;
 };
 
-static inline struct ISteamUtils001Vtbl *get_ISteamUtils001Vtbl_from_ISteamUtils(struct ISteamUtils *iface) {
-	return (struct ISteamUtils001Vtbl *)iface->vtbl;
-}
-
 struct ISteamUtils *SteamUtils001(void);
 
 #endif /* ISTEAMUTILS001_H */

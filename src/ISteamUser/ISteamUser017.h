@@ -35,10 +35,6 @@ struct ISteamUser017Vtbl
 	void *GetPlayerSteamLevel;
 };
 
-static inline struct ISteamUser017Vtbl *get_ISteamUser017Vtbl_from_ISteamUser(struct ISteamUser *iface) {
-	return (struct ISteamUser017Vtbl *)iface->vtbl;
-}
-
 struct ISteamUser *SteamUser017(void);
 
 #endif /* ISTEAMUSER017_H */

@@ -25,10 +25,6 @@ struct ISteamUGC001Vtbl
 	void *RequestUGCDetails;
 };
 
-static inline struct ISteamUGC001Vtbl *get_ISteamUGC001Vtbl_from_ISteamUGC(struct ISteamUGC *iface) {
-	return (struct ISteamUGC001Vtbl *)iface->vtbl;
-}
-
 struct ISteamUGC *SteamUGC001(void);
 
 #endif /* ISTEAMUGC001_H */

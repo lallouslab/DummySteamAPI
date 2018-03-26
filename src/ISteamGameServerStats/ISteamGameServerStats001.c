@@ -20,7 +20,7 @@ struct ISteamGameServerStats *SteamGameServerStats001(void)
 {
 	static struct ISteamGameServerStatsImpl impl;
 
-	impl.base.vtbl = &ISteamGameServerStats001_vtbl;
+	impl.base.vtbl.v001 = &ISteamGameServerStats001_vtbl;
 
 	return &impl.base;
 }

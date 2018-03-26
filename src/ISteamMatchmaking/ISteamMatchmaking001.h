@@ -33,10 +33,6 @@ struct ISteamMatchmaking001Vtbl
 	void *RequestLobbyData;
 };
 
-static inline struct ISteamMatchmaking001Vtbl *get_ISteamMatchmaking001Vtbl_from_ISteamMatchmaking(struct ISteamMatchmaking *iface) {
-	return (struct ISteamMatchmaking001Vtbl *)iface->vtbl;
-}
-
 struct ISteamMatchmaking *SteamMatchmaking001(void);
 
 #endif /* ISTEAMMATCHMAKING001_H */

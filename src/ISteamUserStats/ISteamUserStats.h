@@ -8,7 +8,11 @@
 
 struct ISteamUserStats
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamUserStats011Vtbl *v011;
+	} vtbl;
 };
 
 PACKED_STRUCT steam_callback_data_user_stats_user_stats_received

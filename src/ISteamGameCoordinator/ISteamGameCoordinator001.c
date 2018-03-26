@@ -13,7 +13,7 @@ EXPORT struct ISteamGameCoordinator *SteamGameCoordinator001(void)
 {
 	static struct ISteamGameCoordinatorImpl impl;
 
-	impl.base.vtbl = &ISteamGameCoordinator001_vtbl;
+	impl.base.vtbl.v001 = &ISteamGameCoordinator001_vtbl;
 
 	return &impl.base;
 }

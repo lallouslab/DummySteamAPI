@@ -55,10 +55,6 @@ struct ISteamGameServer011Vtbl
 	void *ComputeNewPlayerCompatibility;
 };
 
-static inline struct ISteamGameServer011Vtbl *get_ISteamGameServer011Vtbl_from_ISteamGameServer(struct ISteamGameServer *iface) {
-	return (struct ISteamGameServer011Vtbl *)iface->vtbl;
-}
-
 struct ISteamGameServer *SteamGameServer011(void);
 
 #endif /* ISTEAMGAMESERVER011_H */

@@ -51,10 +51,6 @@ struct ISteamClient014Vtbl
 	struct ISteamMusic *(*GetISteamMusic)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 };
 
-static inline struct ISteamClient014Vtbl *get_ISteamClient014Vtbl_from_ISteamClient(struct ISteamClient *iface) {
-	return (struct ISteamClient014Vtbl *)iface->vtbl;
-}
-
 struct ISteamClient *SteamClient014(void);
 
 #endif /* ISTEAMCLIENT014_H */

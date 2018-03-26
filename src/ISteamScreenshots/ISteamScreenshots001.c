@@ -16,7 +16,7 @@ struct ISteamScreenshots *SteamScreenshots001(void)
 {
 	static struct ISteamScreenshotsImpl impl;
 
-	impl.base.vtbl = &ISteamScreenshots001_vtbl;
+	impl.base.vtbl.v001 = &ISteamScreenshots001_vtbl;
 
 	return &impl.base;
 }

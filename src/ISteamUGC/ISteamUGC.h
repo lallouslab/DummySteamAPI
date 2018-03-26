@@ -5,7 +5,12 @@
 
 struct ISteamUGC
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamUGC001Vtbl *v001;
+		const struct ISteamUGC007Vtbl *v007;
+	} vtbl;
 };
 
 struct ISteamUGC *SteamUGC_generic(const char *version);

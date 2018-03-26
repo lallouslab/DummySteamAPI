@@ -5,7 +5,12 @@
 
 struct ISteamHTTP
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamHTTP001Vtbl *v001;
+		const struct ISteamHTTP002Vtbl *v002;
+	} vtbl;
 };
 
 struct ISteamHTTP *SteamHTTP_generic(const char *version);

@@ -36,10 +36,6 @@ struct ISteamHTTP002Vtbl
 	void *GetHTTPRequestWasTimedOut;
 };
 
-static inline struct ISteamHTTP002Vtbl *get_ISteamHTTP002Vtbl_from_ISteamHTTP(struct ISteamHTTP *iface) {
-	return (struct ISteamHTTP002Vtbl *)iface->vtbl;
-}
-
 struct ISteamHTTP *SteamHTTP002(void);
 
 #endif /* ISTEAMHTTP002_H */

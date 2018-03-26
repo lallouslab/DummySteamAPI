@@ -39,10 +39,6 @@ struct ISteamUtils007Vtbl
 	void *IsSteamInBigPictureMode;
 };
 
-static inline struct ISteamUtils007Vtbl *get_ISteamUtils007Vtbl_from_ISteamUtils(struct ISteamUtils *iface) {
-	return (struct ISteamUtils007Vtbl *)iface->vtbl;
-}
-
 struct ISteamUtils *SteamUtils007(void);
 
 #endif /* ISTEAMUTILS007_H */

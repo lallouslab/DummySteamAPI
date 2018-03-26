@@ -54,10 +54,6 @@ struct ISteamUserStats011Vtbl
 	void *GetGlobalStatHistorySouble;
 };
 
-static inline struct ISteamUserStats011Vtbl *get_ISteamUserStats011Vtbl_from_ISteamUserStats(struct ISteamUserStats *iface) {
-	return (struct ISteamUserStats011Vtbl *)iface->vtbl;
-}
-
 struct ISteamUserStats *SteamUserStats011(void);
 
 #endif /* ISTEAMUSERSTATS011_H */

@@ -68,7 +68,7 @@ struct ISteamUGC *SteamUGC007(void)
 {
 	static struct ISteamUGCImpl impl;
 
-	impl.base.vtbl = &ISteamUGC007_vtbl;
+	impl.base.vtbl.v007 = &ISteamUGC007_vtbl;
 
 	return &impl.base;
 }

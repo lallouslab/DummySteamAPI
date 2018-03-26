@@ -37,7 +37,7 @@ struct ISteamUtils *SteamUtils007(void)
 {
 	static struct ISteamUtilsImpl impl;
 
-	impl.base.vtbl = &ISteamUtils007_vtbl;
+	impl.base.vtbl.v007 = &ISteamUtils007_vtbl;
 
 	return &impl.base;
 }

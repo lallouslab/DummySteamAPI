@@ -6,7 +6,12 @@
 
 struct ISteamController
 {
-	const void *vtbl;
+	union
+	{
+		const void *ptr;
+		const struct ISteamController001Vtbl *v001;
+		const struct ISteamController003Vtbl *v003;
+	} vtbl;
 };
 
 struct ISteamController *SteamController_generic(const char *version);

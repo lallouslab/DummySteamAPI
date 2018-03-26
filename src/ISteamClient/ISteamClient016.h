@@ -58,10 +58,6 @@ struct ISteamClient016Vtbl
 	void *Set_SteamAPI_CCheckCallbackRegisteredInProcess;
 };
 
-static inline struct ISteamClient016Vtbl *get_ISteamClient016Vtbl_from_ISteamClient(struct ISteamClient *iface) {
-	return (struct ISteamClient016Vtbl *)iface->vtbl;
-}
-
 struct ISteamClient *SteamClient016(void);
 
 #endif /* ISTEAMCLIENT016_H */

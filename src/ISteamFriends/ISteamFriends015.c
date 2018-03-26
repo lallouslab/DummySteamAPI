@@ -82,7 +82,7 @@ struct ISteamFriends *SteamFriends015(void)
 {
 	static struct ISteamFriendsImpl impl;
 
-	impl.base.vtbl = &ISteamFriends015_vtbl;
+	impl.base.vtbl.v015 = &ISteamFriends015_vtbl;
 
 	return &impl.base;
 }

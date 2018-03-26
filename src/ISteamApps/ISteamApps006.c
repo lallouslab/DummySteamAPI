@@ -33,7 +33,7 @@ struct ISteamApps *SteamApps006(void)
 {
 	static struct ISteamAppsImpl impl;
 
-	impl.base.vtbl = &ISteamApps006_vtbl;
+	impl.base.vtbl.v006 = &ISteamApps006_vtbl;
 
 	return &impl.base;
 }

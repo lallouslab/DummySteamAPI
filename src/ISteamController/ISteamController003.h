@@ -28,10 +28,6 @@ struct ISteamController003Vtbl
 	void *TriggerRepeatedHapticPulse;
 };
 
-static inline struct ISteamController003Vtbl *get_ISteamController003Vtbl_from_ISteamController(struct ISteamController *iface) {
-	return (struct ISteamController003Vtbl *)iface->vtbl;
-}
-
 struct ISteamController *SteamController003(void);
 
 #endif /* ISTEAMCONTROLLER003_H */

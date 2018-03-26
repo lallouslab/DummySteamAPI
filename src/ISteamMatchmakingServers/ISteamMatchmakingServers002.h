@@ -28,10 +28,6 @@ struct ISteamMatchmakingServers002Vtbl
 	void *CancelServerQuery;
 };
 
-static inline struct ISteamMatchmakingServers002Vtbl *get_ISteamMatchmakingServers002Vtbl_from_ISteamMatchmakingServers(struct ISteamMatchmakingServers *iface) {
-	return (struct ISteamMatchmakingServers002Vtbl *)iface->vtbl;
-}
-
 struct ISteamMatchmakingServers *SteamMatchmakingServers002(void);
 
 #endif /* ISTEAMMATCHMAKINGSERVERS002_H */

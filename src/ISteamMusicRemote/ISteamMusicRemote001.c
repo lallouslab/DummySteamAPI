@@ -42,7 +42,7 @@ struct ISteamMusicRemote *SteamMusicRemote001(void)
 {
 	static struct ISteamMusicRemoteImpl impl;
 
-	impl.base.vtbl = &ISteamMusicRemote001_vtbl;
+	impl.base.vtbl.v001 = &ISteamMusicRemote001_vtbl;
 
 	return &impl.base;
 }

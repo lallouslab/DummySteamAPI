@@ -33,10 +33,6 @@ struct ISteamNetworking005Vtbl
 	void *GetMaxPacketSize;
 };
 
-static inline struct ISteamNetworking005Vtbl *get_ISteamNetworking005Vtbl_from_ISteamNetworking(struct ISteamNetworking *iface) {
-	return (struct ISteamNetworking005Vtbl *)iface->vtbl;
-}
-
 struct ISteamNetworking *SteamNetworking005(void);
 
 #endif /* ISTEAMNETWORKING005_H */

@@ -19,7 +19,7 @@ struct ISteamMusic *SteamMusic001(void)
 {
 	static struct ISteamMusicImpl impl;
 
-	impl.base.vtbl = &ISteamMusic001_vtbl;
+	impl.base.vtbl.v001 = &ISteamMusic001_vtbl;
 
 	return &impl.base;
 }

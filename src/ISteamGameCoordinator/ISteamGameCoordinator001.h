@@ -14,10 +14,6 @@ struct ISteamGameCoordinator001Vtbl
 	void *RetrieveMessage;
 };
 
-static inline struct ISteamGameCoordinator001Vtbl *get_ISteamGameCoordinator001Vtbl_from_ISteamGameCoordinator(struct ISteamGameCoordinator *iface) {
-	return (struct ISteamGameCoordinator001Vtbl *)iface->vtbl;
-}
-
 struct ISteamGameCoordinator *SteamGameCoordinator001(void);
 
 #endif /* ISTEAMGAMECOORDINATOR001_H */
