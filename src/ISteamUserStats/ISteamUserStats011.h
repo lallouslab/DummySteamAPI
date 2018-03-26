@@ -20,7 +20,7 @@ struct ISteamUserStats011Vtbl
 	steam_bool_t (*ClearAchievement)(struct ISteamUserStats *iface, const char *name);
 	steam_bool_t (*GetAchievementAndUnlockTime)(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved, uint32_t *unlock_time);
 	steam_bool_t (*StoreStats)(struct ISteamUserStats *iface);
-	void *GetAchievementIcon;
+	int (*GetAchievementIcon)(struct ISteamUserStats *iface, const char *name);
 	const char *(*GetAchievementDisplayAttribute)(struct ISteamUserStats *iface, const char *name, const char *key);
 	void *IndicateAchievementProgress;
 	void *GetNumAchievements;

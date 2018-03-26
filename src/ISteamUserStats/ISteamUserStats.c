@@ -110,6 +110,15 @@ steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
 	return STEAM_FALSE;
 }
 
+int ISteamUserStats_GetAchievementIcon(struct ISteamUserStats *iface, const char *name)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
+
+	return 0;
+}
+
 const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamUserStats *iface, const char *name, const char *key)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
