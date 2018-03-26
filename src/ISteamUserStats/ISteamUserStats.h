@@ -17,7 +17,7 @@ struct ISteamUserStats
 
 PACKED_STRUCT steam_callback_data_user_stats_user_stats_received
 {
-	uint64_t game_id;
+	union CGameID game_id;
 	enum steam_result result;
 	union CSteamID steam_id_user;
 };

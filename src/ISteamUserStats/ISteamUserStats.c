@@ -180,7 +180,7 @@ steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface,
 		game_id = "1";
 	}
 
-	user_stats_received.game_id = strtoull(game_id, NULL, 0);
+	user_stats_received.game_id.raw = strtoull(game_id, NULL, 0);
 	user_stats_received.result = STEAM_RESULT_OK;
 	user_stats_received.steam_id_user = steam_id_user;
 
