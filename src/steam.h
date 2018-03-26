@@ -16,6 +16,7 @@ typedef uint32_t steam_account_id_t;
 typedef uint64_t steam_api_call_t;
 typedef uint32_t steam_app_id_t;
 typedef int32_t  steam_handle_pipe_t;
+typedef uint32_t steam_mod_id_t;
 typedef int32_t  steam_user_t;
 
 enum steam_account_instance
@@ -41,6 +42,14 @@ enum steam_account_type
 	STEAM_ACCOUNT_TYPE_MAX
 };
 
+enum steam_game_id_type
+{
+	STEAM_GAME_ID_TYPE_APP = 0u,
+	STEAM_GAME_ID_TYPE_GAME_MOD = 1u,
+	STEAM_GAME_ID_TYPE_SHORTCUT = 2u,
+	STEAM_GAME_ID_TYPE_P2P = 3u
+};
+
 enum steam_notification_position
 {
 	STEAM_NOTIFICATION_POSITION_TOP_LEFT = 0u,
@@ -64,6 +73,17 @@ enum steam_universe
 	STEAM_UNIVERSE_INTERNAL = 3u,
 	STEAM_UNIVERSE_DEV = 4u,
 	STEAM_UNIVERSE_MAX
+};
+
+union CGameID
+{
+	struct
+	{
+		steam_app_id_t app_id : 24;
+		enum steam_game_id_type type : 8;
+		steam_mod_id_t mod_id : 32;
+	} bits;
+	uint64_t raw;
 };
 
 union CSteamID
