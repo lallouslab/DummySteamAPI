@@ -1,10 +1,11 @@
 #ifndef LIST_H
 #define LIST_H 1
 
-#include <stdatomic.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "os/os.h"
 
 struct list_elem
 {
@@ -16,14 +17,14 @@ struct list_elem
 
 struct list
 {
-	atomic_uint locked;
+	struct dsa_os_mutex *mtx;
 	struct list_elem *head;
 	struct list_elem *tail;
 };
 
 
 static inline int list_init(struct list *l) {
-	atomic_store(&l->locked, 0);
+	l->mtx = dsa_os_mutex_create();
 	l->head = NULL;
 	l->tail = NULL;
 
@@ -31,21 +32,15 @@ static inline int list_init(struct list *l) {
 }
 
 static inline int list_trylock(struct list *l) {
-	unsigned int expected = 0;
-
-	return atomic_compare_exchange_weak(&l->locked, &expected, 1) ? 0 : -1;
+	return dsa_os_mutex_trylock(l->mtx);
 }
 
 static inline int list_lock(struct list *l) {
-	while (list_trylock(l) < 0);
-
-	return 0;
+	return dsa_os_mutex_lock(l->mtx);
 }
 
 static inline int list_unlock(struct list *l) {
-	atomic_store(&l->locked, 0);
-
-	return 0;
+	return dsa_os_mutex_unlock(l->mtx);
 }
 
 static inline struct list_elem *list_head(struct list *l) {
