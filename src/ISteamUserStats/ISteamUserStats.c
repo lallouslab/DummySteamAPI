@@ -1,8 +1,11 @@
 #include <inttypes.h>
 #include <string.h>
 
+#include "ISteamUser/ISteamUser018.h"
+#include "CCallback.h"
 #include "callbacks.h"
 #include "debug.h"
+#include "steam.h"
 #include "utils.h"
 
 #include "ISteamUserStats.h"
@@ -11,11 +14,44 @@
 
 static const char *steam_user_stats_version = NULL;
 
+static void request_current_stats_call_result(void *obj, void *param, steam_bool_t io_failure)
+{
+	struct CCallResult *call_result = obj;
+	struct steam_callback_data_user_stats_user_stats_received *user_stats_received = param;
+
+	LOG_ENTER("(obj = %p, param = %p, io_failure = %u)", obj, param, io_failure);
+
+	free(call_result);
+
+	if (io_failure || !param)
+		return;
+
+	callbacks_dispatch_callback_output(STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, user_stats_received, sizeof(*user_stats_received));
+}
+
 steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+	struct ISteamUser *steam_user;
+	struct CCallResult *call_result;
+	union CSteamID steam_id_user;
+	steam_api_call_t api_call;
 
-	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+	LOG_ENTER("(This = %p)", VOIDPTR(This));
+
+	steam_user = SteamUser018();
+	if (!steam_user)
+		return STEAM_FALSE;
+
+	call_result = malloc(sizeof(*call_result));
+	if (!call_result)
+		return STEAM_FALSE;
+
+	steam_id_user = steam_user->vtbl.v018->GetSteamID(steam_user);
+	api_call = ISteamUserStats_RequestUserStats(iface, steam_id_user);
+
+	CCallResult(call_result, STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, sizeof(struct steam_callback_data_user_stats_user_stats_received));
+	CCallResult_Set(call_result, api_call, call_result, request_current_stats_call_result);
 
 	return STEAM_TRUE;
 }
