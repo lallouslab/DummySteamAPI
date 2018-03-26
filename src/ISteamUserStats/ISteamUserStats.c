@@ -110,6 +110,15 @@ steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
 	return STEAM_FALSE;
 }
 
+const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamUserStats *iface, const char *name, const char *key)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", key = \"%s\")", VOIDPTR(This), debug_str(name), debug_str(key));
+
+	return "<achievement value>";
+}
+
 /* XXX BUG: steam_id_user is not a ptr */
 steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
 {

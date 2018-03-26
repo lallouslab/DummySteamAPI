@@ -26,6 +26,7 @@ steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStats *iface, const
 steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStats *iface, const char *name);
 steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved, uint32_t *unlock_time);
 steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface);
+const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamUserStats *iface, const char *name, const char *key);
 steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user);
 
 #endif /* ISTEAMUSERSTATS_PRIV_H */
