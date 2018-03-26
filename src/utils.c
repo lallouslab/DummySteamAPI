@@ -89,19 +89,24 @@ void dsa_utils_free_ptr(void *ptr)
 	*p = NULL;
 }
 
-char *dsa_utils_strdup(const char *s)
+void *dsa_utils_memdup(const void *data, size_t size)
 {
-	size_t size;
 	char *dst;
 
-	if (!s)
+	if (!data)
 		return NULL;
-
-	size = strlen(s) + 1;
 
 	dst = malloc(size);
 	if (!dst)
 		return NULL;
 
-	return memcpy(dst, s, size);
+	return memcpy(dst, data, size);
+}
+
+char *dsa_utils_strdup(const char *s)
+{
+	if (!s)
+		return NULL;
+
+	return dsa_utils_memdup(s, strlen(s) + 1);
 }
