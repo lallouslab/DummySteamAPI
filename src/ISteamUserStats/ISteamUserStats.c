@@ -114,15 +114,8 @@ steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
 steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
-
 	const char *game_id;
-
-	PACKED_STRUCT
-	{
-		uint64_t game_id;
-		enum steam_result result;
-		union CSteamID steam_id_user;
-	} user_stats_received;
+	struct steam_callback_data_user_stats_user_stats_received user_stats_received;
 
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_user = %#" PRIx64 ")", VOIDPTR(This), steam_id_user.raw);
 

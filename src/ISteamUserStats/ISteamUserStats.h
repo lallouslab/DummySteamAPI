@@ -1,11 +1,21 @@
 #ifndef ISTEAMUSERSTATS_H
 #define ISTEAMUSERSTATS_H 1
 
+#include "steam.h"
+#include "utils.h"
+
 #define STEAMUSERSTATS_INTERFACE_VERSION_PREFIX "STEAMUSERSTATS_INTERFACE_VERSION"
 
 struct ISteamUserStats
 {
 	const void *vtbl;
+};
+
+PACKED_STRUCT steam_callback_data_user_stats_user_stats_received
+{
+	uint64_t game_id;
+	enum steam_result result;
+	union CSteamID steam_id_user;
 };
 
 struct ISteamUserStats *SteamUserStats_generic(const char *version);
