@@ -123,7 +123,7 @@ void callbacks_dispatch_callback_output(enum steam_callback_type type, void *dat
 	out.is_handled = STEAM_FALSE;
 	out.io_failure = STEAM_FALSE;
 	out.api_call = 0;
-	out.data = data;
+	out.data = dsa_utils_memdup(data, data_size);
 	out.data_size = data_size;
 
 	list_lock(&call_outputs);
@@ -143,7 +143,7 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 	out.is_handled = STEAM_FALSE;
 	out.io_failure = io_failure;
 	out.api_call = ++cur_api_call;
-	out.data = data;
+	out.data = dsa_utils_memdup(data, data_size);
 	out.data_size = data_size;
 
 	list_lock(&call_outputs);
@@ -151,6 +151,21 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 	list_unlock(&call_outputs);
 
 	return out.api_call;
+}
+
+static int remove_call_output(struct list_elem *elem)
+{
+	struct call_output *out;
+
+	out = list_get_data(elem);
+
+	if (out->data)
+	{
+		free(out->data);
+		out->data = NULL;
+	}
+
+	return list_remove(&call_outputs, elem);
 }
 
 static steam_bool_t api_call_result_get_output(steam_bool_t only_check, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *io_failure)
@@ -185,7 +200,7 @@ static steam_bool_t api_call_result_get_output(steam_bool_t only_check, steam_ap
 			*io_failure = out->io_failure;
 
 		if (!only_check)
-			list_remove(&call_outputs, elem);
+			remove_call_output(elem);
 
 		result = STEAM_TRUE;
 		break;
@@ -312,7 +327,7 @@ void callbacks_run(void)
 		if (!out->is_handled)
 			continue;
 
-		list_remove(&call_outputs, elem);
+		remove_call_output(elem);
 	}
 
 	list_unlock(&call_outputs);
