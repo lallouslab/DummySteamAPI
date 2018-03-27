@@ -20,6 +20,18 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_CreateUnauthenticatedUserConnection(union CSteamID *ret, struct ISteamGameServer *iface)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(ret = %p, This = %p)", VOIDPTR(ret), VOIDPTR(This));
+
+	ret->bits.account_id = 1;
+	ret->bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
+	ret->bits.account_type = STEAM_ACCOUNT_TYPE_ANONGAMESERVER;
+	ret->bits.universe = STEAM_UNIVERSE_INTERNAL;
+}
+
 void ISteamGameServer_SendUserDisconnect(struct ISteamGameServer *iface, union CSteamID steam_id_user)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

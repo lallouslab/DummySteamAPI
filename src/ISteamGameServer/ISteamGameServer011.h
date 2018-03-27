@@ -34,7 +34,7 @@ struct ISteamGameServer011Vtbl
 	void *SetGameData;
 	void *SetRegion;
 	void *SendUserConnectAndAuthenticate;
-	void *CreateUnauthenticatedUserConnection;
+	void (*CreateUnauthenticatedUserConnection)(union CSteamID *ret, struct ISteamGameServer *iface);
 	void (*SendUserDisconnect)(struct ISteamGameServer *iface, union CSteamID steam_id_user);
 	void *BUpdateUserData;
 	void *GetAuthSessionTicket;
