@@ -59,7 +59,7 @@ struct ISteamUGC007Vtbl
 	void *RemoveItemFromFavorites;
 	void *SubscribeItem;
 	void *UnsubscribeItem;
-	uint32_t (*GetNumSubscribedItems)(struct ISteamUGC *iface);
+	MEMBER uint32_t (*GetNumSubscribedItems)(struct ISteamUGC *iface);
 	void *GetSubscribedItems;
 	void *GetItemState;
 	void *GetItemInstallInfo;

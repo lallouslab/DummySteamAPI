@@ -16,7 +16,7 @@
 
 static const char *steam_utils_version = NULL;
 
-uint32_t ISteamUtils_GetSecondsSinceAppActive(struct ISteamUtils *iface)
+MEMBER uint32_t ISteamUtils_GetSecondsSinceAppActive(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
@@ -25,7 +25,7 @@ uint32_t ISteamUtils_GetSecondsSinceAppActive(struct ISteamUtils *iface)
 	return 0;
 }
 
-enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *iface)
+MEMBER enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
@@ -34,7 +34,7 @@ enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *iface)
 	return STEAM_UNIVERSE_PUBLIC;
 }
 
-steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port)
+MEMBER steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
@@ -46,7 +46,7 @@ steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, 
 	return STEAM_TRUE;
 }
 
-steam_app_id_t ISteamUtils_GetAppID(struct ISteamUtils *iface)
+MEMBER steam_app_id_t ISteamUtils_GetAppID(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 	const char *app_id;
@@ -63,14 +63,14 @@ steam_app_id_t ISteamUtils_GetAppID(struct ISteamUtils *iface)
 	return strtoul(app_id, NULL, 0);
 }
 
-void ISteamUtils_SetOverlayNotificationPosition(struct ISteamUtils *iface, enum steam_notification_position pos)
+MEMBER void ISteamUtils_SetOverlayNotificationPosition(struct ISteamUtils *iface, enum steam_notification_position pos)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, pos = %u)", VOIDPTR(This), pos);
 }
 
-steam_bool_t ISteamUtils_IsAPICallCompleted(struct ISteamUtils *iface, steam_api_call_t api_call, steam_bool_t *failed)
+MEMBER steam_bool_t ISteamUtils_IsAPICallCompleted(struct ISteamUtils *iface, steam_api_call_t api_call, steam_bool_t *failed)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
@@ -79,7 +79,7 @@ steam_bool_t ISteamUtils_IsAPICallCompleted(struct ISteamUtils *iface, steam_api
 	return callbacks_api_call_result_is_output_available(api_call, failed);
 }
 
-steam_bool_t ISteamUtils_GetAPICallResult(struct ISteamUtils *iface, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *failed)
+MEMBER steam_bool_t ISteamUtils_GetAPICallResult(struct ISteamUtils *iface, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *failed)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
@@ -88,14 +88,14 @@ steam_bool_t ISteamUtils_GetAPICallResult(struct ISteamUtils *iface, steam_api_c
 	return callbacks_api_call_result_get_output(api_call, data, data_size, type_expected, failed);
 }
 
-void ISteamUtils_SetWarningMessageHook(struct ISteamUtils *iface, void *callback)
+MEMBER void ISteamUtils_SetWarningMessageHook(struct ISteamUtils *iface, void *callback)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, callback = %p)", VOIDPTR(This), VOIDPTR(callback));
 }
 
-steam_bool_t ISteamUtils_IsOverlayEnabled(struct ISteamUtils *iface)
+MEMBER steam_bool_t ISteamUtils_IsOverlayEnabled(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 
@@ -104,7 +104,7 @@ steam_bool_t ISteamUtils_IsOverlayEnabled(struct ISteamUtils *iface)
 	return STEAM_FALSE;
 }
 
-const char *ISteamUtils_GetSteamUILanguage(struct ISteamUtils *iface)
+MEMBER const char *ISteamUtils_GetSteamUILanguage(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
 

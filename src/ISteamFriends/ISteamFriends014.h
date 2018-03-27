@@ -9,14 +9,14 @@
 
 struct ISteamFriends014Vtbl
 {
-	const char *(*GetPersonaName)(struct ISteamFriends *iface);
+	MEMBER const char *(*GetPersonaName)(struct ISteamFriends *iface);
 	void *SetPersonaName;
-	uint32_t (*GetPersonaState)(struct ISteamFriends *iface);
-	int (*GetFriendCount)(struct ISteamFriends *iface, int friend_flags);
+	MEMBER uint32_t (*GetPersonaState)(struct ISteamFriends *iface);
+	MEMBER int (*GetFriendCount)(struct ISteamFriends *iface, int friend_flags);
 	void *GetFriendByIndex;
 	void *GetFriendRelationship;
 	void *GetFriendPersonaState;
-	const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
+	MEMBER const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
 	void *GetFriendGamePlayed3;
 	void *GetFriendPersonaNameHistory;
 	void *GetPlayerNickname;
@@ -46,13 +46,13 @@ struct ISteamFriends014Vtbl
 	void *GetClanOfficerCount;
 	void *GetClanOfficerByIndex;
 	void *GetUserRestrictions;
-	steam_bool_t (*SetRichPresence)(struct ISteamFriends *iface, const char *key, const char *value);
+	MEMBER steam_bool_t (*SetRichPresence)(struct ISteamFriends *iface, const char *key, const char *value);
 	void *ClearRichPresence;
 	void *GetFriendRichPresence;
 	void *GetFriendRichPresenceKeyCount;
 	void *GetFriendRichPresenceKeyByIndex;
 	void *RequestFriendRichPresence;
-	steam_bool_t (*InviteUserToGame)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str);
+	MEMBER steam_bool_t (*InviteUserToGame)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str);
 	void *GetCoplayFriendCount;
 	void *GetCoplayFriend;
 	void *GetFriendCoplayTime;

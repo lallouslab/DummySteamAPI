@@ -9,12 +9,12 @@
 
 struct ISteamController001Vtbl
 {
-	steam_bool_t (*Init)(struct ISteamController *iface, const char *path_to_cfg);
-	steam_bool_t (*Shutdown)(struct ISteamController *iface);
-	void (*RunFrame)(struct ISteamController *iface);
-	steam_bool_t (*GetControllerState)(struct ISteamController *iface, uint32_t index, void *state);
-	void (*TriggerHapticPulse)(struct ISteamController *iface, uint32_t index, unsigned int /* ESteamControllerPad */ target_pad, unsigned short duration_ms);
-	void (*SetOverrideMode)(struct ISteamController *iface, const char *mode);
+	MEMBER steam_bool_t (*Init)(struct ISteamController *iface, const char *path_to_cfg);
+	MEMBER steam_bool_t (*Shutdown)(struct ISteamController *iface);
+	MEMBER void (*RunFrame)(struct ISteamController *iface);
+	MEMBER steam_bool_t (*GetControllerState)(struct ISteamController *iface, uint32_t index, void *state);
+	MEMBER void (*TriggerHapticPulse)(struct ISteamController *iface, uint32_t index, unsigned int /* ESteamControllerPad */ target_pad, unsigned short duration_ms);
+	MEMBER void (*SetOverrideMode)(struct ISteamController *iface, const char *mode);
 };
 
 struct ISteamController *SteamController001(void);

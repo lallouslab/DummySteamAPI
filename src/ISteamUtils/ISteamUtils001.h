@@ -9,9 +9,9 @@
 
 struct ISteamUtils001Vtbl
 {
-	uint32_t (*GetSecondsSinceAppActive)(struct ISteamUtils *iface);
+	MEMBER uint32_t (*GetSecondsSinceAppActive)(struct ISteamUtils *iface);
 	void *GetSecondsSinceComputerActive;
-	enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
+	MEMBER enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
 	void *GetServerRealTime;
 	void *GetIPCountry;
 	void *GetImageSize;

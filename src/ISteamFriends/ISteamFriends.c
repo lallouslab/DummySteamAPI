@@ -11,7 +11,7 @@
 
 static const char *steam_friends_version = NULL;
 
-const char *ISteamFriends_GetPersonaName(struct ISteamFriends *iface)
+MEMBER const char *ISteamFriends_GetPersonaName(struct ISteamFriends *iface)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -20,7 +20,7 @@ const char *ISteamFriends_GetPersonaName(struct ISteamFriends *iface)
 	return "Me";
 }
 
-steam_api_call_t ISteamFriends_SetPersonaName(struct ISteamFriends *iface, const char *name)
+MEMBER steam_api_call_t ISteamFriends_SetPersonaName(struct ISteamFriends *iface, const char *name)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -29,7 +29,7 @@ steam_api_call_t ISteamFriends_SetPersonaName(struct ISteamFriends *iface, const
 	return 0;
 }
 
-uint32_t ISteamFriends_GetPersonaState(struct ISteamFriends *iface)
+MEMBER uint32_t ISteamFriends_GetPersonaState(struct ISteamFriends *iface)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -38,7 +38,7 @@ uint32_t ISteamFriends_GetPersonaState(struct ISteamFriends *iface)
 	return 0;
 }
 
-int ISteamFriends_GetFriendCount(struct ISteamFriends *iface, int flags)
+MEMBER int ISteamFriends_GetFriendCount(struct ISteamFriends *iface, int flags)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -47,7 +47,7 @@ int ISteamFriends_GetFriendCount(struct ISteamFriends *iface, int flags)
 	return 0;
 }
 
-const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend)
+MEMBER const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -56,7 +56,7 @@ const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *iface, void
 	return "";
 }
 
-steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, void /* FriendGameInfo_t */ *friend_game_info)
+MEMBER steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, void /* FriendGameInfo_t */ *friend_game_info)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -65,7 +65,7 @@ steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, void
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamFriends_SetRichPresence(struct ISteamFriends *iface, const char *key, const char *value)
+MEMBER steam_bool_t ISteamFriends_SetRichPresence(struct ISteamFriends *iface, const char *key, const char *value)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
@@ -74,7 +74,7 @@ steam_bool_t ISteamFriends_SetRichPresence(struct ISteamFriends *iface, const ch
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str)
+MEMBER steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 

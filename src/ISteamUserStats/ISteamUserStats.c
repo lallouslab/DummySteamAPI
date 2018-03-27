@@ -15,7 +15,7 @@ static struct ISteamUserStatsImplCommon steam_user_stats_impl_common = {
 	.is_init = STEAM_FALSE
 };
 
-void ISteamUserStats_ctor(struct ISteamUserStats *iface)
+MEMBER void ISteamUserStats_ctor(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -32,7 +32,7 @@ void ISteamUserStats_ctor(struct ISteamUserStats *iface)
 	}
 }
 
-static void request_current_stats_call_result(void *obj, void *param, steam_bool_t io_failure)
+MEMBER static void request_current_stats_call_result(void *obj, void *param, steam_bool_t io_failure)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(obj);
 	struct steam_callback_data_user_stats_user_stats_received *user_stats_received = param;
@@ -45,7 +45,7 @@ static void request_current_stats_call_result(void *obj, void *param, steam_bool
 	callbacks_dispatch_callback_output(STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, user_stats_received, sizeof(*user_stats_received));
 }
 
-steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
+MEMBER steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 	steam_bool_t retb;
@@ -71,7 +71,7 @@ steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const char *name, int32_t *data)
+MEMBER steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const char *name, int32_t *data)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -80,7 +80,7 @@ steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const cha
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStats *iface, const char *name, float *data)
+MEMBER steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStats *iface, const char *name, float *data)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -89,7 +89,7 @@ steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStats *iface, const c
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_SetStatI32(struct ISteamUserStats *iface, const char *name, int32_t data)
+MEMBER steam_bool_t ISteamUserStats_SetStatI32(struct ISteamUserStats *iface, const char *name, int32_t data)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -98,7 +98,7 @@ steam_bool_t ISteamUserStats_SetStatI32(struct ISteamUserStats *iface, const cha
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_SetStatFloat(struct ISteamUserStats *iface, const char *name, float data)
+MEMBER steam_bool_t ISteamUserStats_SetStatFloat(struct ISteamUserStats *iface, const char *name, float data)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -107,7 +107,7 @@ steam_bool_t ISteamUserStats_SetStatFloat(struct ISteamUserStats *iface, const c
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_UpdateAvgRateStat(struct ISteamUserStats *iface, const char *name, float count_this_session, float session_length)
+MEMBER steam_bool_t ISteamUserStats_UpdateAvgRateStat(struct ISteamUserStats *iface, const char *name, float count_this_session, float session_length)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -116,7 +116,7 @@ steam_bool_t ISteamUserStats_UpdateAvgRateStat(struct ISteamUserStats *iface, co
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_GetAchievement(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved)
+MEMBER steam_bool_t ISteamUserStats_GetAchievement(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -125,7 +125,7 @@ steam_bool_t ISteamUserStats_GetAchievement(struct ISteamUserStats *iface, const
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStats *iface, const char *name)
+MEMBER steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStats *iface, const char *name)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -134,7 +134,7 @@ steam_bool_t ISteamUserStats_SetAchievement(struct ISteamUserStats *iface, const
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStats *iface, const char *name)
+MEMBER steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStats *iface, const char *name)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -143,7 +143,7 @@ steam_bool_t ISteamUserStats_ClearAchievement(struct ISteamUserStats *iface, con
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved, uint32_t *unlock_time)
+MEMBER steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStats *iface, const char *name, steam_bool_t *achieved, uint32_t *unlock_time)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -152,7 +152,7 @@ steam_bool_t ISteamUserStats_GetAchievementAndUnlockTime(struct ISteamUserStats 
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
+MEMBER steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -161,7 +161,7 @@ steam_bool_t ISteamUserStats_StoreStats(struct ISteamUserStats *iface)
 	return STEAM_FALSE;
 }
 
-int ISteamUserStats_GetAchievementIcon(struct ISteamUserStats *iface, const char *name)
+MEMBER int ISteamUserStats_GetAchievementIcon(struct ISteamUserStats *iface, const char *name)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -170,7 +170,7 @@ int ISteamUserStats_GetAchievementIcon(struct ISteamUserStats *iface, const char
 	return 0;
 }
 
-const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamUserStats *iface, const char *name, const char *key)
+MEMBER const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamUserStats *iface, const char *name, const char *key)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 
@@ -179,8 +179,7 @@ const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamUserStat
 	return "<achievement value>";
 }
 
-/* XXX BUG: steam_id_user is not a ptr */
-steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
+MEMBER steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 	const char *game_id;

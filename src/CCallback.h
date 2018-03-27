@@ -92,9 +92,9 @@ typedef void (*steam_callback_t)(void *obj, void *param);
 
 struct CCallbackBaseVtbl
 {
-	void (*Run0)(struct CCallbackBase *iface, void *param);
-	void (*Run1)(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param);
-	int (*GetCallbackSizeBytes)(struct CCallbackBase *iface);
+	MEMBER void (*Run0)(struct CCallbackBase *iface, void *param);
+	MEMBER void (*Run1)(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param);
+	MEMBER int (*GetCallbackSizeBytes)(struct CCallbackBase *iface);
 };
 
 struct CCallbackBase
@@ -109,7 +109,7 @@ struct CCallResult
 	struct CCallbackBase base;
 	steam_api_call_t api_call;
 	void *obj;
-	steam_api_call_callback_t callback;
+	MEMBER steam_api_call_callback_t callback;
 
 	/* DSA-specific */
 	size_t data_size;
@@ -119,7 +119,7 @@ struct CCallback
 {
 	struct CCallbackBase base;
 	void *obj;
-	steam_callback_t callback;
+	MEMBER steam_callback_t callback;
 
 	/* DSA-specific */
 	size_t data_size;
@@ -130,34 +130,34 @@ struct CCallbackManual
 	struct CCallback base;
 };
 
-static inline struct CCallResult *CCallResult_from_CCallbackBase(struct CCallbackBase *iface)
+MEMBER static inline struct CCallResult *CCallResult_from_CCallbackBase(struct CCallbackBase *iface)
 {
 	return CONTAINER_OF(iface, struct CCallResult, base);
 }
 
-static inline struct CCallback *CCallback_from_CCallbackBase(struct CCallbackBase *iface)
+MEMBER static inline struct CCallback *CCallback_from_CCallbackBase(struct CCallbackBase *iface)
 {
 	return CONTAINER_OF(iface, struct CCallback, base);
 }
 
-static inline struct CCallbackManual *CCallbackManual_from_CCallback(struct CCallback *iface)
+MEMBER static inline struct CCallbackManual *CCallbackManual_from_CCallback(struct CCallback *iface)
 {
 	return CONTAINER_OF(iface, struct CCallbackManual, base);
 }
 
-void CCallbackBase(struct CCallbackBase *iface);
-enum steam_callback_type CCallbackBase_GetICallback(struct CCallbackBase *iface);
-void CCallResult(struct CCallResult *iface, enum steam_callback_type type, size_t data_size);
-void CCallResult_dtor(struct CCallResult *iface);
-void CCallResult_Set(struct CCallResult *iface, steam_api_call_t api_call, void *obj, steam_api_call_callback_t callback);
-steam_bool_t CCallResult_IsActive(struct CCallResult *iface);
-void CCallResult_Cancel(struct CCallResult *iface);
-void CCallback(struct CCallback *iface, void *obj, steam_callback_t callback, size_t data_size, steam_bool_t is_game_server);
-void CCallback_dtor(struct CCallback *iface);
-void CCallback_Register(struct CCallback *iface, void *obj, steam_callback_t callback);
-void CCallback_Unregister(struct CCallback *iface);
-void CCallback_SetGameserverFlag(struct CCallback *iface);
-void CCallbackManual(struct CCallbackManual *iface, size_t data_size, steam_bool_t is_game_server);
-void CCallbackManual_dtor(struct CCallbackManual *iface);
+MEMBER void CCallbackBase(struct CCallbackBase *iface);
+MEMBER enum steam_callback_type CCallbackBase_GetICallback(struct CCallbackBase *iface);
+MEMBER void CCallResult(struct CCallResult *iface, enum steam_callback_type type, size_t data_size);
+MEMBER void CCallResult_dtor(struct CCallResult *iface);
+MEMBER void CCallResult_Set(struct CCallResult *iface, steam_api_call_t api_call, void *obj, MEMBER_CALLBACK_PARAM steam_api_call_callback_t callback);
+MEMBER steam_bool_t CCallResult_IsActive(struct CCallResult *iface);
+MEMBER void CCallResult_Cancel(struct CCallResult *iface);
+MEMBER void CCallback(struct CCallback *iface, void *obj, MEMBER_CALLBACK_PARAM steam_callback_t callback, size_t data_size, steam_bool_t is_game_server);
+MEMBER void CCallback_dtor(struct CCallback *iface);
+MEMBER void CCallback_Register(struct CCallback *iface, void *obj, MEMBER_CALLBACK_PARAM steam_callback_t callback);
+MEMBER void CCallback_Unregister(struct CCallback *iface);
+MEMBER void CCallback_SetGameserverFlag(struct CCallback *iface);
+MEMBER void CCallbackManual(struct CCallbackManual *iface, size_t data_size, steam_bool_t is_game_server);
+MEMBER void CCallbackManual_dtor(struct CCallbackManual *iface);
 
 #endif /* CCALLBACK_H */

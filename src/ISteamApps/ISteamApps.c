@@ -12,7 +12,7 @@
 
 static const char *steam_apps_version = NULL;
 
-steam_bool_t ISteamApps_BIsCybercafe(struct ISteamApps *iface)
+MEMBER steam_bool_t ISteamApps_BIsCybercafe(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -21,7 +21,7 @@ steam_bool_t ISteamApps_BIsCybercafe(struct ISteamApps *iface)
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamApps_BIsDlcInstalled(struct ISteamApps *iface, steam_app_id_t app_id)
+MEMBER steam_bool_t ISteamApps_BIsDlcInstalled(struct ISteamApps *iface, steam_app_id_t app_id)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -30,7 +30,7 @@ steam_bool_t ISteamApps_BIsDlcInstalled(struct ISteamApps *iface, steam_app_id_t
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamApps_BIsLowViolence(struct ISteamApps *iface)
+MEMBER steam_bool_t ISteamApps_BIsLowViolence(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -39,7 +39,7 @@ steam_bool_t ISteamApps_BIsLowViolence(struct ISteamApps *iface)
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamApps_BIsSubscribed(struct ISteamApps *iface)
+MEMBER steam_bool_t ISteamApps_BIsSubscribed(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -48,7 +48,7 @@ steam_bool_t ISteamApps_BIsSubscribed(struct ISteamApps *iface)
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamApps_BIsSubscribedApp(struct ISteamApps *iface, steam_app_id_t app_id)
+MEMBER steam_bool_t ISteamApps_BIsSubscribedApp(struct ISteamApps *iface, steam_app_id_t app_id)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -57,7 +57,7 @@ steam_bool_t ISteamApps_BIsSubscribedApp(struct ISteamApps *iface, steam_app_id_
 	return STEAM_TRUE;
 }
 
-steam_bool_t ISteamApps_BIsVACBanned(struct ISteamApps *iface)
+MEMBER steam_bool_t ISteamApps_BIsVACBanned(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -66,7 +66,7 @@ steam_bool_t ISteamApps_BIsVACBanned(struct ISteamApps *iface)
 	return STEAM_FALSE;
 }
 
-const char *ISteamApps_GetAvailableGameLanguages(struct ISteamApps *iface)
+MEMBER const char *ISteamApps_GetAvailableGameLanguages(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 
@@ -75,7 +75,7 @@ const char *ISteamApps_GetAvailableGameLanguages(struct ISteamApps *iface)
 	return "french,english";
 }
 
-const char *ISteamApps_GetCurrentGameLanguage(struct ISteamApps *iface)
+MEMBER const char *ISteamApps_GetCurrentGameLanguage(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
 

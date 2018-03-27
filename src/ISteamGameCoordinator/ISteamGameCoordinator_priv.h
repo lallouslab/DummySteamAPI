@@ -14,6 +14,6 @@ static inline struct ISteamGameCoordinatorImpl *impl_from_ISteamGameCoordinator(
 	return CONTAINER_OF(iface, struct ISteamGameCoordinatorImpl, base);
 }
 
-steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size);
+MEMBER steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size);
 
 #endif /* ISTEAMGAMECOORDINATOR_PRIV_H */

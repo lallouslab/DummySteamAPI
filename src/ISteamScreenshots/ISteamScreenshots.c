@@ -10,7 +10,7 @@
 
 static const char *steam_screenshots_version = NULL;
 
-steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshots *iface, steam_bool_t enable)
+MEMBER steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshots *iface, steam_bool_t enable)
 {
 	struct ISteamScreenshotsImpl *This = impl_from_ISteamScreenshots(iface);
 

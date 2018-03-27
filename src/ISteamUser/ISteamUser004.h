@@ -9,13 +9,13 @@
 
 struct ISteamUser004Vtbl
 {
-	steam_user_t (*GetHSteamUser)(struct ISteamUser *iface);
+	MEMBER steam_user_t (*GetHSteamUser)(struct ISteamUser *iface);
 	void *LogOn;
 	void *LogOff;
-	steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
+	MEMBER steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
 	void *GetLogonState;
 	void *BConnected;
-	void (*GetSteamID)(union CSteamID *ret, struct ISteamUser *iface);
+	MEMBER void (*GetSteamID)(union CSteamID *ret, struct ISteamUser *iface);
 	void *IsVACBanned;
 	void *RequireShowVACBannedMessage;
 	void *AcknowledgeVACBanning;
@@ -31,7 +31,7 @@ struct ISteamUser004Vtbl
 	void *SetRegistryInt;
 	void *GetRegistryInt;
 	void *InitiateGameConnection;
-	void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
+	MEMBER void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 	void *SetSelfAsPrimaryChatDestination;
 	void *IsPrimaryChatDestination;
 	void *RequestLegacyCDKey;

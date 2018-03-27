@@ -10,7 +10,7 @@
 
 static const char *steam_ugc_version = NULL;
 
-uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface)
+MEMBER uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface)
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
 

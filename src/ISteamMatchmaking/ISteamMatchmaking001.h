@@ -9,7 +9,7 @@
 
 struct ISteamMatchmaking001Vtbl
 {
-	int (*GetFavoriteGameCount)(struct ISteamMatchmaking *iface);
+	MEMBER int (*GetFavoriteGameCount)(struct ISteamMatchmaking *iface);
 	void *GetFavoriteGame;
 	void *AddFavoriteGame;
 	void *RemoveFavoriteGame;

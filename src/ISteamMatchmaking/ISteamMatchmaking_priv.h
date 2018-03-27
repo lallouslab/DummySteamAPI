@@ -14,6 +14,6 @@ static inline struct ISteamMatchmakingImpl *impl_from_ISteamMatchmaking(struct I
 	return CONTAINER_OF(iface, struct ISteamMatchmakingImpl, base);
 }
 
-int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface);
+MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface);
 
 #endif /* ISTEAMMATCHMAKING_PRIV_H */

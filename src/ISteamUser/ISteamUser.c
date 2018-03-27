@@ -15,7 +15,7 @@
 
 static const char *steam_user_version = NULL;
 
-steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface)
+MEMBER steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 
@@ -24,7 +24,7 @@ steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface)
 	return 1;
 }
 
-steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface)
+MEMBER steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 
@@ -33,7 +33,7 @@ steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface)
 	return STEAM_TRUE;
 }
 
-void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
+MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	const char *user_id;
@@ -53,7 +53,7 @@ void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
 	ret->bits.universe = STEAM_UNIVERSE_PUBLIC;
 }
 
-union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
+MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	union CSteamID steam_id;
@@ -65,14 +65,14 @@ union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
 	return steam_id;
 }
 
-void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port)
+MEMBER void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, server_ip = %#x, server_port = %u)", VOIDPTR(This), server_ip, server_port);
 }
 
-steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len)
+MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	const char *steam_dir;
@@ -122,7 +122,7 @@ steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, i
 	return STEAM_TRUE;
 }
 
-steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
+MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	PACKED_STRUCT

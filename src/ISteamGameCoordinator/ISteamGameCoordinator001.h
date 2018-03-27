@@ -10,7 +10,7 @@
 struct ISteamGameCoordinator001Vtbl
 {
 	void *SendMessage;
-	steam_bool_t (*IsMessageAvailable)(struct ISteamGameCoordinator *iface, uint32_t *msg_size);
+	MEMBER steam_bool_t (*IsMessageAvailable)(struct ISteamGameCoordinator *iface, uint32_t *msg_size);
 	void *RetrieveMessage;
 };
 

@@ -9,14 +9,14 @@
 
 struct ISteamApps006Vtbl
 {
-	steam_bool_t (*BIsSubscribed)(struct ISteamApps *iface);
-	steam_bool_t (*BIsLowViolence)(struct ISteamApps *iface);
-	steam_bool_t (*BIsCybercafe)(struct ISteamApps *iface);
-	steam_bool_t (*BIsVACBanned)(struct ISteamApps *iface);
-	const char *(*GetCurrentGameLanguage)(struct ISteamApps *iface);
-	const char *(*GetAvailableGameLanguages)(struct ISteamApps *iface);
-	steam_bool_t (*BIsSubscribedApp)(struct ISteamApps *iface, steam_app_id_t app_id);
-	steam_bool_t (*BIsDlcInstalled)(struct ISteamApps *iface, steam_app_id_t app_id);
+	MEMBER steam_bool_t (*BIsSubscribed)(struct ISteamApps *iface);
+	MEMBER steam_bool_t (*BIsLowViolence)(struct ISteamApps *iface);
+	MEMBER steam_bool_t (*BIsCybercafe)(struct ISteamApps *iface);
+	MEMBER steam_bool_t (*BIsVACBanned)(struct ISteamApps *iface);
+	MEMBER const char *(*GetCurrentGameLanguage)(struct ISteamApps *iface);
+	MEMBER const char *(*GetAvailableGameLanguages)(struct ISteamApps *iface);
+	MEMBER steam_bool_t (*BIsSubscribedApp)(struct ISteamApps *iface, steam_app_id_t app_id);
+	MEMBER steam_bool_t (*BIsDlcInstalled)(struct ISteamApps *iface, steam_app_id_t app_id);
 	void *GetEarliestPurchaseUnixTime;
 	void *BIsSubscribedFromFreeWeekend;
 	void *GetDLCCount;

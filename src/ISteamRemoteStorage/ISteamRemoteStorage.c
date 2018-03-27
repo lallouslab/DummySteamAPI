@@ -11,7 +11,7 @@
 
 static const char *steam_remote_storage_version = NULL;
 
-steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size)
+MEMBER steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
@@ -20,7 +20,7 @@ steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, co
 	return STEAM_FALSE;
 }
 
-int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const char *filename)
+MEMBER int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const char *filename)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
@@ -29,7 +29,7 @@ int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const
 	return 0;
 }
 
-int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface)
+MEMBER int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
@@ -38,7 +38,7 @@ int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface)
 	return 0;
 }
 
-steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes)
+MEMBER steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
@@ -50,7 +50,7 @@ steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int
 	return STEAM_TRUE;
 }
 
-void ISteamRemoteStorage_SetCloudEnabledForApp(struct ISteamRemoteStorage *iface, steam_bool_t enabled)
+MEMBER void ISteamRemoteStorage_SetCloudEnabledForApp(struct ISteamRemoteStorage *iface, steam_bool_t enabled)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 

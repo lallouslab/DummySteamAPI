@@ -12,7 +12,7 @@ struct ISteamScreenshots002Vtbl
 	void *WriteScreenshot;
 	void *AddScreenshotToLibrary;
 	void *TriggerScreenshot;
-	steam_bool_t (*HookScreenshots)(struct ISteamScreenshots *iface, steam_bool_t enable);
+	MEMBER steam_bool_t (*HookScreenshots)(struct ISteamScreenshots *iface, steam_bool_t enable);
 	void *SetLocation;
 	void *TagUser;
 	void *TagPublishedFile;

@@ -14,12 +14,12 @@ static inline struct ISteamUserImpl *impl_from_ISteamUser(struct ISteamUser *ifa
 	return CONTAINER_OF(iface, struct ISteamUserImpl, base);
 }
 
-steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface);
-steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface);
-void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface);
-union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface);
-void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
-steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len);
-steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size);
+MEMBER steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface);
+MEMBER steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface);
+MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface);
+MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface);
+MEMBER void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
+MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len);
+MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size);
 
 #endif /* ISTEAMUSER_PRIV_H */

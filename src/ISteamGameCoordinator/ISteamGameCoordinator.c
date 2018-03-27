@@ -9,7 +9,7 @@
 
 static const char *steam_game_coordinator_version = NULL;
 
-steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size)
+MEMBER steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size)
 {
 	struct ISteamGameCoordinatorImpl *This = impl_from_ISteamGameCoordinator(iface);
 

@@ -10,30 +10,30 @@
 
 struct ISteamUtils006Vtbl
 {
-	uint32_t (*GetSecondsSinceAppActive)(struct ISteamUtils *iface);
+	MEMBER uint32_t (*GetSecondsSinceAppActive)(struct ISteamUtils *iface);
 	void *GetSecondsSinceComputerActive;
-	enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
+	MEMBER enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
 	void *GetServerRealTime;
 	void *GetIPCountry;
 	void *GetImageSize;
 	void *GetImageRGBA;
-	steam_bool_t (*GetCSERIPPort)(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port);
+	MEMBER steam_bool_t (*GetCSERIPPort)(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port);
 	void *GetCurrentBatteryPower;
-	steam_app_id_t (*GetAppID)(struct ISteamUtils *iface);
-	void (*SetOverlayNotificationPosition)(struct ISteamUtils *iface, enum steam_notification_position pos);
-	steam_bool_t (*IsAPICallCompleted)(struct ISteamUtils *iface, steam_api_call_t api_call, steam_bool_t *failed);
+	MEMBER steam_app_id_t (*GetAppID)(struct ISteamUtils *iface);
+	MEMBER void (*SetOverlayNotificationPosition)(struct ISteamUtils *iface, enum steam_notification_position pos);
+	MEMBER steam_bool_t (*IsAPICallCompleted)(struct ISteamUtils *iface, steam_api_call_t api_call, steam_bool_t *failed);
 	void *GetAPICallFailureReason;
-	steam_bool_t (*GetAPICallResult)(struct ISteamUtils *iface, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *failed);
+	MEMBER steam_bool_t (*GetAPICallResult)(struct ISteamUtils *iface, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *failed);
 	void *RunFrame;
 	void *GetIPCCallCount;
-	void (*SetWarningMessageHook)(struct ISteamUtils *iface, void * /* SteamAPIWarningMessageHook_t */ callback);
-	steam_bool_t (*IsOverlayEnabled)(struct ISteamUtils *iface);
+	MEMBER void (*SetWarningMessageHook)(struct ISteamUtils *iface, void * /* SteamAPIWarningMessageHook_t */ callback);
+	MEMBER steam_bool_t (*IsOverlayEnabled)(struct ISteamUtils *iface);
 	void *BOverlayNeedsPresent;
 	void *CheckFileSignature;
 	void *ShowGamepadTextInput;
 	void *GetEnteredGamepadTextLength;
 	void *GetEnteredGamepadTextInput;
-	const char *(*GetSteamUILanguage)(struct ISteamUtils *iface);
+	MEMBER const char *(*GetSteamUILanguage)(struct ISteamUtils *iface);
 	void *IsSteamRunningInVR;
 };
 

@@ -9,9 +9,9 @@
 
 struct ISteamFriends001Vtbl
 {
-	const char *(*GetPersonaName)(struct ISteamFriends *iface);
+	MEMBER const char *(*GetPersonaName)(struct ISteamFriends *iface);
 	void *SetPersonaName;
-	uint32_t (*GetPersonaState)(struct ISteamFriends *iface);
+	MEMBER uint32_t (*GetPersonaState)(struct ISteamFriends *iface);
 	void *SetPersonaState;
 	void *AddFriend;
 	void *RemoveFriend;
@@ -19,7 +19,7 @@ struct ISteamFriends001Vtbl
 	void *GetFriendRelationship;
 	void *GetFriendPersonaState;
 	void *GetFriendGamePlayed0;
-	const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
+	MEMBER const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
 	void *AddFriendByName;
 	void *GetFriendCount;
 	void *GetFriendByIndex;

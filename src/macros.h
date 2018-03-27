@@ -8,6 +8,10 @@
 #define EXPORT __attribute__((visibility("default")))
 #define PACKED_STRUCT struct __attribute__((packed))
 
+#define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM
+#define MEMBER_CALLBACK_PARAM
+#define MEMBER
+
 #define INVAL_PTR NULL
 #define VOIDPTR(x) ((void *)x)
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))

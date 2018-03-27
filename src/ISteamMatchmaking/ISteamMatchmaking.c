@@ -10,7 +10,7 @@
 
 static const char *steam_matchmaking_version = NULL;
 
-int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface)
+MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface)
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
 

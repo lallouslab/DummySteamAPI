@@ -14,6 +14,6 @@ static inline struct ISteamScreenshotsImpl *impl_from_ISteamScreenshots(struct I
 	return CONTAINER_OF(iface, struct ISteamScreenshotsImpl, base);
 }
 
-steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshots *iface, steam_bool_t enable);
+MEMBER steam_bool_t ISteamScreenshots_HookScreenshots(struct ISteamScreenshots *iface, steam_bool_t enable);
 
 #endif /* ISTEAMSCREENSHOTS_PRIV_H */

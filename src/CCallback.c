@@ -4,28 +4,28 @@
 
 /* CCallbackBase */
 
-void CCallbackBase(struct CCallbackBase *iface)
+MEMBER void CCallbackBase(struct CCallbackBase *iface)
 {
 	iface->vtbl = NULL;
 	iface->flags = STEAM_CALLBACK_FLAGS_NONE;
 	iface->type = 0;
 }
 
-enum steam_callback_type CCallbackBase_GetICallback(struct CCallbackBase *iface)
+MEMBER enum steam_callback_type CCallbackBase_GetICallback(struct CCallbackBase *iface)
 {
 	return iface->type;
 }
 
 /* CCallResult */
 
-static void CCallResult_Run0(struct CCallbackBase *iface, void *param)
+MEMBER static void CCallResult_Run0(struct CCallbackBase *iface, void *param)
 {
 	struct CCallResult *impl = CCallResult_from_CCallbackBase(iface);
 
 	iface->vtbl->Run1(iface, STEAM_FALSE, impl->api_call, param);
 }
 
-static void CCallResult_Run1(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param)
+MEMBER static void CCallResult_Run1(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param)
 {
 	struct CCallResult *impl = CCallResult_from_CCallbackBase(iface);
 
@@ -36,7 +36,7 @@ static void CCallResult_Run1(struct CCallbackBase *iface, steam_bool_t io_failur
 	impl->callback(impl->obj, param, io_failure);
 }
 
-static int CCallResult_GetCallbackSizeBytes(struct CCallbackBase *iface)
+MEMBER static int CCallResult_GetCallbackSizeBytes(struct CCallbackBase *iface)
 {
 	struct CCallResult *impl = CCallResult_from_CCallbackBase(iface);
 
@@ -50,7 +50,7 @@ static const struct CCallbackBaseVtbl CCallResult_vtbl =
 	.GetCallbackSizeBytes = CCallResult_GetCallbackSizeBytes
 };
 
-void CCallResult(struct CCallResult *iface, enum steam_callback_type type, size_t data_size)
+MEMBER void CCallResult(struct CCallResult *iface, enum steam_callback_type type, size_t data_size)
 {
 	CCallbackBase(&iface->base);
 	iface->base.vtbl = &CCallResult_vtbl;
@@ -61,12 +61,12 @@ void CCallResult(struct CCallResult *iface, enum steam_callback_type type, size_
 	iface->data_size = data_size;
 }
 
-void CCallResult_dtor(struct CCallResult *iface)
+MEMBER void CCallResult_dtor(struct CCallResult *iface)
 {
 	CCallResult_Cancel(iface);
 }
 
-void CCallResult_Set(struct CCallResult *iface, steam_api_call_t api_call, void *obj, steam_api_call_callback_t callback)
+MEMBER void CCallResult_Set(struct CCallResult *iface, steam_api_call_t api_call, void *obj, MEMBER_CALLBACK_PARAM steam_api_call_callback_t callback)
 {
 	if (iface->api_call)
 		callbacks_unregister_api_call_result(&iface->base, iface->api_call);
@@ -79,12 +79,12 @@ void CCallResult_Set(struct CCallResult *iface, steam_api_call_t api_call, void 
 		callbacks_register_api_call_result(&iface->base, iface->api_call);
 }
 
-steam_bool_t CCallResult_IsActive(struct CCallResult *iface)
+MEMBER steam_bool_t CCallResult_IsActive(struct CCallResult *iface)
 {
 	return !!iface->api_call;
 }
 
-void CCallResult_Cancel(struct CCallResult *iface)
+MEMBER void CCallResult_Cancel(struct CCallResult *iface)
 {
 	if (!CCallResult_IsActive(iface))
 		return;
@@ -95,12 +95,12 @@ void CCallResult_Cancel(struct CCallResult *iface)
 
 /* CCallback */
 
-static void CCallback_Run0(struct CCallbackBase *iface, void *param)
+MEMBER static void CCallback_Run0(struct CCallbackBase *iface, void *param)
 {
 	iface->vtbl->Run1(iface, STEAM_FALSE, 0, param);
 }
 
-static void CCallback_Run1(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param)
+MEMBER static void CCallback_Run1(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param)
 {
 	struct CCallback *impl = CCallback_from_CCallbackBase(iface);
 
@@ -110,7 +110,7 @@ static void CCallback_Run1(struct CCallbackBase *iface, steam_bool_t io_failure,
 	impl->callback(impl->obj, param);
 }
 
-static int CCallback_GetCallbackSizeBytes(struct CCallbackBase *iface)
+MEMBER static int CCallback_GetCallbackSizeBytes(struct CCallbackBase *iface)
 {
 	struct CCallback *impl = CCallback_from_CCallbackBase(iface);
 
@@ -124,7 +124,7 @@ static const struct CCallbackBaseVtbl CCallback_vtbl =
 	.GetCallbackSizeBytes = CCallback_GetCallbackSizeBytes
 };
 
-void CCallback(struct CCallback *iface, void *obj, steam_callback_t callback, size_t data_size, steam_bool_t is_game_server)
+MEMBER void CCallback(struct CCallback *iface, void *obj, MEMBER_CALLBACK_PARAM steam_callback_t callback, size_t data_size, steam_bool_t is_game_server)
 {
 	CCallbackBase(&iface->base);
 	iface->base.vtbl = &CCallback_vtbl;
@@ -138,12 +138,12 @@ void CCallback(struct CCallback *iface, void *obj, steam_callback_t callback, si
 		iface->base.flags |= STEAM_CALLBACK_FLAGS_GAME_SERVER;
 }
 
-void CCallback_dtor(struct CCallback *iface)
+MEMBER void CCallback_dtor(struct CCallback *iface)
 {
 	CCallback_Unregister(iface);
 }
 
-void CCallback_Register(struct CCallback *iface, void *obj, steam_callback_t callback)
+MEMBER void CCallback_Register(struct CCallback *iface, void *obj, MEMBER_CALLBACK_PARAM steam_callback_t callback)
 {
 	if (!obj || !callback)
 		return;
@@ -157,24 +157,24 @@ void CCallback_Register(struct CCallback *iface, void *obj, steam_callback_t cal
 	callbacks_register_callback(&iface->base, iface->base.type);
 }
 
-void CCallback_Unregister(struct CCallback *iface)
+MEMBER void CCallback_Unregister(struct CCallback *iface)
 {
 	callbacks_unregister_callback(&iface->base);
 }
 
-void CCallback_SetGameserverFlag(struct CCallback *iface)
+MEMBER void CCallback_SetGameserverFlag(struct CCallback *iface)
 {
 	iface->base.flags |= STEAM_CALLBACK_FLAGS_GAME_SERVER;
 }
 
 /* CCallbackManual */
 
-void CCallbackManual(struct CCallbackManual *iface, size_t data_size, steam_bool_t is_game_server)
+MEMBER void CCallbackManual(struct CCallbackManual *iface, size_t data_size, steam_bool_t is_game_server)
 {
 	CCallback(&iface->base, NULL, NULL, data_size, is_game_server);
 }
 
-void CCallbackManual_dtor(struct CCallbackManual *iface)
+MEMBER void CCallbackManual_dtor(struct CCallbackManual *iface)
 {
 	CCallback_dtor(&iface->base);
 }

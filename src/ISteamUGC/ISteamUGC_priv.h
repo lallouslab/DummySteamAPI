@@ -14,6 +14,6 @@ static inline struct ISteamUGCImpl *impl_from_ISteamUGC(struct ISteamUGC *iface)
 	return CONTAINER_OF(iface, struct ISteamUGCImpl, base);
 }
 
-uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface);
+MEMBER uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface);
 
 #endif /* ISTEAMUGC_PRIV_H */

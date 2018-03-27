@@ -10,7 +10,7 @@
 
 static const char *steam_networking_version = NULL;
 
-steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels)
+MEMBER steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels)
 {
 	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
 
@@ -22,7 +22,7 @@ steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void
 	return STEAM_FALSE;
 }
 
-steam_bool_t ISteamNetworking_AllowP2PPacketRelay(struct ISteamNetworking *iface, steam_bool_t allow)
+MEMBER steam_bool_t ISteamNetworking_AllowP2PPacketRelay(struct ISteamNetworking *iface, steam_bool_t allow)
 {
 	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
 

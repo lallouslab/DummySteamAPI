@@ -10,13 +10,13 @@
 struct ISteamRemoteStorage001Vtbl
 {
 	void *FileWrite;
-	int32_t (*GetFileSize)(struct ISteamRemoteStorage *iface, const char *filename);
+	MEMBER int32_t (*GetFileSize)(struct ISteamRemoteStorage *iface, const char *filename);
 	void *FileRead;
 	void *FileExists;
 	void *FileDelete;
 	void *GetFileCount;
 	void *GetFileNameAndSize;
-	steam_bool_t (*GetQuota)(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes);
+	MEMBER steam_bool_t (*GetQuota)(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes);
 };
 
 struct ISteamRemoteStorage *SteamRemoteStorage001(void);
