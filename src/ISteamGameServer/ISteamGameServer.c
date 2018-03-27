@@ -19,6 +19,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_EnableHeartbeats(struct ISteamGameServer *iface, steam_bool_t enabled)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, enabled = %u)", VOIDPTR(This), enabled);
+}
+
 struct ISteamGameServer *SteamGameServer_generic(const char *version)
 {
 	static const struct

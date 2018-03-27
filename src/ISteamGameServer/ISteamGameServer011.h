@@ -48,7 +48,7 @@ struct ISteamGameServer011Vtbl
 	void *GetPublicIP;
 	void *HandleIncomingPacket;
 	void *GetNextOutgoingPacket;
-	void *EnableHeartbeats;
+	void (*EnableHeartbeats)(struct ISteamGameServer *iface, steam_bool_t enabled);
 	void *SetHeartbeatInterval;
 	void *ForceHeartbeat;
 	void *AssociateWithClan;
