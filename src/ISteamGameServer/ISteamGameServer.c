@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetProduct(struct ISteamGameServer *iface, const char *product)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, product = \"%s\")", VOIDPTR(This), product);
+}
+
 void ISteamGameServer_SetGameDescription(struct ISteamGameServer *iface, const char *description)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

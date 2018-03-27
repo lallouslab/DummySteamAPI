@@ -5,7 +5,7 @@
 
 static const struct ISteamGameServer011Vtbl ISteamGameServer011_vtbl = {
 	ISteamGameServer_InitGameServer,
-	INVAL_PTR,
+	ISteamGameServer_SetProduct,
 	ISteamGameServer_SetGameDescription,
 	ISteamGameServer_SetModDir,
 	ISteamGameServer_SetDedicatedServer,
