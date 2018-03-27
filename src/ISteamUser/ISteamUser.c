@@ -46,10 +46,10 @@ void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
 		user_id = "1";
 	}
 
-	ret->bits.universe = STEAM_UNIVERSE_PUBLIC;
-	ret->bits.account_type = STEAM_ACCOUNT_TYPE_INDIVIDUAL;
-	ret->bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
 	ret->bits.account_id = strtoul(user_id, NULL, 0);
+	ret->bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
+	ret->bits.account_type = STEAM_ACCOUNT_TYPE_INDIVIDUAL;
+	ret->bits.universe = STEAM_UNIVERSE_PUBLIC;
 }
 
 union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
@@ -62,6 +62,13 @@ union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
 	ISteamUser_GetSteamID(&steam_id, iface);
 
 	return steam_id;
+}
+
+void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, server_ip = %#x, server_port = %u)", VOIDPTR(This), server_ip, server_port);
 }
 
 steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len)

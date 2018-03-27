@@ -13,7 +13,7 @@ struct ISteamUser017Vtbl
 	steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
 	void (*GetSteamID)(union CSteamID *ret, struct ISteamUser *iface);
 	void *InitiateGameConnection;
-	void *TerminateGameConnection;
+	void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 	void *TrackAppUsageEvent;
 	steam_bool_t (*GetUserDataFolder)(struct ISteamUser *iface, char *buf, int buf_size);
 	void *StartVoiceRecording;

@@ -26,7 +26,7 @@ static const struct ISteamUser004Vtbl ISteamUser004_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUser_TerminateGameConnection,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR

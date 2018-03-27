@@ -31,7 +31,7 @@ struct ISteamUser004Vtbl
 	void *SetRegistryInt;
 	void *GetRegistryInt;
 	void *InitiateGameConnection;
-	void *TerminateGameConnection;
+	void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 	void *SetSelfAsPrimaryChatDestination;
 	void *IsPrimaryChatDestination;
 	void *RequestLegacyCDKey;
