@@ -7,15 +7,27 @@
 #include "steam.h"
 
 #include "ISteamClient/ISteamClient.h"
+#include "ISteamGameServer/ISteamGameServer012.h"
+#include "ISteamUtils/ISteamUtils007.h"
 #include "steam_gameserver.h"
 
 EXPORT struct ISteamClient *g_pSteamClientGameServer = INVAL_PTR;
 
 EXPORT steam_bool_t SteamGameServer_Init(uint32_t ip, uint16_t steam_port, uint16_t game_port, uint16_t query_port, enum steam_game_server_mode server_mode, const char *version)
 {
+	struct ISteamUtils *steam_utils;
+	steam_app_id_t app_id;
+	struct ISteamGameServer *steam_game_server;
+
 	LOG_ENTER_NOTIMPL("(ip = %#x, steam_port = %u, game_port = %u, query_port = %u, server_mode = %u, version = \"%s\")", ip, steam_port, game_port, query_port, server_mode, debug_str(version));
 
 	g_pSteamClientGameServer = SteamClient();
+
+	steam_utils = SteamUtils007();
+	app_id = steam_utils->vtbl.v007->GetAppID(steam_utils);
+
+	steam_game_server = SteamGameServer012();
+	steam_game_server->vtbl.v012->InitGameServer(steam_game_server, ip, game_port, query_port, STEAM_GAME_SERVER_FLAG_NONE, app_id, version);
 
 	return STEAM_TRUE;
 }
