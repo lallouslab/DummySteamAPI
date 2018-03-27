@@ -23,7 +23,7 @@ struct ISteamGameServer012Vtbl
 	void *WasRestartRequested;
 	void *SetMaxPlayerCount;
 	void *SetBotPlayerCount;
-	void *SetServerName;
+	void (*SetServerName)(struct ISteamGameServer *iface, const char *name);
 	void (*SetMapName)(struct ISteamGameServer *iface, const char *name);
 	void (*SetPasswordProtected)(struct ISteamGameServer *iface, steam_bool_t protected);
 	void *SetSpectatorPort;

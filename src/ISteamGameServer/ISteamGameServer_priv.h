@@ -16,6 +16,7 @@ static inline struct ISteamGameServerImpl *impl_from_ISteamGameServer(struct ISt
 }
 
 steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uint32_t game_ip, uint16_t game_port, uint16_t query_port, enum steam_game_server_flag flags, steam_app_id_t app_id, const char *version);
+void ISteamGameServer_SetServerName(struct ISteamGameServer *iface, const char *name);
 void ISteamGameServer_SetMapName(struct ISteamGameServer *iface, const char *name);
 void ISteamGameServer_SetPasswordProtected(struct ISteamGameServer *iface, steam_bool_t protected);
 void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value);
