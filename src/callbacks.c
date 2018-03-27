@@ -169,7 +169,6 @@ static int remove_call_output_unsafe(struct list_elem *elem)
 	struct call_output *out;
 
 	out = list_get_data(elem);
-
 	if (out->data)
 	{
 		free(out->data);
@@ -182,18 +181,20 @@ static int remove_call_output_unsafe(struct list_elem *elem)
 static steam_bool_t api_call_result_get_output(steam_bool_t only_check, steam_api_call_t api_call, void *data, int data_size, enum steam_callback_type type_expected, steam_bool_t *io_failure)
 {
 	steam_bool_t result = STEAM_FALSE;
+	struct list_elem *next_elem;
 
 	if (io_failure)
 		*io_failure = STEAM_FALSE;
 
 	list_lock(&call_outputs);
 
-	for (struct list_elem *elem = list_head(&call_outputs); elem; elem = list_next(elem))
+	for (struct list_elem *elem = list_head(&call_outputs); elem; elem = next_elem)
 	{
 		struct call_output *out;
 
-		out = list_get_data(elem);
+		next_elem = list_next(elem);
 
+		out = list_get_data(elem);
 		if (out->api_call != api_call)
 			continue;
 
@@ -234,8 +235,6 @@ steam_bool_t callbacks_api_call_result_get_output(steam_api_call_t api_call, voi
 
 static steam_bool_t handle_callback_output(struct call_output *out)
 {
-	steam_bool_t handled = STEAM_FALSE;
-
 	if (out->type >= STEAM_CALLBACK_TYPE_MAX)
 		return STEAM_FALSE;
 
@@ -261,17 +260,16 @@ static steam_bool_t handle_callback_output(struct call_output *out)
 		callback->vtbl->Run0(callback, out->data);
 
 		out->is_handled = STEAM_TRUE;
-		handled = STEAM_TRUE;
 	}
 
 	list_unlock(&callbacks[out->type]);
 
-	return handled;
+	return out->is_handled;
 }
 
 static steam_bool_t handle_api_call_result_output(struct call_output *out)
 {
-	steam_bool_t handled = STEAM_FALSE;
+	struct list_elem *next_elem;
 
 	if (out->type >= STEAM_CALLBACK_TYPE_MAX)
 		return STEAM_FALSE;
@@ -284,35 +282,36 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 
 	list_lock(&api_call_results);
 
-	for (struct list_elem *elem = list_head(&api_call_results); elem; elem = list_next(elem))
+	for (struct list_elem *elem = list_head(&api_call_results); elem; elem = next_elem)
 	{
 		struct CCallbackBase *callback;
 		struct CCallResult *result;
+			int size;
+
+		next_elem = list_next(elem);
 
 		callback = *(struct CCallbackBase **)list_get_data(elem);
 	 	result = CCallResult_from_CCallbackBase(callback);
 
-		if (callback->type == out->type
-				&& result->api_call == out->api_call)
-		{
-			int size;
+		if (callback->type != out->type
+				|| result->api_call != out->api_call)
+			continue;
 
-			size = callback->vtbl->GetCallbackSizeBytes(callback);
-			if (size == out->data_size)
-			{
-				callback->vtbl->Run1(callback, out->io_failure, out->api_call, out->data);
+		size = callback->vtbl->GetCallbackSizeBytes(callback);
+		if (size != out->data_size)
+			continue;
 
-				unreg_api_call_result_unsafe(callback, elem);
+		callback->vtbl->Run1(callback, out->io_failure, out->api_call, out->data);
 
-				out->is_handled = STEAM_TRUE;
-				handled = STEAM_TRUE;
-			}
-		}
+		unreg_api_call_result_unsafe(callback, elem);
+
+		out->is_handled = STEAM_TRUE;
+
 	}
 
 	list_unlock(&api_call_results);
 
-	return handled;
+	return out->is_handled;
 }
 
 void callbacks_run(void)
