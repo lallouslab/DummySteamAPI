@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetMapName(struct ISteamGameServer *iface, const char *name)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
+}
+
 void ISteamGameServer_SetPasswordProtected(struct ISteamGameServer *iface, steam_bool_t protected)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
