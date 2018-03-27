@@ -65,6 +65,7 @@ CFLAGS-$(CONFIG_OS_LINUX) += -pthread
 
 LDFLAGS-$(libsteam_api)-y += $(LDFLAGS_SHARED) -Wl,--whole-archive $(libs) -Wl,--no-whole-archive
 LDFLAGS-$(libsteam_api)-$(CONFIG_OS_LINUX) += -ldl -pthread
+LDFLAGS-$(libsteam_api)-$(CONFIG_OS_WINDOWS) += -luserenv
 
 DEPS-$(libsteam_api)-y := $(libs)
 OBJS-$(libsteam_api)-y := $(objs)

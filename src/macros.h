@@ -8,9 +8,16 @@
 #define EXPORT __attribute__((visibility("default")))
 #define PACKED_STRUCT struct __attribute__((packed))
 
-#define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM
-#define MEMBER_CALLBACK_PARAM
-#define MEMBER
+#if CONFIG_OS_WINDOWS
+# define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM __extension__
+# define MEMBER_CALLBACK_PARAM __attribute__((thiscall))
+# define MEMBER DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM MEMBER_CALLBACK_PARAM
+# pragma GCC diagnostic ignored "-Wformat"
+#else
+# define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM
+# define MEMBER_CALLBACK_PARAM
+# define MEMBER
+#endif
 
 #define INVAL_PTR NULL
 #define VOIDPTR(x) ((void *)x)
