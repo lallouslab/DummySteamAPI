@@ -19,7 +19,7 @@ $(BINS-CXX-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
 $(STATICLIBS-y): $$(OBJS-$$@-y) $$(LIBS-$$@-y) $$(DEPS-$$@-y)
 	$(V_SILENT_CMD)rm -f $@
 	$(V_ECHO_CMD)echo " AR              $@"
-	$(V_SILENT_CMD)echo "CREATE $@\n$(foreach lib,$(LIBS-$@-y),ADDLIB $(lib)\n)$(foreach obj,$(OBJS-$@-y),ADDMOD $(obj)\n)SAVE\nEND" | $(AR) -M
+	$(V_SILENT_CMD)printf "CREATE $@\n$(foreach lib,$(LIBS-$@-y),ADDLIB $(lib)\n)$(foreach obj,$(OBJS-$@-y),ADDMOD $(obj)\n)SAVE\nEND" | $(AR) -M
 	$(V_ECHO_CMD)echo " RANLIB          $@"
 	$(V_SILENT_CMD)$(RANLIB) $@
 
