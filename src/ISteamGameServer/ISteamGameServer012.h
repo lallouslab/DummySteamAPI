@@ -16,7 +16,7 @@ struct ISteamGameServer012Vtbl
 	void *SetDedicatedServer;
 	void *LogOn;
 	void *LogOnAnonymous;
-	void *LogOff;
+	void (*LogOff)(struct ISteamGameServer *iface);
 	void *BLoggedOn;
 	void *BSecure;
 	void *GetSteamID;

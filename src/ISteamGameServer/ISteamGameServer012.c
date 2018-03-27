@@ -11,7 +11,7 @@ static const struct ISteamGameServer012Vtbl ISteamGameServer012_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamGameServer_LogOff,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
