@@ -29,7 +29,7 @@ struct ISteamGameServer011Vtbl
 	void *SetSpectatorPort;
 	void *SetSpectatorServerName;
 	void *ClearAllKeyValues;
-	void *SetKeyValue;
+	void (*SetKeyValue)(struct ISteamGameServer *iface, const char *key, const char *value);
 	void (*SetGameTags)(struct ISteamGameServer *iface, const char *tags);
 	void *SetGameData;
 	void *SetRegion;

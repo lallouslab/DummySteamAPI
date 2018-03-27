@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, key = \"%s\", value = \"%s\")", VOIDPTR(This), debug_str(key), debug_str(value));
+}
+
 void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const char *tags)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
