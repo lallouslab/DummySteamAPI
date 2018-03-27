@@ -13,7 +13,7 @@ struct ISteamGameServer012Vtbl
 	void *SetProduct;
 	void *SetGameDescription;
 	void *SetModDir;
-	void *SetDedicatedServer;
+	void (*SetDedicatedServer)(struct ISteamGameServer *iface, steam_bool_t dedicated);
 	void *LogOn;
 	void (*LogOnAnonymous)(struct ISteamGameServer *iface);
 	void (*LogOff)(struct ISteamGameServer *iface);
