@@ -17,6 +17,7 @@ enum dsa_log_level
 	do { \
 		if (dsa_debug_get_log_level() >= DSA_LOG_LEVEL_DEBUG) { \
 			fprintf(stderr, "DEBUG: %s:%u: " str "\n", __FILE__, __LINE__, __VA_ARGS__); \
+			fflush(stderr); \
 		} \
 	} while (0)
 #define DEBUG0(str) DEBUG(str "%s", "");
@@ -25,6 +26,7 @@ enum dsa_log_level
 	do { \
 		if (dsa_debug_get_log_level() >= DSA_LOG_LEVEL_WARN) { \
 			fprintf(stderr, "WARN: %s:%u: " str "\n", __FILE__, __LINE__, __VA_ARGS__); \
+			fflush(stderr); \
 		} \
 	} while (0)
 #define WARN0(str) WARN(str "%s", "");
