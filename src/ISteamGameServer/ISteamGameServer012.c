@@ -4,7 +4,7 @@
 #include "ISteamGameServer_priv.h"
 
 static const struct ISteamGameServer012Vtbl ISteamGameServer012_vtbl = {
-	INVAL_PTR,
+	ISteamGameServer_InitGameServer,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

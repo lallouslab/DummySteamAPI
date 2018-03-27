@@ -9,7 +9,7 @@
 
 struct ISteamGameServer012Vtbl
 {
-	void *InitGameServer;
+	steam_bool_t (*InitGameServer)(struct ISteamGameServer *iface, uint32_t game_ip, uint16_t game_port, uint16_t query_port, enum steam_game_server_flag flags, steam_app_id_t app_id, const char *version);
 	void *SetProduct;
 	void *SetGameDescription;
 	void *SetModDir;

@@ -8,8 +8,16 @@
 #include "ISteamGameServer011.h"
 #include "ISteamGameServer012.h"
 
-
 static const char *steam_game_server_version = NULL;
+
+steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uint32_t game_ip, uint16_t game_port, uint16_t query_port, enum steam_game_server_flag flags, steam_app_id_t app_id, const char *version)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, game_ip = \"%#x\", game_port = %u, query_port = %u, flags = %#x, app_id = %u, version = \"%s\")", VOIDPTR(This), game_ip, game_port, query_port, flags, app_id, version);
+
+	return STEAM_TRUE;
+}
 
 struct ISteamGameServer *SteamGameServer_generic(const char *version)
 {
