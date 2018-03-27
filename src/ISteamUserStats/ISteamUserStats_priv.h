@@ -1,20 +1,30 @@
 #ifndef ISTEAMUSERSTATS_PRIV_H
 #define ISTEAMUSERSTATS_PRIV_H 1
 
+#include "CCallback.h"
 #include "steam.h"
 #include "utils.h"
 
 #include "ISteamUserStats.h"
 
+struct ISteamUserStatsImplCommon
+{
+	steam_bool_t is_init : 1;
+	const char *default_version;
+	struct CCallResult request_current_stats_call_result;
+};
+
 struct ISteamUserStatsImpl
 {
 	struct ISteamUserStats base;
+	struct ISteamUserStatsImplCommon *common;
 };
 
 static inline struct ISteamUserStatsImpl *impl_from_ISteamUserStats(struct ISteamUserStats *iface) {
 	return CONTAINER_OF(iface, struct ISteamUserStatsImpl, base);
 }
 
+void ISteamUserStats_ctor(struct ISteamUserStats *iface);
 steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface);
 steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const char *name, int32_t *data);
 steam_bool_t ISteamUserStats_GetStatFloat(struct ISteamUserStats *iface, const char *name, float *data);

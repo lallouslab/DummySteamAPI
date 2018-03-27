@@ -53,6 +53,8 @@ struct ISteamUserStats *SteamUserStats011(void)
 {
 	static struct ISteamUserStatsImpl impl;
 
+	ISteamUserStats_ctor(&impl.base);
+
 	impl.base.vtbl.v011 = &ISteamUserStats011_vtbl;
 
 	return &impl.base;

@@ -12,16 +12,33 @@
 #include "ISteamUserStats_priv.h"
 #include "ISteamUserStats011.h"
 
-static const char *steam_user_stats_version = NULL;
+static struct ISteamUserStatsImplCommon steam_user_stats_impl_common = {
+	.is_init = STEAM_FALSE
+};
+
+void ISteamUserStats_ctor(struct ISteamUserStats *iface)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
+	This->base.vtbl.ptr = NULL;
+	This->common = &steam_user_stats_impl_common;
+
+	if (!This->common->is_init)
+	{
+		CCallResult(&This->common->request_current_stats_call_result,
+				STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED,
+				sizeof(struct steam_callback_data_user_stats_user_stats_received));
+
+		This->common->is_init = STEAM_TRUE;
+	}
+}
 
 static void request_current_stats_call_result(void *obj, void *param, steam_bool_t io_failure)
 {
-	struct CCallResult *call_result = obj;
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(obj);
 	struct steam_callback_data_user_stats_user_stats_received *user_stats_received = param;
 
-	LOG_ENTER("(obj = %p, param = %p, io_failure = %u)", obj, param, io_failure);
-
-	free(call_result);
+	LOG_ENTER("(This = %p, param = %p, io_failure = %u)", VOIDPTR(This), param, io_failure);
 
 	if (io_failure || !param)
 		return;
@@ -32,26 +49,25 @@ static void request_current_stats_call_result(void *obj, void *param, steam_bool
 steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+	steam_bool_t retb;
 	struct ISteamUser *steam_user;
-	struct CCallResult *call_result;
 	union CSteamID steam_id_user;
 	steam_api_call_t api_call;
 
 	LOG_ENTER("(This = %p)", VOIDPTR(This));
 
+	retb = CCallResult_IsActive(&This->common->request_current_stats_call_result);
+	if (retb)
+		return STEAM_TRUE;
+
 	steam_user = SteamUser018();
 	if (!steam_user)
-		return STEAM_FALSE;
-
-	call_result = malloc(sizeof(*call_result));
-	if (!call_result)
 		return STEAM_FALSE;
 
 	steam_id_user = steam_user->vtbl.v018->GetSteamID(steam_user);
 	api_call = ISteamUserStats_RequestUserStats(iface, steam_id_user);
 
-	CCallResult(call_result, STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, sizeof(struct steam_callback_data_user_stats_user_stats_received));
-	CCallResult_Set(call_result, api_call, call_result, request_current_stats_call_result);
+	CCallResult_Set(&This->common->request_current_stats_call_result, api_call, iface, request_current_stats_call_result);
 
 	return STEAM_TRUE;
 }
@@ -223,8 +239,8 @@ void SteamUserStats_set_version(const char *version)
 {
 	LOG_ENTER("(version = \"%s\")", debug_str(version));
 
-	if (!steam_user_stats_version)
-		steam_user_stats_version = version;
+	if (!steam_user_stats_impl_common.default_version)
+		steam_user_stats_impl_common.default_version = version;
 }
 
 EXPORT struct ISteamUserStats *SteamUserStats(void)
@@ -233,15 +249,15 @@ EXPORT struct ISteamUserStats *SteamUserStats(void)
 
 	LOG_ENTER0("()");
 
-	if (!steam_user_stats_version)
+	if (!steam_user_stats_impl_common.default_version)
 	{
-		steam_user_stats_version = STEAMUSERSTATS_INTERFACE_VERSION_011;
+		steam_user_stats_impl_common.default_version = STEAMUSERSTATS_INTERFACE_VERSION_011;
 
-		WARN("ISteamUserStats: No version specified, defaulting to \"%s\".", debug_str(steam_user_stats_version));
+		WARN("ISteamUserStats: No version specified, defaulting to \"%s\".", debug_str(steam_user_stats_impl_common.default_version));
 	}
 
 	if (!cached_iface)
-		cached_iface = SteamUserStats_generic(steam_user_stats_version);
+		cached_iface = SteamUserStats_generic(steam_user_stats_impl_common.default_version);
 
 	return cached_iface;
 }
