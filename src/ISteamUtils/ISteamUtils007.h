@@ -17,9 +17,9 @@ struct ISteamUtils007Vtbl
 	void *GetIPCountry;
 	void *GetImageSize;
 	void *GetImageRGBA;
-	void *GetCSERIPPort;
+	steam_bool_t (*GetCSERIPPort)(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port);
 	void *GetCurrentBatteryPower;
-	uint32_t (*GetAppID)(struct ISteamUtils *iface);
+	steam_app_id_t (*GetAppID)(struct ISteamUtils *iface);
 	void (*SetOverlayNotificationPosition)(struct ISteamUtils *iface, enum steam_notification_position pos);
 	steam_bool_t (*IsAPICallCompleted)(struct ISteamUtils *iface, steam_api_call_t api_call, steam_bool_t *failed);
 	void *GetAPICallFailureReason;

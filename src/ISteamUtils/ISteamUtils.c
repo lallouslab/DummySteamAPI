@@ -32,6 +32,18 @@ enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *iface)
 	return STEAM_UNIVERSE_PUBLIC;
 }
 
+steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port)
+{
+	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, ip = %p, port = %p)", VOIDPTR(This), VOIDPTR(ip), VOIDPTR(port));
+
+	*ip = 0;
+	*port = 0;
+
+	return STEAM_TRUE;
+}
+
 steam_app_id_t ISteamUtils_GetAppID(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);

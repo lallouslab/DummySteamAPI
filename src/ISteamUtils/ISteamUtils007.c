@@ -11,7 +11,7 @@ static const struct ISteamUtils007Vtbl ISteamUtils007_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUtils_GetCSERIPPort,
 	INVAL_PTR,
 	ISteamUtils_GetAppID,
 	ISteamUtils_SetOverlayNotificationPosition,

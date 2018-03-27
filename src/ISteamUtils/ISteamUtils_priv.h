@@ -18,6 +18,7 @@ static inline struct ISteamUtilsImpl *impl_from_ISteamUtils(struct ISteamUtils *
 
 uint32_t ISteamUtils_GetSecondsSinceAppActive(struct ISteamUtils *iface);
 enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *iface);
+steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port);
 uint32_t ISteamUtils_GetAppID(struct ISteamUtils *iface);
 void ISteamUtils_SetOverlayNotificationPosition(struct ISteamUtils *iface, enum steam_notification_position pos);
 steam_bool_t ISteamUtils_IsAPICallCompleted(struct ISteamUtils *iface, steam_api_call_t api_call, steam_bool_t *failed);
