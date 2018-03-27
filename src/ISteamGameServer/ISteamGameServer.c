@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include <string.h>
 
 #include "debug.h"
@@ -17,6 +18,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	LOG_ENTER_NOTIMPL("(This = %p, game_ip = \"%#x\", game_port = %u, query_port = %u, flags = %#x, app_id = %u, version = \"%s\")", VOIDPTR(This), game_ip, game_port, query_port, flags, app_id, version);
 
 	return STEAM_TRUE;
+}
+
+void ISteamGameServer_SendUserDisconnect(struct ISteamGameServer *iface, union CSteamID steam_id_user)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_user = %#" PRIx64 ")", VOIDPTR(This), steam_id_user.raw);
 }
 
 void ISteamGameServer_EnableHeartbeats(struct ISteamGameServer *iface, steam_bool_t enabled)
