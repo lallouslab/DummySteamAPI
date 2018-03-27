@@ -2,7 +2,6 @@
 #define CCALLBACK_H 1
 
 #include "steam.h"
-#include "utils.h"
 
 enum steam_callback_type
 {

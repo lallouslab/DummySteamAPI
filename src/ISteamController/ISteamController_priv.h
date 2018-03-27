@@ -2,7 +2,6 @@
 #define ISTEAMCONTROLLER_PRIV_H 1
 
 #include "steam.h"
-#include "utils.h"
 
 #include "ISteamController.h"
 

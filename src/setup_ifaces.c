@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "debug.h"
+#include "setup_ifaces.h"
+#include "utils.h"
+
 #include "ISteamAppList/ISteamAppList.h"
 #include "ISteamAppList/ISteamAppList001.h"
 #include "ISteamApps/ISteamApps.h"
@@ -66,9 +70,6 @@
 #include "ISteamUtils/ISteamUtils001.h"
 #include "ISteamUtils/ISteamUtils006.h"
 #include "ISteamUtils/ISteamUtils007.h"
-#include "debug.h"
-#include "setup_ifaces.h"
-#include "utils.h"
 
 int dsa_set_default_interfaces_version(void)
 {

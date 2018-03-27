@@ -5,6 +5,7 @@
 #include "debug.h"
 #include "list.h"
 #include "steam.h"
+#include "utils.h"
 
 struct call_output
 {

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "debug.h"
-#include "utils.h"
+#include "steam.h"
 
 #include "ISteamGameServer.h"
 #include "ISteamGameServer_priv.h"

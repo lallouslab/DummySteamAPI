@@ -6,7 +6,6 @@
 #include "callbacks.h"
 #include "debug.h"
 #include "steam.h"
-#include "utils.h"
 
 #include "ISteamUserStats.h"
 #include "ISteamUserStats_priv.h"

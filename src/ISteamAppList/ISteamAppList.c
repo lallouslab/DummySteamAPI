@@ -1,7 +1,6 @@
 #include <string.h>
 
 #include "debug.h"
-#include "utils.h"
 
 #include "ISteamAppList.h"
 #include "ISteamAppList_priv.h"

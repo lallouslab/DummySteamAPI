@@ -2,7 +2,6 @@
 
 #define CASE_STR(x) case (x): return #x
 
-
 static enum dsa_log_level log_level = DSA_LOG_LEVEL_WARN;
 
 enum dsa_log_level dsa_debug_get_log_level(void)

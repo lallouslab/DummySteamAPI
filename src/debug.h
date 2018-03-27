@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 #include "CCallback.h"
-#include "utils.h"
 
 enum dsa_log_level
 {

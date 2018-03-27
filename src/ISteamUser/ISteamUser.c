@@ -4,6 +4,7 @@
 #include "callbacks.h"
 #include "debug.h"
 #include "os/os.h"
+#include "steam.h"
 #include "utils.h"
 
 #include "ISteamUser.h"

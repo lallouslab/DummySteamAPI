@@ -1,7 +1,7 @@
 #ifndef ISTEAMUTILS006_H
 #define ISTEAMUTILS006_H 1
 
-#include "callbacks.h"
+#include "CCallback.h"
 #include "steam.h"
 
 #include "ISteamUtils.h"

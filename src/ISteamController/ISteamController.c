@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include "debug.h"
-#include "utils.h"
+#include "steam.h"
 
 #include "ISteamController.h"
 #include "ISteamController_priv.h"

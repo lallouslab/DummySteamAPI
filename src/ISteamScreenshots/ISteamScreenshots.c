@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include "debug.h"
-#include "utils.h"
+#include "steam.h"
 
 #include "ISteamScreenshots.h"
 #include "ISteamScreenshots_priv.h"

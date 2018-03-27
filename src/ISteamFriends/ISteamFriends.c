@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include "debug.h"
-#include "utils.h"
+#include "steam.h"
 
 #include "ISteamFriends.h"
 #include "ISteamFriends_priv.h"

@@ -21,7 +21,7 @@
 #include "ISteamUserStats/ISteamUserStats.h"
 #include "ISteamUtils/ISteamUtils.h"
 #include "debug.h"
-#include "utils.h"
+#include "steam.h"
 
 #include "ISteamClient.h"
 #include "ISteamClient_priv.h"

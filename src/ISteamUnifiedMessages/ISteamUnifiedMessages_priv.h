@@ -2,7 +2,6 @@
 #define ISTEAMUNIFIEDMESSAGES_PRIV_H 1
 
 #include "steam.h"
-#include "utils.h"
 
 #include "ISteamUnifiedMessages.h"
 

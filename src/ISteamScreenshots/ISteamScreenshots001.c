@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "macros.h"
 
 #include "ISteamScreenshots001.h"
 #include "ISteamScreenshots_priv.h"

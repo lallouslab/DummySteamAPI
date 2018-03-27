@@ -2,7 +2,6 @@
 #define ISTEAMCLIENT_PRIV_H 1
 
 #include "steam.h"
-#include "utils.h"
 
 #include "../ISteamAppList/ISteamAppList.h"
 #include "../ISteamApps/ISteamApps.h"

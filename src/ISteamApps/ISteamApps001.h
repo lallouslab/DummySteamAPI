@@ -1,8 +1,6 @@
 #ifndef ISTEAMAPPS001_H
 #define ISTEAMAPPS001_H 1
 
-#include "steam.h"
-
 #include "ISteamApps.h"
 
 #define STEAMAPPS_INTERFACE_VERSION_001 "STEAMAPPS_INTERFACE_VERSION001"

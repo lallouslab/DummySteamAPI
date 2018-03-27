@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "CCallback.h"
 #include "callbacks.h"
 #include "debug.h"
+#include "steam.h"
 #include "utils.h"
 
 #include "ISteamUtils.h"

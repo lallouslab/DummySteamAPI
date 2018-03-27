@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <inttypes.h>
 
+#include "macros.h"
+
 enum steam_bool
 {
 	STEAM_FALSE = 0u,

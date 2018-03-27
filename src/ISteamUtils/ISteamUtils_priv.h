@@ -1,9 +1,8 @@
 #ifndef ISTEAMUTILS_PRIV_H
 #define ISTEAMUTILS_PRIV_H 1
 
-#include "callbacks.h"
+#include "CCallback.h"
 #include "steam.h"
-#include "utils.h"
 
 #include "ISteamUtils.h"
 

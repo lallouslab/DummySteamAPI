@@ -2,7 +2,6 @@
 #define ISTEAMUSERSTATS_H 1
 
 #include "steam.h"
-#include "utils.h"
 
 #define STEAMUSERSTATS_INTERFACE_VERSION_PREFIX "STEAMUSERSTATS_INTERFACE_VERSION"
 

@@ -3,7 +3,6 @@
 
 #include "CCallback.h"
 #include "steam.h"
-#include "utils.h"
 
 #include "ISteamUserStats.h"
 
