@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetPasswordProtected(struct ISteamGameServer *iface, steam_bool_t protected)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, protected = %u)", VOIDPTR(This), protected);
+}
+
 void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

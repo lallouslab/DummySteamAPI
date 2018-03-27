@@ -25,7 +25,7 @@ struct ISteamGameServer012Vtbl
 	void *SetBotPlayerCount;
 	void *SetServerName;
 	void *SetMapName;
-	void *SetPasswordProtected;
+	void (*SetPasswordProtected)(struct ISteamGameServer *iface, steam_bool_t protected);
 	void *SetSpectatorPort;
 	void *SetSpectatorServerName;
 	void *ClearAllKeyValues;
