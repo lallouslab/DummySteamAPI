@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const char *tags)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, tags = \"%s\")", VOIDPTR(This), debug_str(tags));
+}
+
 void ISteamGameServer_CreateUnauthenticatedUserConnection(union CSteamID *ret, struct ISteamGameServer *iface)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

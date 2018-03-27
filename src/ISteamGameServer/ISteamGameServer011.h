@@ -30,7 +30,7 @@ struct ISteamGameServer011Vtbl
 	void *SetSpectatorServerName;
 	void *ClearAllKeyValues;
 	void *SetKeyValue;
-	void *SetGameTags;
+	void (*SetGameTags)(struct ISteamGameServer *iface, const char *tags);
 	void *SetGameData;
 	void *SetRegion;
 	void *SendUserConnectAndAuthenticate;
