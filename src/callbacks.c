@@ -32,7 +32,6 @@ void callbacks_init(void)
 		list_init(&callbacks[i]);
 
 	list_init(&api_call_results);
-
 	list_init(&call_outputs);
 }
 
@@ -44,13 +43,17 @@ void callbacks_register_callback(struct CCallbackBase *callback, enum steam_call
 	callback->type = type;
 	callback->flags |= STEAM_CALLBACK_FLAGS_REGISTERED;
 
+	list_lock(&callbacks[type]);
 	list_push(&callbacks[type], &callback, sizeof(callback));
+	list_unlock(&callbacks[type]);
 }
 
 void callbacks_unregister_callback(struct CCallbackBase *callback)
 {
 	if (callback->type >= STEAM_CALLBACK_TYPE_MAX)
 		return;
+
+	list_lock(&callbacks[callback->type]);
 
 	for (struct list_elem *elem = list_head(&callbacks[callback->type]); elem; elem = list_next(elem))
 	{
@@ -62,6 +65,8 @@ void callbacks_unregister_callback(struct CCallbackBase *callback)
 			break;
 		}
 	}
+
+	list_unlock(&callbacks[callback->type]);
 
 	callback->flags &= ~STEAM_CALLBACK_FLAGS_REGISTERED;
 }
@@ -78,10 +83,12 @@ void callbacks_register_api_call_result(struct CCallbackBase *callback, steam_ap
 
 	callback->flags |= STEAM_CALLBACK_FLAGS_REGISTERED;
 
+	list_lock(&api_call_results);
 	list_push(&api_call_results, &callback, sizeof(callback));
+	list_unlock(&api_call_results);
 }
 
-static void unreg_api_call_result(struct CCallbackBase *callback, struct list_elem *elem)
+static void unreg_api_call_result_unsafe(struct CCallbackBase *callback, struct list_elem *elem)
 {
 	if (elem)
 		list_remove(&api_call_results, elem);
@@ -100,6 +107,8 @@ void callbacks_unregister_api_call_result(struct CCallbackBase *callback, steam_
 	if (result->api_call != api_call)
 		return;
 
+	list_lock(&api_call_results);
+
 	for (elem = list_head(&api_call_results); elem; elem = list_next(elem))
 	{
 		struct CCallbackBase *c = *(struct CCallbackBase **)list_get_data(elem);
@@ -108,7 +117,9 @@ void callbacks_unregister_api_call_result(struct CCallbackBase *callback, steam_
 			break;
 	}
 
-	unreg_api_call_result(callback, elem);
+	unreg_api_call_result_unsafe(callback, elem);
+
+	list_unlock(&api_call_results);
 }
 
 void callbacks_dispatch_callback_output(enum steam_callback_type type, void *data, size_t data_size)
@@ -153,7 +164,7 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 	return out.api_call;
 }
 
-static int remove_call_output(struct list_elem *elem)
+static int remove_call_output_unsafe(struct list_elem *elem)
 {
 	struct call_output *out;
 
@@ -200,7 +211,7 @@ static steam_bool_t api_call_result_get_output(steam_bool_t only_check, steam_ap
 			*io_failure = out->io_failure;
 
 		if (!only_check)
-			remove_call_output(elem);
+			remove_call_output_unsafe(elem);
 
 		result = STEAM_TRUE;
 		break;
@@ -291,7 +302,7 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 			{
 				callback->vtbl->Run1(callback, out->io_failure, out->api_call, out->data);
 
-				unreg_api_call_result(callback, elem);
+				unreg_api_call_result_unsafe(callback, elem);
 
 				out->is_handled = STEAM_TRUE;
 				handled = STEAM_TRUE;
@@ -327,7 +338,7 @@ void callbacks_run(void)
 		if (!out->is_handled)
 			continue;
 
-		remove_call_output(elem);
+		remove_call_output_unsafe(elem);
 	}
 
 	list_unlock(&call_outputs);
