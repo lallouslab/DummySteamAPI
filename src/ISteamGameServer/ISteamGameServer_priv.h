@@ -16,6 +16,7 @@ static inline struct ISteamGameServerImpl *impl_from_ISteamGameServer(struct ISt
 }
 
 steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uint32_t game_ip, uint16_t game_port, uint16_t query_port, enum steam_game_server_flag flags, steam_app_id_t app_id, const char *version);
+void ISteamGameServer_SetModDir(struct ISteamGameServer *iface, const char *mod_dir);
 void ISteamGameServer_SetDedicatedServer(struct ISteamGameServer *iface, steam_bool_t dedicated);
 void ISteamGameServer_LogOnAnonymous(struct ISteamGameServer *iface);
 void ISteamGameServer_LogOff(struct ISteamGameServer *iface);

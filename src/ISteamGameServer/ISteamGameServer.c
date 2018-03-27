@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetModDir(struct ISteamGameServer *iface, const char *mod_dir)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, mod_dir = \"%s\")", VOIDPTR(This), mod_dir);
+}
+
 void ISteamGameServer_SetDedicatedServer(struct ISteamGameServer *iface, steam_bool_t dedicated)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
