@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_SetMaxPlayerCount(struct ISteamGameServer *iface, int count)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, count = %d)", VOIDPTR(This), count);
+}
+
 void ISteamGameServer_SetBotPlayerCount(struct ISteamGameServer *iface, int count)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

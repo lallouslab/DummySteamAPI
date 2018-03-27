@@ -16,7 +16,7 @@ static const struct ISteamGameServer012Vtbl ISteamGameServer012_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamGameServer_SetMaxPlayerCount,
 	ISteamGameServer_SetBotPlayerCount,
 	ISteamGameServer_SetServerName,
 	ISteamGameServer_SetMapName,
