@@ -20,6 +20,13 @@ steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *iface, uin
 	return STEAM_TRUE;
 }
 
+void ISteamGameServer_LogOnAnonymous(struct ISteamGameServer* iface)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+}
+
 void ISteamGameServer_LogOff(struct ISteamGameServer *iface)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

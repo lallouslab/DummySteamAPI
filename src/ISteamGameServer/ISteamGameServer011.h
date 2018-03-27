@@ -15,7 +15,7 @@ struct ISteamGameServer011Vtbl
 	void *SetModDir;
 	void *SetDedicatedServer;
 	void *LogOn;
-	void *LogOnAnonymous;
+	void (*LogOnAnonymous)(struct ISteamGameServer *iface);
 	void (*LogOff)(struct ISteamGameServer *iface);
 	void *BLoggedOn;
 	void *BSecure;
