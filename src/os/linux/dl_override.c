@@ -7,8 +7,6 @@
 #include "debug.h"
 #include "macros.h"
 
-#define LIBSTEAM_API_LIB_NAME "libsteam_api.so"
-
 typedef void *(*PFN_DLOPEN)(const char *, int);
 
 extern void *__libc_dlopen_mode(const char *, int);
@@ -42,6 +40,42 @@ int dl_override_init(void)
 	return 0;
 }
 
+static int is_steam_lib(const char *filename)
+{
+	static const char *libs_name[] = {
+		"libsteam_api.so",
+		"libCSteamworks.so",
+		NULL
+	};
+	int result;
+	int i;
+
+	if (!filename)
+		return -1;
+
+	i = 0;
+	while (libs_name[i])
+	{
+		const char *lib_name = libs_name[i];
+		size_t lib_name_len;
+		size_t len;
+
+		i++;
+
+		lib_name_len = strlen(lib_name);
+		len = strlen(filename);
+
+		if (len < lib_name_len)
+			continue;
+
+		result = strcmp(&filename[len - lib_name_len], lib_name);
+		if (result == 0)
+			return 0;
+	}
+
+	return -1;
+}
+
 EXPORT void *dlopen(const char *filename, int flags)
 {
 	int result;
@@ -58,19 +92,8 @@ EXPORT void *dlopen(const char *filename, int flags)
 		return NULL;
 	}
 
-	result = -1;
-
-	if (filename)
-	{
-		const size_t lib_name_len = sizeof(LIBSTEAM_API_LIB_NAME) - 1;
-		size_t len;
-
-		len = strlen(filename);
-		if (len >= lib_name_len)
-			result = strcmp(&filename[len - lib_name_len], LIBSTEAM_API_LIB_NAME);
-	}
-
-	if (result != 0)
+	result = is_steam_lib(filename);
+	if (result < 0)
 	{
 		DEBUG0("No need to intercept.");
 		goto done;
