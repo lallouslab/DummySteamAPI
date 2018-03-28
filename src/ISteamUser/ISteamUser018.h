@@ -25,7 +25,7 @@ struct ISteamUser018Vtbl
 	MEMBER steam_auth_ticket_handle_t (*GetAuthSessionTicket)(struct ISteamUser *iface, void *buf, int buf_size, uint32_t *ticket_len);
 	void *BeginAuthSession;
 	void *EndAuthSession;
-	void *CancelAuthTicket;
+	MEMBER void (*CancelAuthTicket)(struct ISteamUser *iface, steam_auth_ticket_handle_t ticket_handle);
 	void *UserHasLicenseForApp;
 	void *BIsBehindNAT;
 	void *AdvertiseGame;

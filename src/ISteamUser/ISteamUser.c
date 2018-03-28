@@ -131,6 +131,13 @@ MEMBER steam_auth_ticket_handle_t ISteamUser_GetAuthSessionTicket(struct ISteamU
 	return 0;
 }
 
+MEMBER void ISteamUser_CancelAuthTicket(struct ISteamUser *iface, steam_auth_ticket_handle_t ticket_handle)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p ticket_handle = %u)", VOIDPTR(This), ticket_handle);
+}
+
 MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
