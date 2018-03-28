@@ -2,11 +2,12 @@
 #include <windows.h>
 
 #include "debug.h"
+#include "dsa.h"
 #include "utils.h"
 #include "os/os.h"
 
 #ifndef GetCurrentProcessToken
-#  define GetCurrentProcessToken() ((HANDLE)~(ULONG_PTR)3)
+# define GetCurrentProcessToken() ((HANDLE)~(ULONG_PTR)3)
 #endif
 
 struct dsa_os_mutex
@@ -20,7 +21,7 @@ static struct
 	char *steam_dir;
 } os_ctx;
 
-EXPORT int dsa_os_init(void)
+static int dsa_os_init(void)
 {
 	BOOL ret;
 	LONG retl;
@@ -73,10 +74,12 @@ EXPORT int dsa_os_init(void)
 		os_ctx.steam_dir = dsa_utils_strdup("${STEAM_DIR}");
 	}
 
+	dsa_init();
+
 	return 0;
 }
 
-EXPORT int dsa_os_deinit(void)
+static int dsa_os_deinit(void)
 {
 	dsa_utils_free_ptr(&os_ctx.home_dir);
 	dsa_utils_free_ptr(&os_ctx.steam_dir);
@@ -139,4 +142,26 @@ EXPORT int dsa_os_mkdir(const char *path)
 
 	ret = CreateDirectoryA(path, NULL);
 	return ret ? 0 : -1;
+}
+
+EXPORT BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, void *res)
+{
+	(void)inst;
+	(void)res;
+
+	switch (reason)
+	{
+		case DLL_PROCESS_ATTACH:
+			dsa_os_init();
+			return TRUE;
+
+		case DLL_PROCESS_DETACH:
+			dsa_os_deinit();
+			break;
+
+		default:
+			break;
+	}
+
+	return FALSE;
 }

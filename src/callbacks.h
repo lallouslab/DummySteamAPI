@@ -5,7 +5,7 @@
 #include "list.h"
 #include "steam.h"
 
-void callbacks_init(void);
+int callbacks_init(void);
 void callbacks_register_callback(struct CCallbackBase *callback, enum steam_callback_type type);
 void callbacks_unregister_callback(struct CCallbackBase *callback);
 void callbacks_register_api_call_result(struct CCallbackBase *callback, steam_api_call_t api_call);

@@ -6,59 +6,22 @@
 #include "os/os.h"
 #include "CCallback.h"
 #include "callbacks.h"
-#include "config.h"
 #include "debug.h"
 #include "setup_ifaces.h"
 #include "steam.h"
 #include "steam_api.h"
 #include "steam_gameserver.h"
 
-static int dsa_init(void)
-{
-	int result;
-
-	result = dsa_os_init();
-	if (result < 0)
-		return result;
-
-	result = dsa_config_init();
-	if (result < 0)
-		return result;
-
-	result = dsa_set_default_interfaces_version();
-	if (result < 0)
-		return result;
-
-	return 0;
-}
-
-static int dsa_deinit(void)
-{
-	int result;
-
-	result = dsa_os_deinit();
-	if (result < 0)
-		return result;
-
-	return 0;
-}
-
 EXPORT steam_bool_t SteamAPI_Init(void)
 {
-	int result;
-
 	LOG_ENTER0("()");
 
-	result = dsa_init();
-	if (result < 0)
-		return STEAM_FALSE;
+	dsa_set_default_interfaces_version();
 
 	if (g_pSteamClientGameServer != INVAL_PTR)
 		return STEAM_TRUE;
 
 	g_pSteamClientGameServer = SteamClient();
-
-	callbacks_init();
 
 	return STEAM_TRUE;
 }
@@ -81,7 +44,7 @@ EXPORT void SteamAPI_Shutdown(void)
 {
 	LOG_ENTER0("()");
 
-	dsa_deinit();
+	g_pSteamClientGameServer = INVAL_PTR;
 }
 
 EXPORT steam_bool_t SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)

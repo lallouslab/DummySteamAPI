@@ -25,7 +25,7 @@ static struct list api_call_results;
 
 static struct list call_outputs;
 
-void callbacks_init(void)
+int callbacks_init(void)
 {
 	cur_api_call = 0;
 
@@ -34,6 +34,7 @@ void callbacks_init(void)
 
 	list_init(&api_call_results);
 	list_init(&call_outputs);
+	return 0;
 }
 
 void callbacks_register_callback(struct CCallbackBase *callback, enum steam_callback_type type)

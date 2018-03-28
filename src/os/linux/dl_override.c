@@ -16,7 +16,7 @@ extern void *__libc_dlsym(void *, const char *);
 
 static PFN_DLOPEN dlopen_ptr = NULL;
 
-static CONSTRUCTOR int dl_override_init(void)
+int dl_override_init(void)
 {
 	if (!dlopen_ptr)
 	{

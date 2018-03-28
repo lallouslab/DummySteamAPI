@@ -3,8 +3,6 @@
 
 struct dsa_os_mutex;
 
-extern int dsa_os_init(void);
-extern int dsa_os_deinit(void);
 extern const char *dsa_os_get_home_dir(void);
 extern const char *dsa_os_get_steam_dir(void);
 extern struct dsa_os_mutex *dsa_os_mutex_create(void);

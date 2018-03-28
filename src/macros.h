@@ -4,7 +4,6 @@
 #include <stddef.h> /* offsetof() */
 #include <stdlib.h>
 
-#define CONSTRUCTOR __attribute__((constructor))
 #define EXPORT __attribute__((visibility("default")))
 #define PACKED_STRUCT struct __attribute__((packed))
 

@@ -8,8 +8,14 @@
 #include <unistd.h>
 
 #include "debug.h"
+#include "dsa.h"
 #include "utils.h"
 #include "os/os.h"
+
+#include "dl_override.h"
+
+#define CONSTRUCTOR __attribute__((constructor))
+#define DESTRUCTOR __attribute__((destructor))
 
 struct dsa_os_mutex
 {
@@ -22,9 +28,12 @@ static struct
 	char *steam_dir;
 } os_ctx;
 
-EXPORT int dsa_os_init(void)
+
+CONSTRUCTOR static void dsa_os_init(void)
 {
 	const char steam_dir[] = "/.local/share/Steam";
+
+	dl_override_init();
 
 	/* home_dir */
 
@@ -53,15 +62,15 @@ EXPORT int dsa_os_init(void)
 		os_ctx.steam_dir = dsa_utils_strdup("${STEAM_DIR}");
 	}
 
-	return 0;
+	dsa_init();
 }
 
-EXPORT int dsa_os_deinit(void)
+DESTRUCTOR static void dsa_os_deinit(void)
 {
+	dsa_deinit();
+
 	dsa_utils_free_ptr(&os_ctx.home_dir);
 	dsa_utils_free_ptr(&os_ctx.steam_dir);
-
-	return 0;
 }
 
 EXPORT const char *dsa_os_get_home_dir(void)
