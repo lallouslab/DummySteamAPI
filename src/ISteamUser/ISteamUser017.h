@@ -22,7 +22,7 @@ struct ISteamUser017Vtbl
 	void *GetVoice;
 	void *DecompressVoice;
 	void *GetVoiceOptimalSampleRate;
-	void *GetAuthSessionTicket;
+	MEMBER steam_auth_ticket_handle_t (*GetAuthSessionTicket)(struct ISteamUser *iface, void *buf, int buf_size, uint32_t *ticket_len);
 	void *BeginAuthSession;
 	void *EndAuthSession;
 	void *CancelAuthTicket;

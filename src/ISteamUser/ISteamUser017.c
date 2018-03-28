@@ -17,7 +17,7 @@ static const struct ISteamUser017Vtbl ISteamUser017_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUser_GetAuthSessionTicket,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

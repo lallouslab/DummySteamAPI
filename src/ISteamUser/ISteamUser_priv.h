@@ -20,6 +20,7 @@ MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
 MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface);
 MEMBER void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len);
+MEMBER steam_auth_ticket_handle_t ISteamUser_GetAuthSessionTicket(struct ISteamUser *iface, void *buf, int buf_size, uint32_t *ticket_len);
 MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size);
 
 #endif /* ISTEAMUSER_PRIV_H */

@@ -122,6 +122,15 @@ MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char 
 	return STEAM_TRUE;
 }
 
+MEMBER steam_auth_ticket_handle_t ISteamUser_GetAuthSessionTicket(struct ISteamUser *iface, void *buf, int buf_size, uint32_t *ticket_len)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, buf = %p, buf_size = %d, ticket_len = %p)", VOIDPTR(This), buf, buf_size, VOIDPTR(ticket_len));
+
+	return 0;
+}
+
 MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
