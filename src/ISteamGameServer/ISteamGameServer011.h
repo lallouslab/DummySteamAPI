@@ -26,7 +26,7 @@ struct ISteamGameServer011Vtbl
 	MEMBER void (*SetServerName)(struct ISteamGameServer *iface, const char *name);
 	MEMBER void (*SetMapName)(struct ISteamGameServer *iface, const char *name);
 	MEMBER void (*SetPasswordProtected)(struct ISteamGameServer *iface, steam_bool_t protected);
-	void *SetSpectatorPort;
+	MEMBER void (*SetSpectatorPort)(struct ISteamGameServer *iface, uint16_t port);
 	void *SetSpectatorServerName;
 	void *ClearAllKeyValues;
 	MEMBER void (*SetKeyValue)(struct ISteamGameServer *iface, const char *key, const char *value);

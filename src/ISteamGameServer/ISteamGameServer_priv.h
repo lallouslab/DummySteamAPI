@@ -26,6 +26,7 @@ MEMBER void ISteamGameServer_SetBotPlayerCount(struct ISteamGameServer *iface, i
 MEMBER void ISteamGameServer_SetServerName(struct ISteamGameServer *iface, const char *name);
 MEMBER void ISteamGameServer_SetMapName(struct ISteamGameServer *iface, const char *name);
 MEMBER void ISteamGameServer_SetPasswordProtected(struct ISteamGameServer *iface, steam_bool_t protected);
+MEMBER void ISteamGameServer_SetSpectatorPort(struct ISteamGameServer *iface, uint16_t port);
 MEMBER void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value);
 MEMBER void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const char *tags);
 MEMBER void ISteamGameServer_CreateUnauthenticatedUserConnection(union CSteamID *ret, struct ISteamGameServer *iface);
