@@ -54,6 +54,7 @@ libs := \
 objs := \
 	CCallback.c.o \
 	callbacks.c.o \
+	config.c.o \
 	debug.c.o \
 	setup_ifaces.c.o \
 	steam_api.c.o \

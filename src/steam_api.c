@@ -6,12 +6,12 @@
 #include "os/os.h"
 #include "CCallback.h"
 #include "callbacks.h"
+#include "config.h"
 #include "debug.h"
 #include "setup_ifaces.h"
 #include "steam.h"
 #include "steam_api.h"
 #include "steam_gameserver.h"
-#include "utils.h"
 
 static int dsa_init(void)
 {
@@ -21,7 +21,7 @@ static int dsa_init(void)
 	if (result < 0)
 		return result;
 
-	result = dsa_utils_init();
+	result = dsa_config_init();
 	if (result < 0)
 		return result;
 
