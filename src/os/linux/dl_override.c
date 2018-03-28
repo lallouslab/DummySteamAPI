@@ -61,7 +61,14 @@ EXPORT void *dlopen(const char *filename, int flags)
 	result = -1;
 
 	if (filename)
-		result = strcmp(filename, LIBSTEAM_API_LIB_NAME);
+	{
+		const size_t lib_name_len = sizeof(LIBSTEAM_API_LIB_NAME) - 1;
+		size_t len;
+
+		len = strlen(filename);
+		if (len >= lib_name_len)
+			result = strcmp(&filename[len - lib_name_len], LIBSTEAM_API_LIB_NAME);
+	}
 
 	if (result != 0)
 	{
