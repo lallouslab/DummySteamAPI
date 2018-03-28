@@ -27,3 +27,19 @@ build-linux-x86_64:
   <<: *build-linux-targets-common
   variables:
     MAKE_TGT: 'all OS=linux CC=x86_64-linux-gnu-gcc'
+
+.build-windows-targets-common: &build-windows-targets-common
+  <<: *build-targets-common
+  artifacts:
+    paths:
+      - bin/libsteam_api.dll
+
+build-windows-i686:
+  <<: *build-windows-targets-common
+  variables:
+    MAKE_TGT: 'all OS=windows CC=i686-w64-mingw32-gcc'
+
+build-windows-x86_64:
+  <<: *build-windows-targets-common
+  variables:
+    MAKE_TGT: 'all OS=windows CC=x86_64-w64-mingw32-gcc'
