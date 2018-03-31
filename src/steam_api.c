@@ -12,14 +12,18 @@
 #include "steam_api.h"
 #include "steam_gameserver.h"
 
+static steam_bool_t is_init = STEAM_FALSE;
+
 EXPORT steam_bool_t SteamAPI_Init(void)
 {
 	LOG_ENTER0("()");
 
-	dsa_set_default_interfaces_version();
-
-	if (g_pSteamClientGameServer != INVAL_PTR)
+	if (is_init)
 		return STEAM_TRUE;
+
+	is_init = STEAM_TRUE;
+
+	dsa_set_default_interfaces_version();
 
 	g_pSteamClientGameServer = SteamClient();
 
@@ -43,6 +47,11 @@ EXPORT steam_bool_t SteamAPI_IsSteamRunning(void)
 EXPORT void SteamAPI_Shutdown(void)
 {
 	LOG_ENTER0("()");
+
+	if (!is_init)
+		return;
+
+	is_init = STEAM_FALSE;
 
 	g_pSteamClientGameServer = INVAL_PTR;
 }
