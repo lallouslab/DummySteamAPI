@@ -11,6 +11,7 @@
 #include "ISteamUser.h"
 #include "ISteamUser_priv.h"
 #include "ISteamUser004.h"
+#include "ISteamUser016.h"
 #include "ISteamUser017.h"
 #include "ISteamUser018.h"
 
@@ -175,10 +176,7 @@ MEMBER void ISteamUser_AdvertiseGame(struct ISteamUser *iface, union CSteamID st
 MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
-	PACKED_STRUCT
-	{
-		enum steam_result result;
-	} encrypted_app_ticket_response;
+	struct steam_callback_data_user_encrypted_app_ticket_response encrypted_app_ticket_response;
 
 	LOG_ENTER("(This = %p, data = %p, data_size = %d)", VOIDPTR(This), data, data_size);
 
@@ -195,6 +193,7 @@ struct ISteamUser *SteamUser_generic(const char *version)
 		struct ISteamUser *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUSER_INTERFACE_VERSION_004, SteamUser004 },
+		{ STEAMUSER_INTERFACE_VERSION_016, SteamUser016 },
 		{ STEAMUSER_INTERFACE_VERSION_017, SteamUser017 },
 		{ STEAMUSER_INTERFACE_VERSION_018, SteamUser018 },
 		{ NULL, NULL }

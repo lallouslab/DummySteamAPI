@@ -8,6 +8,7 @@ STATICLIBS-y := $(libsteamuser)
 objs := \
 	ISteamUser.c.o \
 	ISteamUser004.c.o \
+	ISteamUser016.c.o \
 	ISteamUser017.c.o \
 	ISteamUser018.c.o
 

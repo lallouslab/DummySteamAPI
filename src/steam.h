@@ -17,7 +17,6 @@ typedef enum steam_bool steam_bool_t;
 typedef uint32_t steam_account_id_t;
 typedef uint64_t steam_api_call_t;
 typedef uint32_t steam_app_id_t;
-typedef uint32_t steam_auth_ticket_handle_t;
 typedef int32_t  steam_handle_pipe_t;
 typedef uint32_t steam_mod_id_t;
 typedef int32_t  steam_user_t;

@@ -70,6 +70,7 @@
 #include "ISteamUnifiedMessages/ISteamUnifiedMessages001.h"
 #include "ISteamUser/ISteamUser.h"
 #include "ISteamUser/ISteamUser004.h"
+#include "ISteamUser/ISteamUser016.h"
 #include "ISteamUser/ISteamUser017.h"
 #include "ISteamUser/ISteamUser018.h"
 #include "ISteamUserStats/ISteamUserStats.h"
@@ -131,6 +132,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMUGC_INTERFACE_VERSION_010, SteamUGC_set_version },
 		{ STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_001, SteamUnifiedMessages_set_version },
 		{ STEAMUSER_INTERFACE_VERSION_004, SteamUser_set_version },
+		{ STEAMUSER_INTERFACE_VERSION_016, SteamUser_set_version },
 		{ STEAMUSER_INTERFACE_VERSION_017, SteamUser_set_version },
 		{ STEAMUSER_INTERFACE_VERSION_018, SteamUser_set_version },
 		{ STEAMUSERSTATS_INTERFACE_VERSION_011, SteamUserStats_set_version },

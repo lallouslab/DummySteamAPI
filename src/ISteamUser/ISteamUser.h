@@ -1,6 +1,8 @@
 #ifndef ISTEAMUSER_H
 #define ISTEAMUSER_H 1
 
+#include "steam.h"
+
 #define STEAMUSER_INTERFACE_VERSION_PREFIX "SteamUser"
 
 struct ISteamUser
@@ -9,9 +11,17 @@ struct ISteamUser
 	{
 		const void *ptr;
 		const struct ISteamUser004Vtbl *v004;
+		const struct ISteamUser016Vtbl *v016;
 		const struct ISteamUser017Vtbl *v017;
 		const struct ISteamUser018Vtbl *v018;
 	} vtbl;
+};
+
+typedef uint32_t steam_auth_ticket_handle_t;
+
+struct steam_callback_data_user_encrypted_app_ticket_response
+{
+	enum steam_result result;
 };
 
 struct ISteamUser *SteamUser_generic(const char *version);
