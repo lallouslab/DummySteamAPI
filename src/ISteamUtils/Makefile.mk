@@ -10,7 +10,8 @@ objs := \
 	ISteamUtils001.c.o \
 	ISteamUtils002.c.o \
 	ISteamUtils006.c.o \
-	ISteamUtils007.c.o
+	ISteamUtils007.c.o \
+	ISteamUtils009.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 

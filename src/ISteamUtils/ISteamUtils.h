@@ -12,6 +12,7 @@ struct ISteamUtils
 		const struct ISteamUtils002Vtbl *v002;
 		const struct ISteamUtils006Vtbl *v006;
 		const struct ISteamUtils007Vtbl *v007;
+		const struct ISteamUtils009Vtbl *v009;
 	} vtbl;
 };
 
