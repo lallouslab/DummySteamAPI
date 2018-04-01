@@ -10,6 +10,13 @@
 
 static const char *steam_matchmaking_servers_version = NULL;
 
+void ISteamMatchmakingServers_CancelQuery(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle)
+{
+	struct ISteamMatchmakingServersImpl *This = impl_from_ISteamMatchmakingServers(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %p)", VOIDPTR(This), VOIDPTR(handle));
+}
+
 struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version)
 {
 	static const struct

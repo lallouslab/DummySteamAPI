@@ -16,7 +16,7 @@ struct ISteamMatchmakingServers001Vtbl
 	void *RequestHistoryServerList;
 	void *RequestSpectatorServerList;
 	void *GetServerDetails;
-	void *CancelQuery;
+	void (*CancelQuery)(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle);
 	void *RefreshQuery;
 	void *IsRefreshing;
 	void *GetServerCount;

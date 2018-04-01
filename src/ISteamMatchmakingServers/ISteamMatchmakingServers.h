@@ -13,6 +13,8 @@ struct ISteamMatchmakingServers
 	} vtbl;
 };
 
+typedef void *steam_handle_server_list_request_t;
+
 struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version);
 void SteamMatchmakingServers_set_version(const char *version);
 extern struct ISteamMatchmakingServers *SteamMatchmakingServers(void);

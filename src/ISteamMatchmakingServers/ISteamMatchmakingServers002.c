@@ -12,7 +12,7 @@ static const struct ISteamMatchmakingServers002Vtbl ISteamMatchmakingServers002_
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamMatchmakingServers_CancelQuery,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
