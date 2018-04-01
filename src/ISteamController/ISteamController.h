@@ -17,6 +17,7 @@ struct ISteamController
 };
 
 typedef uint64_t steam_controller_handle_t;
+typedef uint64_t steam_controller_action_set_handle_t;
 
 struct ISteamController *SteamController_generic(const char *version);
 void SteamController_set_version(const char *version);

@@ -10,7 +10,7 @@ static const struct ISteamController003Vtbl ISteamController003_vtbl = {
 	ISteamController_GetConnectedControllers,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamController_ActivateActionSet,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
