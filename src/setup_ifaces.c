@@ -17,6 +17,7 @@
 #include "ISteamApps/ISteamApps008.h"
 #include "ISteamClient/ISteamClient.h"
 #include "ISteamClient/ISteamClient006.h"
+#include "ISteamClient/ISteamClient012.h"
 #include "ISteamClient/ISteamClient014.h"
 #include "ISteamClient/ISteamClient016.h"
 #include "ISteamClient/ISteamClient017.h"
@@ -88,6 +89,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMAPPS_INTERFACE_VERSION_007, SteamApps_set_version },
 		{ STEAMAPPS_INTERFACE_VERSION_008, SteamApps_set_version },
 		{ STEAMCLIENT_INTERFACE_VERSION_006, SteamClient_set_version },
+		{ STEAMCLIENT_INTERFACE_VERSION_012, SteamClient_set_version },
 		{ STEAMCLIENT_INTERFACE_VERSION_014, SteamClient_set_version },
 		{ STEAMCLIENT_INTERFACE_VERSION_016, SteamClient_set_version },
 		{ STEAMCLIENT_INTERFACE_VERSION_017, SteamClient_set_version },
