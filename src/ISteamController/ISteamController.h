@@ -13,6 +13,7 @@ struct ISteamController
 		const void *ptr;
 		const struct ISteamController001Vtbl *v001;
 		const struct ISteamController003Vtbl *v003;
+		const struct ISteamController005Vtbl *v005;
 	} vtbl;
 };
 
