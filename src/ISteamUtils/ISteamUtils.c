@@ -12,6 +12,7 @@
 #include "ISteamUtils.h"
 #include "ISteamUtils_priv.h"
 #include "ISteamUtils001.h"
+#include "ISteamUtils002.h"
 #include "ISteamUtils006.h"
 #include "ISteamUtils007.h"
 
@@ -140,6 +141,7 @@ struct ISteamUtils *SteamUtils_generic(const char *version)
 		struct ISteamUtils *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUTILS_INTERFACE_VERSION_001, SteamUtils001 },
+		{ STEAMUTILS_INTERFACE_VERSION_002, SteamUtils002 },
 		{ STEAMUTILS_INTERFACE_VERSION_006, SteamUtils006 },
 		{ STEAMUTILS_INTERFACE_VERSION_007, SteamUtils007 },
 		{ NULL, NULL }

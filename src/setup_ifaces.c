@@ -78,6 +78,7 @@
 #include "ISteamUserStats/ISteamUserStats011.h"
 #include "ISteamUtils/ISteamUtils.h"
 #include "ISteamUtils/ISteamUtils001.h"
+#include "ISteamUtils/ISteamUtils002.h"
 #include "ISteamUtils/ISteamUtils006.h"
 #include "ISteamUtils/ISteamUtils007.h"
 
@@ -139,6 +140,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMUSER_INTERFACE_VERSION_019, SteamUser_set_version },
 		{ STEAMUSERSTATS_INTERFACE_VERSION_011, SteamUserStats_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_001, SteamUtils_set_version },
+		{ STEAMUTILS_INTERFACE_VERSION_002, SteamUtils_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_006, SteamUtils_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_007, SteamUtils_set_version },
 		{ NULL, NULL }

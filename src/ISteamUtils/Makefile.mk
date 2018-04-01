@@ -8,6 +8,7 @@ STATICLIBS-y := $(libsteamutils)
 objs := \
 	ISteamUtils.c.o \
 	ISteamUtils001.c.o \
+	ISteamUtils002.c.o \
 	ISteamUtils006.c.o \
 	ISteamUtils007.c.o
 
