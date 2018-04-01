@@ -9,6 +9,7 @@ objs := \
 	ISteamApps.c.o \
 	ISteamApps001.c.o \
 	ISteamApps003.c.o \
+	ISteamApps005.c.o \
 	ISteamApps006.c.o \
 	ISteamApps007.c.o
 

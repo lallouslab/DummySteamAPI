@@ -7,6 +7,7 @@
 #include "ISteamApps_priv.h"
 #include "ISteamApps001.h"
 #include "ISteamApps003.h"
+#include "ISteamApps005.h"
 #include "ISteamApps006.h"
 #include "ISteamApps007.h"
 
@@ -93,6 +94,7 @@ struct ISteamApps *SteamApps_generic(const char *version)
 	} ifaces[] = {
 		{ STEAMAPPS_INTERFACE_VERSION_001, SteamApps001 },
 		{ STEAMAPPS_INTERFACE_VERSION_003, SteamApps003 },
+		{ STEAMAPPS_INTERFACE_VERSION_005, SteamApps005 },
 		{ STEAMAPPS_INTERFACE_VERSION_006, SteamApps006 },
 		{ STEAMAPPS_INTERFACE_VERSION_007, SteamApps007 },
 		{ NULL, NULL }

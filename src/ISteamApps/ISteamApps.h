@@ -10,6 +10,7 @@ struct ISteamApps
 		const void *ptr;
 		const struct ISteamApps001Vtbl *v001;
 		const struct ISteamApps003Vtbl *v003;
+		const struct ISteamApps005Vtbl *v005;
 		const struct ISteamApps006Vtbl *v006;
 		const struct ISteamApps007Vtbl *v007;
 	} vtbl;
