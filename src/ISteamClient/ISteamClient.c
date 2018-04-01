@@ -41,6 +41,15 @@ MEMBER steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *ifa
 	return 1;
 }
 
+MEMBER steam_bool_t ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, steam_handle_pipe_t handle)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %d)", VOIDPTR(This), handle);
+
+	return STEAM_TRUE;
+}
+
 MEMBER struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);

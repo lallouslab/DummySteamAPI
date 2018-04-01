@@ -35,6 +35,7 @@ static inline struct ISteamClientImpl *impl_from_ISteamClient(struct ISteamClien
 }
 
 MEMBER steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *iface);
+MEMBER steam_bool_t ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, steam_handle_pipe_t handle);
 MEMBER struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 MEMBER struct ISteamApps *ISteamClient_GetISteamApps(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 MEMBER struct ISteamClient *ISteamClient_GetISteamClient(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version);

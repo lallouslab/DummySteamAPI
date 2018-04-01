@@ -5,7 +5,7 @@
 
 static const struct ISteamClient006Vtbl ISteamClient006_vtbl = {
 	ISteamClient_CreateSteamPipe,
-	INVAL_PTR,
+	ISteamClient_BReleaseSteamPipe,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

@@ -17,7 +17,7 @@
 struct ISteamClient006Vtbl
 {
 	MEMBER steam_handle_pipe_t (*CreateSteamPipe)(struct ISteamClient *iface);
-	void *BReleaseSteamPipe;
+	MEMBER steam_bool_t (*BReleaseSteamPipe)(struct ISteamClient *iface, steam_handle_pipe_t handle);
 	void *CreateGlobalUser;
 	void *ConnectToGlobalUser;
 	void *CreateLocalUser;
