@@ -58,7 +58,7 @@ struct ISteamRemoteStorage012Vtbl
 	void *EnumerateUserSharedWorkshopFiles;
 	void *PublishVideo;
 	void *SetUserPublishedFileAction;
-	void *EnumeratePublishedFilesByUserAction;
+	MEMBER steam_api_call_t (*EnumeratePublishedFilesByUserAction)(struct ISteamRemoteStorage *iface, enum steam_workshop_file_action action, uint32_t start_idx);
 	void *EnumeratePublishedWorkshopFiles;
 	void *UGCDownloadToLocation;
 };

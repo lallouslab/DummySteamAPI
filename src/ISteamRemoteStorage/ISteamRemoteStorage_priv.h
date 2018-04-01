@@ -19,5 +19,6 @@ MEMBER int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface
 MEMBER int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface);
 MEMBER steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes);
 MEMBER void ISteamRemoteStorage_SetCloudEnabledForApp(struct ISteamRemoteStorage *iface, steam_bool_t enabled);
+MEMBER steam_api_call_t ISteamRemoteStorage_EnumeratePublishedFilesByUserAction(struct ISteamRemoteStorage *iface, enum steam_workshop_file_action action, uint32_t start_idx);
 
 #endif /* ISTEAMREMOTESTORAGE_PRIV_H */

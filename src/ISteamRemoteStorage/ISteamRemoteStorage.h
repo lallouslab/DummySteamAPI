@@ -14,6 +14,12 @@ struct ISteamRemoteStorage
 	} vtbl;
 };
 
+enum steam_workshop_file_action
+{
+	STEAM_WORKSHOP_FILE_ACTION_PLAYED = 0u,
+	STEAM_WORKSHOP_FILE_ACTION_COMPLETED = 1u
+};
+
 struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version);
 void SteamRemoteStorage_set_version(const char *version);
 extern struct ISteamRemoteStorage *SteamRemoteStorage(void);
