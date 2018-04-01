@@ -18,7 +18,7 @@ struct ISteamGameServer012Vtbl
 	MEMBER void (*LogOnAnonymous)(struct ISteamGameServer *iface);
 	MEMBER void (*LogOff)(struct ISteamGameServer *iface);
 	void *BLoggedOn;
-	void *BSecure;
+	MEMBER steam_bool_t (*BSecure)(struct ISteamGameServer *iface);
 	MEMBER union CSteamID (*GetSteamID)(struct ISteamGameServer *iface);
 	void *WasRestartRequested;
 	MEMBER void (*SetMaxPlayerCount)(struct ISteamGameServer *iface, int count);
