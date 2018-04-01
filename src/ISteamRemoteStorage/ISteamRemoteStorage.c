@@ -8,6 +8,7 @@
 #include "ISteamRemoteStorage001.h"
 #include "ISteamRemoteStorage012.h"
 #include "ISteamRemoteStorage013.h"
+#include "ISteamRemoteStorage014.h"
 
 static const char *steam_remote_storage_version = NULL;
 
@@ -39,6 +40,18 @@ MEMBER int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *ifac
 }
 
 MEMBER steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, total_bytes = %p, available_bytes = %p)", VOIDPTR(This), VOIDPTR(total_bytes), VOIDPTR(available_bytes));
+
+	*total_bytes = 0;
+	*available_bytes = 0;
+
+	return STEAM_TRUE;
+}
+
+MEMBER steam_bool_t ISteamRemoteStorage014_GetQuota(struct ISteamRemoteStorage *iface, uint64_t *total_bytes, uint64_t *available_bytes)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
@@ -94,6 +107,7 @@ struct ISteamRemoteStorage *SteamRemoteStorage_generic(const char *version)
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_001, SteamRemoteStorage001 },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_012, SteamRemoteStorage012 },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_013, SteamRemoteStorage013 },
+		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_014, SteamRemoteStorage014 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -134,7 +148,7 @@ EXPORT struct ISteamRemoteStorage *SteamRemoteStorage(void)
 
 	if (!steam_remote_storage_version)
 	{
-		steam_remote_storage_version = STEAMREMOTESTORAGE_INTERFACE_VERSION_013;
+		steam_remote_storage_version = STEAMREMOTESTORAGE_INTERFACE_VERSION_014;
 
 		WARN("ISteamRemoteStorage: No version specified, defaulting to \"%s\".", debug_str(steam_remote_storage_version));
 	}

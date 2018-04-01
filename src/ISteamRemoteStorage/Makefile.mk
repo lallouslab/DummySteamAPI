@@ -9,7 +9,8 @@ objs := \
 	ISteamRemoteStorage.c.o \
 	ISteamRemoteStorage001.c.o \
 	ISteamRemoteStorage012.c.o \
-	ISteamRemoteStorage013.c.o
+	ISteamRemoteStorage013.c.o \
+	ISteamRemoteStorage014.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 

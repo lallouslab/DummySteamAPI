@@ -57,6 +57,7 @@
 #include "ISteamRemoteStorage/ISteamRemoteStorage001.h"
 #include "ISteamRemoteStorage/ISteamRemoteStorage012.h"
 #include "ISteamRemoteStorage/ISteamRemoteStorage013.h"
+#include "ISteamRemoteStorage/ISteamRemoteStorage014.h"
 #include "ISteamScreenshots/ISteamScreenshots.h"
 #include "ISteamScreenshots/ISteamScreenshots001.h"
 #include "ISteamScreenshots/ISteamScreenshots002.h"
@@ -121,6 +122,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_001, SteamRemoteStorage_set_version },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_012, SteamRemoteStorage_set_version },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_013, SteamRemoteStorage_set_version },
+		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_014, SteamRemoteStorage_set_version },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_001, SteamScreenshots_set_version },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_002, SteamScreenshots_set_version },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_003, SteamScreenshots_set_version },
