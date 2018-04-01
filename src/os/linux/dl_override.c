@@ -43,8 +43,9 @@ int dl_override_init(void)
 static int is_steam_lib(const char *filename)
 {
 	static const char *libs_name[] = {
-		"libsteam_api.so",
 		"libCSteamworks.so",
+		"libsteam_api.so",
+		"steamclient.so",
 		NULL
 	};
 	int result;
