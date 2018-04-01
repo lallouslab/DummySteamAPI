@@ -3,10 +3,12 @@
 #include <stdint.h>
 #include <inttypes.h>
 
-#include "os/os.h"
+#include "ISteamClient/ISteamClient017.h"
+
 #include "CCallback.h"
 #include "callbacks.h"
 #include "debug.h"
+#include "os/os.h"
 #include "setup_ifaces.h"
 #include "steam.h"
 #include "steam_api.h"
@@ -150,4 +152,15 @@ EXPORT void SteamAPI_SetTryCatchCallbacks(steam_bool_t enable)
 EXPORT void SteamAPI_UseBreakpadCrashHandler(const char *version, const char *date, char const *time, steam_bool_t is_full_memory_dump, void *context, void *pre_minidump_callback)
 {
 	LOG_ENTER_NOTIMPL("(version = \"%s\", date = \"%s\", time = \"%s\", is_full_memory_dump = %u, context = %p, pre_minidump_callback = %p)", debug_str(version), debug_str(date), debug_str(time), is_full_memory_dump, context, pre_minidump_callback);
+}
+
+EXPORT void *SteamInternal_CreateInterface(const char *version)
+{
+	struct ISteamClient *steam_client;
+
+	LOG_ENTER("(version = \"%s\")", version);
+
+	steam_client = SteamClient017();
+
+	return steam_client->vtbl.v017->GetISteamGenericInterface(steam_client, SteamAPI_GetHSteamUser(), SteamAPI_GetHSteamPipe(), version);
 }

@@ -22,5 +22,6 @@ extern steam_user_t SteamAPI_GetHSteamUser(void);
 extern steam_user_t GetHSteamUser(void);
 extern void SteamAPI_SetTryCatchCallbacks(steam_bool_t enable);
 extern void SteamAPI_UseBreakpadCrashHandler(const char *version, const char *date, char const *time, steam_bool_t is_full_memory_dump, void *context, void *pre_minidump_callback);
+extern void *SteamInternal_CreateInterface(const char *version);
 
 #endif /* STEAM_API_H */
