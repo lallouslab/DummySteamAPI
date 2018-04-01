@@ -19,6 +19,15 @@ MEMBER steam_bool_t ISteamController_Init(struct ISteamController *iface, const 
 	return STEAM_TRUE;
 }
 
+MEMBER steam_bool_t ISteamController_Init003(struct ISteamController *iface)
+{
+	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	return STEAM_TRUE;
+}
+
 MEMBER steam_bool_t ISteamController_Shutdown(struct ISteamController *iface)
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);

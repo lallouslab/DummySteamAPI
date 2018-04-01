@@ -4,7 +4,7 @@
 #include "ISteamController_priv.h"
 
 static const struct ISteamController003Vtbl ISteamController003_vtbl = {
-	ISteamController_Init,
+	ISteamController_Init003,
 	ISteamController_Shutdown,
 	ISteamController_RunFrame,
 	INVAL_PTR,

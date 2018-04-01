@@ -9,7 +9,7 @@
 
 struct ISteamController003Vtbl
 {
-	MEMBER steam_bool_t (*Init)(struct ISteamController *iface, const char *path_to_cfg);
+	MEMBER steam_bool_t (*Init)(struct ISteamController *iface);
 	MEMBER steam_bool_t (*Shutdown)(struct ISteamController *iface);
 	MEMBER void (*RunFrame)(struct ISteamController *iface);
 	void *GetConnectedControllers;
