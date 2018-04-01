@@ -7,6 +7,7 @@
 #include "ISteamScreenshots_priv.h"
 #include "ISteamScreenshots001.h"
 #include "ISteamScreenshots002.h"
+#include "ISteamScreenshots003.h"
 
 static const char *steam_screenshots_version = NULL;
 
@@ -28,6 +29,7 @@ struct ISteamScreenshots *SteamScreenshots_generic(const char *version)
 	} ifaces[] = {
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_001, SteamScreenshots001 },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_002, SteamScreenshots002 },
+		{ STEAMSCREENSHOTS_INTERFACE_VERSION_003, SteamScreenshots003 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -68,7 +70,7 @@ EXPORT struct ISteamScreenshots *SteamScreenshots(void)
 
 	if (!steam_screenshots_version)
 	{
-		steam_screenshots_version = STEAMSCREENSHOTS_INTERFACE_VERSION_002;
+		steam_screenshots_version = STEAMSCREENSHOTS_INTERFACE_VERSION_003;
 
 		WARN("ISteamScreenshots: No version specified, defaulting to \"%s\".", debug_str(steam_screenshots_version));
 	}

@@ -10,6 +10,7 @@ struct ISteamScreenshots
 		const void *ptr;
 		const struct ISteamScreenshots001Vtbl *v001;
 		const struct ISteamScreenshots002Vtbl *v002;
+		const struct ISteamScreenshots003Vtbl *v003;
 	} vtbl;
 };
 
