@@ -162,7 +162,14 @@ MEMBER void ISteamUser_CancelAuthTicket(struct ISteamUser *iface, steam_auth_tic
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p ticket_handle = %u)", VOIDPTR(This), ticket_handle);
+	LOG_ENTER_NOTIMPL("(This = %p, ticket_handle = %u)", VOIDPTR(This), ticket_handle);
+}
+
+MEMBER void ISteamUser_AdvertiseGame(struct ISteamUser *iface, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_game_server = %#" PRIx64 ", server_ip = %#x, server_port = %u)", VOIDPTR(This), steam_id_game_server.raw, server_ip, server_port);
 }
 
 MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *iface, void *data, int data_size)
