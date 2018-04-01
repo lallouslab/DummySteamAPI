@@ -7,7 +7,7 @@ static const struct ISteamUtils006Vtbl ISteamUtils006_vtbl = {
 	ISteamUtils_GetSecondsSinceAppActive,
 	INVAL_PTR,
 	ISteamUtils_GetConnectedUniverse,
-	INVAL_PTR,
+	ISteamUtils_GetServerRealTime,
 	ISteamUtils_GetIPCountry,
 	INVAL_PTR,
 	INVAL_PTR,

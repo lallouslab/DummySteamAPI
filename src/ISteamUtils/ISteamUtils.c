@@ -1,6 +1,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "CCallback.h"
 #include "callbacks.h"
@@ -32,6 +33,15 @@ MEMBER enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return STEAM_UNIVERSE_PUBLIC;
+}
+
+MEMBER uint32_t ISteamUtils_GetServerRealTime(struct ISteamUtils *iface)
+{
+	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
+
+	LOG_ENTER("(This = %p)", VOIDPTR(This));
+
+	return time(NULL);
 }
 
 MEMBER const char *ISteamUtils_GetIPCountry(struct ISteamUtils *iface)
