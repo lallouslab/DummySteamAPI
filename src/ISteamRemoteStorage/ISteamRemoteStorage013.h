@@ -50,7 +50,7 @@ struct ISteamRemoteStorage013Vtbl
 	void *CommitPublishedFileUpdate;
 	void *GetPublishedFileDetails;
 	void *DeletePublishedFile;
-	void *EnumerateUserPublishedFiles;
+	MEMBER steam_api_call_t (*EnumerateUserPublishedFiles)(struct ISteamRemoteStorage *iface, uint32_t start_idx);
 	void *SubscribePublishedFile;
 	void *EnumerateUserSubscribedFiles;
 	void *UnsubscribePublishedFile;
