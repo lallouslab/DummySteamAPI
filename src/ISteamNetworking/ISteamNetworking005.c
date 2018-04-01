@@ -5,7 +5,7 @@
 
 static const struct ISteamNetworking005Vtbl ISteamNetworking005_vtbl = {
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamNetworking_IsP2PPacketAvailable,
 	ISteamNetworking_ReadP2PPacket,
 	INVAL_PTR,
 	INVAL_PTR,

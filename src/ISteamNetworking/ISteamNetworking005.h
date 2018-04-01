@@ -10,8 +10,8 @@
 struct ISteamNetworking005Vtbl
 {
 	void *SendP2PPacket;
-	void *IsP2PPacketAvailable;
-	MEMBER steam_bool_t (*ReadP2PPacket)(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels);
+	MEMBER steam_bool_t (*IsP2PPacketAvailable)(struct ISteamNetworking *iface, uint32_t *msg_size, int channel);
+	MEMBER steam_bool_t (*ReadP2PPacket)(struct ISteamNetworking *iface, void *dest, uint32_t dest_size, uint32_t *msg_size, void /* CSteamID */ **steam_id_remote, int channel);
 	void *AcceptP2PSessionWithUser;
 	void *CloseP2PSessionWithUser;
 	void *CloseP2PChannelWithUser;

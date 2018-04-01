@@ -10,13 +10,24 @@
 
 static const char *steam_networking_version = NULL;
 
-MEMBER steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *pub_dest, uint32_t cub_dest, uint32_t *cub_msg_size, void /* CSteamID */ **steam_id_remote, int nchannels)
+MEMBER steam_bool_t ISteamNetworking_IsP2PPacketAvailable(struct ISteamNetworking *iface, uint32_t *msg_size, int channel)
 {
 	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, pub_dest = %p, cub_dest = %u, cub_msg_size = %p, steam_id_remote = %p, nchannels = %d)", VOIDPTR(This), pub_dest, cub_dest, VOIDPTR(cub_msg_size), VOIDPTR(steam_id_remote), nchannels);
+	LOG_ENTER_NOTIMPL("(This = %p, msg_size = %p, channel = %d)", VOIDPTR(This), VOIDPTR(msg_size), channel);
 
-	*cub_msg_size = 0;
+	*msg_size = 0;
+
+	return STEAM_FALSE;
+}
+
+MEMBER steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *dest, uint32_t dest_size, uint32_t *msg_size, void /* CSteamID */ **steam_id_remote, int channel)
+{
+	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, dest = %p, dest_size = %u, msg_size = %p, steam_id_remote = %p, channel = %d)", VOIDPTR(This), dest, dest_size, VOIDPTR(msg_size), VOIDPTR(steam_id_remote), channel);
+
+	*msg_size = 0;
 	*steam_id_remote = INVAL_PTR;
 
 	return STEAM_FALSE;
