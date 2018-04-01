@@ -22,7 +22,7 @@ struct ISteamUserStats011Vtbl
 	MEMBER steam_bool_t (*StoreStats)(struct ISteamUserStats *iface);
 	MEMBER int (*GetAchievementIcon)(struct ISteamUserStats *iface, const char *name);
 	MEMBER const char *(*GetAchievementDisplayAttribute)(struct ISteamUserStats *iface, const char *name, const char *key);
-	void *IndicateAchievementProgress;
+	MEMBER steam_bool_t (*IndicateAchievementProgress)(struct ISteamUserStats *iface, const char *name, uint32_t cur_progress, uint32_t max_progress);
 	void *GetNumAchievements;
 	void *GetAchievementName;
 	MEMBER steam_api_call_t (*RequestUserStats)(struct ISteamUserStats *iface, union CSteamID steam_id_user);

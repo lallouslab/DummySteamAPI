@@ -179,6 +179,15 @@ MEMBER const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamU
 	return "<achievement value>";
 }
 
+MEMBER steam_bool_t ISteamUserStats_IndicateAchievementProgress(struct ISteamUserStats *iface, const char *name, uint32_t cur_progress, uint32_t max_progress)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", cur_progress = %u, max_progress = %u)", VOIDPTR(This), debug_str(name), cur_progress, max_progress);
+
+	return STEAM_FALSE;
+}
+
 MEMBER steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);

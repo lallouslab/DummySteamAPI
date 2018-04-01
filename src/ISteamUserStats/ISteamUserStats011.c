@@ -17,7 +17,7 @@ static const struct ISteamUserStats011Vtbl ISteamUserStats011_vtbl = {
 	ISteamUserStats_StoreStats,
 	ISteamUserStats_GetAchievementIcon,
 	ISteamUserStats_GetAchievementDisplayAttribute,
-	INVAL_PTR,
+	ISteamUserStats_IndicateAchievementProgress,
 	INVAL_PTR,
 	INVAL_PTR,
 	ISteamUserStats_RequestUserStats,

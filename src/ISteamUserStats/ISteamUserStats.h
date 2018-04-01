@@ -14,7 +14,7 @@ struct ISteamUserStats
 	} vtbl;
 };
 
-PACKED_STRUCT steam_callback_data_user_stats_user_stats_received
+struct steam_callback_data_user_stats_user_stats_received
 {
 	union CGameID game_id;
 	enum steam_result result;
