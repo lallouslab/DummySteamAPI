@@ -8,7 +8,7 @@ static const struct ISteamUtils007Vtbl ISteamUtils007_vtbl = {
 	INVAL_PTR,
 	ISteamUtils_GetConnectedUniverse,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUtils_GetIPCountry,
 	INVAL_PTR,
 	INVAL_PTR,
 	ISteamUtils_GetCSERIPPort,

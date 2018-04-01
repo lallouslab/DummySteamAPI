@@ -14,7 +14,7 @@ struct ISteamUtils006Vtbl
 	void *GetSecondsSinceComputerActive;
 	MEMBER enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
 	void *GetServerRealTime;
-	void *GetIPCountry;
+	MEMBER const char *(*GetIPCountry)(struct ISteamUtils *iface);
 	void *GetImageSize;
 	void *GetImageRGBA;
 	MEMBER steam_bool_t (*GetCSERIPPort)(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port);

@@ -34,6 +34,15 @@ MEMBER enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *
 	return STEAM_UNIVERSE_PUBLIC;
 }
 
+MEMBER const char *ISteamUtils_GetIPCountry(struct ISteamUtils *iface)
+{
+	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
+
+	LOG_ENTER("(This = %p)", VOIDPTR(This));
+
+	return "FR";
+}
+
 MEMBER steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
