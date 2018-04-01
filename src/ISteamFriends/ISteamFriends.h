@@ -9,6 +9,7 @@ struct ISteamFriends
 	{
 		const void *ptr;
 		const struct ISteamFriends001Vtbl *v001;
+		const struct ISteamFriends013Vtbl *v013;
 		const struct ISteamFriends014Vtbl *v014;
 		const struct ISteamFriends015Vtbl *v015;
 	} vtbl;

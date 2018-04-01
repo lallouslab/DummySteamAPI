@@ -6,6 +6,7 @@
 #include "ISteamFriends.h"
 #include "ISteamFriends_priv.h"
 #include "ISteamFriends001.h"
+#include "ISteamFriends013.h"
 #include "ISteamFriends014.h"
 #include "ISteamFriends015.h"
 
@@ -91,6 +92,7 @@ struct ISteamFriends *SteamFriends_generic(const char *version)
 		struct ISteamFriends *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMFRIENDS_INTERFACE_VERSION_001, SteamFriends001 },
+		{ STEAMFRIENDS_INTERFACE_VERSION_013, SteamFriends013 },
 		{ STEAMFRIENDS_INTERFACE_VERSION_014, SteamFriends014 },
 		{ STEAMFRIENDS_INTERFACE_VERSION_015, SteamFriends015 },
 		{ NULL, NULL }

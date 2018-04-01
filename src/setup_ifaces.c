@@ -27,6 +27,7 @@
 #include "ISteamController/ISteamController005.h"
 #include "ISteamFriends/ISteamFriends.h"
 #include "ISteamFriends/ISteamFriends001.h"
+#include "ISteamFriends/ISteamFriends013.h"
 #include "ISteamFriends/ISteamFriends014.h"
 #include "ISteamFriends/ISteamFriends015.h"
 #include "ISteamGameCoordinator/ISteamGameCoordinator.h"
@@ -98,6 +99,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMCONTROLLER_INTERFACE_VERSION_003, SteamController_set_version },
 		{ STEAMCONTROLLER_INTERFACE_VERSION_005, SteamController_set_version },
 		{ STEAMFRIENDS_INTERFACE_VERSION_001, SteamFriends_set_version },
+		{ STEAMFRIENDS_INTERFACE_VERSION_013, SteamFriends_set_version },
 		{ STEAMFRIENDS_INTERFACE_VERSION_014, SteamFriends_set_version },
 		{ STEAMFRIENDS_INTERFACE_VERSION_015, SteamFriends_set_version },
 		{ STEAMGAMECOORDINATOR_INTERFACE_VERSION_001, SteamGameCoordinator_set_version },
