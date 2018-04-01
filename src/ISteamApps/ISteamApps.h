@@ -13,6 +13,7 @@ struct ISteamApps
 		const struct ISteamApps005Vtbl *v005;
 		const struct ISteamApps006Vtbl *v006;
 		const struct ISteamApps007Vtbl *v007;
+		const struct ISteamApps008Vtbl *v008;
 	} vtbl;
 };
 

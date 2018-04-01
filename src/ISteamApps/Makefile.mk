@@ -11,7 +11,8 @@ objs := \
 	ISteamApps003.c.o \
 	ISteamApps005.c.o \
 	ISteamApps006.c.o \
-	ISteamApps007.c.o
+	ISteamApps007.c.o \
+	ISteamApps008.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 
