@@ -14,6 +14,7 @@ struct ISteamUser
 		const struct ISteamUser016Vtbl *v016;
 		const struct ISteamUser017Vtbl *v017;
 		const struct ISteamUser018Vtbl *v018;
+		const struct ISteamUser019Vtbl *v019;
 	} vtbl;
 };
 

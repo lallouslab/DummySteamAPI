@@ -14,6 +14,7 @@
 #include "ISteamUser016.h"
 #include "ISteamUser017.h"
 #include "ISteamUser018.h"
+#include "ISteamUser019.h"
 
 static const char *steam_user_version = NULL;
 
@@ -86,7 +87,7 @@ MEMBER int ISteamUser_InitiateGameConnection010(struct ISteamUser *iface, void *
 	if ((size_t)auth_blob_size < sizeof(steam_id))
 		return 0;
 
-	steam_id = iface->vtbl.v018->GetSteamID(iface);
+	steam_id = iface->vtbl.v019->GetSteamID(iface);
 
 	memcpy(auth_blob, &steam_id, sizeof(steam_id));
 
@@ -196,6 +197,7 @@ struct ISteamUser *SteamUser_generic(const char *version)
 		{ STEAMUSER_INTERFACE_VERSION_016, SteamUser016 },
 		{ STEAMUSER_INTERFACE_VERSION_017, SteamUser017 },
 		{ STEAMUSER_INTERFACE_VERSION_018, SteamUser018 },
+		{ STEAMUSER_INTERFACE_VERSION_019, SteamUser019 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -236,7 +238,7 @@ EXPORT struct ISteamUser *SteamUser(void)
 
 	if (!steam_user_version)
 	{
-		steam_user_version = STEAMUSER_INTERFACE_VERSION_018;
+		steam_user_version = STEAMUSER_INTERFACE_VERSION_019;
 
 		WARN("ISteamUser: No version specified, defaulting to \"%s\".", debug_str(steam_user_version));
 	}
