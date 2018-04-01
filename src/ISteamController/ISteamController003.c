@@ -7,7 +7,7 @@ static const struct ISteamController003Vtbl ISteamController003_vtbl = {
 	ISteamController_Init003,
 	ISteamController_Shutdown,
 	ISteamController_RunFrame,
-	INVAL_PTR,
+	ISteamController_GetConnectedControllers,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

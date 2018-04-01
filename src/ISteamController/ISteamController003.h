@@ -12,7 +12,7 @@ struct ISteamController003Vtbl
 	MEMBER steam_bool_t (*Init)(struct ISteamController *iface);
 	MEMBER steam_bool_t (*Shutdown)(struct ISteamController *iface);
 	MEMBER void (*RunFrame)(struct ISteamController *iface);
-	void *GetConnectedControllers;
+	MEMBER int (*GetConnectedControllers)(struct ISteamController *iface, steam_controller_handle_t *handles);
 	void *ShowBindingPanel;
 	void *GetActionSetHandle;
 	void *ActivateActionSet;

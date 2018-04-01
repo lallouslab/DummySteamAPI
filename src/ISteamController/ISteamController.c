@@ -53,6 +53,15 @@ MEMBER steam_bool_t ISteamController_GetControllerState(struct ISteamController 
 	return STEAM_FALSE;
 }
 
+MEMBER int ISteamController_GetConnectedControllers(struct ISteamController *iface, steam_controller_handle_t *handles)
+{
+	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handles = %p)", VOIDPTR(This), VOIDPTR(handles));
+
+	return 0;
+}
+
 MEMBER void ISteamController_TriggerHapticPulse(struct ISteamController *iface, uint32_t index, unsigned int /* ESteamControllerPad */ target_pad, unsigned short duration_ms)
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
