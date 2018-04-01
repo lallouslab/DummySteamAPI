@@ -19,7 +19,7 @@ struct ISteamGameServer011Vtbl
 	MEMBER void (*LogOff)(struct ISteamGameServer *iface);
 	void *BLoggedOn;
 	void *BSecure;
-	void *GetSteamID;
+	MEMBER union CSteamID (*GetSteamID)(struct ISteamGameServer *iface);
 	void *WasRestartRequested;
 	MEMBER void (*SetMaxPlayerCount)(struct ISteamGameServer *iface, int count);
 	MEMBER void (*SetBotPlayerCount)(struct ISteamGameServer *iface, int count);
