@@ -60,6 +60,7 @@ objs := \
 	setup_ifaces.c.o \
 	steam_api.c.o \
 	steam_gameserver.c.o \
+	steamclient.c.o \
 	utils.c.o
 
 CFLAGS-y += -fPIC -I.
