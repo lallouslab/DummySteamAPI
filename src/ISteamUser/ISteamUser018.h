@@ -12,7 +12,7 @@ struct ISteamUser018Vtbl
 	MEMBER steam_user_t (*GetHSteamUser)(struct ISteamUser *iface);
 	MEMBER steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
 	MEMBER union CSteamID (*GetSteamID)(struct ISteamUser *iface);
-	void *InitiateGameConnection;
+	MEMBER int (*InitiateGameConnection)(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
 	MEMBER void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 	void *TrackAppUsageEvent;
 	MEMBER steam_bool_t (*GetUserDataFolder)(struct ISteamUser *iface, char *buf, int buf_size);

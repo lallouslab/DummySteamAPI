@@ -18,6 +18,8 @@ MEMBER steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface);
 MEMBER steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface);
 MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface);
 MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface);
+MEMBER int ISteamUser_InitiateGameConnection(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, steam_app_id_t app_id, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
+MEMBER int ISteamUser_InitiateGameConnection010(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
 MEMBER void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char *buf, int buf_len);
 MEMBER steam_auth_ticket_handle_t ISteamUser_GetAuthSessionTicket(struct ISteamUser *iface, void *buf, int buf_size, uint32_t *ticket_len);

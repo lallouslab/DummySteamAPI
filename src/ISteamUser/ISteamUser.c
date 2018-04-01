@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -63,6 +64,32 @@ MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
 	ISteamUser_GetSteamID(&steam_id, iface);
 
 	return steam_id;
+}
+
+MEMBER int ISteamUser_InitiateGameConnection(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, steam_app_id_t app_id, uint32_t server_ip, uint16_t server_port, steam_bool_t secure)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
+	LOG_ENTER("(This = %p, auth_blob = %p, auth_blob_size = %d, steam_id_game_server = %#" PRIx64 ", app_id = %u, server_ip = %#x, server_port = %u, secure = %u)", VOIDPTR(This), auth_blob, auth_blob_size, steam_id_game_server.raw, app_id, server_ip, server_port, secure);
+
+	return ISteamUser_InitiateGameConnection010(iface, auth_blob, auth_blob_size, steam_id_game_server, server_ip, server_port, secure);
+}
+
+MEMBER int ISteamUser_InitiateGameConnection010(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port, steam_bool_t secure)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+	union CSteamID steam_id;
+
+	LOG_ENTER_NOTIMPL("(This = %p, auth_blob = %p, auth_blob_size = %d, steam_id_game_server = %#" PRIx64 ", server_ip = %#x, server_port = %u, secure = %u)", VOIDPTR(This), auth_blob, auth_blob_size, steam_id_game_server.raw, server_ip, server_port, secure);
+
+	if ((size_t)auth_blob_size < sizeof(steam_id))
+		return 0;
+
+	steam_id = iface->vtbl.v018->GetSteamID(iface);
+
+	memcpy(auth_blob, &steam_id, sizeof(steam_id));
+
+	return auth_blob_size < 1024 ? auth_blob_size : 1024;
 }
 
 MEMBER void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port)

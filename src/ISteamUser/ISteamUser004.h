@@ -30,7 +30,7 @@ struct ISteamUser004Vtbl
 	void *GetRegistryString;
 	void *SetRegistryInt;
 	void *GetRegistryInt;
-	void *InitiateGameConnection;
+	MEMBER int (*InitiateGameConnection)(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, steam_app_id_t app_id, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
 	MEMBER void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 	void *SetSelfAsPrimaryChatDestination;
 	void *IsPrimaryChatDestination;
