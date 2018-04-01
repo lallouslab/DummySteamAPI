@@ -8,11 +8,12 @@
 #include "macros.h"
 
 typedef void *(*PFN_DLOPEN)(const char *, int);
+typedef void *(*PFN_DLMOPEN)(Lmid_t lmid, const char *, int);
 
 extern void *__libc_dlopen_mode(const char *, int);
-extern void *__libc_dlsym(void *, const char *);
 
 static PFN_DLOPEN dlopen_ptr = NULL;
+static PFN_DLMOPEN dlmopen_ptr = NULL;
 
 int dl_override_init(void)
 {
@@ -27,10 +28,17 @@ int dl_override_init(void)
 			return -1;
 		}
 
-		dlopen_ptr = (PFN_DLOPEN)voidptr_to_pfn(__libc_dlsym(libdl_handle, "dlopen"));
+		dlopen_ptr = (PFN_DLOPEN)voidptr_to_pfn(dlsym(libdl_handle, "dlopen"));
 		if (!dlopen_ptr)
 		{
 			WARN0("Failed to intercept dlopen(): Failed to locate dlopen inside libdl.so.2.");
+			return -1;
+		}
+
+		dlmopen_ptr = (PFN_DLMOPEN)voidptr_to_pfn(dlsym(libdl_handle, "dlmopen"));
+		if (!dlmopen_ptr)
+		{
+			WARN0("Failed to intercept dlmopen(): Failed to locate dlmopen inside libdl.so.2.");
 			return -1;
 		}
 	}
@@ -113,4 +121,42 @@ EXPORT void *dlopen(const char *filename, int flags)
 
 done:
 	return dlopen_ptr(filename, flags);
+}
+
+EXPORT void *dlmopen(Lmid_t lmid, const char *filename, int flags)
+{
+	int result;
+	Dl_info this_sym_info;
+
+	DEBUG("dlmopen(%ld, \"%s\", %x)", lmid, debug_str(filename), flags);
+
+	if (!dlmopen_ptr)
+		dl_override_init();
+
+	if (!dlmopen_ptr)
+	{
+		WARN0("Unable to call original dlmopen()!");
+		return NULL;
+	}
+
+	result = is_steam_lib(filename);
+	if (result < 0)
+	{
+		DEBUG0("No need to intercept.");
+		goto done;
+	}
+
+	result = dladdr(pfn_to_voidptr((PFN_VOID)dl_override_init), &this_sym_info);
+	if (!result || !this_sym_info.dli_fname)
+	{
+		WARN("Failed to intercept dlmopen() of \"%s\": dladdr() failed to retrieve the DummySteamAPI library path.", filename);
+		goto done;
+	}
+
+	DEBUG("Intercepting dlmopen() of \"%s\" => \"%s\".", filename, this_sym_info.dli_fname);
+
+	filename = this_sym_info.dli_fname;
+
+done:
+	return dlmopen_ptr(lmid, filename, flags);
 }
