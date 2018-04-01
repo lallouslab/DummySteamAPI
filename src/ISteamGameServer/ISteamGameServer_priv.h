@@ -21,6 +21,7 @@ MEMBER void ISteamGameServer_SetModDir(struct ISteamGameServer *iface, const cha
 MEMBER void ISteamGameServer_SetDedicatedServer(struct ISteamGameServer *iface, steam_bool_t dedicated);
 MEMBER void ISteamGameServer_LogOnAnonymous(struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_LogOff(struct ISteamGameServer *iface);
+MEMBER steam_bool_t ISteamGameServer_BLoggedOn(struct ISteamGameServer *iface);
 MEMBER steam_bool_t ISteamGameServer_BSecure(struct ISteamGameServer *iface);
 MEMBER union CSteamID ISteamGameServer_GetSteamID(struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_SetMaxPlayerCount(struct ISteamGameServer *iface, int count);

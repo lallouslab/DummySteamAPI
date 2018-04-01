@@ -62,6 +62,15 @@ MEMBER void ISteamGameServer_LogOff(struct ISteamGameServer *iface)
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 }
 
+MEMBER steam_bool_t ISteamGameServer_BLoggedOn(struct ISteamGameServer *iface)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	return STEAM_TRUE;
+}
+
 MEMBER steam_bool_t ISteamGameServer_BSecure(struct ISteamGameServer *iface)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

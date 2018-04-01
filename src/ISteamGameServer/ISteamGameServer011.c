@@ -12,7 +12,7 @@ static const struct ISteamGameServer011Vtbl ISteamGameServer011_vtbl = {
 	INVAL_PTR,
 	ISteamGameServer_LogOnAnonymous,
 	ISteamGameServer_LogOff,
-	INVAL_PTR,
+	ISteamGameServer_BLoggedOn,
 	ISteamGameServer_BSecure,
 	ISteamGameServer_GetSteamID,
 	INVAL_PTR,

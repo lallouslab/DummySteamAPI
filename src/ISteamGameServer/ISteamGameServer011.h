@@ -17,7 +17,7 @@ struct ISteamGameServer011Vtbl
 	void *LogOn;
 	MEMBER void (*LogOnAnonymous)(struct ISteamGameServer *iface);
 	MEMBER void (*LogOff)(struct ISteamGameServer *iface);
-	void *BLoggedOn;
+	MEMBER steam_bool_t (*BLoggedOn)(struct ISteamGameServer *iface);
 	MEMBER steam_bool_t (*BSecure)(struct ISteamGameServer *iface);
 	MEMBER union CSteamID (*GetSteamID)(struct ISteamGameServer *iface);
 	void *WasRestartRequested;
