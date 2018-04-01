@@ -164,3 +164,13 @@ EXPORT void *SteamInternal_CreateInterface(const char *version)
 
 	return steam_client->vtbl.v017->GetISteamGenericInterface(steam_client, SteamAPI_GetHSteamUser(), SteamAPI_GetHSteamPipe(), version);
 }
+
+EXPORT struct CSteamAPIContext *SteamInternal_ContextInit(struct CSteamAPIContextInitData *data)
+{
+	LOG_ENTER("(data = %p)", VOIDPTR(data));
+
+	if (data->callback)
+		data->callback(&data->ctx);
+
+	return &data->ctx;
+}
