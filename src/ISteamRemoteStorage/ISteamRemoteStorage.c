@@ -66,6 +66,15 @@ MEMBER steam_api_call_t ISteamRemoteStorage_EnumerateUserPublishedFiles(struct I
 	return 0;
 }
 
+MEMBER steam_api_call_t ISteamRemoteStorage_EnumerateUserSubscribedFiles(struct ISteamRemoteStorage *iface, uint32_t start_idx)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, start_idx = %u)", VOIDPTR(This), start_idx);
+
+	return 0;
+}
+
 MEMBER steam_api_call_t ISteamRemoteStorage_EnumeratePublishedFilesByUserAction(struct ISteamRemoteStorage *iface, enum steam_workshop_file_action action, uint32_t start_idx)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);

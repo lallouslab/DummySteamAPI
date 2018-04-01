@@ -49,7 +49,7 @@ struct ISteamRemoteStorage012Vtbl
 	void *DeletePublishedFile;
 	MEMBER steam_api_call_t (*EnumerateUserPublishedFiles)(struct ISteamRemoteStorage *iface, uint32_t start_idx);
 	void *SubscribePublishedFile;
-	void *EnumerateUserSubscribedFiles;
+	MEMBER steam_api_call_t (*EnumerateUserSubscribedFiles)(struct ISteamRemoteStorage *iface, uint32_t start_idx);
 	void *UnsubscribePublishedFile;
 	void *UpdatePublishedFileSetChangeDescription;
 	void *GetPublishedItemVoteDetails;
