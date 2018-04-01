@@ -53,17 +53,6 @@ enum steam_game_id_type
 	STEAM_GAME_ID_TYPE_P2P = 3u
 };
 
-enum steam_game_server_flag
-{
-	STEAM_GAME_SERVER_FLAG_NONE       = 0u,
-	STEAM_GAME_SERVER_FLAG_ACTIVE     = 1u << 0,
-	STEAM_GAME_SERVER_FLAG_SECURE     = 1u << 1,
-	STEAM_GAME_SERVER_FLAG_DEDICATED  = 1u << 2,
-	STEAM_GAME_SERVER_FLAG_LINUX      = 1u << 3,
-	STEAM_GAME_SERVER_FLAG_PASSWORDED = 1u << 4,
-	STEAM_GAME_SERVER_FLAG_PRIVATE    = 1u << 5
-};
-
 enum steam_game_server_mode
 {
 	STEAM_GAME_SERVER_MODE_INVALID = 0,

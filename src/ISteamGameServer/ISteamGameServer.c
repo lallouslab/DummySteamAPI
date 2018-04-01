@@ -1,6 +1,8 @@
 #include <inttypes.h>
 #include <string.h>
 
+#include "CCallback.h"
+#include "callbacks.h"
 #include "debug.h"
 #include "steam.h"
 
@@ -15,7 +17,7 @@ MEMBER steam_bool_t ISteamGameServer_InitGameServer(struct ISteamGameServer *ifa
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, game_ip = \"%#x\", game_port = %u, query_port = %u, flags = %#x, app_id = %u, version = \"%s\")", VOIDPTR(This), game_ip, game_port, query_port, flags, app_id, version);
+	LOG_ENTER_NOTIMPL("(This = %p, game_ip = %#x, game_port = %u, query_port = %u, flags = %#x, app_id = %u, version = \"%s\")", VOIDPTR(This), game_ip, game_port, query_port, flags, app_id, version);
 
 	return STEAM_TRUE;
 }
@@ -149,6 +151,23 @@ MEMBER void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const c
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, tags = \"%s\")", VOIDPTR(This), debug_str(tags));
+}
+
+MEMBER steam_bool_t ISteamGameServer_SendUserConnectAndAuthenticate(struct ISteamGameServer *iface, uint32_t client_ip, const void *auth_blob, uint32_t auth_blob_size, union CSteamID *steam_id_user)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+	struct steam_callback_data_game_server_client_approve client_approve;
+
+	LOG_ENTER_NOTIMPL("(This = %p, client_ip = %#x, auth_blob = %p, auth_blob_size = %u, steam_id_user = %p)", VOIDPTR(This), client_ip, auth_blob, auth_blob_size, VOIDPTR(steam_id_user));
+
+	if (auth_blob_size < sizeof(client_approve.steam_id))
+		return STEAM_FALSE;
+
+	client_approve.steam_id = *(union CSteamID *)auth_blob;
+	client_approve.owner_steam_id = client_approve.steam_id;
+
+	callbacks_dispatch_callback_output(STEAM_CALLBACK_TYPE_GAME_SERVER_CLIENT_APPROVE, &client_approve, sizeof (client_approve));
+	return STEAM_TRUE;
 }
 
 MEMBER void ISteamGameServer_CreateUnauthenticatedUserConnection(union CSteamID *ret, struct ISteamGameServer *iface)

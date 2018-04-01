@@ -28,7 +28,7 @@ static const struct ISteamGameServer011Vtbl ISteamGameServer011_vtbl = {
 	ISteamGameServer_SetGameTags,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamGameServer_SendUserConnectAndAuthenticate,
 	ISteamGameServer_CreateUnauthenticatedUserConnection,
 	ISteamGameServer_SendUserDisconnect,
 	INVAL_PTR,

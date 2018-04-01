@@ -33,7 +33,7 @@ struct ISteamGameServer011Vtbl
 	MEMBER void (*SetGameTags)(struct ISteamGameServer *iface, const char *tags);
 	void *SetGameData;
 	void *SetRegion;
-	void *SendUserConnectAndAuthenticate;
+	MEMBER steam_bool_t (*SendUserConnectAndAuthenticate)(struct ISteamGameServer *iface, uint32_t client_ip, const void *auth_blob, uint32_t auth_blob_size, union CSteamID *steam_id_user);
 	MEMBER void (*CreateUnauthenticatedUserConnection)(union CSteamID *ret, struct ISteamGameServer *iface);
 	MEMBER void (*SendUserDisconnect)(struct ISteamGameServer *iface, union CSteamID steam_id_user);
 	void *BUpdateUserData;
