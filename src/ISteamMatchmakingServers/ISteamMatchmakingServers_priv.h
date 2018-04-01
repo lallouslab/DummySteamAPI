@@ -15,5 +15,6 @@ static inline struct ISteamMatchmakingServersImpl *impl_from_ISteamMatchmakingSe
 }
 
 void ISteamMatchmakingServers_CancelQuery(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle);
+steam_bool_t ISteamMatchmakingServers_IsRefreshing(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle);
 
 #endif /* ISTEAMMATCHMAKINGSERVERS_PRIV_H */

@@ -17,6 +17,15 @@ void ISteamMatchmakingServers_CancelQuery(struct ISteamMatchmakingServers *iface
 	LOG_ENTER_NOTIMPL("(This = %p, handle = %p)", VOIDPTR(This), VOIDPTR(handle));
 }
 
+steam_bool_t ISteamMatchmakingServers_IsRefreshing(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle)
+{
+	struct ISteamMatchmakingServersImpl *This = impl_from_ISteamMatchmakingServers(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %p)", VOIDPTR(This), VOIDPTR(handle));
+
+	return STEAM_FALSE;
+}
+
 struct ISteamMatchmakingServers *SteamMatchmakingServers_generic(const char *version)
 {
 	static const struct

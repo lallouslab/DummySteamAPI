@@ -19,7 +19,7 @@ struct ISteamMatchmakingServers002Vtbl
 	void *GetServerDetails;
 	void (*CancelQuery)(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle);
 	void *RefreshQuery;
-	void *IsRefreshing;
+	steam_bool_t (*IsRefreshing)(struct ISteamMatchmakingServers *iface, steam_handle_server_list_request_t handle);
 	void *GetServerCount;
 	void *RefreshServer;
 	void *PingServer;
