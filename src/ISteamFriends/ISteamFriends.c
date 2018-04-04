@@ -79,7 +79,7 @@ MEMBER steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, 
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p, connect_str = %p)", VOIDPTR(This), steam_id_friend, debug_str(connect_str));
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p, connect_str = \"%s\")", VOIDPTR(This), steam_id_friend, debug_str(connect_str));
 
 	return STEAM_FALSE;
 }

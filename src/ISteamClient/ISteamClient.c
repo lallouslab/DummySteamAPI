@@ -7,6 +7,7 @@
 #include "ISteamGameCoordinator/ISteamGameCoordinator.h"
 #include "ISteamGameServer/ISteamGameServer.h"
 #include "ISteamGameServerStats/ISteamGameServerStats.h"
+#include "ISteamHTMLSurface/ISteamHTMLSurface.h"
 #include "ISteamHTTP/ISteamHTTP.h"
 #include "ISteamMatchmaking/ISteamMatchmaking.h"
 #include "ISteamMatchmakingServers/ISteamMatchmakingServers.h"
@@ -165,6 +166,11 @@ static void *get_generic_ISteamGameServerStats(struct ISteamClient *iface, steam
 	return VOIDPTR(ISteamClient_GetISteamGameServerStats(iface, steam_user, steam_pipe, debug_str(version)));
 }
 
+static void *get_generic_ISteamHTMLSurface(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return VOIDPTR(ISteamClient_GetISteamHTMLSurface(iface, steam_user, steam_pipe, debug_str(version)));
+}
+
 static void *get_generic_ISteamHTTP(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	return VOIDPTR(ISteamClient_GetISteamHTTP(iface, steam_user, steam_pipe, debug_str(version)));
@@ -249,6 +255,7 @@ MEMBER void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, 
 		{ STEAMGAMECOORDINATOR_INTERFACE_VERSION_PREFIX,    get_generic_ISteamGameCoordinator },
 		{ STEAMGAMESERVER_INTERFACE_VERSION_PREFIX,         get_generic_ISteamGameServer },
 		{ STEAMGAMESERVERSTATS_INTERFACE_VERSION_PREFIX,    get_generic_ISteamGameServerStats },
+		{ STEAMHTMLSURFACE_INTERFACE_VERSION_PREFIX,        get_generic_ISteamHTMLSurface },
 		{ STEAMHTTP_INTERFACE_VERSION_PREFIX,               get_generic_ISteamHTTP },
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_PREFIX,        get_generic_ISteamMatchmaking },
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_PREFIX, get_generic_ISteamMatchmakingServers },
@@ -288,9 +295,9 @@ MEMBER struct ISteamHTMLSurface *ISteamClient_GetISteamHTMLSurface(struct ISteam
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
-	return NULL;
+	return SteamHTMLSurface_generic(version);
 }
 
 MEMBER struct ISteamHTTP *ISteamClient_GetISteamHTTP(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
