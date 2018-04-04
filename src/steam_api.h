@@ -43,6 +43,7 @@ extern steam_bool_t SteamAPI_IsSteamRunning(void);
 extern void SteamAPI_Shutdown(void);
 extern void Steam_RegisterInterfaceFuncs(void *module);
 extern steam_bool_t SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id);
+extern void Steam_RunCallbacks(steam_handle_pipe_t pipe, steam_bool_t game_server_callbacks);
 extern void SteamAPI_RunCallbacks(void);
 extern void SteamAPI_WriteMiniDump(uint32_t excp_code, void *excp_info, uint32_t build_id);
 extern void SteamAPI_SetMiniDumpComment(const char *msg);

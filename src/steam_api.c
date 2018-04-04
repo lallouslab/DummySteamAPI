@@ -71,6 +71,16 @@ EXPORT steam_bool_t SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)
 	return STEAM_FALSE;
 }
 
+EXPORT void Steam_RunCallbacks(steam_handle_pipe_t pipe, steam_bool_t game_server_callbacks)
+{
+	LOG_ENTER("(pipe = %u, game_server_callbacks = %u)", pipe, game_server_callbacks);
+
+	if (!game_server_callbacks)
+		SteamAPI_RunCallbacks();
+	else
+		SteamGameServer_RunCallbacks();
+}
+
 EXPORT void SteamAPI_RunCallbacks(void)
 {
 	LOG_ENTER0("()");
