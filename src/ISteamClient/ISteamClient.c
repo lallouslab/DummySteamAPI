@@ -22,6 +22,7 @@
 #include "ISteamUser/ISteamUser.h"
 #include "ISteamUserStats/ISteamUserStats.h"
 #include "ISteamUtils/ISteamUtils.h"
+#include "ISteamVideo/ISteamVideo.h"
 #include "debug.h"
 #include "steam.h"
 
@@ -245,6 +246,11 @@ static void *get_generic_ISteamUtils(struct ISteamClient *iface, steam_user_t st
 	return VOIDPTR(ISteamClient_GetISteamUtils(iface, steam_pipe, debug_str(version)));
 }
 
+static void *get_generic_ISteamVideo(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return VOIDPTR(ISteamClient_GetISteamVideo(iface, steam_user, steam_pipe, debug_str(version)));
+}
+
 MEMBER void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -277,6 +283,7 @@ MEMBER void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, 
 		{ STEAMUSER_INTERFACE_VERSION_PREFIX,               get_generic_ISteamUser },
 		{ STEAMUSERSTATS_INTERFACE_VERSION_PREFIX,          get_generic_ISteamUserStats },
 		{ STEAMUTILS_INTERFACE_VERSION_PREFIX,              get_generic_ISteamUtils },
+		{ STEAMVIDEO_INTERFACE_VERSION_PREFIX,              get_generic_ISteamVideo },
 		{ NULL, NULL }
 	};
 	int i;
@@ -438,9 +445,9 @@ MEMBER struct ISteamVideo *ISteamClient_GetISteamVideo(struct ISteamClient *ifac
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
-	return NULL;
+	return SteamVideo_generic(version);
 }
 
 MEMBER void ISteamClient_SetWarningMessageHook(struct ISteamClient *iface, void *callback)

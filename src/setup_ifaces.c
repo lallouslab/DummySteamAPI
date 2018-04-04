@@ -87,6 +87,8 @@
 #include "ISteamUtils/ISteamUtils006.h"
 #include "ISteamUtils/ISteamUtils007.h"
 #include "ISteamUtils/ISteamUtils009.h"
+#include "ISteamVideo/ISteamVideo.h"
+#include "ISteamVideo/ISteamVideo001.h"
 
 int dsa_set_default_interfaces_version(void)
 {
@@ -153,6 +155,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMUTILS_INTERFACE_VERSION_006, SteamUtils_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_007, SteamUtils_set_version },
 		{ STEAMUTILS_INTERFACE_VERSION_009, SteamUtils_set_version },
+		{ STEAMVIDEO_INTERFACE_VERSION_001, SteamVideo_set_version },
 		{ NULL, NULL }
 	};
 	int result = -1;

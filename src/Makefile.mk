@@ -22,6 +22,7 @@ SUBDIRS-y := \
 	ISteamUser \
 	ISteamUserStats \
 	ISteamUtils \
+	ISteamVideo \
 	os
 EXTDIRS-y :=
 
@@ -53,6 +54,7 @@ libs := \
 	ISteamUser/libsteamuser$(STATIC_LIB_EXT) \
 	ISteamUserStats/libsteamuserstats$(STATIC_LIB_EXT) \
 	ISteamUtils/libsteamutils$(STATIC_LIB_EXT) \
+	ISteamVideo/libsteamvideo$(STATIC_LIB_EXT) \
 	os/libos$(STATIC_LIB_EXT)
 
 objs := \
