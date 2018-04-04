@@ -9,6 +9,7 @@ SUBDIRS-y := \
 	ISteamGameServerStats \
 	ISteamHTMLSurface \
 	ISteamHTTP \
+	ISteamInventory \
 	ISteamMatchmaking \
 	ISteamMatchmakingServers \
 	ISteamMusic \
@@ -39,6 +40,7 @@ libs := \
 	ISteamGameServerStats/libsteamgameserverstats$(STATIC_LIB_EXT) \
 	ISteamHTMLSurface/libsteamhtmlsurface$(STATIC_LIB_EXT) \
 	ISteamHTTP/libsteamhttp$(STATIC_LIB_EXT) \
+	ISteamInventory/libsteaminventory$(STATIC_LIB_EXT) \
 	ISteamMatchmaking/libsteammatchmaking$(STATIC_LIB_EXT) \
 	ISteamMatchmakingServers/libsteammatchmakingservers$(STATIC_LIB_EXT) \
 	ISteamMusic/libsteammusic$(STATIC_LIB_EXT) \

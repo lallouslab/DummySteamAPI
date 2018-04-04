@@ -9,6 +9,7 @@
 #include "ISteamGameServerStats/ISteamGameServerStats.h"
 #include "ISteamHTMLSurface/ISteamHTMLSurface.h"
 #include "ISteamHTTP/ISteamHTTP.h"
+#include "ISteamInventory/ISteamInventory.h"
 #include "ISteamMatchmaking/ISteamMatchmaking.h"
 #include "ISteamMatchmakingServers/ISteamMatchmakingServers.h"
 #include "ISteamMusic/ISteamMusic.h"
@@ -176,6 +177,12 @@ static void *get_generic_ISteamHTTP(struct ISteamClient *iface, steam_user_t ste
 	return VOIDPTR(ISteamClient_GetISteamHTTP(iface, steam_user, steam_pipe, debug_str(version)));
 }
 
+static void *get_generic_ISteamInventory(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return VOIDPTR(ISteamClient_GetISteamInventory(iface, steam_user, steam_pipe, debug_str(version)));
+}
+
+
 static void *get_generic_ISteamMatchmaking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	return VOIDPTR(ISteamClient_GetISteamMatchmaking(iface, steam_user, steam_pipe, debug_str(version)));
@@ -257,6 +264,7 @@ MEMBER void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, 
 		{ STEAMGAMESERVERSTATS_INTERFACE_VERSION_PREFIX,    get_generic_ISteamGameServerStats },
 		{ STEAMHTMLSURFACE_INTERFACE_VERSION_PREFIX,        get_generic_ISteamHTMLSurface },
 		{ STEAMHTTP_INTERFACE_VERSION_PREFIX,               get_generic_ISteamHTTP },
+		{ STEAMINVENTORY_INTERFACE_VERSION_PREFIX,          get_generic_ISteamInventory },
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_PREFIX,        get_generic_ISteamMatchmaking },
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_PREFIX, get_generic_ISteamMatchmakingServers },
 		{ STEAMMUSIC_INTERFACE_VERSION_PREFIX,              get_generic_ISteamMusic },
@@ -313,9 +321,9 @@ MEMBER struct ISteamInventory *ISteamClient_GetISteamInventory(struct ISteamClie
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
-	return NULL;
+	return SteamInventory_generic(version);
 }
 
 MEMBER struct ISteamMatchmaking *ISteamClient_GetISteamMatchmaking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
