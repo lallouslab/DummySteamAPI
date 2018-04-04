@@ -166,6 +166,13 @@ EXPORT steam_user_t GetHSteamUser(void)
 	return SteamAPI_GetHSteamUser();
 }
 
+EXPORT const char *SteamAPI_GetSteamInstallPath(void)
+{
+	LOG_ENTER0("()");
+
+	return dsa_os_get_steam_dir();
+}
+
 EXPORT void SteamAPI_SetTryCatchCallbacks(steam_bool_t enable)
 {
 	LOG_ENTER_NOTIMPL("(enable = %u)", enable);
