@@ -145,6 +145,13 @@ EXPORT steam_handle_pipe_t GetHSteamPipe(void)
 	return SteamAPI_GetHSteamPipe();
 }
 
+EXPORT steam_user_t Steam_GetHSteamUserCurrent(void)
+{
+	LOG_ENTER0("()");
+
+	return SteamAPI_GetHSteamUser();
+}
+
 EXPORT steam_user_t SteamAPI_GetHSteamUser(void)
 {
 	LOG_ENTER0("()");

@@ -53,6 +53,7 @@ extern void SteamAPI_RegisterCallResult(struct CCallbackBase *callback, steam_ap
 extern void SteamAPI_UnregisterCallResult(struct CCallbackBase *callback, steam_api_call_t api_call);
 extern steam_handle_pipe_t SteamAPI_GetHSteamPipe(void);
 extern steam_handle_pipe_t GetHSteamPipe(void);
+extern steam_user_t Steam_GetHSteamUserCurrent(void);
 extern steam_user_t SteamAPI_GetHSteamUser(void);
 extern steam_user_t GetHSteamUser(void);
 extern void SteamAPI_SetTryCatchCallbacks(steam_bool_t enable);
