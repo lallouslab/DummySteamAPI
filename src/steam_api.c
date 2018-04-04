@@ -58,6 +58,11 @@ EXPORT void SteamAPI_Shutdown(void)
 	g_pSteamClientGameServer = INVAL_PTR;
 }
 
+EXPORT void Steam_RegisterInterfaceFuncs(void *module)
+{
+	LOG_ENTER_NOTIMPL("(module = %p)", module);
+}
+
 EXPORT steam_bool_t SteamAPI_RestartAppIfNecessary(steam_app_id_t app_id)
 {
 	LOG_ENTER("(app_id = %u)", app_id);
