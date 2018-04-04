@@ -79,6 +79,19 @@ EXPORT steam_bool_t SteamGameServer_BSecure(void)
 	return secure;
 }
 
+EXPORT union CSteamID SteamGameServer_GetSteamID(void)
+{
+	struct ISteamGameServer *steam_game_server;
+	union CSteamID steam_id;
+
+	LOG_ENTER0_NOTIMPL("()");
+
+	steam_game_server = SteamGameServer012();
+	steam_id = steam_game_server->vtbl.v012->GetSteamID(steam_game_server);
+
+	return steam_id;
+}
+
 EXPORT void SteamGameServer_Shutdown(void)
 {
 	LOG_ENTER0_NOTIMPL("()");
