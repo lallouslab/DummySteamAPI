@@ -6,6 +6,7 @@
 #include "ISteamUGC.h"
 #include "ISteamUGC_priv.h"
 #include "ISteamUGC001.h"
+#include "ISteamUGC005.h"
 #include "ISteamUGC007.h"
 #include "ISteamUGC010.h"
 
@@ -28,6 +29,7 @@ struct ISteamUGC *SteamUGC_generic(const char *version)
 		struct ISteamUGC *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMUGC_INTERFACE_VERSION_001, SteamUGC001 },
+		{ STEAMUGC_INTERFACE_VERSION_005, SteamUGC005 },
 		{ STEAMUGC_INTERFACE_VERSION_007, SteamUGC007 },
 		{ STEAMUGC_INTERFACE_VERSION_010, SteamUGC010 },
 		{ NULL, NULL }

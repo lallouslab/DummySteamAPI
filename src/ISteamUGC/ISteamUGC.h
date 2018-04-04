@@ -9,6 +9,7 @@ struct ISteamUGC
 	{
 		const void *ptr;
 		const struct ISteamUGC001Vtbl *v001;
+		const struct ISteamUGC005Vtbl *v005;
 		const struct ISteamUGC007Vtbl *v007;
 		const struct ISteamUGC010Vtbl *v010;
 	} vtbl;

@@ -64,6 +64,7 @@
 #include "ISteamScreenshots/ISteamScreenshots003.h"
 #include "ISteamUGC/ISteamUGC.h"
 #include "ISteamUGC/ISteamUGC001.h"
+#include "ISteamUGC/ISteamUGC005.h"
 #include "ISteamUGC/ISteamUGC007.h"
 #include "ISteamUGC/ISteamUGC010.h"
 #include "ISteamUnifiedMessages/ISteamUnifiedMessages.h"
@@ -131,6 +132,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_002, SteamScreenshots_set_version },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_003, SteamScreenshots_set_version },
 		{ STEAMUGC_INTERFACE_VERSION_001, SteamUGC_set_version },
+		{ STEAMUGC_INTERFACE_VERSION_005, SteamUGC_set_version },
 		{ STEAMUGC_INTERFACE_VERSION_007, SteamUGC_set_version },
 		{ STEAMUGC_INTERFACE_VERSION_010, SteamUGC_set_version },
 		{ STEAMUNIFIEDMESSAGES_INTERFACE_VERSION_001, SteamUnifiedMessages_set_version },
