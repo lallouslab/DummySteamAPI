@@ -66,6 +66,19 @@ EXPORT steam_user_t SteamGameServer_GetHSteamUser(void)
 	return 1;
 }
 
+EXPORT steam_bool_t SteamGameServer_BSecure(void)
+{
+	struct ISteamGameServer *steam_game_server;
+	steam_bool_t secure;
+
+	LOG_ENTER0_NOTIMPL("()");
+
+	steam_game_server = SteamGameServer012();
+	secure = steam_game_server->vtbl.v012->BSecure(steam_game_server);
+
+	return secure;
+}
+
 EXPORT void SteamGameServer_Shutdown(void)
 {
 	LOG_ENTER0_NOTIMPL("()");
