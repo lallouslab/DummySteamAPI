@@ -26,7 +26,7 @@ static const struct ISteamUserStats011Vtbl ISteamUserStats011_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUserStats_FindOrCreateLeaderboard,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

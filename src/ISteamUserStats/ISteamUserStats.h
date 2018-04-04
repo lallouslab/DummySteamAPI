@@ -14,11 +14,34 @@ struct ISteamUserStats
 	} vtbl;
 };
 
+typedef uint64_t steam_leaderboard_t;
+
+enum steam_user_stats_leaderboard_display_type
+{
+	STEAM_USER_STATS_LEADERBOARD_DISPLAY_TYPE_NONE = 0u,
+	STEAM_USER_STATS_LEADERBOARD_DISPLAY_TYPE_NUMERIC = 1u,
+	STEAM_USER_STATS_LEADERBOARD_DISPLAY_TYPE_TIME_SEC = 2u,
+	STEAM_USER_STATS_LEADERBOARD_DISPLAY_TYPE_TIME_MSEC = 3u
+};
+
+enum steam_user_stats_leaderboard_sort_method
+{
+	STEAM_USER_STATS_LEADERBOARD_SORT_METHOD_NONE = 0u,
+	STEAM_USER_STATS_LEADERBOARD_SORT_METHOD_ASCENDING = 1u,
+	STEAM_USER_STATS_LEADERBOARD_SORT_METHOD_DESCENDING = 2u
+};
+
 struct steam_callback_data_user_stats_user_stats_received
 {
 	union CGameID game_id;
 	enum steam_result result;
 	union CSteamID steam_id_user;
+};
+
+PACKED_STRUCT steam_callback_data_user_stats_leaderboard_find_result
+{
+	steam_leaderboard_t leaderboard;
+	steam_bool_t found;
 };
 
 struct ISteamUserStats *SteamUserStats_generic(const char *version);
