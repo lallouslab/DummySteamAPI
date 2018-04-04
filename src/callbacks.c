@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include <stdint.h>
 
 #include "CCallback.h"
@@ -18,7 +19,13 @@ struct call_output
 	int data_size;
 };
 
-static steam_api_call_t cur_api_call;
+struct api_call_result
+{
+	struct CCallbackBase *callback;
+	steam_api_call_t api_call;
+};
+
+static steam_api_call_t last_api_call_id;
 
 static struct list callbacks[STEAM_CALLBACK_TYPE_MAX];
 static struct list api_call_results;
@@ -27,7 +34,7 @@ static struct list call_outputs;
 
 int callbacks_init(void)
 {
-	cur_api_call = 0;
+	last_api_call_id = 0;
 
 	for (size_t i = 0; i < ARRAY_SIZE(callbacks); i++)
 		list_init(&callbacks[i]);
@@ -75,18 +82,18 @@ void callbacks_unregister_callback(struct CCallbackBase *callback)
 
 void callbacks_register_api_call_result(struct CCallbackBase *callback, steam_api_call_t api_call)
 {
-	struct CCallResult *result = CCallResult_from_CCallbackBase(callback);
+	struct api_call_result call_result;
 
 	if (callback->type >= STEAM_CALLBACK_TYPE_MAX)
 		return;
 
-	if (result->api_call != api_call)
-		return;
+	call_result.callback = callback;
+	call_result.api_call = api_call;
 
 	callback->flags |= STEAM_CALLBACK_FLAGS_REGISTERED;
 
 	list_lock(&api_call_results);
-	list_push(&api_call_results, &callback, sizeof(callback));
+	list_push(&api_call_results, &call_result, sizeof(call_result));
 	list_unlock(&api_call_results);
 }
 
@@ -100,20 +107,20 @@ static void unreg_api_call_result_unsafe(struct CCallbackBase *callback, struct 
 
 void callbacks_unregister_api_call_result(struct CCallbackBase *callback, steam_api_call_t api_call)
 {
-	struct CCallResult *result = CCallResult_from_CCallbackBase(callback);
 	struct list_elem *elem;
 
 	if (callback->type >= STEAM_CALLBACK_TYPE_MAX)
-		return;
-
-	if (result->api_call != api_call)
 		return;
 
 	list_lock(&api_call_results);
 
 	for (elem = list_head(&api_call_results); elem; elem = list_next(elem))
 	{
-		struct CCallbackBase *c = *(struct CCallbackBase **)list_get_data(elem);
+		struct api_call_result *call_result = list_get_data(elem);
+		struct CCallbackBase *c = call_result->callback;
+
+		if (call_result->api_call != api_call)
+			continue;
 
 		if (c == callback)
 			break;
@@ -155,7 +162,7 @@ steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_t
 	out.is_api_call = STEAM_TRUE;
 	out.is_handled = STEAM_FALSE;
 	out.io_failure = io_failure;
-	out.api_call = ++cur_api_call;
+	out.api_call = ++last_api_call_id;
 	out.data = dsa_utils_memdup(data, data_size);
 	out.data_size = data_size;
 
@@ -205,10 +212,10 @@ static steam_bool_t api_call_result_get_output(steam_bool_t only_check, steam_ap
 			if (out->data_size != data_size
 					|| out->type != type_expected)
 				continue;
-		}
 
-		if (data)
-			memcpy(data, out->data, out->data_size);
+			if (data)
+				memcpy(data, out->data, out->data_size);
+		}
 
 		if (io_failure)
 			*io_failure = out->io_failure;
@@ -286,22 +293,25 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 
 	for (struct list_elem *elem = list_head(&api_call_results); elem; elem = next_elem)
 	{
+		struct api_call_result *call_result;
 		struct CCallbackBase *callback;
-		struct CCallResult *result;
-			int size;
+		int size;
 
 		next_elem = list_next(elem);
 
-		callback = *(struct CCallbackBase **)list_get_data(elem);
-	 	result = CCallResult_from_CCallbackBase(callback);
+		call_result = list_get_data(elem);
+		callback = call_result->callback;
 
 		if (callback->type != out->type
-				|| result->api_call != out->api_call)
+				|| call_result->api_call != out->api_call)
 			continue;
 
 		size = callback->vtbl->GetCallbackSizeBytes(callback);
 		if (size != out->data_size)
+		{
+			DEBUG("Call result #%" PRIu64 " data size mismatch: expected %u != got %u", out->api_call, out->data_size, size);
 			continue;
+		}
 
 		callback->vtbl->Run1(callback, out->io_failure, out->api_call, out->data);
 
