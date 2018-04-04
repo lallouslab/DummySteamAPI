@@ -1,8 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "debug.h"
 
 #define CASE_STR(x) case (x): return #x
 
 static enum dsa_log_level log_level = DSA_LOG_LEVEL_WARN;
+static FILE *log_file = NULL;
 
 enum dsa_log_level dsa_debug_get_log_level(void)
 {
@@ -12,6 +16,14 @@ enum dsa_log_level dsa_debug_get_log_level(void)
 void dsa_debug_set_log_level(enum dsa_log_level lvl)
 {
 	log_level = lvl;
+}
+
+FILE *dsa_debug_get_log_file(void)
+{
+	if (!log_file)
+		log_file = stderr;
+
+	return log_file;
 }
 
 const char *dsa_debug_steam_callback_type(enum steam_callback_type type)
