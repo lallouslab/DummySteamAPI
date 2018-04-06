@@ -223,6 +223,15 @@ MEMBER steam_api_call_t ISteamUserStats_FindOrCreateLeaderboard(struct ISteamUse
 	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
 }
 
+MEMBER steam_bool_t ISteamUserStats_GetGlobalStatI64(struct ISteamUserStats *iface, const char *name, int64_t *data)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", data = %p)", VOIDPTR(This), debug_str(name), VOIDPTR(data));
+
+	return STEAM_FALSE;
+}
+
 MEMBER steam_bool_t ISteamUserStats_GetGlobalStatDouble(struct ISteamUserStats *iface, const char *name, double *data)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);

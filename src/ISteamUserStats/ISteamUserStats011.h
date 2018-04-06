@@ -48,7 +48,7 @@ struct ISteamUserStats011Vtbl
 	void *GetNextMostAchievedAchievementInfo;
 	void *GetAchievementAchievedPercent;
 	void *RequestGlobalStats;
-	void *GetGlobalStatI64;
+	MEMBER steam_bool_t (*GetGlobalStatI64)(struct ISteamUserStats *iface, const char *name, int64_t *data);
 	MEMBER steam_bool_t (*GetGlobalStatDouble)(struct ISteamUserStats *iface, const char *name, double *data);
 	void *GetGlobalStatHistoryI64;
 	void *GetGlobalStatHistorySouble;

@@ -40,6 +40,7 @@ MEMBER const char *ISteamUserStats_GetAchievementDisplayAttribute(struct ISteamU
 MEMBER steam_bool_t ISteamUserStats_IndicateAchievementProgress(struct ISteamUserStats *iface, const char *name, uint32_t cur_progress, uint32_t max_progress);
 MEMBER steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user);
 MEMBER steam_api_call_t ISteamUserStats_FindOrCreateLeaderboard(struct ISteamUserStats *iface, const char *name, enum steam_user_stats_leaderboard_sort_method sort_method, enum steam_user_stats_leaderboard_display_type display_type);
+MEMBER steam_bool_t ISteamUserStats_GetGlobalStatI64(struct ISteamUserStats *iface, const char *name, int64_t *data);
 MEMBER steam_bool_t ISteamUserStats_GetGlobalStatDouble(struct ISteamUserStats *iface, const char *name, double *data);
 
 #endif /* ISTEAMUSERSTATS_PRIV_H */
