@@ -44,7 +44,7 @@ static const struct ISteamUserStats011Vtbl ISteamUserStats011_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUserStats_GetGlobalStatDouble,
 	INVAL_PTR,
 	INVAL_PTR
 };
