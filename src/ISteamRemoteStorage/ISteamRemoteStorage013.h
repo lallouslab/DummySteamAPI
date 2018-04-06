@@ -22,7 +22,7 @@ struct ISteamRemoteStorage013Vtbl
 	void *FileWriteStreamWriteChunk;
 	void *FileWriteStreamClose;
 	void *FileWriteStreamCancel;
-	void *FileExists;
+	MEMBER steam_bool_t (*FileExists)(struct ISteamRemoteStorage *iface, const char *filename);
 	void *FilePersisted;
 	MEMBER int32_t (*GetFileSize)(struct ISteamRemoteStorage *iface, const char *filename);
 	void *GetFileTimestamp;

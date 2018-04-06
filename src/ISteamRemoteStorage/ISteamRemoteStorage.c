@@ -21,6 +21,15 @@ MEMBER steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *if
 	return STEAM_FALSE;
 }
 
+MEMBER steam_bool_t ISteamRemoteStorage_FileExists(struct ISteamRemoteStorage *iface, const char *filename)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\")", VOIDPTR(This), debug_str(filename));
+
+	return STEAM_FALSE;
+}
+
 MEMBER int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const char *filename)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
