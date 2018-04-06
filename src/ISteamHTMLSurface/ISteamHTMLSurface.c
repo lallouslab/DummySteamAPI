@@ -5,6 +5,7 @@
 #include "ISteamHTMLSurface.h"
 #include "ISteamHTMLSurface_priv.h"
 #include "ISteamHTMLSurface002.h"
+#include "ISteamHTMLSurface003.h"
 
 static const char *steam_html_surface_version = NULL;
 
@@ -16,6 +17,7 @@ struct ISteamHTMLSurface *SteamHTMLSurface_generic(const char *version)
 		struct ISteamHTMLSurface *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMHTMLSURFACE_INTERFACE_VERSION_002, SteamHTMLSurface002 },
+		{ STEAMHTMLSURFACE_INTERFACE_VERSION_003, SteamHTMLSurface003 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -56,7 +58,7 @@ EXPORT struct ISteamHTMLSurface *SteamHTMLSurface(void)
 
 	if (!steam_html_surface_version)
 	{
-		steam_html_surface_version = STEAMHTMLSURFACE_INTERFACE_VERSION_002;
+		steam_html_surface_version = STEAMHTMLSURFACE_INTERFACE_VERSION_003;
 
 		WARN("ISteamHTMLSurface: No version specified, defaulting to \"%s\".", debug_str(steam_html_surface_version));
 	}

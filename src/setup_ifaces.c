@@ -39,6 +39,7 @@
 #include "ISteamGameServerStats/ISteamGameServerStats001.h"
 #include "ISteamHTMLSurface/ISteamHTMLSurface.h"
 #include "ISteamHTMLSurface/ISteamHTMLSurface002.h"
+#include "ISteamHTMLSurface/ISteamHTMLSurface003.h"
 #include "ISteamHTTP/ISteamHTTP.h"
 #include "ISteamHTTP/ISteamHTTP001.h"
 #include "ISteamHTTP/ISteamHTTP002.h"
@@ -121,6 +122,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMGAMESERVER_INTERFACE_VERSION_012, SteamGameServer_set_version },
 		{ STEAMGAMESERVERSTATS_INTERFACE_VERSION_001, SteamGameServerStats_set_version },
 		{ STEAMHTMLSURFACE_INTERFACE_VERSION_002, SteamHTMLSurface_set_version },
+		{ STEAMHTMLSURFACE_INTERFACE_VERSION_003, SteamHTMLSurface_set_version },
 		{ STEAMHTTP_INTERFACE_VERSION_001, SteamHTTP_set_version },
 		{ STEAMHTTP_INTERFACE_VERSION_002, SteamHTTP_set_version },
 		{ STEAMINVENTORY_INTERFACE_VERSION_001, SteamInventory_set_version },

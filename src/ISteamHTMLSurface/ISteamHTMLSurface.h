@@ -9,6 +9,7 @@ struct ISteamHTMLSurface
 	{
 		const void *ptr;
 		const struct ISteamHTMLSurface002Vtbl *v002;
+		const struct ISteamHTMLSurface003Vtbl *v003;
 	} vtbl;
 };
 
