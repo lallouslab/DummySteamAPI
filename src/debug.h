@@ -42,7 +42,6 @@ static inline const char *debug_str(const char *str) {
 }
 
 enum dsa_log_level dsa_debug_get_log_level(void);
-void dsa_debug_set_log_level(enum dsa_log_level lvl);
 FILE *dsa_debug_get_log_file(void);
 const char *dsa_debug_steam_callback_type(enum steam_callback_type type);
 

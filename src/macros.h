@@ -22,6 +22,8 @@
 #define VOIDPTR(x) ((void *)x)
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 #define CONTAINER_OF(ptr, type, member) ((type *)((uintptr_t)(ptr) - offsetof(type, member)))
+#define TO_STR_(x) #x
+#define TO_STR(x) TO_STR_(x)
 
 typedef void (*PFN_VOID)(void);
 

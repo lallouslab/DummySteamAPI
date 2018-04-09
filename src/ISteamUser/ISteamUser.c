@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "callbacks.h"
+#include "config.h"
 #include "debug.h"
 #include "os/os.h"
 #include "steam.h"
@@ -39,18 +40,10 @@ MEMBER steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface)
 MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
-	const char *user_id;
 
 	LOG_ENTER("(ret = %p, This = %p)", VOIDPTR(ret), VOIDPTR(This));
 
-	user_id = getenv("STEAM_USER_ID");
-	if (!user_id)
-	{
-		WARN0("STEAM_USER_ID is not set, please check DummySteamAPI config.sh.");
-		user_id = "1";
-	}
-
-	ret->bits.account_id = strtoul(user_id, NULL, 0);
+	ret->bits.account_id = dsa_config_get_steam_user_id();
 	ret->bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
 	ret->bits.account_type = STEAM_ACCOUNT_TYPE_INDIVIDUAL;
 	ret->bits.universe = STEAM_UNIVERSE_PUBLIC;
@@ -117,19 +110,8 @@ MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char 
 
 	steam_dir = dsa_os_get_steam_dir();
 
-	user_id = getenv("STEAM_USER_ID");
-	if (!user_id)
-	{
-		WARN0("STEAM_USER_ID is not set, please check DummySteamAPI config.sh.");
-		return STEAM_FALSE;
-	}
-
-	app_id = getenv("SteamAppId");
-	if (!app_id)
-	{
-		WARN0("SteamAppId is not set.");
-		return STEAM_FALSE;
-	}
+	user_id = dsa_config_get_steam_user_id_str();
+	app_id = dsa_config_get_steam_app_id_str();
 
 	str = dsa_utils_concat(steam_dir, userdata_dir, user_id, "/", app_id, NULL);
 

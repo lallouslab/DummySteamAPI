@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "config.h"
 #include "debug.h"
 #include "setup_ifaces.h"
 #include "utils.h"
@@ -169,12 +170,7 @@ int dsa_set_default_interfaces_version(void)
 
 	LOG_ENTER0("()");
 
-	orig_steam_api_lib = getenv("DSA_ORIG_STEAM_API_LIB");
-	if (!orig_steam_api_lib)
-	{
-		WARN0("DSA_ORIG_STEAM_API_LIB environment variable not defined.");
-		return -1;
-	}
+	orig_steam_api_lib = dsa_config_get_orig_steam_api_lib();
 
 	fp = fopen(orig_steam_api_lib, "rb");
 	if (!fp)

@@ -1,27 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "config.h"
 #include "debug.h"
 
 #define CASE_STR(x) case (x): return #x
 
-static enum dsa_log_level log_level = DSA_LOG_LEVEL_WARN;
 static FILE *log_file = NULL;
 
 enum dsa_log_level dsa_debug_get_log_level(void)
 {
-	return log_level;
-}
-
-void dsa_debug_set_log_level(enum dsa_log_level lvl)
-{
-	log_level = lvl;
+	return dsa_config_get_log_level();
 }
 
 FILE *dsa_debug_get_log_file(void)
 {
 	if (!log_file)
-		log_file = stderr;
+		log_file = stderr;//fopen("log.log", "w");
 
 	return log_file;
 }

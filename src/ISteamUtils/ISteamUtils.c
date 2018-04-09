@@ -5,6 +5,7 @@
 
 #include "CCallback.h"
 #include "callbacks.h"
+#include "config.h"
 #include "debug.h"
 #include "steam.h"
 #include "utils.h"
@@ -70,18 +71,10 @@ MEMBER steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_
 MEMBER steam_app_id_t ISteamUtils_GetAppID(struct ISteamUtils *iface)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
-	const char *app_id;
 
 	LOG_ENTER("(This = %p)", VOIDPTR(This));
 
-	app_id = getenv("SteamAppId");
-	if (!app_id)
-	{
-		WARN0("SteamAppId is not set.");
-		app_id = "1";
-	}
-
-	return strtoul(app_id, NULL, 0);
+	return dsa_config_get_steam_app_id();
 }
 
 MEMBER void ISteamUtils_SetOverlayNotificationPosition(struct ISteamUtils *iface, enum steam_notification_position pos)

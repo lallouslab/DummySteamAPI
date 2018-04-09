@@ -4,6 +4,7 @@
 #include "ISteamUser/ISteamUser018.h"
 #include "CCallback.h"
 #include "callbacks.h"
+#include "config.h"
 #include "debug.h"
 #include "steam.h"
 
@@ -191,19 +192,11 @@ MEMBER steam_bool_t ISteamUserStats_IndicateAchievementProgress(struct ISteamUse
 MEMBER steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats *iface, union CSteamID steam_id_user)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
-	const char *game_id;
 	struct steam_callback_data_user_stats_user_stats_received user_stats_received;
 
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_user = %#" PRIx64 ")", VOIDPTR(This), steam_id_user.raw);
 
-	game_id = getenv("SteamGameId");
-	if (!game_id)
-	{
-		WARN0("SteamGameId is not set.");
-		game_id = "1";
-	}
-
-	user_stats_received.game_id.raw = strtoull(game_id, NULL, 0);
+	user_stats_received.game_id = dsa_config_get_steam_game_id();
 	user_stats_received.result = STEAM_RESULT_OK;
 	user_stats_received.steam_id_user = steam_id_user;
 
