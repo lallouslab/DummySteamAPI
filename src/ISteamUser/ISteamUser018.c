@@ -6,7 +6,7 @@
 static const struct ISteamUser018Vtbl ISteamUser018_vtbl = {
 	ISteamUser_GetHSteamUser,
 	ISteamUser_BLoggedOn,
-	ISteamUser_GetSteamID018,
+	ISteamUser_GetSteamID,
 	ISteamUser_InitiateGameConnection010,
 	ISteamUser_TerminateGameConnection,
 	INVAL_PTR,

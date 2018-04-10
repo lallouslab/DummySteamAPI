@@ -15,7 +15,7 @@ struct ISteamUser004Vtbl
 	MEMBER steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
 	void *GetLogonState;
 	void *BConnected;
-	MEMBER void (*GetSteamID)(union CSteamID *ret, struct ISteamUser *iface);
+	DSA_PFN_MEMBER_RETURN_STRUCT0(union CSteamID, ret, GetSteamID, struct ISteamUser *iface);
 	void *IsVACBanned;
 	void *RequireShowVACBannedMessage;
 	void *AcknowledgeVACBanning;
@@ -36,6 +36,8 @@ struct ISteamUser004Vtbl
 	void *IsPrimaryChatDestination;
 	void *RequestLegacyCDKey;
 };
+
+#define ISteamUser004_GetSteamID(iface, ret) DSA_CALL_MEMBER_RETURN_STRUCT0(iface->vtbl.v004->GetSteamID, ret, iface)
 
 struct ISteamUser *SteamUser004(void);
 

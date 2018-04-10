@@ -1,7 +1,7 @@
 #include <inttypes.h>
 #include <string.h>
 
-#include "ISteamUser/ISteamUser018.h"
+#include "ISteamUser/ISteamUser019.h"
 #include "CCallback.h"
 #include "callbacks.h"
 #include "config.h"
@@ -60,11 +60,11 @@ MEMBER steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *
 	if (retb)
 		return STEAM_TRUE;
 
-	steam_user = SteamUser018();
+	steam_user = SteamUser019();
 	if (!steam_user)
 		return STEAM_FALSE;
 
-	steam_id_user = steam_user->vtbl.v018->GetSteamID(steam_user);
+	ISteamUser019_GetSteamID(steam_user, &steam_id_user);
 	api_call = ISteamUserStats_RequestUserStats(iface, steam_id_user);
 
 	CCallResult_Set(&This->common->request_current_stats_call_result, api_call, iface, request_current_stats_call_result);

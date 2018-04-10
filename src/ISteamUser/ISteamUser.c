@@ -37,28 +37,19 @@ MEMBER steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface)
 	return STEAM_TRUE;
 }
 
-MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface)
-{
-	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
-
-	LOG_ENTER("(ret = %p, This = %p)", VOIDPTR(ret), VOIDPTR(This));
-
-	ret->bits.account_id = dsa_config_get_steam_user_id();
-	ret->bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
-	ret->bits.account_type = STEAM_ACCOUNT_TYPE_INDIVIDUAL;
-	ret->bits.universe = STEAM_UNIVERSE_PUBLIC;
-}
-
-MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface)
+DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamUser_GetSteamID, struct ISteamUser *iface)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	union CSteamID steam_id;
 
 	LOG_ENTER("(This = %p)", VOIDPTR(This));
 
-	ISteamUser_GetSteamID(&steam_id, iface);
+	steam_id.bits.account_id = dsa_config_get_steam_user_id();
+	steam_id.bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
+	steam_id.bits.account_type = STEAM_ACCOUNT_TYPE_INDIVIDUAL;
+	steam_id.bits.universe = STEAM_UNIVERSE_PUBLIC;
 
-	return steam_id;
+	DSA_MEMBER_RETURN_STRUCT_RETURN(ret, steam_id);
 }
 
 MEMBER int ISteamUser_InitiateGameConnection(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, steam_app_id_t app_id, uint32_t server_ip, uint16_t server_port, steam_bool_t secure)
@@ -80,7 +71,7 @@ MEMBER int ISteamUser_InitiateGameConnection010(struct ISteamUser *iface, void *
 	if ((size_t)auth_blob_size < sizeof(steam_id))
 		return 0;
 
-	steam_id = iface->vtbl.v019->GetSteamID(iface);
+	ISteamUser019_GetSteamID(iface, &steam_id);
 
 	memcpy(auth_blob, &steam_id, sizeof(steam_id));
 

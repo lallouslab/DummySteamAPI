@@ -87,7 +87,7 @@ EXPORT union CSteamID SteamGameServer_GetSteamID(void)
 	LOG_ENTER0_NOTIMPL("()");
 
 	steam_game_server = SteamGameServer012();
-	steam_id = steam_game_server->vtbl.v012->GetSteamID(steam_game_server);
+	ISteamGameServer012_GetSteamID(steam_game_server, &steam_id);
 
 	return steam_id;
 }

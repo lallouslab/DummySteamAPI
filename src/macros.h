@@ -8,15 +8,33 @@
 #define PACKED_STRUCT struct __attribute__((packed))
 
 #if CONFIG_OS_WINDOWS
-# define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM __extension__
-# define MEMBER_CALLBACK_PARAM __attribute__((thiscall))
-# define MEMBER DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM MEMBER_CALLBACK_PARAM
+
 # pragma GCC diagnostic ignored "-Wformat"
+
+# define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM __extension__
+# define MEMBER_CALLBACK_PARAM __attribute__((thiscall)) __attribute__((ms_abi))
+# define MEMBER DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM MEMBER_CALLBACK_PARAM
+# define DSA_MEMBER_RETURN_STRUCT0(ret_type, ret_param, name, param_this) MEMBER ret_type *name(param_this, ret_type *ret_param)
+# define DSA_MEMBER_RETURN_STRUCT(ret_type, ret_param, name, param_this, ...) MEMBER ret_type *name(param_this, ret_type *ret_param, __VA_ARGS__)
+# define DSA_CALL_MEMBER_RETURN_STRUCT0(pfn, ret_ptr, param_this) ((void)(pfn)((param_this), (ret_ptr)))
+# define DSA_CALL_MEMBER_RETURN_STRUCT(pfn, ret_ptr, param_this, ...) ((void)(pfn)((param_this), (ret_ptr), __VA_ARGS__))
+# define DSA_MEMBER_RETURN_STRUCT_RETURN(ret_param, value) do { *(ret_param) = (value); return (ret_param); } while (0)
+
 #else
+
 # define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM
 # define MEMBER_CALLBACK_PARAM
 # define MEMBER
+# define DSA_MEMBER_RETURN_STRUCT0(ret_type, ret_param, name, param_this) MEMBER ret_type name(param_this)
+# define DSA_MEMBER_RETURN_STRUCT(ret_type, ret_param, name, param_this, ...) MEMBER ret_type name(param_this, __VA_ARGS__)
+# define DSA_CALL_MEMBER_RETURN_STRUCT0(pfn, ret_ptr, param_this) ((void)(*(ret_ptr) = (pfn)((param_this))))
+# define DSA_CALL_MEMBER_RETURN_STRUCT(pfn, ret_ptr, param_this, ...) ((void)(*(ret_ptr) = (pfn)((param_this), __VA_ARGS__)))
+# define DSA_MEMBER_RETURN_STRUCT_RETURN(ret_param, value) do { return (value); } while(0)
+
 #endif
+
+#define DSA_PFN_MEMBER_RETURN_STRUCT0(ret_type, ret_param, name, param_this) DSA_MEMBER_RETURN_STRUCT0(ret_type, ret_param, (*name), param_this)
+#define DSA_PFN_MEMBER_RETURN_STRUCT(ret_type, ret_param, name, param_this, ...) DSA_MEMBER_RETURN_STRUCT(ret_type, ret_param, (*name), param_this, __VA_ARGS__)
 
 #define INVAL_PTR NULL
 #define VOIDPTR(x) ((void *)x)

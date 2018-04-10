@@ -11,7 +11,7 @@ struct ISteamUser016Vtbl
 {
 	MEMBER steam_user_t (*GetHSteamUser)(struct ISteamUser *iface);
 	MEMBER steam_bool_t (*BLoggedOn)(struct ISteamUser *iface);
-	MEMBER void (*GetSteamID)(union CSteamID *ret, struct ISteamUser *iface);
+	DSA_PFN_MEMBER_RETURN_STRUCT0(union CSteamID, ret, GetSteamID, struct ISteamUser *iface);
 	MEMBER int (*InitiateGameConnection)(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
 	MEMBER void (*TerminateGameConnection)(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);
 	void *TrackAppUsageEvent;
@@ -32,6 +32,8 @@ struct ISteamUser016Vtbl
 	MEMBER steam_api_call_t (*RequestEncryptedAppTicket)(struct ISteamUser *iface, void *data, int data_size);
 	void *GetEncryptedAppTicket;
 };
+
+#define ISteamUser016_GetSteamID(iface, ret) DSA_CALL_MEMBER_RETURN_STRUCT0(iface->vtbl.v016->GetSteamID, ret, iface)
 
 struct ISteamUser *SteamUser016(void);
 

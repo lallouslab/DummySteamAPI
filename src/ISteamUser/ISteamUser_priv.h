@@ -16,8 +16,7 @@ static inline struct ISteamUserImpl *impl_from_ISteamUser(struct ISteamUser *ifa
 
 MEMBER steam_user_t ISteamUser_GetHSteamUser(struct ISteamUser *iface);
 MEMBER steam_bool_t ISteamUser_BLoggedOn(struct ISteamUser *iface);
-MEMBER void ISteamUser_GetSteamID(union CSteamID *ret, struct ISteamUser *iface);
-MEMBER union CSteamID ISteamUser_GetSteamID018(struct ISteamUser *iface);
+DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamUser_GetSteamID, struct ISteamUser *iface);
 MEMBER int ISteamUser_InitiateGameConnection(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, steam_app_id_t app_id, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
 MEMBER int ISteamUser_InitiateGameConnection010(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port, steam_bool_t secure);
 MEMBER void ISteamUser_TerminateGameConnection(struct ISteamUser *iface, uint32_t server_ip, uint16_t server_port);

@@ -82,7 +82,7 @@ MEMBER steam_bool_t ISteamGameServer_BSecure(struct ISteamGameServer *iface)
 	return STEAM_TRUE;
 }
 
-MEMBER union CSteamID ISteamGameServer_GetSteamID(struct ISteamGameServer *iface)
+DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamGameServer_GetSteamID, struct ISteamGameServer *iface)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
 	union CSteamID steam_id;
@@ -94,7 +94,7 @@ MEMBER union CSteamID ISteamGameServer_GetSteamID(struct ISteamGameServer *iface
 	steam_id.bits.account_type = STEAM_ACCOUNT_TYPE_GAMESERVER;
 	steam_id.bits.universe = STEAM_UNIVERSE_PUBLIC;
 
-	return steam_id;
+	DSA_MEMBER_RETURN_STRUCT_RETURN(ret, steam_id);
 }
 
 MEMBER void ISteamGameServer_SetMaxPlayerCount(struct ISteamGameServer *iface, int count)
@@ -170,16 +170,19 @@ MEMBER steam_bool_t ISteamGameServer_SendUserConnectAndAuthenticate(struct IStea
 	return STEAM_TRUE;
 }
 
-MEMBER void ISteamGameServer_CreateUnauthenticatedUserConnection(union CSteamID *ret, struct ISteamGameServer *iface)
+DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamGameServer_CreateUnauthenticatedUserConnection, struct ISteamGameServer *iface)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+	union CSteamID steam_id;
 
-	LOG_ENTER_NOTIMPL("(ret = %p, This = %p)", VOIDPTR(ret), VOIDPTR(This));
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
-	ret->bits.account_id = 1;
-	ret->bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
-	ret->bits.account_type = STEAM_ACCOUNT_TYPE_ANONGAMESERVER;
-	ret->bits.universe = STEAM_UNIVERSE_INTERNAL;
+	steam_id.bits.account_id = 0;
+	steam_id.bits.account_instance = STEAM_ACCOUNT_INSTANCE_USER_DESKTOP;
+	steam_id.bits.account_type = STEAM_ACCOUNT_TYPE_ANONGAMESERVER;
+	steam_id.bits.universe = STEAM_UNIVERSE_INTERNAL;
+
+	DSA_MEMBER_RETURN_STRUCT_RETURN(ret, steam_id);
 }
 
 MEMBER void ISteamGameServer_SendUserDisconnect(struct ISteamGameServer *iface, union CSteamID steam_id_user)

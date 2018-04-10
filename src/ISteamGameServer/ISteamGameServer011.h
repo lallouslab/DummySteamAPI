@@ -19,7 +19,7 @@ struct ISteamGameServer011Vtbl
 	MEMBER void (*LogOff)(struct ISteamGameServer *iface);
 	MEMBER steam_bool_t (*BLoggedOn)(struct ISteamGameServer *iface);
 	MEMBER steam_bool_t (*BSecure)(struct ISteamGameServer *iface);
-	MEMBER union CSteamID (*GetSteamID)(struct ISteamGameServer *iface);
+	DSA_PFN_MEMBER_RETURN_STRUCT0(union CSteamID, ret, GetSteamID, struct ISteamGameServer *iface);
 	void *WasRestartRequested;
 	MEMBER void (*SetMaxPlayerCount)(struct ISteamGameServer *iface, int count);
 	MEMBER void (*SetBotPlayerCount)(struct ISteamGameServer *iface, int count);
@@ -34,7 +34,7 @@ struct ISteamGameServer011Vtbl
 	void *SetGameData;
 	void *SetRegion;
 	MEMBER steam_bool_t (*SendUserConnectAndAuthenticate)(struct ISteamGameServer *iface, uint32_t client_ip, const void *auth_blob, uint32_t auth_blob_size, union CSteamID *steam_id_user);
-	MEMBER void (*CreateUnauthenticatedUserConnection)(union CSteamID *ret, struct ISteamGameServer *iface);
+	DSA_PFN_MEMBER_RETURN_STRUCT0(union CSteamID, ret, CreateUnauthenticatedUserConnection, struct ISteamGameServer *iface);
 	MEMBER void (*SendUserDisconnect)(struct ISteamGameServer *iface, union CSteamID steam_id_user);
 	void *BUpdateUserData;
 	void *GetAuthSessionTicket;
@@ -54,6 +54,9 @@ struct ISteamGameServer011Vtbl
 	void *AssociateWithClan;
 	void *ComputeNewPlayerCompatibility;
 };
+
+#define ISteamGameServer011_GetSteamID(iface, ret) DSA_CALL_MEMBER_RETURN_STRUCT0(iface->vtbl.v011->GetSteamID, ret, iface)
+#define ISteamGameServer011_CreateUnauthenticatedUserConnection(iface, ret) DSA_CALL_MEMBER_RETURN_STRUCT0(iface->vtbl.v011->CreateUnauthenticatedUserConnection, ret, iface)
 
 struct ISteamGameServer *SteamGameServer011(void);
 

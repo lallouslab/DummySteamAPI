@@ -23,7 +23,7 @@ MEMBER void ISteamGameServer_LogOnAnonymous(struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_LogOff(struct ISteamGameServer *iface);
 MEMBER steam_bool_t ISteamGameServer_BLoggedOn(struct ISteamGameServer *iface);
 MEMBER steam_bool_t ISteamGameServer_BSecure(struct ISteamGameServer *iface);
-MEMBER union CSteamID ISteamGameServer_GetSteamID(struct ISteamGameServer *iface);
+DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamGameServer_GetSteamID, struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_SetMaxPlayerCount(struct ISteamGameServer *iface, int count);
 MEMBER void ISteamGameServer_SetBotPlayerCount(struct ISteamGameServer *iface, int count);
 MEMBER void ISteamGameServer_SetServerName(struct ISteamGameServer *iface, const char *name);
@@ -33,7 +33,7 @@ MEMBER void ISteamGameServer_SetSpectatorPort(struct ISteamGameServer *iface, ui
 MEMBER void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value);
 MEMBER void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const char *tags);
 MEMBER steam_bool_t ISteamGameServer_SendUserConnectAndAuthenticate(struct ISteamGameServer *iface, uint32_t client_ip, const void *auth_blob, uint32_t auth_blob_size, union CSteamID *steam_id_user);
-MEMBER void ISteamGameServer_CreateUnauthenticatedUserConnection(union CSteamID *ret, struct ISteamGameServer *iface);
+DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamGameServer_CreateUnauthenticatedUserConnection, struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_SendUserDisconnect(struct ISteamGameServer *iface, union CSteamID steam_id_user);
 MEMBER void ISteamGameServer_EnableHeartbeats(struct ISteamGameServer *iface, steam_bool_t enabled);
 
