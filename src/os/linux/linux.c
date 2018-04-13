@@ -73,17 +73,17 @@ DESTRUCTOR static void dsa_os_deinit(void)
 	dsa_utils_free_ptr(&os_ctx.steam_dir);
 }
 
-EXPORT const char *dsa_os_get_home_dir(void)
+const char *dsa_os_get_home_dir(void)
 {
 	return os_ctx.home_dir;
 }
 
-EXPORT const char *dsa_os_get_steam_dir(void)
+const char *dsa_os_get_steam_dir(void)
 {
 	return os_ctx.steam_dir;
 }
 
-EXPORT struct dsa_os_mutex *dsa_os_mutex_create(void)
+struct dsa_os_mutex *dsa_os_mutex_create(void)
 {
 	struct dsa_os_mutex *mtx;
 	pthread_mutexattr_t attr;
@@ -108,13 +108,13 @@ EXPORT struct dsa_os_mutex *dsa_os_mutex_create(void)
 	return mtx;
 }
 
-EXPORT void dsa_os_mutex_destroy(struct dsa_os_mutex *mtx)
+void dsa_os_mutex_destroy(struct dsa_os_mutex *mtx)
 {
 	pthread_mutex_destroy(&mtx->mtx);
 	free(mtx);
 }
 
-EXPORT int dsa_os_mutex_lock(struct dsa_os_mutex *mtx)
+int dsa_os_mutex_lock(struct dsa_os_mutex *mtx)
 {
 	int ret;
 
@@ -124,7 +124,7 @@ EXPORT int dsa_os_mutex_lock(struct dsa_os_mutex *mtx)
 	return 0;
 }
 
-EXPORT int dsa_os_mutex_trylock(struct dsa_os_mutex *mtx)
+int dsa_os_mutex_trylock(struct dsa_os_mutex *mtx)
 {
 	int ret;
 
@@ -134,7 +134,7 @@ EXPORT int dsa_os_mutex_trylock(struct dsa_os_mutex *mtx)
 	return 0;
 }
 
-EXPORT int dsa_os_mutex_unlock(struct dsa_os_mutex *mtx)
+int dsa_os_mutex_unlock(struct dsa_os_mutex *mtx)
 {
 	int ret;
 
@@ -144,7 +144,7 @@ EXPORT int dsa_os_mutex_unlock(struct dsa_os_mutex *mtx)
 	return 0;
 }
 
-EXPORT int dsa_os_mkdir(const char *path)
+int dsa_os_mkdir(const char *path)
 {
 	return mkdir(path, 0777);
 }

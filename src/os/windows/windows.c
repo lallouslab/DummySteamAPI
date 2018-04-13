@@ -81,23 +81,25 @@ static int dsa_os_init(void)
 
 static int dsa_os_deinit(void)
 {
+	dsa_deinit();
+
 	dsa_utils_free_ptr(&os_ctx.home_dir);
 	dsa_utils_free_ptr(&os_ctx.steam_dir);
 
 	return 0;
 }
 
-EXPORT const char *dsa_os_get_home_dir(void)
+const char *dsa_os_get_home_dir(void)
 {
 	return os_ctx.home_dir;
 }
 
-EXPORT const char *dsa_os_get_steam_dir(void)
+const char *dsa_os_get_steam_dir(void)
 {
 	return os_ctx.steam_dir;
 }
 
-EXPORT struct dsa_os_mutex *dsa_os_mutex_create(void)
+struct dsa_os_mutex *dsa_os_mutex_create(void)
 {
 	struct dsa_os_mutex *mtx;
 
@@ -110,19 +112,19 @@ EXPORT struct dsa_os_mutex *dsa_os_mutex_create(void)
 	return mtx;
 }
 
-EXPORT void dsa_os_mutex_destroy(struct dsa_os_mutex *mtx)
+void dsa_os_mutex_destroy(struct dsa_os_mutex *mtx)
 {
 	DeleteCriticalSection(&mtx->cs);
 	free(mtx);
 }
 
-EXPORT int dsa_os_mutex_lock(struct dsa_os_mutex *mtx)
+int dsa_os_mutex_lock(struct dsa_os_mutex *mtx)
 {
 	EnterCriticalSection(&mtx->cs);
 	return 0;
 }
 
-EXPORT int dsa_os_mutex_trylock(struct dsa_os_mutex *mtx)
+int dsa_os_mutex_trylock(struct dsa_os_mutex *mtx)
 {
 	BOOL ret;
 
@@ -130,13 +132,13 @@ EXPORT int dsa_os_mutex_trylock(struct dsa_os_mutex *mtx)
 	return ret ? 0 : -1;
 }
 
-EXPORT int dsa_os_mutex_unlock(struct dsa_os_mutex *mtx)
+int dsa_os_mutex_unlock(struct dsa_os_mutex *mtx)
 {
 	LeaveCriticalSection(&mtx->cs);
 	return 0;
 }
 
-EXPORT int dsa_os_mkdir(const char *path)
+int dsa_os_mkdir(const char *path)
 {
 	BOOL ret;
 
