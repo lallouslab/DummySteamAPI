@@ -21,6 +21,13 @@ MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *ifac
 	return 0;
 }
 
+MEMBER void ISteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable(struct ISteamMatchmaking *iface, int count)
+{
+	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, count = %d)", VOIDPTR(This), count);
+}
+
 MEMBER void ISteamMatchmaking_AddRequestLobbyListDistanceFilter(struct ISteamMatchmaking *iface, enum steam_matchmaking_lobby_distance_filter filter)
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
