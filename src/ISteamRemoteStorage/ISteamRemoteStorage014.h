@@ -10,7 +10,7 @@
 struct ISteamRemoteStorage014Vtbl
 {
 	MEMBER steam_bool_t (*FileWrite)(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size);
-	void *FileRead;
+	MEMBER int32_t (*FileRead)(struct ISteamRemoteStorage *iface, const char *filename, void *data, int32_t size);
 	void *FileWriteAsync;
 	void *FileReadAsync;
 	void *FileReadAsyncComplete;

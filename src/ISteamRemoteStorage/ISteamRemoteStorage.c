@@ -16,9 +16,18 @@ MEMBER steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *if
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\", data = %p, size = %" PRIu32 ")", VOIDPTR(This), debug_str(filename), data, size);
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\", data = %p, size = %" PRIi32 ")", VOIDPTR(This), debug_str(filename), data, size);
 
 	return STEAM_FALSE;
+}
+
+MEMBER int32_t ISteamRemoteStorage_FileRead(struct ISteamRemoteStorage *iface, const char *filename, void *data, int32_t size)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\", data = %p, size = %" PRIi32 ")", VOIDPTR(This), debug_str(filename), data, size);
+
+	return 0;
 }
 
 MEMBER steam_bool_t ISteamRemoteStorage_FileExists(struct ISteamRemoteStorage *iface, const char *filename)
