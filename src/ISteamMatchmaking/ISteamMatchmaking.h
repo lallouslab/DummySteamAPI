@@ -13,6 +13,14 @@ struct ISteamMatchmaking
 	} vtbl;
 };
 
+enum steam_matchmaking_lobby_distance_filter
+{
+	STEAM_MATCHMAKING_LOBBY_DISTANCE_FILTER_CLOSE = 0u,
+	STEAM_MATCHMAKING_LOBBY_DISTANCE_FILTER_DEFAULT = 1u,
+	STEAM_MATCHMAKING_LOBBY_DISTANCE_FILTER_FAR = 2u,
+	STEAM_MATCHMAKING_LOBBY_DISTANCE_FILTER_WORLDWIDE = 3u
+};
+
 PACKED_STRUCT steam_callback_data_matchmaking_lobby_created
 {
 	enum steam_result result;
