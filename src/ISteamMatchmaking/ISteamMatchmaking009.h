@@ -13,7 +13,7 @@ struct ISteamMatchmaking009Vtbl
 	void *GetFavoriteGame;
 	void *AddFavoriteGame;
 	void *RemoveFavoriteGame;
-	void *RequestLobbyList;
+	MEMBER steam_api_call_t (*RequestLobbyList)(struct ISteamMatchmaking *iface);
 	MEMBER void (*AddRequestLobbyListStringFilter)(struct ISteamMatchmaking *iface, const char *key, const char *value, enum steam_matchmaking_lobby_comparison comparison);
 	MEMBER void (*AddRequestLobbyListNumericalFilter)(struct ISteamMatchmaking *iface, const char *key, int value, enum steam_matchmaking_lobby_comparison comparison);
 	MEMBER void (*AddRequestLobbyListNearValueFilter)(struct ISteamMatchmaking *iface, const char *key, int near_value);

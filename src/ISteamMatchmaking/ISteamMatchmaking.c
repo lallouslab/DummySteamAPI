@@ -21,6 +21,18 @@ MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *ifac
 	return 0;
 }
 
+MEMBER steam_api_call_t ISteamMatchmaking_RequestLobbyList003(struct ISteamMatchmaking *iface)
+{
+	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
+	struct steam_callback_data_matchmaking_lobby_match_list lobby_match_list;
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	lobby_match_list.count = 0;
+
+	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_MATCHMAKING_LOBBY_MATCH_LIST, STEAM_FALSE, &lobby_match_list, sizeof(lobby_match_list));
+}
+
 MEMBER void ISteamMatchmaking_AddRequestLobbyListStringFilter(struct ISteamMatchmaking *iface, const char *key, const char *value, enum steam_matchmaking_lobby_comparison comparison)
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);

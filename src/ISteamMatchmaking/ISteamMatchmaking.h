@@ -31,6 +31,11 @@ enum steam_matchmaking_lobby_distance_filter
 	STEAM_MATCHMAKING_LOBBY_DISTANCE_FILTER_WORLDWIDE = 3u
 };
 
+PACKED_STRUCT steam_callback_data_matchmaking_lobby_match_list
+{
+	uint32_t count;
+};
+
 PACKED_STRUCT steam_callback_data_matchmaking_lobby_created
 {
 	enum steam_result result;
