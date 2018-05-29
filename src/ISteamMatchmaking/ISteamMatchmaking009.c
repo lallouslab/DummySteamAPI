@@ -9,7 +9,7 @@ static const struct ISteamMatchmaking009Vtbl ISteamMatchmaking009_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamMatchmaking_AddRequestLobbyListStringFilter,
 	ISteamMatchmaking_AddRequestLobbyListNumericalFilter,
 	ISteamMatchmaking_AddRequestLobbyListNearValueFilter,
 	ISteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable,

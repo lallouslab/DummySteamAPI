@@ -14,7 +14,7 @@ struct ISteamMatchmaking009Vtbl
 	void *AddFavoriteGame;
 	void *RemoveFavoriteGame;
 	void *RequestLobbyList;
-	void *AddRequestLobbyListStringFilter;
+	MEMBER void (*AddRequestLobbyListStringFilter)(struct ISteamMatchmaking *iface, const char *key, const char *value, enum steam_matchmaking_lobby_comparison comparison);
 	MEMBER void (*AddRequestLobbyListNumericalFilter)(struct ISteamMatchmaking *iface, const char *key, int value, enum steam_matchmaking_lobby_comparison comparison);
 	MEMBER void (*AddRequestLobbyListNearValueFilter)(struct ISteamMatchmaking *iface, const char *key, int near_value);
 	MEMBER void (*AddRequestLobbyListFilterSlotsAvailable)(struct ISteamMatchmaking *iface, int count);
