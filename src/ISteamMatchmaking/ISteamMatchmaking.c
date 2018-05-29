@@ -21,6 +21,13 @@ MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *ifac
 	return 0;
 }
 
+MEMBER void ISteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter(struct ISteamMatchmaking *iface, union CSteamID steam_id_lobby)
+{
+	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_lobby = %#" PRIx64 ")", VOIDPTR(This), steam_id_lobby.raw);
+}
+
 MEMBER steam_api_call_t ISteamMatchmaking_CreateLobby007(struct ISteamMatchmaking *iface, enum steam_lobby_type type, int max_members)
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
