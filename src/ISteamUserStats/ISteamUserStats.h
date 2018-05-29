@@ -31,7 +31,7 @@ enum steam_user_stats_leaderboard_sort_method
 	STEAM_USER_STATS_LEADERBOARD_SORT_METHOD_DESCENDING = 2u
 };
 
-struct steam_callback_data_user_stats_user_stats_received
+PACKED_STRUCT steam_callback_data_user_stats_user_stats_received
 {
 	union CGameID game_id;
 	enum steam_result result;

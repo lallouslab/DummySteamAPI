@@ -20,7 +20,7 @@ struct ISteamUser
 
 typedef uint32_t steam_auth_ticket_handle_t;
 
-struct steam_callback_data_user_encrypted_app_ticket_response
+PACKED_STRUCT steam_callback_data_user_encrypted_app_ticket_response
 {
 	enum steam_result result;
 };

@@ -264,7 +264,10 @@ static steam_bool_t handle_callback_output(struct call_output *out)
 
 		size = callback->vtbl->GetCallbackSizeBytes(callback);
 		if (size != out->data_size)
+		{
+			DEBUG("Callback %s (%d) data size mismatch: expected %u != got %u", dsa_debug_steam_callback_type(out->type), out->type, out->data_size, size);
 			continue;
+		}
 
 		callback->vtbl->Run0(callback, out->data);
 

@@ -46,13 +46,13 @@ enum steam_game_server_flag
 	STEAM_GAME_SERVER_FLAG_PRIVATE    = 1u << 5
 };
 
-struct steam_callback_data_game_server_client_approve
+PACKED_STRUCT steam_callback_data_game_server_client_approve
 {
 	union CSteamID steam_id;
 	union CSteamID owner_steam_id;
 };
 
-struct steam_callback_data_game_server_client_deny
+PACKED_STRUCT steam_callback_data_game_server_client_deny
 {
 	union CSteamID steam_id;
 	enum steam_game_server_deny_reason reason;
