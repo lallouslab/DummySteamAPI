@@ -21,6 +21,13 @@ MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *ifac
 	return 0;
 }
 
+MEMBER void ISteamMatchmaking_AddRequestLobbyListNearValueFilter(struct ISteamMatchmaking *iface, const char *key, int near_value)
+{
+	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, key = \"%s\", near_value = %d)", VOIDPTR(This), debug_str(key), near_value);
+}
+
 MEMBER void ISteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable(struct ISteamMatchmaking *iface, int count)
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);

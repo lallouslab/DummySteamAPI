@@ -16,7 +16,7 @@ struct ISteamMatchmaking009Vtbl
 	void *RequestLobbyList;
 	void *AddRequestLobbyListStringFilter;
 	void *AddRequestLobbyListNumericalFilter;
-	void *AddRequestLobbyListNearValueFilter;
+	MEMBER void (*AddRequestLobbyListNearValueFilter)(struct ISteamMatchmaking *iface, const char *key, int near_value);
 	MEMBER void (*AddRequestLobbyListFilterSlotsAvailable)(struct ISteamMatchmaking *iface, int count);
 	MEMBER void (*AddRequestLobbyListDistanceFilter)(struct ISteamMatchmaking *iface, enum steam_matchmaking_lobby_distance_filter filter);
 	MEMBER void (*AddRequestLobbyListResultCountFilter)(struct ISteamMatchmaking *iface, int max_results);

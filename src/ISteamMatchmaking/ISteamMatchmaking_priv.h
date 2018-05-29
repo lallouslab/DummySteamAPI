@@ -15,6 +15,7 @@ static inline struct ISteamMatchmakingImpl *impl_from_ISteamMatchmaking(struct I
 }
 
 MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface);
+MEMBER void ISteamMatchmaking_AddRequestLobbyListNearValueFilter(struct ISteamMatchmaking *iface, const char *key, int near_value);
 MEMBER void ISteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable(struct ISteamMatchmaking *iface, int count);
 MEMBER void ISteamMatchmaking_AddRequestLobbyListDistanceFilter(struct ISteamMatchmaking *iface, enum steam_matchmaking_lobby_distance_filter filter);
 MEMBER void ISteamMatchmaking_AddRequestLobbyListResultCountFilter(struct ISteamMatchmaking *iface, int max_results);
