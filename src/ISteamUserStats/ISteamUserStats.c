@@ -216,6 +216,19 @@ MEMBER steam_api_call_t ISteamUserStats_FindOrCreateLeaderboard(struct ISteamUse
 	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
 }
 
+MEMBER steam_api_call_t ISteamUserStats_FindLeaderboard(struct ISteamUserStats *iface, const char *name)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+	struct steam_callback_data_user_stats_leaderboard_find_result leaderboard_find_result;
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
+
+	leaderboard_find_result.leaderboard = 0;
+	leaderboard_find_result.found = STEAM_FALSE;
+
+	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
+}
+
 MEMBER steam_api_call_t ISteamUserStats_RequestGlobalStats(struct ISteamUserStats *iface, int history_days_count)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);

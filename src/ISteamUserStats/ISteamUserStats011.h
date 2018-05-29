@@ -32,7 +32,7 @@ struct ISteamUserStats011Vtbl
 	void *GetUserAchievementAndUnlockTime;
 	void *ResetAllStats;
 	MEMBER steam_api_call_t (*FindOrCreateLeaderboard)(struct ISteamUserStats *iface, const char *name, enum steam_user_stats_leaderboard_sort_method sort_method, enum steam_user_stats_leaderboard_display_type display_type);
-	void *FindLeaderboard;
+	MEMBER steam_api_call_t (*FindLeaderboard)(struct ISteamUserStats *iface, const char *name);
 	void *GetLeaderboardName;
 	void *GetLeaderboardEntryCount;
 	void *GetLeaderboardSortMethod;
