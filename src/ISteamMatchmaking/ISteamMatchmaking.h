@@ -13,6 +13,12 @@ struct ISteamMatchmaking
 	} vtbl;
 };
 
+PACKED_STRUCT steam_callback_data_matchmaking_lobby_created
+{
+	enum steam_result result;
+	union CSteamID steam_id_lobby;
+};
+
 struct ISteamMatchmaking *SteamMatchmaking_generic(const char *version);
 void SteamMatchmaking_set_version(const char *version);
 extern struct ISteamMatchmaking *SteamMatchmaking(void);

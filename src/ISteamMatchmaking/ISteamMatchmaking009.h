@@ -22,7 +22,7 @@ struct ISteamMatchmaking009Vtbl
 	void *AddRequestLobbyListResultCountFilter;
 	void *AddRequestLobbyListCompatibleMembersFilter;
 	void *GetLobbyByIndex;
-	void *CreateLobby;
+	MEMBER steam_api_call_t (*CreateLobby)(struct ISteamMatchmaking *iface, enum steam_lobby_type type, int max_members);
 	void *JoinLobby;
 	void *LeaveLobby;
 	void *InviteUserToLobby;

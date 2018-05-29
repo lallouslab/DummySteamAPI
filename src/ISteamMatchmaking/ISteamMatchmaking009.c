@@ -17,7 +17,7 @@ static const struct ISteamMatchmaking009Vtbl ISteamMatchmaking009_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamMatchmaking_CreateLobby007,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

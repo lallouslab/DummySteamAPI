@@ -52,6 +52,14 @@ enum steam_game_id_type
 	STEAM_GAME_ID_TYPE_P2P = 3u
 };
 
+enum steam_lobby_type
+{
+	STEAM_LOBBY_TYPE_PRIVATE = 0u,
+	STEAM_LOBBY_TYPE_FRIENDS_ONLY = 1u,
+	STEAM_LOBBY_TYPE_PUBLIC = 2u,
+	STEAM_LOBBY_TYPE_INVISIBLE = 3u
+};
+
 enum steam_result
 {
 	STEAM_RESULT_OK = 1u,

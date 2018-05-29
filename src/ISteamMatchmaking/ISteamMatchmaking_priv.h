@@ -15,5 +15,6 @@ static inline struct ISteamMatchmakingImpl *impl_from_ISteamMatchmaking(struct I
 }
 
 MEMBER int ISteamMatchmaking_GetFavoriteGameCount(struct ISteamMatchmaking *iface);
+MEMBER steam_api_call_t ISteamMatchmaking_CreateLobby007(struct ISteamMatchmaking *iface, enum steam_lobby_type type, int max_members);
 
 #endif /* ISTEAMMATCHMAKING_PRIV_H */
