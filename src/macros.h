@@ -4,12 +4,13 @@
 #include <stddef.h> /* offsetof() */
 #include <stdlib.h>
 
-#define EXPORT __attribute__((visibility("default")))
 #define PACKED_STRUCT struct __attribute__((packed))
 
 #if CONFIG_OS_WINDOWS
 
 # pragma GCC diagnostic ignored "-Wformat"
+
+# define EXPORT __declspec(dllexport)
 
 # define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM __extension__
 # define MEMBER_CALLBACK_PARAM __attribute__((thiscall)) __attribute__((ms_abi))
@@ -21,6 +22,8 @@
 # define DSA_MEMBER_RETURN_STRUCT_RETURN(ret_param, value) do { *(ret_param) = (value); return (ret_param); } while (0)
 
 #else
+
+# define EXPORT __attribute__((visibility("default")))
 
 # define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM
 # define MEMBER_CALLBACK_PARAM
