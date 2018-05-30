@@ -1,4 +1,4 @@
-image: registry.git.bitmycode.com:443/bmc/buildingtoolscontainer/master:c837e167a18ba02696ea2e641b78cc92fb89080d
+image: registry.git.bitmycode.com:443/bmc/buildingtoolscontainer:latest
 
 .build-targets-common: &build-targets-common
   stage: build-targets
