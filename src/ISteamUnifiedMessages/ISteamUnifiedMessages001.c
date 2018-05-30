@@ -11,7 +11,7 @@ static const struct ISteamUnifiedMessages001Vtbl ISteamUnifiedMessages001_vtbl =
 	INVAL_PTR
 };
 
-EXPORT struct ISteamUnifiedMessages *SteamUnifiedMessages001(void)
+struct ISteamUnifiedMessages *SteamUnifiedMessages001(void)
 {
 	static struct ISteamUnifiedMessagesImpl impl;
 

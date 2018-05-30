@@ -9,7 +9,7 @@ static const struct ISteamGameCoordinator001Vtbl ISteamGameCoordinator001_vtbl =
 	INVAL_PTR
 };
 
-EXPORT struct ISteamGameCoordinator *SteamGameCoordinator001(void)
+struct ISteamGameCoordinator *SteamGameCoordinator001(void)
 {
 	static struct ISteamGameCoordinatorImpl impl;
 
