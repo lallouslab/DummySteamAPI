@@ -4,11 +4,11 @@
 #include "ISteamAppList_priv.h"
 
 static const struct ISteamAppList001Vtbl ISteamAppList001_vtbl = {
-	INVAL_PTR,
-	INVAL_PTR,
-	INVAL_PTR,
-	INVAL_PTR,
-	INVAL_PTR
+	ISteamAppList_GetNumInstalledApps,
+	ISteamAppList_GetInstalledApps,
+	ISteamAppList_GetAppName,
+	ISteamAppList_GetAppInstallDir,
+	ISteamAppList_GetAppBuildId
 };
 
 struct ISteamAppList *SteamAppList001(void)

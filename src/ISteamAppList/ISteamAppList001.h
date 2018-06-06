@@ -9,11 +9,11 @@
 
 struct ISteamAppList001Vtbl
 {
-	void *GetNumInstalledApps;
-	void *GetInstalledApps;
-	void *GetAppName;
-	void *GetAppInstallDir;
-	void *GetAppBuildId;
+	MEMBER uint32_t (*GetNumInstalledApps)(struct ISteamAppList *iface);
+	MEMBER uint32_t (*GetInstalledApps)(struct ISteamAppList *iface, steam_app_id_t *app_ids, uint32_t max_app_ids);
+	MEMBER int (*GetAppName)(struct ISteamAppList *iface, steam_app_id_t app_id, char *name, int max_name_size);
+	MEMBER int (*GetAppInstallDir)(struct ISteamAppList *iface, steam_app_id_t app_id, char *path, int max_path_size);
+	MEMBER int (*GetAppBuildId)(struct ISteamAppList *iface, steam_app_id_t app_id);
 };
 
 struct ISteamAppList *SteamAppList001(void);

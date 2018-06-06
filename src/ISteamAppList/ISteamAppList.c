@@ -8,6 +8,51 @@
 
 static const char *steam_app_list_version = NULL;
 
+MEMBER uint32_t ISteamAppList_GetNumInstalledApps(struct ISteamAppList *iface)
+{
+	struct ISteamAppListImpl *This = impl_from_ISteamAppList(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	return 0;
+}
+
+MEMBER uint32_t ISteamAppList_GetInstalledApps(struct ISteamAppList *iface, steam_app_id_t *app_ids, uint32_t max_app_ids)
+{
+	struct ISteamAppListImpl *This = impl_from_ISteamAppList(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, app_ids = %p, max_app_ids = %" PRIu32 ")", VOIDPTR(This), VOIDPTR(app_ids), max_app_ids);
+
+	return 0;
+}
+
+MEMBER int ISteamAppList_GetAppName(struct ISteamAppList *iface, steam_app_id_t app_id, char *name, int max_name_size)
+{
+	struct ISteamAppListImpl *This = impl_from_ISteamAppList(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, app_id = %u, name = %p, max_name_size = %d)", VOIDPTR(This), app_id, VOIDPTR(name), max_name_size);
+
+	return -1;
+}
+
+MEMBER int ISteamAppList_GetAppInstallDir(struct ISteamAppList *iface, steam_app_id_t app_id, char *path, int max_path_size)
+{
+	struct ISteamAppListImpl *This = impl_from_ISteamAppList(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, app_id = %u, path = %p, max_path_size = %d)", VOIDPTR(This), app_id, VOIDPTR(path), max_path_size);
+
+	return -1;
+}
+
+MEMBER int ISteamAppList_GetAppBuildId(struct ISteamAppList *iface, steam_app_id_t app_id)
+{
+	struct ISteamAppListImpl *This = impl_from_ISteamAppList(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, app_id = %u)", VOIDPTR(This), app_id);
+
+	return 0;
+}
+
 struct ISteamAppList *SteamAppList_generic(const char *version)
 {
 	static const struct
