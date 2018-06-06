@@ -6,6 +6,9 @@
 
 #define PACKED_STRUCT struct __attribute__((packed))
 
+/* Force warning for enum value not handled in switch (even with default:). */
+#pragma GCC diagnostic warning "-Wswitch-enum"
+
 #if CONFIG_OS_WINDOWS
 
 # pragma GCC diagnostic ignored "-Wformat"
