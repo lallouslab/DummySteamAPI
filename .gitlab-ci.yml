@@ -1,15 +1,24 @@
 image: registry.git.bitmycode.com:443/bmc/buildingtoolscontainer:latest
 
+stages:
+  - build
+  - build-targets
+
+build:
+  stage: build
+  script:
+    - eval make defconfig
+    - eval make
+
 .build-targets-common: &build-targets-common
   stage: build-targets
+  except:
+    - pushes
   variables:
     MAKE_TGT: ''
   script:
     - eval make defconfig
     - eval make $MAKE_TGT
-
-stages:
-    - build-targets
 
 .build-linux-targets-common: &build-linux-targets-common
   <<: *build-targets-common
