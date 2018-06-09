@@ -1,9 +1,22 @@
 #include "macros.h"
 
-#include "ISteamInventory001.h"
+#include "ISteamInventory002.h"
 #include "ISteamInventory_priv.h"
 
-static const struct ISteamInventory001Vtbl ISteamInventory001_vtbl = {
+static const struct ISteamInventory002Vtbl ISteamInventory002_vtbl = {
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
+	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
@@ -30,11 +43,11 @@ static const struct ISteamInventory001Vtbl ISteamInventory001_vtbl = {
 	INVAL_PTR
 };
 
-struct ISteamInventory *SteamInventory001(void)
+struct ISteamInventory *SteamInventory002(void)
 {
 	static struct ISteamInventoryImpl impl;
 
-	impl.base.vtbl.v001 = &ISteamInventory001_vtbl;
+	impl.base.vtbl.v002 = &ISteamInventory002_vtbl;
 
 	return &impl.base;
 }

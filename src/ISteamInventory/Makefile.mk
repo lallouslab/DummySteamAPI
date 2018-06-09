@@ -7,7 +7,8 @@ STATICLIBS-y := $(libsteaminventory)
 
 objs := \
 	ISteamInventory.c.o \
-	ISteamInventory001.c.o
+	ISteamInventory001.c.o \
+	ISteamInventory002.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 

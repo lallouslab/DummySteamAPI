@@ -1,16 +1,17 @@
-#ifndef ISTEAMINVENTORY001_H
-#define ISTEAMINVENTORY001_H 1
+#ifndef ISTEAMINVENTORY002_H
+#define ISTEAMINVENTORY002_H 1
 
 #include "steam.h"
 
 #include "ISteamInventory.h"
 
-#define STEAMINVENTORY_INTERFACE_VERSION_001 "STEAMINVENTORY_INTERFACE_V001"
+#define STEAMINVENTORY_INTERFACE_VERSION_002 "STEAMINVENTORY_INTERFACE_V002"
 
-struct ISteamInventory001Vtbl
+struct ISteamInventory002Vtbl
 {
 	void *GetResultStatus;
 	void *GetResultItems;
+	void *GetResultItemProperty;
 	void *GetResultTimestamp;
 	void *CheckResultSteamID;
 	void *DestroyResult;
@@ -33,8 +34,20 @@ struct ISteamInventory001Vtbl
 	void *GetItemDefinitionProperty;
 	void *RequestEligiblePromoItemDefinitionsIDs;
 	void *GetEligiblePromoItemDefinitionIDs;
+	void *StartPurchase;
+	void *RequestPrices;
+	void *GetNumItemsWithPrices;
+	void *GetItemsWithPrices;
+	void *GetItemPrice;
+	void *StartUpdateProperties;
+	void *RemoveProperty;
+	void *SetPropertyStr;
+	void *SetPropertyBool;
+	void *SetPropertyI64;
+	void *SetPropertyFloat;
+	void *SubmitUpdateProperties;
 };
 
-struct ISteamInventory *SteamInventory001(void);
+struct ISteamInventory *SteamInventory002(void);
 
-#endif /* ISTEAMINVENTORY001_H */
+#endif /* ISTEAMINVENTORY002_H */

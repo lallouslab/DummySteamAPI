@@ -5,6 +5,7 @@
 #include "ISteamInventory.h"
 #include "ISteamInventory_priv.h"
 #include "ISteamInventory001.h"
+#include "ISteamInventory002.h"
 
 static const char *steam_inventory_version = NULL;
 
@@ -16,6 +17,7 @@ struct ISteamInventory *SteamInventory_generic(const char *version)
 		struct ISteamInventory *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMINVENTORY_INTERFACE_VERSION_001, SteamInventory001 },
+		{ STEAMINVENTORY_INTERFACE_VERSION_002, SteamInventory002 },
 		{ NULL, NULL }
 	};
 	int i;
@@ -56,7 +58,7 @@ EXPORT struct ISteamInventory *SteamInventory(void)
 
 	if (!steam_inventory_version)
 	{
-		steam_inventory_version = STEAMINVENTORY_INTERFACE_VERSION_001;
+		steam_inventory_version = STEAMINVENTORY_INTERFACE_VERSION_002;
 
 		WARN("ISteamInventory: No version specified, defaulting to \"%s\".", debug_str(steam_inventory_version));
 	}

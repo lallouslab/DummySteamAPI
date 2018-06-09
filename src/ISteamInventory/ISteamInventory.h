@@ -9,6 +9,7 @@ struct ISteamInventory
 	{
 		const void *ptr;
 		const struct ISteamInventory001Vtbl *v001;
+		const struct ISteamInventory002Vtbl *v002;
 	} vtbl;
 };
 

@@ -46,6 +46,7 @@
 #include "ISteamHTTP/ISteamHTTP002.h"
 #include "ISteamInventory/ISteamInventory.h"
 #include "ISteamInventory/ISteamInventory001.h"
+#include "ISteamInventory/ISteamInventory002.h"
 #include "ISteamMatchmaking/ISteamMatchmaking.h"
 #include "ISteamMatchmaking/ISteamMatchmaking001.h"
 #include "ISteamMatchmaking/ISteamMatchmaking009.h"
@@ -127,6 +128,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMHTTP_INTERFACE_VERSION_001, SteamHTTP_set_version },
 		{ STEAMHTTP_INTERFACE_VERSION_002, SteamHTTP_set_version },
 		{ STEAMINVENTORY_INTERFACE_VERSION_001, SteamInventory_set_version },
+		{ STEAMINVENTORY_INTERFACE_VERSION_002, SteamInventory_set_version },
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_001, SteamMatchmaking_set_version },
 		{ STEAMMATCHMAKING_INTERFACE_VERSION_009, SteamMatchmaking_set_version },
 		{ STEAMMATCHMAKINGSERVERS_INTERFACE_VERSION_001, SteamMatchmakingServers_set_version },
