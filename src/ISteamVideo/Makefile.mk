@@ -7,7 +7,8 @@ STATICLIBS-y := $(libsteamvideo)
 
 objs := \
 	ISteamVideo.c.o \
-	ISteamVideo001.c.o
+	ISteamVideo001.c.o \
+	ISteamVideo002.c.o
 
 CFLAGS-y += -fPIC -fvisibility=hidden -I..
 

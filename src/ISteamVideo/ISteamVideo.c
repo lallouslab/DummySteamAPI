@@ -5,6 +5,7 @@
 #include "ISteamVideo.h"
 #include "ISteamVideo_priv.h"
 #include "ISteamVideo001.h"
+#include "ISteamVideo002.h"
 
 static const char *steam_video_version = NULL;
 
@@ -16,6 +17,7 @@ struct ISteamVideo *SteamVideo_generic(const char *version)
 		struct ISteamVideo *(*iface_getter)(void);
 	} ifaces[] = {
 		{ STEAMVIDEO_INTERFACE_VERSION_001, SteamVideo001 },
+		{ STEAMVIDEO_INTERFACE_VERSION_002, SteamVideo002 },
 		{ NULL, NULL }
 	};
 	int i;

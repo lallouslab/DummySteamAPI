@@ -9,6 +9,7 @@ struct ISteamVideo
 	{
 		const void *ptr;
 		const struct ISteamVideo001Vtbl *v001;
+		const struct ISteamVideo002Vtbl *v002;
 	} vtbl;
 };
 
