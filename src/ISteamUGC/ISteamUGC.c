@@ -1,5 +1,7 @@
 #include <string.h>
 
+#include "CCallback.h"
+#include "callbacks.h"
 #include "debug.h"
 #include "steam.h"
 
@@ -11,6 +13,22 @@
 #include "ISteamUGC010.h"
 
 static const char *steam_ugc_version = NULL;
+
+MEMBER steam_api_call_t ISteamUGC_SendQueryUGCRequest(struct ISteamUGC *iface, steam_ugc_query_handle_t handle)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+	struct steam_callback_data_ugc_query_completed ugc_query_completed;
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ")", VOIDPTR(This), handle);
+
+	ugc_query_completed.handle = handle;
+	ugc_query_completed.result = STEAM_RESULT_FAIL;
+	ugc_query_completed.returned_count = 0;
+	ugc_query_completed.total_count = 0;
+	ugc_query_completed.is_data_cached = STEAM_FALSE;
+
+	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_CLIENT_UGC_QUERY_COMPLETED, STEAM_FALSE, &ugc_query_completed, sizeof(ugc_query_completed));
+}
 
 MEMBER steam_bool_t ISteamUGC_SetReturnChildren(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_children)
 {

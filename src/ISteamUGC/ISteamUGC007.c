@@ -7,7 +7,7 @@ static const struct ISteamUGC007Vtbl ISteamUGC007_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_SendQueryUGCRequest,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

@@ -19,6 +19,17 @@ struct ISteamUGC
 
 typedef uint64_t steam_ugc_query_handle_t;
 
+#define STEAM_UGC_QUERY_HANDLE_INVAL UINT64_C(0xFFFFFFFFFFFFFFFF)
+
+PACKED_STRUCT steam_callback_data_ugc_query_completed
+{
+	steam_ugc_query_handle_t handle;
+	enum steam_result result;
+	uint32_t returned_count;
+	uint32_t total_count;
+	steam_bool_t is_data_cached;
+};
+
 struct ISteamUGC *SteamUGC_generic(const char *version);
 void SteamUGC_set_version(const char *version);
 extern struct ISteamUGC *SteamUGC(void);
