@@ -14,6 +14,15 @@
 
 static const char *steam_ugc_version = NULL;
 
+MEMBER steam_ugc_query_handle_t ISteamUGC_CreateQueryUGCDetailsRequest(struct ISteamUGC *iface, steam_published_file_id_t *ids, uint32_t max_ids)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, ids = %p, max_ids = %u)", VOIDPTR(This), VOIDPTR(ids), max_ids);
+
+	return STEAM_UGC_QUERY_HANDLE_INVAL;
+}
+
 MEMBER steam_api_call_t ISteamUGC_SendQueryUGCRequest(struct ISteamUGC *iface, steam_ugc_query_handle_t handle)
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);

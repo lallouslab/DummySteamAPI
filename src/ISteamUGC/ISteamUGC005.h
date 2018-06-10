@@ -4,6 +4,7 @@
 #include "steam.h"
 
 #include "ISteamUGC.h"
+#include "../ISteamRemoteStorage/ISteamRemoteStorage.h"
 
 #define STEAMUGC_INTERFACE_VERSION_005 "STEAMUGC_INTERFACE_VERSION005"
 
@@ -11,7 +12,7 @@ struct ISteamUGC005Vtbl
 {
 	void *CreateQueryUserUGCRequest;
 	void *CreateQueryAllUGCRequest;
-	void *CreateQueryUGCDetailsRequest;
+	MEMBER steam_ugc_query_handle_t (*CreateQueryUGCDetailsRequest)(struct ISteamUGC *iface, steam_published_file_id_t *ids, uint32_t max_ids);
 	MEMBER steam_api_call_t (*SendQueryUGCRequest)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 	void *GetQueryUGCResult;
 	void *GetQueryUGCPreviewURL;

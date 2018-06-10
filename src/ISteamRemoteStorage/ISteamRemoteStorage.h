@@ -1,6 +1,8 @@
 #ifndef ISTEAMREMOTESTORAGE_H
 #define ISTEAMREMOTESTORAGE_H 1
 
+#include "steam.h"
+
 #define STEAMREMOTESTORAGE_INTERFACE_VERSION_PREFIX "STEAMREMOTESTORAGE_INTERFACE_VERSION"
 
 struct ISteamRemoteStorage
@@ -14,6 +16,8 @@ struct ISteamRemoteStorage
 		const struct ISteamRemoteStorage014Vtbl *v014;
 	} vtbl;
 };
+
+typedef uint64_t steam_published_file_id_t;
 
 enum steam_workshop_file_action
 {
