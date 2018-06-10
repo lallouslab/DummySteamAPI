@@ -232,10 +232,14 @@ MEMBER steam_api_call_t ISteamUserStats_FindLeaderboard(struct ISteamUserStats *
 MEMBER steam_api_call_t ISteamUserStats_RequestGlobalStats(struct ISteamUserStats *iface, int history_days_count)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+	struct steam_callback_data_user_stats_global_stats_received global_stats_received;
 
 	LOG_ENTER_NOTIMPL("(This = %p, history_days_count = %d)", VOIDPTR(This), history_days_count);
 
-	return 0;
+	global_stats_received.game_id = dsa_config_get_steam_game_id();
+	global_stats_received.result = STEAM_RESULT_OK;
+
+	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_GLOBAL_STATS_RECEIVED, STEAM_FALSE, &global_stats_received, sizeof(global_stats_received));
 }
 
 MEMBER steam_bool_t ISteamUserStats_GetGlobalStatI64(struct ISteamUserStats *iface, const char *name, int64_t *data)
