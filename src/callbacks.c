@@ -312,7 +312,7 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 		size = callback->vtbl->GetCallbackSizeBytes(callback);
 		if (size != out->data_size)
 		{
-			DEBUG("Call result #%" PRIu64 " data size mismatch: expected %u != got %u", out->api_call, out->data_size, size);
+			DEBUG("Call result #%" PRIu64 " %s (%u) data size mismatch: expected %u != got %u", out->api_call, dsa_debug_steam_callback_type(out->type), out->type, out->data_size, size);
 			continue;
 		}
 
