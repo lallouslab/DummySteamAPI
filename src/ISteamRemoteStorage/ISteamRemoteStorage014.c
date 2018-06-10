@@ -25,7 +25,7 @@ static const struct ISteamRemoteStorage014Vtbl ISteamRemoteStorage014_vtbl = {
 	ISteamRemoteStorage_GetFileCount,
 	INVAL_PTR,
 	ISteamRemoteStorage014_GetQuota,
-	INVAL_PTR,
+	ISteamRemoteStorage_IsCloudEnabledForAccount,
 	ISteamRemoteStorage_IsCloudEnabledForApp,
 	ISteamRemoteStorage_SetCloudEnabledForApp,
 	INVAL_PTR,

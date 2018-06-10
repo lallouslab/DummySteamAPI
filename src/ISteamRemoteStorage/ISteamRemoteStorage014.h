@@ -30,7 +30,7 @@ struct ISteamRemoteStorage014Vtbl
 	MEMBER int32_t (*GetFileCount)(struct ISteamRemoteStorage *iface);
 	void *GetFileNameAndSize;
 	MEMBER steam_bool_t (*GetQuota)(struct ISteamRemoteStorage *iface, uint64_t *total_bytes, uint64_t *available_bytes);
-	void *IsCloudEnabledForAccount;
+	MEMBER steam_bool_t (*IsCloudEnabledForAccount)(struct ISteamRemoteStorage *iface);
 	MEMBER steam_bool_t (*IsCloudEnabledForApp)(struct ISteamRemoteStorage *iface);
 	MEMBER void (*SetCloudEnabledForApp)(struct ISteamRemoteStorage *iface, steam_bool_t enabled);
 	void *UGCDownload;
