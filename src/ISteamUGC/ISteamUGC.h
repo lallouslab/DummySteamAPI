@@ -1,6 +1,8 @@
 #ifndef ISTEAMUGC_H
 #define ISTEAMUGC_H 1
 
+#include "steam.h"
+
 #define STEAMUGC_INTERFACE_VERSION_PREFIX "STEAMUGC_INTERFACE_VERSION"
 
 struct ISteamUGC
@@ -14,6 +16,8 @@ struct ISteamUGC
 		const struct ISteamUGC010Vtbl *v010;
 	} vtbl;
 };
+
+typedef uint64_t steam_ugc_query_handle_t;
 
 struct ISteamUGC *SteamUGC_generic(const char *version);
 void SteamUGC_set_version(const char *version);

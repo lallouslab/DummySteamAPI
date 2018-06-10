@@ -20,7 +20,7 @@ static const struct ISteamUGC005Vtbl ISteamUGC005_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_SetReturnChildren,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

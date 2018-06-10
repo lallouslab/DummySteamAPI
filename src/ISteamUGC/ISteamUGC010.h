@@ -29,7 +29,7 @@ struct ISteamUGC010Vtbl
 	void *SetReturnKeyValueTags;
 	void *SetReturnLongDescription;
 	void *SetReturnMetadata;
-	void *SetReturnChildren;
+	MEMBER steam_bool_t (*SetReturnChildren)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_children);
 	void *SetReturnAdditionalPreviews;
 	void *SetReturnTotalOnly;
 	void *SetReturnPlaytimeStats;
