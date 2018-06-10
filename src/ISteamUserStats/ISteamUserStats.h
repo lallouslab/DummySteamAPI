@@ -47,7 +47,8 @@ PACKED_STRUCT steam_callback_data_user_stats_leaderboard_find_result
 PACKED_STRUCT steam_callback_data_user_stats_global_stats_received
 {
 	union CGameID game_id;
-	enum steam_result result;
+	enum steam_result result : 32;
+	uint32_t pad0;
 };
 
 struct ISteamUserStats *SteamUserStats_generic(const char *version);
