@@ -15,6 +15,7 @@ SUBDIRS-y := \
 	ISteamMusic \
 	ISteamMusicRemote \
 	ISteamNetworking \
+	ISteamParentalSettings \
 	ISteamRemoteStorage \
 	ISteamScreenshots \
 	ISteamUGC \
@@ -47,6 +48,7 @@ libs := \
 	ISteamMusic/libsteammusic$(STATIC_LIB_EXT) \
 	ISteamMusicRemote/libsteammusicremote$(STATIC_LIB_EXT) \
 	ISteamNetworking/libsteamnetworking$(STATIC_LIB_EXT) \
+	ISteamParentalSettings/libsteamparentalsettings$(STATIC_LIB_EXT) \
 	ISteamRemoteStorage/libsteamremotestorage$(STATIC_LIB_EXT) \
 	ISteamScreenshots/libsteamscreenshots$(STATIC_LIB_EXT) \
 	ISteamUGC/libsteamugc$(STATIC_LIB_EXT) \

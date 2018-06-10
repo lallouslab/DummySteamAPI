@@ -15,6 +15,7 @@
 #include "ISteamMusic/ISteamMusic.h"
 #include "ISteamMusicRemote/ISteamMusicRemote.h"
 #include "ISteamNetworking/ISteamNetworking.h"
+#include "ISteamParentalSettings/ISteamParentalSettings.h"
 #include "ISteamScreenshots/ISteamScreenshots.h"
 #include "ISteamRemoteStorage/ISteamRemoteStorage.h"
 #include "ISteamUGC/ISteamUGC.h"
@@ -209,6 +210,11 @@ static void *get_generic_ISteamNetworking(struct ISteamClient *iface, steam_user
 	return VOIDPTR(ISteamClient_GetISteamNetworking(iface, steam_user, steam_pipe, debug_str(version)));
 }
 
+static void *get_generic_ISteamParentalSettings(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return VOIDPTR(ISteamClient_GetISteamParentalSettings(iface, steam_user, steam_pipe, debug_str(version)));
+}
+
 static void *get_generic_ISteamRemoteStorage(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	return VOIDPTR(ISteamClient_GetISteamRemoteStorage(iface, steam_user, steam_pipe, debug_str(version)));
@@ -276,6 +282,7 @@ MEMBER void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, 
 		{ STEAMMUSIC_INTERFACE_VERSION_PREFIX,              get_generic_ISteamMusic },
 		{ STEAMMUSICREMOTE_INTERFACE_VERSION_PREFIX,        get_generic_ISteamMusicRemote },
 		{ STEAMNETWORKING_INTERFACE_VERSION_PREFIX,         get_generic_ISteamNetworking },
+		{ STEAMPARENTALSETTINGS_INTERFACE_VERSION_PREFIX,   get_generic_ISteamParentalSettings },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_PREFIX,      get_generic_ISteamRemoteStorage },
 		{ STEAMSCREENSHOTS_INTERFACE_VERSION_PREFIX,        get_generic_ISteamScreenshots },
 		{ STEAMUGC_INTERFACE_VERSION_PREFIX,                get_generic_ISteamUGC },
@@ -376,6 +383,15 @@ MEMBER struct ISteamNetworking *ISteamClient_GetISteamNetworking(struct ISteamCl
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamNetworking_generic(version);
+}
+
+MEMBER struct ISteamParentalSettings *ISteamClient_GetISteamParentalSettings(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
+
+	return SteamParentalSettings_generic(version);
 }
 
 MEMBER struct ISteamRemoteStorage *ISteamClient_GetISteamRemoteStorage(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)

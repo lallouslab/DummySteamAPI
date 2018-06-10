@@ -14,6 +14,7 @@
 #include "../ISteamMusic/ISteamMusic.h"
 #include "../ISteamMusicRemote/ISteamMusicRemote.h"
 #include "../ISteamNetworking/ISteamNetworking.h"
+#include "../ISteamParentalSettings/ISteamParentalSettings.h"
 #include "../ISteamUser/ISteamUser.h"
 #include "../ISteamUserStats/ISteamUserStats.h"
 #include "../ISteamUtils/ISteamUtils.h"
@@ -58,7 +59,7 @@ struct ISteamClient017Vtbl
 	void *Set_SteamAPI_CCheckCallbackRegisteredInProcess;
 	MEMBER struct ISteamInventory *(*GetISteamInventory)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	MEMBER struct ISteamVideo *(*GetISteamVideo)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
-	void *GetISteamParentalSettings;
+	MEMBER struct ISteamParentalSettings *(*GetISteamParentalSettings)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 };
 
 struct ISteamClient *SteamClient017(void);

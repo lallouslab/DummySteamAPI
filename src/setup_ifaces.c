@@ -60,6 +60,8 @@
 #include "ISteamNetworking/ISteamNetworking.h"
 #include "ISteamNetworking/ISteamNetworking001.h"
 #include "ISteamNetworking/ISteamNetworking005.h"
+#include "ISteamParentalSettings/ISteamParentalSettings.h"
+#include "ISteamParentalSettings/ISteamParentalSettings001.h"
 #include "ISteamRemoteStorage/ISteamRemoteStorage.h"
 #include "ISteamRemoteStorage/ISteamRemoteStorage001.h"
 #include "ISteamRemoteStorage/ISteamRemoteStorage012.h"
@@ -138,6 +140,7 @@ int dsa_set_default_interfaces_version(void)
 		{ STEAMMUSICREMOTE_INTERFACE_VERSION_001, SteamMusicRemote_set_version },
 		{ STEAMNETWORKING_INTERFACE_VERSION_001, SteamNetworking_set_version },
 		{ STEAMNETWORKING_INTERFACE_VERSION_005, SteamNetworking_set_version },
+		{ STEAMPARENTALSETTINGS_INTERFACE_VERSION_001, SteamParentalSettings_set_version },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_001, SteamRemoteStorage_set_version },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_012, SteamRemoteStorage_set_version },
 		{ STEAMREMOTESTORAGE_INTERFACE_VERSION_013, SteamRemoteStorage_set_version },
