@@ -81,6 +81,15 @@ MEMBER steam_bool_t ISteamRemoteStorage014_GetQuota(struct ISteamRemoteStorage *
 	return STEAM_TRUE;
 }
 
+MEMBER steam_bool_t ISteamRemoteStorage_IsCloudEnabledForApp(struct ISteamRemoteStorage *iface)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	return STEAM_FALSE;
+}
+
 MEMBER void ISteamRemoteStorage_SetCloudEnabledForApp(struct ISteamRemoteStorage *iface, steam_bool_t enabled)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
