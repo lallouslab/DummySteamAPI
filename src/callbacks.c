@@ -316,7 +316,7 @@ static steam_bool_t handle_api_call_result_output(struct call_output *out)
 			continue;
 		}
 
-		callback->vtbl->Run1(callback, out->io_failure, out->api_call, out->data);
+		callback->vtbl->Run1(callback, out->data, out->io_failure, out->api_call);
 
 		unreg_api_call_result_unsafe(callback, elem);
 

@@ -218,7 +218,7 @@ typedef void (*steam_callback_t)(void *obj, void *param);
 struct CCallbackBaseVtbl
 {
 	MEMBER void (*Run0)(struct CCallbackBase *iface, void *param);
-	MEMBER void (*Run1)(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param);
+	MEMBER void (*Run1)(struct CCallbackBase *iface, void *param, steam_bool_t io_failure, steam_api_call_t api_call);
 	MEMBER int (*GetCallbackSizeBytes)(struct CCallbackBase *iface);
 };
 

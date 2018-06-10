@@ -22,10 +22,10 @@ MEMBER static void CCallResult_Run0(struct CCallbackBase *iface, void *param)
 {
 	struct CCallResult *impl = CCallResult_from_CCallbackBase(iface);
 
-	iface->vtbl->Run1(iface, STEAM_FALSE, impl->api_call, param);
+	iface->vtbl->Run1(iface, param, STEAM_FALSE, impl->api_call);
 }
 
-MEMBER static void CCallResult_Run1(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param)
+MEMBER static void CCallResult_Run1(struct CCallbackBase *iface, void *param, steam_bool_t io_failure, steam_api_call_t api_call)
 {
 	struct CCallResult *impl = CCallResult_from_CCallbackBase(iface);
 
@@ -97,10 +97,10 @@ MEMBER void CCallResult_Cancel(struct CCallResult *iface)
 
 MEMBER static void CCallback_Run0(struct CCallbackBase *iface, void *param)
 {
-	iface->vtbl->Run1(iface, STEAM_FALSE, 0, param);
+	iface->vtbl->Run1(iface, param, STEAM_FALSE, 0);
 }
 
-MEMBER static void CCallback_Run1(struct CCallbackBase *iface, steam_bool_t io_failure, steam_api_call_t api_call, void *param)
+MEMBER static void CCallback_Run1(struct CCallbackBase *iface, void *param, steam_bool_t io_failure, steam_api_call_t api_call)
 {
 	struct CCallback *impl = CCallback_from_CCallbackBase(iface);
 
