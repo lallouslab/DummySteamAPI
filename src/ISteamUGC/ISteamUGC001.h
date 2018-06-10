@@ -13,7 +13,7 @@ struct ISteamUGC001Vtbl
 	void *CreateQueryAllUGCRequest;
 	MEMBER steam_api_call_t (*SendQueryUGCRequest)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 	void *GetQueryUGCResult;
-	void *ReleaseQueryUGCRequest;
+	MEMBER steam_bool_t (*ReleaseQueryUGCRequest)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 	void *AddRequiredTag;
 	void *AddExcludedTag;
 	void *SetReturnLongDescription;

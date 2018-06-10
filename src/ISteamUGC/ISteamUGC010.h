@@ -23,7 +23,7 @@ struct ISteamUGC010Vtbl
 	void *GetQueryUGCAdditionalPreview;
 	void *GetQueryUGCNumKeyValueTags;
 	void *GetQueryUGCKeyValueTag;
-	void *ReleaseQueryUGCRequest;
+	MEMBER steam_bool_t (*ReleaseQueryUGCRequest)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 	void *AddRequiredTag;
 	void *AddExcludedTag;
 	void *SetReturnOnlyIDs;

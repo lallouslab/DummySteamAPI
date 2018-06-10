@@ -39,6 +39,15 @@ MEMBER steam_api_call_t ISteamUGC_SendQueryUGCRequest(struct ISteamUGC *iface, s
 	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_CLIENT_UGC_QUERY_COMPLETED, STEAM_FALSE, &ugc_query_completed, sizeof(ugc_query_completed));
 }
 
+MEMBER steam_bool_t ISteamUGC_ReleaseQueryUGCRequest(struct ISteamUGC *iface, steam_ugc_query_handle_t handle)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ")", VOIDPTR(This), handle);
+
+	return STEAM_TRUE;
+}
+
 MEMBER steam_bool_t ISteamUGC_SetReturnChildren(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_children)
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
