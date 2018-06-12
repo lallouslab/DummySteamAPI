@@ -19,6 +19,7 @@ MEMBER uint32_t ISteamUtils_GetSecondsSinceAppActive(struct ISteamUtils *iface);
 MEMBER enum steam_universe ISteamUtils_GetConnectedUniverse(struct ISteamUtils *iface);
 MEMBER uint32_t ISteamUtils_GetServerRealTime(struct ISteamUtils *iface);
 MEMBER const char *ISteamUtils_GetIPCountry(struct ISteamUtils *iface);
+MEMBER steam_bool_t ISteamUtils_GetImageSize(struct ISteamUtils *iface, int handle, uint32_t *w, uint32_t *h);
 MEMBER steam_bool_t ISteamUtils_GetImageRGBA(struct ISteamUtils *iface, int handle, uint8_t *buf, int buf_size);
 MEMBER steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port);
 MEMBER uint32_t ISteamUtils_GetAppID(struct ISteamUtils *iface);

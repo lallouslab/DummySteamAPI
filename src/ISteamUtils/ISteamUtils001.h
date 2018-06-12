@@ -14,7 +14,7 @@ struct ISteamUtils001Vtbl
 	MEMBER enum steam_universe (*GetConnectedUniverse)(struct ISteamUtils *iface);
 	MEMBER uint32_t (*GetServerRealTime)(struct ISteamUtils *iface);
 	MEMBER const char *(*GetIPCountry)(struct ISteamUtils *iface);
-	void *GetImageSize;
+	MEMBER steam_bool_t (*GetImageSize)(struct ISteamUtils *iface, int handle, uint32_t *w, uint32_t *h);
 	MEMBER steam_bool_t (*GetImageRGBA)(struct ISteamUtils *iface, int handle, uint8_t *buf, int buf_size);
 };
 

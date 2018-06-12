@@ -9,7 +9,7 @@ static const struct ISteamUtils001Vtbl ISteamUtils001_vtbl = {
 	ISteamUtils_GetConnectedUniverse,
 	ISteamUtils_GetServerRealTime,
 	ISteamUtils_GetIPCountry,
-	INVAL_PTR,
+	ISteamUtils_GetImageSize,
 	ISteamUtils_GetImageRGBA
 };
 
