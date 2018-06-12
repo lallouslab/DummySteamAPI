@@ -4,8 +4,6 @@
 #include <stddef.h> /* offsetof() */
 #include <stdlib.h>
 
-#define PACKED_STRUCT struct __attribute__((packed))
-
 /* Force warning for enum value not handled in switch (even with default:). */
 #pragma GCC diagnostic warning "-Wswitch-enum"
 
@@ -14,6 +12,7 @@
 # pragma GCC diagnostic ignored "-Wformat"
 
 # define EXPORT __declspec(dllexport)
+# define PACKED_STRUCT struct __attribute__((packed, aligned(8)))
 
 # define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM __extension__
 # define MEMBER_CALLBACK_PARAM __attribute__((thiscall)) __attribute__((ms_abi))
@@ -27,6 +26,7 @@
 #else
 
 # define EXPORT __attribute__((visibility("default")))
+# define PACKED_STRUCT struct __attribute__((packed, aligned(4)))
 
 # define DECL_FUNC_WITH_MEMBER_CALLBACK_PARAM
 # define MEMBER_CALLBACK_PARAM
