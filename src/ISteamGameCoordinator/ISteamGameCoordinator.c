@@ -29,6 +29,18 @@ MEMBER steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCo
 	return STEAM_FALSE;
 }
 
+MEMBER enum steam_game_coordinator_result ISteamGameCoordinator_RetrieveMessage(struct ISteamGameCoordinator *iface, uint32_t *msg_type, void *buf, uint32_t buf_size, uint32_t *msg_size)
+{
+	struct ISteamGameCoordinatorImpl *This = impl_from_ISteamGameCoordinator(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, msg_type = %p, buf = %p, buf_size = %u, msg_size = %p)", VOIDPTR(This), VOIDPTR(msg_type), buf, buf_size, VOIDPTR(msg_size));
+
+	*msg_type = 0;
+	*msg_size = 0;
+
+	return STEAM_GAME_COORDINATOR_RESULT_NO_MESSAGE;
+}
+
 struct ISteamGameCoordinator *SteamGameCoordinator_generic(const char *version)
 {
 	static const struct

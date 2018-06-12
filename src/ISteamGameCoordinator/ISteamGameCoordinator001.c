@@ -6,7 +6,7 @@
 static const struct ISteamGameCoordinator001Vtbl ISteamGameCoordinator001_vtbl = {
 	ISteamGameCoordinator_SendMessage,
 	ISteamGameCoordinator_IsMessageAvailable,
-	INVAL_PTR
+	ISteamGameCoordinator_RetrieveMessage
 };
 
 struct ISteamGameCoordinator *SteamGameCoordinator001(void)
