@@ -23,6 +23,7 @@ typedef int32_t  steam_user_t;
 
 enum steam_account_instance
 {
+	STEAM_ACCOUNT_INSTANCE_INVALID = 0u,
 	STEAM_ACCOUNT_INSTANCE_USER_DESKTOP = 1u << 0,
 	STEAM_ACCOUNT_INSTANCE_USER_CONSOLE = 1u << 1,
 	STEAM_ACCOUNT_INSTANCE_USER_WEB     = 1u << 2,

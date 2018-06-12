@@ -16,7 +16,7 @@ struct ISteamFriends013Vtbl
 	void *GetFriendByIndex;
 	void *GetFriendRelationship;
 	void *GetFriendPersonaState;
-	MEMBER const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
+	MEMBER const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, union CSteamID steam_id_friend);
 	void *GetFriendGamePlayed3;
 	void *GetFriendPersonaNameHistory;
 	void *HasFriend;
@@ -51,7 +51,7 @@ struct ISteamFriends013Vtbl
 	void *GetFriendRichPresenceKeyCount;
 	void *GetFriendRichPresenceKeyByIndex;
 	void *RequestFriendRichPresence;
-	MEMBER steam_bool_t (*InviteUserToGame)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str);
+	MEMBER steam_bool_t (*InviteUserToGame)(struct ISteamFriends *iface, union CSteamID steam_id_friend, const char *connect_str);
 	void *GetCoplayFriendCount;
 	void *GetCoplayFriend;
 	void *GetFriendCoplayTime;

@@ -19,7 +19,7 @@ struct ISteamFriends001Vtbl
 	void *GetFriendRelationship;
 	void *GetFriendPersonaState;
 	void *GetFriendGamePlayed0;
-	MEMBER const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend);
+	MEMBER const char *(*GetFriendPersonaName)(struct ISteamFriends *iface, union CSteamID steam_id_friend);
 	void *AddFriendByName;
 	void *GetFriendCount;
 	void *GetFriendByIndex;

@@ -48,20 +48,20 @@ MEMBER int ISteamFriends_GetFriendCount(struct ISteamFriends *iface, int flags)
 	return 0;
 }
 
-MEMBER const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend)
+MEMBER const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *iface, union CSteamID steam_id_friend)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p)", VOIDPTR(This), steam_id_friend);
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %#" PRIx64 ")", VOIDPTR(This), steam_id_friend.raw);
 
 	return "";
 }
 
-MEMBER steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, void /* FriendGameInfo_t */ *friend_game_info)
+MEMBER steam_bool_t ISteamFriends_GetFriendGamePlayed(struct ISteamFriends *iface, union CSteamID steam_id_friend, void /* FriendGameInfo_t */ *friend_game_info)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p, friend_game_info = %p)", VOIDPTR(This), steam_id_friend, friend_game_info);
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %#" PRIx64 ", friend_game_info = %p)", VOIDPTR(This), steam_id_friend.raw, friend_game_info);
 
 	return STEAM_FALSE;
 }
@@ -75,11 +75,11 @@ MEMBER steam_bool_t ISteamFriends_SetRichPresence(struct ISteamFriends *iface, c
 	return STEAM_TRUE;
 }
 
-MEMBER steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, void /* CSteamID */ *steam_id_friend, const char *connect_str)
+MEMBER steam_bool_t ISteamFriends_InviteUserToGame(struct ISteamFriends *iface, union CSteamID steam_id_friend, const char *connect_str)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %p, connect_str = \"%s\")", VOIDPTR(This), steam_id_friend, debug_str(connect_str));
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %#" PRIx64 ", connect_str = \"%s\")", VOIDPTR(This), steam_id_friend.raw, debug_str(connect_str));
 
 	return STEAM_FALSE;
 }

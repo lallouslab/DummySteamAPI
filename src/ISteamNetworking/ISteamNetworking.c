@@ -21,14 +21,17 @@ MEMBER steam_bool_t ISteamNetworking_IsP2PPacketAvailable(struct ISteamNetworkin
 	return STEAM_FALSE;
 }
 
-MEMBER steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *dest, uint32_t dest_size, uint32_t *msg_size, void /* CSteamID */ **steam_id_remote, int channel)
+MEMBER steam_bool_t ISteamNetworking_ReadP2PPacket(struct ISteamNetworking *iface, void *dest, uint32_t dest_size, uint32_t *msg_size, union CSteamID *steam_id_remote, int channel)
 {
 	struct ISteamNetworkingImpl *This = impl_from_ISteamNetworking(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, dest = %p, dest_size = %u, msg_size = %p, steam_id_remote = %p, channel = %d)", VOIDPTR(This), dest, dest_size, VOIDPTR(msg_size), VOIDPTR(steam_id_remote), channel);
 
 	*msg_size = 0;
-	*steam_id_remote = INVAL_PTR;
+	steam_id_remote->bits.account_id = 0;
+	steam_id_remote->bits.account_instance = STEAM_ACCOUNT_INSTANCE_INVALID;
+	steam_id_remote->bits.account_type = STEAM_ACCOUNT_TYPE_INVALID;
+	steam_id_remote->bits.universe = STEAM_UNIVERSE_INVALID;
 
 	return STEAM_FALSE;
 }
