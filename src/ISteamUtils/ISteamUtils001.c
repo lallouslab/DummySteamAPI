@@ -10,7 +10,7 @@ static const struct ISteamUtils001Vtbl ISteamUtils001_vtbl = {
 	ISteamUtils_GetServerRealTime,
 	ISteamUtils_GetIPCountry,
 	INVAL_PTR,
-	INVAL_PTR
+	ISteamUtils_GetImageRGBA
 };
 
 struct ISteamUtils *SteamUtils001(void)

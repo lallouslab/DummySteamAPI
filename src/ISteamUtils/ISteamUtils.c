@@ -56,6 +56,15 @@ MEMBER const char *ISteamUtils_GetIPCountry(struct ISteamUtils *iface)
 	return "FR";
 }
 
+MEMBER steam_bool_t ISteamUtils_GetImageRGBA(struct ISteamUtils *iface, int handle, uint8_t *buf, int buf_size)
+{
+	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
+
+	LOG_ENTER("(This = %p, handle = %d, buf = %p, buf_size = %d)", VOIDPTR(This), handle, VOIDPTR(buf), buf_size);
+
+	return STEAM_FALSE;
+}
+
 MEMBER steam_bool_t ISteamUtils_GetCSERIPPort(struct ISteamUtils *iface, uint32_t *ip, uint16_t *port)
 {
 	struct ISteamUtilsImpl *This = impl_from_ISteamUtils(iface);
