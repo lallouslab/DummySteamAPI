@@ -9,6 +9,15 @@
 
 static const char *steam_game_coordinator_version = NULL;
 
+MEMBER enum steam_game_coordinator_result ISteamGameCoordinator_SendMessage(struct ISteamGameCoordinator *iface, uint32_t msg_type, const void *msg, uint32_t msg_size)
+{
+	struct ISteamGameCoordinatorImpl *This = impl_from_ISteamGameCoordinator(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, msg_type = %u, msg = %p, msg_size = %u)", VOIDPTR(This), msg_type, msg, msg_size);
+
+	return STEAM_GAME_COORDINATOR_RESULT_INVALID_MESSAGE;
+}
+
 MEMBER steam_bool_t ISteamGameCoordinator_IsMessageAvailable(struct ISteamGameCoordinator *iface, uint32_t *msg_size)
 {
 	struct ISteamGameCoordinatorImpl *This = impl_from_ISteamGameCoordinator(iface);

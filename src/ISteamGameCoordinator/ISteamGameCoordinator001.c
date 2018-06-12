@@ -4,7 +4,7 @@
 #include "ISteamGameCoordinator_priv.h"
 
 static const struct ISteamGameCoordinator001Vtbl ISteamGameCoordinator001_vtbl = {
-	INVAL_PTR,
+	ISteamGameCoordinator_SendMessage,
 	ISteamGameCoordinator_IsMessageAvailable,
 	INVAL_PTR
 };
