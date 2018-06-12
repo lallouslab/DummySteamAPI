@@ -38,7 +38,7 @@ struct ISteamFriends013Vtbl
 	void *ActivateGameOverlayInviteDialog;
 	void *GetSmallFriendAvatar;
 	void *GetMediumFriendAvatar;
-	void *GetLargeFriendAvatar;
+	MEMBER int (*GetLargeFriendAvatar)(struct ISteamFriends *iface, union CSteamID steam_id_friend);
 	void *RequestUserInformation;
 	void *RequestClanOfficerList;
 	void *GetClanOwner;
