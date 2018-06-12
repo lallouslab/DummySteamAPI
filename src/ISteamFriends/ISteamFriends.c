@@ -57,6 +57,15 @@ MEMBER const char *ISteamFriends_GetFriendPersonaName(struct ISteamFriends *ifac
 	return "";
 }
 
+MEMBER int ISteamFriends_GetSmallFriendAvatar(struct ISteamFriends *iface, union CSteamID steam_id_friend)
+{
+	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_id_friend = %#" PRIx64 ")", VOIDPTR(This), steam_id_friend.raw);
+
+	return 0;
+}
+
 MEMBER int ISteamFriends_GetMediumFriendAvatar(struct ISteamFriends *iface, union CSteamID steam_id_friend)
 {
 	struct ISteamFriendsImpl *This = impl_from_ISteamFriends(iface);

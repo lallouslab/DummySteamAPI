@@ -32,7 +32,7 @@ static const struct ISteamFriends014Vtbl ISteamFriends014_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamFriends_GetSmallFriendAvatar,
 	ISteamFriends_GetMediumFriendAvatar,
 	ISteamFriends_GetLargeFriendAvatar,
 	INVAL_PTR,
