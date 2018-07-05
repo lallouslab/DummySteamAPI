@@ -11,7 +11,7 @@ KNG_LIB32="${KNG_DIR}"
 # Required by DSA
 export SteamAppId="368230"
 export SteamGameId="368230"
-export DSA_ORIG_STEAM_API_LIB="${KNg_LIB64}/Kingdom_Data/Plugins/x86/libsteam_api.so"
+export DSA_ORIG_STEAM_API_LIB="${KNG_LIB32}/Kingdom_Data/Plugins/x86/libsteam_api.so"
 
 export CFLAGS="-m32"
 export LDFLAGS="-m32"
