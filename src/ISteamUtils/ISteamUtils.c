@@ -16,6 +16,7 @@
 #include "ISteamUtils002.h"
 #include "ISteamUtils006.h"
 #include "ISteamUtils007.h"
+#include "ISteamUtils008.h"
 #include "ISteamUtils009.h"
 
 static const char *steam_utils_version = NULL;
@@ -159,6 +160,7 @@ struct ISteamUtils *SteamUtils_generic(const char *version)
 		{ STEAMUTILS_INTERFACE_VERSION_002, SteamUtils002 },
 		{ STEAMUTILS_INTERFACE_VERSION_006, SteamUtils006 },
 		{ STEAMUTILS_INTERFACE_VERSION_007, SteamUtils007 },
+		{ STEAMUTILS_INTERFACE_VERSION_008, SteamUtils008 },
 		{ STEAMUTILS_INTERFACE_VERSION_009, SteamUtils009 },
 		{ NULL, NULL }
 	};
