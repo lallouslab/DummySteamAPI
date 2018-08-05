@@ -13,7 +13,7 @@ static const struct ISteamRemoteStorage014Vtbl ISteamRemoteStorage014_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamRemoteStorage_FileWriteStreamOpen,
 	ISteamRemoteStorage_FileWriteStreamWriteChunk,
 	ISteamRemoteStorage_FileWriteStreamClose,
 	ISteamRemoteStorage_FileWriteStreamCancel,

@@ -15,7 +15,7 @@ struct ISteamRemoteStorage012Vtbl
 	void *FileDelete;
 	void *FileShare;
 	void *SetSyncPlatforms;
-	void *FileWriteStreamOpen;
+	MEMBER steam_ugc_file_write_stream_handle_t (*FileWriteStreamOpen)(struct ISteamRemoteStorage *iface, const char *filename);
 	MEMBER steam_bool_t (*FileWriteStreamWriteChunk)(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle, void *data, int32_t size);
 	MEMBER steam_bool_t (*FileWriteStreamClose)(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle);
 	MEMBER steam_bool_t (*FileWriteStreamCancel)(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle);

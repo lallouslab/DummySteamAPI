@@ -30,6 +30,15 @@ MEMBER int32_t ISteamRemoteStorage_FileRead(struct ISteamRemoteStorage *iface, c
 	return 0;
 }
 
+MEMBER steam_ugc_file_write_stream_handle_t ISteamRemoteStorage_FileWriteStreamOpen(struct ISteamRemoteStorage *iface, const char *filename)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\")", VOIDPTR(This), debug_str(filename));
+
+	return STEAM_UGC_FILE_WRITE_STREAM_HANDLE_INVAL;
+}
+
 MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamWriteChunk(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle, void *data, int32_t size)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
