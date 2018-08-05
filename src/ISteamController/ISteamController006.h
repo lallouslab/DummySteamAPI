@@ -21,7 +21,7 @@ struct ISteamController006Vtbl
 	void *DeactivateActionSetLayer;
 	void *DeactivateAllActionSetLayers;
 	void *GetActiveActionSetLayers;
-	void *GetDigitalActionHandle;
+	MEMBER steam_controller_digital_action_handle_t (*GetDigitalActionHandle)(struct ISteamController *iface, const char *name);
 	void *GetDigitalActionData;
 	void *GetDigitalActionOrigins;
 	MEMBER steam_controller_analog_action_handle_t (*GetAnalogActionHandle)(struct ISteamController *iface, const char *name);

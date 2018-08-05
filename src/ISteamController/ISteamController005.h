@@ -17,7 +17,7 @@ struct ISteamController005Vtbl
 	MEMBER steam_controller_action_set_handle_t (*GetActionSetHandle)(struct ISteamController *iface, const char *name);
 	MEMBER void (*ActivateActionSet)(struct ISteamController *iface, steam_controller_handle_t handle, steam_controller_action_set_handle_t action_set_handle);
 	void *GetCurrentActionSet;
-	void *GetDigitalActionHandle;
+	MEMBER steam_controller_digital_action_handle_t (*GetDigitalActionHandle)(struct ISteamController *iface, const char *name);
 	void *GetDigitalActionData;
 	void *GetDigitalActionOrigins;
 	MEMBER steam_controller_analog_action_handle_t (*GetAnalogActionHandle)(struct ISteamController *iface, const char *name);
