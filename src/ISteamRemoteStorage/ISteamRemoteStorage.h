@@ -18,6 +18,9 @@ struct ISteamRemoteStorage
 };
 
 typedef uint64_t steam_published_file_id_t;
+typedef uint64_t steam_ugc_file_write_stream_handle_t;
+
+#define STEAM_UGC_FILE_WRITE_STREAM_HANDLE_INVAL UINT64_C(0xFFFFFFFFFFFFFFFF)
 
 enum steam_workshop_file_action
 {
