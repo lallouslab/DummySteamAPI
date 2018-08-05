@@ -30,6 +30,15 @@ MEMBER int32_t ISteamRemoteStorage_FileRead(struct ISteamRemoteStorage *iface, c
 	return 0;
 }
 
+MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamClose(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ")", VOIDPTR(This), handle);
+
+	return STEAM_FALSE;
+}
+
 MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamCancel(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);

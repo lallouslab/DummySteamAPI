@@ -16,6 +16,7 @@ static inline struct ISteamRemoteStorageImpl *impl_from_ISteamRemoteStorage(stru
 
 MEMBER steam_bool_t ISteamRemoteStorage_FileWrite(struct ISteamRemoteStorage *iface, const char *filename, const void *data, int32_t size);
 MEMBER int32_t ISteamRemoteStorage_FileRead(struct ISteamRemoteStorage *iface, const char *filename, void *data, int32_t size);
+MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamClose(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle);
 MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamCancel(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle);
 MEMBER steam_bool_t ISteamRemoteStorage_FileExists(struct ISteamRemoteStorage *iface, const char *filename);
 MEMBER int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const char *filename);
