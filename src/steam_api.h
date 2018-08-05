@@ -33,7 +33,7 @@ struct CSteamAPIContext
 struct CSteamAPIContextInitData
 {
 	void (*callback)(struct CSteamAPIContext *ctx);
-	uintptr_t counter;
+	uintptr_t ifaces_stale_cnt;
 	struct CSteamAPIContext ctx;
 };
 

@@ -196,10 +196,18 @@ EXPORT void *SteamInternal_CreateInterface(const char *version)
 
 EXPORT struct CSteamAPIContext *SteamInternal_ContextInit(struct CSteamAPIContextInitData *data)
 {
+	/* Should be incremented on API/GameServer Init/Shutdown. */
+	const uintptr_t ifaces_stale_cnt = 1;
+
 	LOG_ENTER("(data = %p)", VOIDPTR(data));
 
-	if (data->callback)
-		data->callback(&data->ctx);
+	if (data->ifaces_stale_cnt != ifaces_stale_cnt)
+	{
+		if (data->callback)
+			data->callback(&data->ctx);
+
+		data->ifaces_stale_cnt = ifaces_stale_cnt;
+	}
 
 	return &data->ctx;
 }
