@@ -15,7 +15,7 @@ static const struct ISteamController003Vtbl ISteamController003_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamController_GetAnalogActionHandle,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

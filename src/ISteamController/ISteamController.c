@@ -80,6 +80,15 @@ MEMBER void ISteamController_ActivateActionSet(struct ISteamController *iface, s
 	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ", action_set_handle = %" PRIu64 ")", VOIDPTR(This), handle, action_set_handle);
 }
 
+MEMBER steam_controller_analog_action_handle_t ISteamController_GetAnalogActionHandle(struct ISteamController *iface, const char *name)
+{
+	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
+
+	return 0;
+}
+
 MEMBER void ISteamController_TriggerHapticPulse(struct ISteamController *iface, uint32_t index, unsigned int /* ESteamControllerPad */ target_pad, unsigned short duration_ms)
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);

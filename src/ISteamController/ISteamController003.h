@@ -20,7 +20,7 @@ struct ISteamController003Vtbl
 	void *GetDigitalActionHandle;
 	void *GetDigitalActionData;
 	void *GetDigitalActionOrigins;
-	void *GetAnalogActionHandle;
+	MEMBER steam_controller_analog_action_handle_t (*GetAnalogActionHandle)(struct ISteamController *iface, const char *name);
 	void *GetAnalogActionData;
 	void *GetAnalogActionOrigins;
 	void *StopAnalogActionMomentum;
