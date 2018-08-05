@@ -64,6 +64,15 @@ MEMBER int ISteamController_GetConnectedControllers(struct ISteamController *ifa
 	return 0;
 }
 
+MEMBER steam_controller_action_set_handle_t ISteamController_GetActionSetHandle(struct ISteamController *iface, const char *name)
+{
+	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
+
+	return 0;
+}
+
 MEMBER void ISteamController_ActivateActionSet(struct ISteamController *iface, steam_controller_handle_t handle, steam_controller_action_set_handle_t action_set_handle)
 {
 	struct ISteamControllerImpl *This = impl_from_ISteamController(iface);

@@ -20,6 +20,7 @@ MEMBER steam_bool_t ISteamController_Shutdown(struct ISteamController *iface);
 MEMBER void ISteamController_RunFrame(struct ISteamController *iface);
 MEMBER steam_bool_t ISteamController_GetControllerState(struct ISteamController *iface, uint32_t index, void *state);
 MEMBER int ISteamController_GetConnectedControllers(struct ISteamController *iface, steam_controller_handle_t *handles);
+MEMBER steam_controller_action_set_handle_t ISteamController_GetActionSetHandle(struct ISteamController *iface, const char *name);
 MEMBER void ISteamController_ActivateActionSet(struct ISteamController *iface, steam_controller_handle_t handle, steam_controller_action_set_handle_t action_set_handle);
 MEMBER void ISteamController_TriggerHapticPulse(struct ISteamController *iface, uint32_t index, unsigned int /* ESteamControllerPad */ target_pad, unsigned short duration_ms);
 MEMBER void ISteamController_SetOverrideMode(struct ISteamController *iface, const char *mode);

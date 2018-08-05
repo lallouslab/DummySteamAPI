@@ -14,7 +14,7 @@ struct ISteamController003Vtbl
 	MEMBER void (*RunFrame)(struct ISteamController *iface);
 	MEMBER int (*GetConnectedControllers)(struct ISteamController *iface, steam_controller_handle_t *handles);
 	void *ShowBindingPanel;
-	void *GetActionSetHandle;
+	MEMBER steam_controller_action_set_handle_t (*GetActionSetHandle)(struct ISteamController *iface, const char *name);
 	MEMBER void (*ActivateActionSet)(struct ISteamController *iface, steam_controller_handle_t handle, steam_controller_action_set_handle_t action_set_handle);
 	void *GetCurrentActionSet;
 	void *GetDigitalActionHandle;
