@@ -12,7 +12,7 @@ static const struct ISteamUGC001Vtbl ISteamUGC001_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_SetReturnTotalOnly,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

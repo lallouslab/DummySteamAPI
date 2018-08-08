@@ -28,7 +28,7 @@ struct ISteamUGC005Vtbl
 	void *SetReturnMetadata;
 	MEMBER steam_bool_t (*SetReturnChildren)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_children);
 	void *SetReturnAdditionalPreviews;
-	void *SetReturnTotalOnly;
+	MEMBER steam_bool_t (*SetReturnTotalOnly)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_total_only);
 	void *SetAllowCachedResponse;
 	void *SetCloudFileNameFilter;
 	void *SetMatchAnyTag;

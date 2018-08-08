@@ -58,6 +58,15 @@ MEMBER steam_bool_t ISteamUGC_SetReturnChildren(struct ISteamUGC *iface, steam_u
 	return STEAM_FALSE;
 }
 
+MEMBER steam_bool_t ISteamUGC_SetReturnTotalOnly(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_total_only)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ", return_total_only = %u)", VOIDPTR(This), handle, return_total_only);
+
+	return STEAM_FALSE;
+}
+
 MEMBER uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface)
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
