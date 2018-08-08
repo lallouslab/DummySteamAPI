@@ -58,6 +58,15 @@ MEMBER steam_bool_t ISteamUGC_SetReturnChildren(struct ISteamUGC *iface, steam_u
 	return STEAM_FALSE;
 }
 
+MEMBER steam_bool_t ISteamUGC_SetReturnAdditionalPreviews(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_additional_previews)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ", return_additional_previews = %u)", VOIDPTR(This), handle, return_additional_previews);
+
+	return STEAM_FALSE;
+}
+
 MEMBER steam_bool_t ISteamUGC_SetReturnTotalOnly(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_total_only)
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
