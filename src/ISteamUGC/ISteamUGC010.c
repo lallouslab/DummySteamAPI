@@ -22,7 +22,7 @@ static const struct ISteamUGC010Vtbl ISteamUGC010_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_SetReturnLongDescription,
 	ISteamUGC_SetReturnMetadata,
 	ISteamUGC_SetReturnChildren,
 	ISteamUGC_SetReturnAdditionalPreviews,

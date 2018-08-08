@@ -16,7 +16,7 @@ struct ISteamUGC001Vtbl
 	MEMBER steam_bool_t (*ReleaseQueryUGCRequest)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 	void *AddRequiredTag;
 	void *AddExcludedTag;
-	void *SetReturnLongDescription;
+	MEMBER steam_bool_t (*SetReturnLongDescription)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_long_desc);
 	MEMBER steam_bool_t (*SetReturnTotalOnly)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_total_only);
 	void *SetCloudFileNameFilter;
 	void *SetMatchAnyTag;

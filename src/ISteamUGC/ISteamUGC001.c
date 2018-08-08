@@ -11,7 +11,7 @@ static const struct ISteamUGC001Vtbl ISteamUGC001_vtbl = {
 	ISteamUGC_ReleaseQueryUGCRequest,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_SetReturnLongDescription,
 	ISteamUGC_SetReturnTotalOnly,
 	INVAL_PTR,
 	INVAL_PTR,

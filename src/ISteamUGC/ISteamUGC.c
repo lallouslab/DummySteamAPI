@@ -49,6 +49,15 @@ MEMBER steam_bool_t ISteamUGC_ReleaseQueryUGCRequest(struct ISteamUGC *iface, st
 	return STEAM_TRUE;
 }
 
+MEMBER steam_bool_t ISteamUGC_SetReturnLongDescription(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_long_desc)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ", return_long_desc = %u)", VOIDPTR(This), handle, return_long_desc);
+
+	return STEAM_FALSE;
+}
+
 MEMBER steam_bool_t ISteamUGC_SetReturnMetadata(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_metadata)
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);

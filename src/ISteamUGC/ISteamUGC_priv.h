@@ -18,6 +18,7 @@ static inline struct ISteamUGCImpl *impl_from_ISteamUGC(struct ISteamUGC *iface)
 MEMBER steam_ugc_query_handle_t ISteamUGC_CreateQueryUGCDetailsRequest(struct ISteamUGC *iface, steam_published_file_id_t *ids, uint32_t max_ids);
 MEMBER steam_api_call_t ISteamUGC_SendQueryUGCRequest(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 MEMBER steam_bool_t ISteamUGC_ReleaseQueryUGCRequest(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
+MEMBER steam_bool_t ISteamUGC_SetReturnLongDescription(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_long_desc);
 MEMBER steam_bool_t ISteamUGC_SetReturnMetadata(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_metadata);
 MEMBER steam_bool_t ISteamUGC_SetReturnChildren(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_children);
 MEMBER steam_bool_t ISteamUGC_SetReturnAdditionalPreviews(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_additional_previews);
