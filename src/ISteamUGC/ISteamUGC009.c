@@ -20,7 +20,7 @@ static const struct ISteamUGC009Vtbl ISteamUGC009_vtbl = {
 	ISteamUGC_ReleaseQueryUGCRequest,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUGC_SetReturnOnlyIDs,
 	ISteamUGC_SetReturnKeyValueTags,
 	ISteamUGC_SetReturnLongDescription,
 	ISteamUGC_SetReturnMetadata,
