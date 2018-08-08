@@ -26,7 +26,7 @@ struct ISteamUGC007Vtbl
 	MEMBER steam_bool_t (*ReleaseQueryUGCRequest)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle);
 	void *AddRequiredTag;
 	void *AddExcludedTag;
-	void *SetReturnKeyValueTags;
+	MEMBER steam_bool_t (*SetReturnKeyValueTags)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_kv_tags);
 	MEMBER steam_bool_t (*SetReturnLongDescription)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_long_desc);
 	MEMBER steam_bool_t (*SetReturnMetadata)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_metadata);
 	MEMBER steam_bool_t (*SetReturnChildren)(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_children);
