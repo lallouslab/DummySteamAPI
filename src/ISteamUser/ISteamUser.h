@@ -25,6 +25,12 @@ PACKED_STRUCT steam_callback_data_user_encrypted_app_ticket_response
 	enum steam_result result;
 };
 
+PACKED_STRUCT steam_callback_data_user_get_auth_session_ticket_response
+{
+	steam_auth_ticket_handle_t ticket;
+	enum steam_result result;
+};
+
 struct ISteamUser *SteamUser_generic(const char *version);
 void SteamUser_set_version(const char *version);
 extern struct ISteamUser *SteamUser(void);

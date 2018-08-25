@@ -127,10 +127,26 @@ MEMBER steam_bool_t ISteamUser_GetUserDataFolder(struct ISteamUser *iface, char 
 MEMBER steam_auth_ticket_handle_t ISteamUser_GetAuthSessionTicket(struct ISteamUser *iface, void *buf, int buf_size, uint32_t *ticket_len)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+	const char ticket[] = "DSA dummy ticket";
+	char *cbuf = buf;
+	struct steam_callback_data_user_get_auth_session_ticket_response get_auth_session_ticket_response;
 
 	LOG_ENTER_NOTIMPL("(This = %p, buf = %p, buf_size = %d, ticket_len = %p)", VOIDPTR(This), buf, buf_size, VOIDPTR(ticket_len));
 
-	return 0;
+	if (!buf_size)
+		return 0;
+
+	*ticket_len = dsa_minu(sizeof(ticket), buf_size);
+
+	memcpy(cbuf, ticket, *ticket_len);
+	cbuf[*ticket_len - 1] = 0;
+
+	get_auth_session_ticket_response.ticket = 1;
+	get_auth_session_ticket_response.result = STEAM_RESULT_OK;
+
+	callbacks_dispatch_callback_output(STEAM_CALLBACK_TYPE_USER_GET_AUTH_SESSION_TICKET_RESPONSE, &get_auth_session_ticket_response, sizeof(get_auth_session_ticket_response));
+
+	return get_auth_session_ticket_response.ticket;
 }
 
 MEMBER void ISteamUser_CancelAuthTicket(struct ISteamUser *iface, steam_auth_ticket_handle_t ticket_handle)
