@@ -183,6 +183,11 @@ EXPORT void SteamAPI_UseBreakpadCrashHandler(const char *version, const char *da
 	LOG_ENTER_NOTIMPL("(version = \"%s\", date = \"%s\", time = \"%s\", is_full_memory_dump = %u, context = %p, pre_minidump_callback = %p)", debug_str(version), debug_str(date), debug_str(time), is_full_memory_dump, context, pre_minidump_callback);
 }
 
+EXPORT void SteamAPI_ReleaseCurrentThreadMemory(void)
+{
+	LOG_ENTER0("()");
+}
+
 EXPORT void *SteamInternal_CreateInterface(const char *version)
 {
 	struct ISteamClient *steam_client;

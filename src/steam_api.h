@@ -59,6 +59,7 @@ extern steam_user_t GetHSteamUser(void);
 extern const char *SteamAPI_GetSteamInstallPath(void);
 extern void SteamAPI_SetTryCatchCallbacks(steam_bool_t enable);
 extern void SteamAPI_UseBreakpadCrashHandler(const char *version, const char *date, char const *time, steam_bool_t is_full_memory_dump, void *context, void *pre_minidump_callback);
+extern void SteamAPI_ReleaseCurrentThreadMemory(void);
 extern void *SteamInternal_CreateInterface(const char *version);
 extern struct CSteamAPIContext *SteamInternal_ContextInit(struct CSteamAPIContextInitData *data);
 
