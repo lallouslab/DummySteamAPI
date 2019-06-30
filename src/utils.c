@@ -1,4 +1,5 @@
 #include <stdarg.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -64,6 +65,55 @@ long dsa_utils_file_get_size(FILE *fp)
 	fseek(fp, old, SEEK_SET);
 
 	return size;
+}
+
+char *dsa_utils_file_get_contents(const char *path, size_t *size)
+{
+	size_t szret;
+	FILE *fp;
+	long sz;
+	char *data;
+
+	if (size)
+		*size = SIZE_MAX;
+
+	fp = fopen(path, "rb");
+	if (!fp)
+		goto fail_open;
+
+	data = NULL;
+
+	sz = dsa_utils_file_get_size(fp);
+	if (sz < 0)
+		goto fail_file_size;
+
+	if (sz > 0)
+	{
+		data = malloc(sz);
+		if (!data)
+			goto fail_alloc;
+
+		szret = fread(data, sz, 1, fp);
+		if (szret != 1)
+			goto fail_read;
+	}
+
+	fclose(fp);
+
+	if (size)
+		*size = sz;
+
+	return data;
+
+fail_read:
+	free(data);
+
+fail_alloc:
+fail_file_size:
+	fclose(fp);
+
+fail_open:
+	return NULL;
 }
 
 void dsa_utils_free_ptr(void *ptr)
