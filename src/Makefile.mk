@@ -24,10 +24,16 @@ SUBDIRS-y := \
 	ISteamUserStats \
 	ISteamUtils \
 	ISteamVideo \
-	os
+	os \
+	vdf
 EXTDIRS-y :=
 
-libsteam_api := ../bin/libsteam_api$(DYN_LIB_EXT)
+out_dir := ../bin
+
+CFLAGS-y += -fPIC -fvisibility=hidden -I.
+CFLAGS-$(CONFIG_OS_LINUX) += -pthread
+
+libsteam_api := $(out_dir)/libsteam_api$(DYN_LIB_EXT)
 
 BINS-y := $(libsteam_api)
 
@@ -57,7 +63,8 @@ libs := \
 	ISteamUserStats/libsteamuserstats$(STATIC_LIB_EXT) \
 	ISteamUtils/libsteamutils$(STATIC_LIB_EXT) \
 	ISteamVideo/libsteamvideo$(STATIC_LIB_EXT) \
-	os/libos$(STATIC_LIB_EXT)
+	os/libos$(STATIC_LIB_EXT) \
+	vdf/libvdf$(STATIC_LIB_EXT)
 
 objs := \
 	CCallback.c.o \
@@ -71,12 +78,9 @@ objs := \
 	steamclient.c.o \
 	utils.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I.
-CFLAGS-$(CONFIG_OS_LINUX) += -pthread
+DEPS-$(libsteam_api)-y := $(libs)
+OBJS-$(libsteam_api)-y := $(objs)
 
 LDFLAGS-$(libsteam_api)-y += $(LDFLAGS_SHARED) -Wl,--whole-archive $(libs) -Wl,--no-whole-archive
 LDFLAGS-$(libsteam_api)-$(CONFIG_OS_LINUX) += -ldl -pthread
 LDFLAGS-$(libsteam_api)-$(CONFIG_OS_WINDOWS) += -Wl,--out-implib,$(libsteam_api).a -luserenv
-
-DEPS-$(libsteam_api)-y := $(libs)
-OBJS-$(libsteam_api)-y := $(objs)
