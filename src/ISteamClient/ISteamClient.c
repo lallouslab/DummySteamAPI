@@ -65,6 +65,13 @@ MEMBER steam_user_t ISteamClient_ConnectToGlobalUser(struct ISteamClient *iface,
 	return ISteamUser019_GetHSteamUser(SteamUser019());
 }
 
+MEMBER void ISteamClient_ReleaseUser(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, steam_user_t steam_user)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_pipe = %u, steam_user = %u)", VOIDPTR(This), steam_pipe, steam_user);
+}
+
 MEMBER struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -193,7 +200,6 @@ static void *get_generic_ISteamInventory(struct ISteamClient *iface, steam_user_
 {
 	return VOIDPTR(ISteamClient_GetISteamInventory(iface, steam_user, steam_pipe, debug_str(version)));
 }
-
 
 static void *get_generic_ISteamMatchmaking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {

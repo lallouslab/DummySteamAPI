@@ -8,7 +8,7 @@ static const struct ISteamClient017Vtbl ISteamClient017_vtbl = {
 	ISteamClient_BReleaseSteamPipe,
 	ISteamClient_ConnectToGlobalUser,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamClient_ReleaseUser,
 	ISteamClient_GetISteamUser,
 	ISteamClient_GetISteamGameServer,
 	INVAL_PTR,

@@ -27,7 +27,7 @@ struct ISteamClient017Vtbl
 	MEMBER steam_bool_t (*BReleaseSteamPipe)(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe);
 	MEMBER steam_user_t (*ConnectToGlobalUser)(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe);
 	void *CreateLocalUser;
-	void *ReleaseUser;
+	MEMBER void (*ReleaseUser)(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, steam_user_t steam_user);
 	MEMBER struct ISteamUser *(*GetISteamUser)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	MEMBER struct ISteamGameServer *(*GetISteamGameServer)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
 	void *SetLocalIPBinding;
