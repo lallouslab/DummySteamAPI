@@ -15,6 +15,7 @@ static inline unsigned int dsa_maxu(unsigned int a, unsigned int b) {
 char *dsa_utils_concat(const char *s1, ...);
 long dsa_utils_file_get_size(FILE *fp);
 char *dsa_utils_file_get_contents(const char *path, size_t *size);
+int dsa_utils_file_write(const char *filename, void *data, size_t size);
 void dsa_utils_free_ptr(void *ptr);
 void *dsa_utils_memdup(const void *data, size_t size);
 char *dsa_utils_strdup(const char *str);

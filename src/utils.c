@@ -116,6 +116,29 @@ fail_open:
 	return NULL;
 }
 
+int dsa_utils_file_write(const char *filename, void *data, size_t size)
+{
+	FILE *fp;
+	size_t szret;
+
+	fp = fopen(filename, "wb");
+	if (!fp)
+		goto fail_open;
+
+	szret = fwrite(data, size, 1, fp);
+	if (szret != 1)
+		goto fail_write;
+
+	fclose(fp);
+	return 0;
+
+fail_write:
+	fclose(fp);
+
+fail_open:
+	return -1;
+}
+
 void dsa_utils_free_ptr(void *ptr)
 {
 	void **p = ptr;
