@@ -26,5 +26,6 @@ MEMBER steam_bool_t ISteamUGC_SetReturnChildren(struct ISteamUGC *iface, steam_u
 MEMBER steam_bool_t ISteamUGC_SetReturnAdditionalPreviews(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_additional_previews);
 MEMBER steam_bool_t ISteamUGC_SetReturnTotalOnly(struct ISteamUGC *iface, steam_ugc_query_handle_t handle, steam_bool_t return_total_only);
 MEMBER uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface);
+MEMBER uint32_t ISteamUGC_GetSubscribedItems(struct ISteamUGC *iface, steam_published_file_id_t *ids, uint32_t max_ids);
 
 #endif /* ISTEAMUGC_PRIV_H */

@@ -121,6 +121,15 @@ MEMBER uint32_t ISteamUGC_GetNumSubscribedItems(struct ISteamUGC *iface)
 	return 0;
 }
 
+MEMBER uint32_t ISteamUGC_GetSubscribedItems(struct ISteamUGC *iface, steam_published_file_id_t *ids, uint32_t max_ids)
+{
+	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, ids = %p, max_ids = %u)", VOIDPTR(This), VOIDPTR(ids), max_ids);
+
+	return 0;
+}
+
 struct ISteamUGC *SteamUGC_generic(const char *version)
 {
 	static const struct

@@ -67,7 +67,7 @@ struct ISteamUGC009Vtbl
 	void *SubscribeItem;
 	void *UnsubscribeItem;
 	MEMBER uint32_t (*GetNumSubscribedItems)(struct ISteamUGC *iface);
-	void *GetSubscribedItems;
+	MEMBER uint32_t (*GetSubscribedItems)(struct ISteamUGC *iface, steam_published_file_id_t *ids, uint32_t max_ids);
 	void *GetItemState;
 	void *GetItemInstallInfo;
 	void *GetItemDownloadInfo;
