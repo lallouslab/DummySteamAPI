@@ -91,7 +91,7 @@ static inline int list_push(struct list *l, void *data, size_t data_size) {
 	return 0;
 }
 
-static inline int list_remove(struct list *l, struct list_elem *elem) {
+static inline int list_extract(struct list *l, struct list_elem *elem) {
 	if (!elem)
 		return -1;
 
@@ -107,6 +107,11 @@ static inline int list_remove(struct list *l, struct list_elem *elem) {
 	if (elem == l->tail)
 		l->tail = elem->prev;
 
+	return 0;
+}
+
+static inline int list_remove(struct list *l, struct list_elem *elem) {
+	list_extract(l, elem);
 	free(elem);
 
 	return 0;
