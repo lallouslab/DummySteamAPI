@@ -40,7 +40,8 @@ struct ISteamUser019Vtbl
 	void *BIsPhoneRequiringVerification;
 };
 
-#define ISteamUser019_GetSteamID(iface, ret) DSA_CALL_MEMBER_RETURN_STRUCT0(iface->vtbl.v019->GetSteamID, ret, iface)
+#define ISteamUser019_GetHSteamUser(iface) ((iface)->vtbl.v019->GetHSteamUser((iface)))
+#define ISteamUser019_GetSteamID(iface, ret) DSA_CALL_MEMBER_RETURN_STRUCT0((iface)->vtbl.v019->GetSteamID, ret, iface)
 
 struct ISteamUser *SteamUser019(void);
 

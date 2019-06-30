@@ -1,5 +1,6 @@
 #include <string.h>
 
+#include "ISteamUser/ISteamUser019.h"
 #include "ISteamAppList/ISteamAppList.h"
 #include "ISteamApps/ISteamApps.h"
 #include "ISteamController/ISteamController.h"
@@ -46,13 +47,22 @@ MEMBER steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *ifa
 	return 1;
 }
 
-MEMBER steam_bool_t ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, steam_handle_pipe_t handle)
+MEMBER steam_bool_t ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
-	LOG_ENTER_NOTIMPL("(This = %p, handle = %d)", VOIDPTR(This), handle);
+	LOG_ENTER_NOTIMPL("(This = %p, steam_pipe = %d)", VOIDPTR(This), steam_pipe);
 
 	return STEAM_TRUE;
+}
+
+MEMBER steam_user_t ISteamClient_ConnectToGlobalUser(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe)
+{
+	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, steam_pipe = %u)", VOIDPTR(This), steam_pipe);
+
+	return ISteamUser019_GetHSteamUser(SteamUser019());
 }
 
 MEMBER struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)

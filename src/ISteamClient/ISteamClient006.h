@@ -17,9 +17,9 @@
 struct ISteamClient006Vtbl
 {
 	MEMBER steam_handle_pipe_t (*CreateSteamPipe)(struct ISteamClient *iface);
-	MEMBER steam_bool_t (*BReleaseSteamPipe)(struct ISteamClient *iface, steam_handle_pipe_t handle);
+	MEMBER steam_bool_t (*BReleaseSteamPipe)(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe);
 	void *CreateGlobalUser;
-	void *ConnectToGlobalUser;
+	MEMBER steam_user_t (*ConnectToGlobalUser)(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe);
 	void *CreateLocalUser;
 	void *ReleaseUser;
 	MEMBER struct ISteamUser *(*GetISteamUser)(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version);
