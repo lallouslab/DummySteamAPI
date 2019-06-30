@@ -16,3 +16,8 @@ EXPORT void *CreateInterface(const char *version, enum steam_result *result)
 
 	return iface;
 }
+
+EXPORT void Steam_ReleaseThreadLocalMemory(steam_bool_t thread_exit)
+{
+	LOG_ENTER("(thread_exit = %u)", thread_exit);
+}
