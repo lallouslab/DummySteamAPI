@@ -14,7 +14,7 @@ static const struct ISteamApps005Vtbl ISteamApps005_vtbl = {
 	ISteamApps_BIsDlcInstalled,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamApps_GetDLCCount,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,

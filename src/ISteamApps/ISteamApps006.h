@@ -19,7 +19,7 @@ struct ISteamApps006Vtbl
 	MEMBER steam_bool_t (*BIsDlcInstalled)(struct ISteamApps *iface, steam_app_id_t app_id);
 	void *GetEarliestPurchaseUnixTime;
 	void *BIsSubscribedFromFreeWeekend;
-	void *GetDLCCount;
+	MEMBER int (*GetDLCCount)(struct ISteamApps *iface);
 	void *BGetDLCDataByIndex;
 	void *InstallDLC;
 	void *UninstallDLC;

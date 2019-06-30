@@ -86,6 +86,15 @@ MEMBER const char *ISteamApps_GetCurrentGameLanguage(struct ISteamApps *iface)
 	return "french";
 }
 
+MEMBER int ISteamApps_GetDLCCount(struct ISteamApps *iface)
+{
+	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	return 0;
+}
+
 struct ISteamApps *SteamApps_generic(const char *version)
 {
 	static const struct
