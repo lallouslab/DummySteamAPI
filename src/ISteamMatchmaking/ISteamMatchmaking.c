@@ -25,12 +25,15 @@ MEMBER steam_api_call_t ISteamMatchmaking_RequestLobbyList003(struct ISteamMatch
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
 	struct steam_callback_data_matchmaking_lobby_match_list lobby_match_list;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	lobby_match_list.count = 0;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_MATCHMAKING_LOBBY_MATCH_LIST, STEAM_FALSE, &lobby_match_list, sizeof(lobby_match_list));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_MATCHMAKING_LOBBY_MATCH_LIST, STEAM_FALSE, &lobby_match_list, sizeof(lobby_match_list));
+	return api_call;
 }
 
 MEMBER void ISteamMatchmaking_AddRequestLobbyListStringFilter(struct ISteamMatchmaking *iface, const char *key, const char *value, enum steam_matchmaking_lobby_comparison comparison)
@@ -86,13 +89,16 @@ MEMBER steam_api_call_t ISteamMatchmaking_CreateLobby007(struct ISteamMatchmakin
 {
 	struct ISteamMatchmakingImpl *This = impl_from_ISteamMatchmaking(iface);
 	struct steam_callback_data_matchmaking_lobby_created lobby_created;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p, type = %u, max_members = %d)", VOIDPTR(This), type, max_members);
 
 	lobby_created.result = STEAM_RESULT_FAIL;
 	lobby_created.steam_id_lobby.raw = 0;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_MATCHMAKING_LOBBY_CREATED, STEAM_FALSE, &lobby_created, sizeof(lobby_created));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_MATCHMAKING_LOBBY_CREATED, STEAM_FALSE, &lobby_created, sizeof(lobby_created));
+	return api_call;
 }
 
 struct ISteamMatchmaking *SteamMatchmaking_generic(const char *version)

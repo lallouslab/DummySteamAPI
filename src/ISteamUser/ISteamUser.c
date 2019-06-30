@@ -167,12 +167,15 @@ MEMBER steam_api_call_t ISteamUser_RequestEncryptedAppTicket(struct ISteamUser *
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
 	struct steam_callback_data_user_encrypted_app_ticket_response encrypted_app_ticket_response;
+	steam_api_call_t api_call;
 
 	LOG_ENTER("(This = %p, data = %p, data_size = %d)", VOIDPTR(This), data, data_size);
 
 	encrypted_app_ticket_response.result = STEAM_RESULT_FAIL;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_ENCRYPTED_APP_TICKET_RESPONSE, STEAM_TRUE, &encrypted_app_ticket_response, sizeof(encrypted_app_ticket_response));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_ENCRYPTED_APP_TICKET_RESPONSE, STEAM_TRUE, &encrypted_app_ticket_response, sizeof(encrypted_app_ticket_response));
+	return api_call;
 }
 
 struct ISteamUser *SteamUser_generic(const char *version)

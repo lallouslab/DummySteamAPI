@@ -28,6 +28,7 @@ MEMBER steam_api_call_t ISteamUGC_SendQueryUGCRequest(struct ISteamUGC *iface, s
 {
 	struct ISteamUGCImpl *This = impl_from_ISteamUGC(iface);
 	struct steam_callback_data_ugc_query_completed ugc_query_completed;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p, handle = %" PRIu64 ")", VOIDPTR(This), handle);
 
@@ -37,7 +38,9 @@ MEMBER steam_api_call_t ISteamUGC_SendQueryUGCRequest(struct ISteamUGC *iface, s
 	ugc_query_completed.total_count = 0;
 	ugc_query_completed.is_data_cached = STEAM_FALSE;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_CLIENT_UGC_QUERY_COMPLETED, STEAM_FALSE, &ugc_query_completed, sizeof(ugc_query_completed));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_CLIENT_UGC_QUERY_COMPLETED, STEAM_FALSE, &ugc_query_completed, sizeof(ugc_query_completed));
+	return api_call;
 }
 
 MEMBER steam_bool_t ISteamUGC_ReleaseQueryUGCRequest(struct ISteamUGC *iface, steam_ugc_query_handle_t handle)

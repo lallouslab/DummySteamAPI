@@ -151,26 +151,29 @@ void callbacks_dispatch_callback_output(enum steam_callback_type type, void *dat
 	list_unlock(&call_outputs);
 }
 
-steam_api_call_t callbacks_dispatch_api_call_result_output(enum steam_callback_type type, steam_bool_t io_failure, void *data, size_t data_size)
+steam_api_call_t callbacks_await_api_call_result_output(void)
+{
+	return ++last_api_call_id;
+}
+
+void callbacks_dispatch_api_call_result_output(steam_api_call_t api_call, enum steam_callback_type type, steam_bool_t io_failure, void *data, size_t data_size)
 {
 	struct call_output out;
 
 	if (type >= STEAM_CALLBACK_TYPE_MAX)
-		return 0;
+		return;
 
 	out.type = type;
 	out.is_api_call = STEAM_TRUE;
 	out.is_handled = STEAM_FALSE;
 	out.io_failure = io_failure;
-	out.api_call = ++last_api_call_id;
+	out.api_call = api_call;
 	out.data = dsa_utils_memdup(data, data_size);
 	out.data_size = data_size;
 
 	list_lock(&call_outputs);
 	list_push(&call_outputs, &out, sizeof(out));
 	list_unlock(&call_outputs);
-
-	return out.api_call;
 }
 
 static int remove_call_output_unsafe(struct list_elem *elem)

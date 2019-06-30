@@ -193,6 +193,7 @@ MEMBER steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats 
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 	struct steam_callback_data_user_stats_user_stats_received user_stats_received;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_user = %#" PRIx64 ")", VOIDPTR(This), steam_id_user.raw);
 
@@ -200,46 +201,57 @@ MEMBER steam_api_call_t ISteamUserStats_RequestUserStats(struct ISteamUserStats 
 	user_stats_received.result = STEAM_RESULT_OK;
 	user_stats_received.steam_id_user = steam_id_user;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, STEAM_FALSE, &user_stats_received, sizeof(user_stats_received));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_USER_STATS_RECEIVED, STEAM_FALSE, &user_stats_received, sizeof(user_stats_received));
+	return api_call;
 }
 
 MEMBER steam_api_call_t ISteamUserStats_FindOrCreateLeaderboard(struct ISteamUserStats *iface, const char *name, enum steam_user_stats_leaderboard_sort_method sort_method, enum steam_user_stats_leaderboard_display_type display_type)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 	struct steam_callback_data_user_stats_leaderboard_find_result leaderboard_find_result;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\", sort_method = %u, display_type = %u)", VOIDPTR(This), debug_str(name), sort_method, display_type);
 
 	leaderboard_find_result.leaderboard = 0;
 	leaderboard_find_result.found = STEAM_FALSE;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
+	return api_call;
 }
 
 MEMBER steam_api_call_t ISteamUserStats_FindLeaderboard(struct ISteamUserStats *iface, const char *name)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 	struct steam_callback_data_user_stats_leaderboard_find_result leaderboard_find_result;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p, name = \"%s\")", VOIDPTR(This), debug_str(name));
 
 	leaderboard_find_result.leaderboard = 0;
 	leaderboard_find_result.found = STEAM_FALSE;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
+	return api_call;
 }
 
 MEMBER steam_api_call_t ISteamUserStats_RequestGlobalStats(struct ISteamUserStats *iface, int history_days_count)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
 	struct steam_callback_data_user_stats_global_stats_received global_stats_received;
+	steam_api_call_t api_call;
 
 	LOG_ENTER_NOTIMPL("(This = %p, history_days_count = %d)", VOIDPTR(This), history_days_count);
 
 	global_stats_received.game_id = dsa_config_get_steam_game_id();
 	global_stats_received.result = STEAM_RESULT_OK;
 
-	return callbacks_dispatch_api_call_result_output(STEAM_CALLBACK_TYPE_USER_STATS_GLOBAL_STATS_RECEIVED, STEAM_FALSE, &global_stats_received, sizeof(global_stats_received));
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_GLOBAL_STATS_RECEIVED, STEAM_FALSE, &global_stats_received, sizeof(global_stats_received));
+	return api_call;
 }
 
 MEMBER steam_bool_t ISteamUserStats_GetGlobalStatI64(struct ISteamUserStats *iface, const char *name, int64_t *data)
