@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdarg.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -170,4 +171,13 @@ char *dsa_utils_strdup(const char *s)
 		return NULL;
 
 	return dsa_utils_memdup(s, strlen(s) + 1);
+}
+
+int dsa_utils_strncasecmp(const char *s1, const char *s2)
+{
+	int d;
+
+	while ((d = tolower(*s1++) - tolower(*s2++)) == 0 && s1[-1]);
+
+	return d;
 }
