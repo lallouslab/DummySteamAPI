@@ -5,6 +5,9 @@ int dsa_init(void)
 {
 	int result;
 
+	/* Here, none of the functions of os can be used,
+	   except: dsa_os_thread*(), dsa_os_mutex*(), dsa_os_semaphore*(), dsa_os_mkdir() */
+
 	result = dsa_config_init();
 	if (result < 0)
 		return result;
