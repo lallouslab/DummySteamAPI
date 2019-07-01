@@ -130,4 +130,11 @@ static inline int list_clear(struct list *l) {
 	return 0;
 }
 
+static inline int list_deinit(struct list *l) {
+	list_clear(l);
+	dsa_os_mutex_destroy(l->mtx);
+
+	return 0;
+}
+
 #endif /* LIST_H */
