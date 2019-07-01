@@ -72,6 +72,7 @@ objs := \
 	config.c.o \
 	debug.c.o \
 	dsa.c.o \
+	jobserver.c.o \
 	setup_ifaces.c.o \
 	steam_api.c.o \
 	steam_gameserver.c.o \
