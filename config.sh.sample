@@ -11,5 +11,8 @@
 # Default value: 1
 export DSA_LOG_LEVEL=1
 
+# The directory where DSA stores persistent data (e.g. achievements)
+export DSA_DATA_DIR="${DSA_DIR}/data"
+
 # STEAM_USER_ID is the name of the directory inside ${HOME}/.steam/steam/userdata
 export STEAM_USER_ID=1

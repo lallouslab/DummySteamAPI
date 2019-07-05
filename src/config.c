@@ -9,6 +9,7 @@ enum dsa_cfg
 {
 	/* DSA_CFG_LOG_LEVEL should be the first to avoid printing unwanted log messages. */
 	DSA_CFG_LOG_LEVEL = 0,
+	DSA_CFG_DATA_DIR,
 	DSA_CFG_ORIG_STEAM_API_LIB,
 	DSA_CFG_STEAM_APP_ID,
 	DSA_CFG_STEAM_GAME_ID,
@@ -26,7 +27,8 @@ struct dsa_cfg_var
 #define DSA_CFG_VAR0(name) DSA_CFG_VAR(name, "${" name "}")
 
 static struct dsa_cfg_var cfg_vars[] = {
-	[DSA_CFG_LOG_LEVEL]          = DSA_CFG_VAR("DSA_LOG_LEVEL", TO_STR(DSA_LOG_LEVEL_WARN)),
+	[DSA_CFG_LOG_LEVEL]          = DSA_CFG_VAR("DSA_LOG_LEVEL", "1"),
+	[DSA_CFG_DATA_DIR]           = DSA_CFG_VAR0("DSA_DATA_DIR"),
 	[DSA_CFG_ORIG_STEAM_API_LIB] = DSA_CFG_VAR0("DSA_ORIG_STEAM_API_LIB"),
 	[DSA_CFG_STEAM_APP_ID]       = DSA_CFG_VAR("SteamAppId", "1"),
 	[DSA_CFG_STEAM_GAME_ID]      = DSA_CFG_VAR("SteamGameId", "1"),
@@ -62,6 +64,11 @@ int dsa_config_init(void)
 enum dsa_log_level dsa_config_get_log_level(void)
 {
 	return strtoul(cfg_vars[DSA_CFG_LOG_LEVEL].val, NULL, 0);
+}
+
+const char *dsa_config_get_data_dir(void)
+{
+	return cfg_vars[DSA_CFG_DATA_DIR].val;
 }
 
 const char *dsa_config_get_orig_steam_api_lib(void)

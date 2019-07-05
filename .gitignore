@@ -1,4 +1,8 @@
-/bin/libsteam_api*
+/bin/*
+!/bin/.gitkeep
+
+/data/*
+!/data/.gitkeep
 
 /config.sh
 
