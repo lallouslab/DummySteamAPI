@@ -3,6 +3,7 @@
 
 #include "CCallback.h"
 #include "steam.h"
+#include "vdf/vdf.h"
 
 #include "ISteamUserStats.h"
 
@@ -11,6 +12,8 @@ struct ISteamUserStatsImplCommon
 	steam_bool_t is_init : 1;
 	const char *default_version;
 	struct CCallResult request_current_stats_call_result;
+	char *stats_filename;
+	struct dsa_vdf *stats;
 };
 
 struct ISteamUserStatsImpl

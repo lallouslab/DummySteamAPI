@@ -16,6 +16,13 @@ struct ISteamUserStats
 
 typedef uint64_t steam_leaderboard_t;
 
+enum steam_user_stats_limit
+{
+	STEAM_USER_STATS_LIMIT_STAT_NAME_MAX = 128,
+	STEAM_USER_STATS_LIMIT_LEADERBOARD_NAME_MAX = 128,
+	STEAM_USER_STATS_LIMIT_LEADERBOARD_DETAILS_MAX = 64
+};
+
 enum steam_user_stats_leaderboard_display_type
 {
 	STEAM_USER_STATS_LEADERBOARD_DISPLAY_TYPE_NONE = 0u,
@@ -36,6 +43,21 @@ PACKED_STRUCT steam_callback_data_user_stats_user_stats_received
 	union CGameID game_id;
 	enum steam_result result;
 	union CSteamID steam_id_user;
+};
+
+PACKED_STRUCT steam_callback_data_user_stats_user_stats_stored
+{
+	union CGameID game_id;
+	enum steam_result result;
+};
+
+PACKED_STRUCT steam_callback_data_user_stats_user_achievement_stored
+{
+	union CGameID game_id;
+	steam_bool_t is_group_achievement;
+	char achievement_name[STEAM_USER_STATS_LIMIT_STAT_NAME_MAX];
+	uint32_t cur_progress;
+	uint32_t max_progress;
 };
 
 PACKED_STRUCT steam_callback_data_user_stats_leaderboard_find_result
