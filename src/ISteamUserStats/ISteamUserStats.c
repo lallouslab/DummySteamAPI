@@ -513,6 +513,22 @@ MEMBER steam_api_call_t ISteamUserStats_FindLeaderboard(struct ISteamUserStats *
 	return api_call;
 }
 
+MEMBER steam_api_call_t ISteamUserStats_GetNumberOfCurrentPlayers(struct ISteamUserStats *iface)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+	struct steam_callback_data_user_stats_number_of_current_players number_of_current_players;
+	steam_api_call_t api_call;
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	number_of_current_players.success = 0;
+	number_of_current_players.player_count = 0;
+
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_NUMBER_OF_CURRENT_PLAYERS, STEAM_FALSE, &number_of_current_players, sizeof(number_of_current_players));
+	return api_call;
+}
+
 MEMBER steam_api_call_t ISteamUserStats_RequestGlobalStats(struct ISteamUserStats *iface, int history_days_count)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);

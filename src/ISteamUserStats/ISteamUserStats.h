@@ -66,6 +66,12 @@ PACKED_STRUCT steam_callback_data_user_stats_leaderboard_find_result
 	steam_bool_t found;
 };
 
+PACKED_STRUCT steam_callback_data_user_stats_number_of_current_players
+{
+	uint8_t success;
+	int32_t player_count;
+};
+
 PACKED_STRUCT steam_callback_data_user_stats_global_stats_received
 {
 	union CGameID game_id;

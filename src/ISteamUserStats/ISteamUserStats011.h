@@ -42,7 +42,7 @@ struct ISteamUserStats011Vtbl
 	void *GetDownloadedLeaderboardEntry;
 	void *UploadLeaderboardScore;
 	void *AttachLeaderboardUGC;
-	void *GetNumberOfCurrentPlayers;
+	MEMBER steam_api_call_t (*GetNumberOfCurrentPlayers)(struct ISteamUserStats *iface);
 	void *RequestGlobalAchievementPercentages;
 	void *GetMostAchievedAchievementInfo;
 	void *GetNextMostAchievedAchievementInfo;
