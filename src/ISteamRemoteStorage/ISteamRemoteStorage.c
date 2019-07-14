@@ -84,6 +84,15 @@ MEMBER int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface
 	return 0;
 }
 
+MEMBER int64_t ISteamRemoteStorage_GetFileTimestamp(struct ISteamRemoteStorage *iface, const char *filename)
+{
+	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, filename = \"%s\")", VOIDPTR(This), debug_str(filename));
+
+	return 0;
+}
+
 MEMBER int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface)
 {
 	struct ISteamRemoteStorageImpl *This = impl_from_ISteamRemoteStorage(iface);

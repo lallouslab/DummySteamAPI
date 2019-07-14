@@ -25,7 +25,7 @@ struct ISteamRemoteStorage013Vtbl
 	MEMBER steam_bool_t (*FileExists)(struct ISteamRemoteStorage *iface, const char *filename);
 	void *FilePersisted;
 	MEMBER int32_t (*GetFileSize)(struct ISteamRemoteStorage *iface, const char *filename);
-	void *GetFileTimestamp;
+	MEMBER int64_t (*GetFileTimestamp)(struct ISteamRemoteStorage *iface, const char *filename);
 	void *GetSyncPlatforms;
 	MEMBER int32_t (*GetFileCount)(struct ISteamRemoteStorage *iface);
 	void *GetFileNameAndSize;

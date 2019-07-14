@@ -22,6 +22,7 @@ MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamClose(struct ISteamRemote
 MEMBER steam_bool_t ISteamRemoteStorage_FileWriteStreamCancel(struct ISteamRemoteStorage *iface, steam_ugc_file_write_stream_handle_t handle);
 MEMBER steam_bool_t ISteamRemoteStorage_FileExists(struct ISteamRemoteStorage *iface, const char *filename);
 MEMBER int32_t ISteamRemoteStorage_GetFileSize(struct ISteamRemoteStorage *iface, const char *filename);
+MEMBER int64_t ISteamRemoteStorage_GetFileTimestamp(struct ISteamRemoteStorage *iface, const char *filename);
 MEMBER int32_t ISteamRemoteStorage_GetFileCount(struct ISteamRemoteStorage *iface);
 MEMBER steam_bool_t ISteamRemoteStorage_GetQuota(struct ISteamRemoteStorage *iface, int32_t *total_bytes, int32_t *available_bytes);
 MEMBER steam_bool_t ISteamRemoteStorage014_GetQuota(struct ISteamRemoteStorage *iface, uint64_t *total_bytes, uint64_t *available_bytes);

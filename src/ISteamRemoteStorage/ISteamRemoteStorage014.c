@@ -20,7 +20,7 @@ static const struct ISteamRemoteStorage014Vtbl ISteamRemoteStorage014_vtbl = {
 	ISteamRemoteStorage_FileExists,
 	INVAL_PTR,
 	ISteamRemoteStorage_GetFileSize,
-	INVAL_PTR,
+	ISteamRemoteStorage_GetFileTimestamp,
 	INVAL_PTR,
 	ISteamRemoteStorage_GetFileCount,
 	INVAL_PTR,
