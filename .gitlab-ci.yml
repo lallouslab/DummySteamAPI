@@ -1,4 +1,4 @@
-image: registry.git.bitmycode.com:443/bmc/buildingtoolscontainer:latest
+image: registry.git.bitmycode.com:443/docker/buildingtools:latest
 
 stages:
   - build
