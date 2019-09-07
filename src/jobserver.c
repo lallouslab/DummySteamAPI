@@ -1,6 +1,5 @@
 #include "list.h"
 #include "os/os.h"
-#include "steam.h"
 
 #include "jobserver.h"
 
@@ -37,7 +36,7 @@ static void dsa_jobserver_pool_thread_ep(void *arg)
 {
 	struct dsa_jobserver_pool_thread_arg *targ = (struct dsa_jobserver_pool_thread_arg *)arg;
 	struct dsa_jobserver_ctx *ctx = targ->ctx;
-	steam_bool_t exit_thrd = STEAM_FALSE;
+	int exit_thrd = 0;
 
 	while (!exit_thrd)
 	{
@@ -55,7 +54,7 @@ static void dsa_jobserver_pool_thread_ep(void *arg)
 		list_unlock(&ctx->jobs);
 
 		if (job->callback == dsa_jobserver_exit_callback)
-			exit_thrd = STEAM_TRUE;
+			exit_thrd = 1;
 
 		job->callback(job->arg);
 
