@@ -12,7 +12,7 @@ enum steam_bool
 	STEAM_TRUE  = 1u
 };
 
-typedef enum steam_bool steam_bool_t;
+typedef uint8_t steam_bool_t;
 
 typedef uint32_t steam_account_id_t;
 typedef uint64_t steam_api_call_t;
