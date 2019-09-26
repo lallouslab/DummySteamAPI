@@ -685,6 +685,8 @@ struct dsa_vdf *dsa_vdf_open_path(struct dsa_vdf *vdf, ...)
 	return entry;
 }
 
+#define DSA_VDF_BUF_GROW 1024
+
 static char *dsa_vdf_buf_append(char **buf, size_t *buf_size, size_t *i, const char *s)
 {
 	size_t s_len;
@@ -694,7 +696,7 @@ static char *dsa_vdf_buf_append(char **buf, size_t *buf_size, size_t *i, const c
 	{
 		char *b;
 
-		b = realloc(*buf, *buf_size + 1024);
+		b = realloc(*buf, *buf_size + DSA_VDF_BUF_GROW);
 		if (!b)
 		{
 			free(*buf);
@@ -703,7 +705,7 @@ static char *dsa_vdf_buf_append(char **buf, size_t *buf_size, size_t *i, const c
 		}
 
 		*buf = b;
-		*buf_size += 1024;
+		*buf_size += DSA_VDF_BUF_GROW;
 	}
 
 	memcpy(&(*buf)[*i], s, s_len);
@@ -711,50 +713,63 @@ static char *dsa_vdf_buf_append(char **buf, size_t *buf_size, size_t *i, const c
 	return *buf;
 }
 
-static char *dsa_vdf_serialize_helper(struct dsa_vdf *vdf, char **buf, size_t *buf_size, size_t *i)
+#undef DSA_VDF_BUF_GROW
+
+static char *dsa_vdf_serialize_helper(struct dsa_vdf *vdf, size_t indent_lvl, char **buf, size_t *buf_size, size_t *i)
 {
+	static const char s_indent[] = "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t";
 	char tmpb[32];
+	const char *indent;
 
 	/* Dead entry */
 	if (!vdf->key)
 		return *buf;
 
+	if (indent_lvl > sizeof(s_indent) - 1)
+		indent_lvl = sizeof(s_indent) - 1;
+
+	indent = &s_indent[sizeof(s_indent) - 1 - indent_lvl];
+
+	dsa_vdf_buf_append(buf, buf_size, i, indent);
 	dsa_vdf_buf_append(buf, buf_size, i, "\"");
 	dsa_vdf_buf_append(buf, buf_size, i, vdf->key);
-	dsa_vdf_buf_append(buf, buf_size, i, "\" ");
+	dsa_vdf_buf_append(buf, buf_size, i, "\"");
 
 	switch (vdf->type)
 	{
 		case DSA_VDF_VALUE_TYPE_INVAL:
-			dsa_vdf_buf_append(buf, buf_size, i, "\"(nil)\"");
+			dsa_vdf_buf_append(buf, buf_size, i, " \"(nil)\"");
 			break;
 
 		case DSA_VDF_VALUE_TYPE_INT:
 			snprintf(tmpb, sizeof(tmpb), "%d", vdf->value.as_int);
-			dsa_vdf_buf_append(buf, buf_size, i, "\"");
+			dsa_vdf_buf_append(buf, buf_size, i, " \"");
 			dsa_vdf_buf_append(buf, buf_size, i, tmpb);
 			dsa_vdf_buf_append(buf, buf_size, i, "\"");
 			break;
 
 		case DSA_VDF_VALUE_TYPE_FLOAT:
 			snprintf(tmpb, sizeof(tmpb), "%f", vdf->value.as_float);
-			dsa_vdf_buf_append(buf, buf_size, i, "\"");
+			dsa_vdf_buf_append(buf, buf_size, i, " \"");
 			dsa_vdf_buf_append(buf, buf_size, i, tmpb);
 			dsa_vdf_buf_append(buf, buf_size, i, "\"");
 			break;
 
 		case DSA_VDF_VALUE_TYPE_STR:
-			dsa_vdf_buf_append(buf, buf_size, i, "\"");
+			dsa_vdf_buf_append(buf, buf_size, i, " \"");
 			dsa_vdf_buf_append(buf, buf_size, i, vdf->value.as_str);
 			dsa_vdf_buf_append(buf, buf_size, i, "\"");
 			break;
 
 		case DSA_VDF_VALUE_TYPE_LIST:
+			dsa_vdf_buf_append(buf, buf_size, i, "\n");
+			dsa_vdf_buf_append(buf, buf_size, i, indent);
 			dsa_vdf_buf_append(buf, buf_size, i, "{\n");
 
 			for (size_t j = 0; j < vdf->value.as_list.count; j++)
-				dsa_vdf_serialize_helper(&vdf->value.as_list.children[j], buf, buf_size, i);
+				dsa_vdf_serialize_helper(&vdf->value.as_list.children[j], indent_lvl + 1, buf, buf_size, i);
 
+			dsa_vdf_buf_append(buf, buf_size, i, indent);
 			dsa_vdf_buf_append(buf, buf_size, i, "}");
 			break;
 	}
@@ -773,7 +788,7 @@ char *dsa_vdf_serialize(struct dsa_vdf *vdf, size_t *size)
 
 	*size = 0;
 
-	return dsa_vdf_serialize_helper(vdf, &buf, &buf_size, size);
+	return dsa_vdf_serialize_helper(vdf, 0, &buf, &buf_size, size);
 }
 
 struct dsa_vdf *dsa_vdf_destroy(struct dsa_vdf *vdf)
