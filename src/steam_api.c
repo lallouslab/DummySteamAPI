@@ -188,15 +188,22 @@ EXPORT void SteamAPI_ReleaseCurrentThreadMemory(void)
 	LOG_ENTER0("()");
 }
 
-EXPORT void *SteamInternal_CreateInterface(const char *version)
+EXPORT void *SteamInternal_FindOrCreateUserInterface(steam_user_t steam_user, const char *version)
 {
 	struct ISteamClient *steam_client;
 
-	LOG_ENTER("(version = \"%s\")", version);
+	LOG_ENTER("(steam_user = %u, version = \"%s\")", steam_user, version);
 
 	steam_client = SteamClient017();
 
-	return steam_client->vtbl.v017->GetISteamGenericInterface(steam_client, SteamAPI_GetHSteamUser(), SteamAPI_GetHSteamPipe(), version);
+	return steam_client->vtbl.v017->GetISteamGenericInterface(steam_client, steam_user, SteamAPI_GetHSteamPipe(), version);
+}
+
+EXPORT void *SteamInternal_CreateInterface(const char *version)
+{
+	LOG_ENTER("(version = \"%s\")", version);
+
+	return SteamInternal_FindOrCreateUserInterface(SteamAPI_GetHSteamUser(), version);
 }
 
 EXPORT struct CSteamAPIContext *SteamInternal_ContextInit(struct CSteamAPIContextInitData *data)
