@@ -24,7 +24,7 @@ struct ISteamApps007Vtbl
 	void *InstallDLC;
 	void *UninstallDLC;
 	void *RequestAppProofOfPurchaseKey;
-	void *GetCurrentBetaName;
+	MEMBER steam_bool_t (*GetCurrentBetaName)(struct ISteamApps *iface, char *name, int name_size);
 	void *MarkContentCorrupt;
 	void *GetInstalledDepots;
 	void *GetAppInstallDir;

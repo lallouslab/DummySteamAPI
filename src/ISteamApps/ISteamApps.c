@@ -77,6 +77,15 @@ MEMBER const char *ISteamApps_GetAvailableGameLanguages(struct ISteamApps *iface
 	return "french,english";
 }
 
+MEMBER steam_bool_t ISteamApps_GetCurrentBetaName(struct ISteamApps *iface, char *name, int name_size)
+{
+	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, name = %p, name_size = %d)", VOIDPTR(This), VOIDPTR(name), name_size);
+
+	return STEAM_FALSE;
+}
+
 MEMBER const char *ISteamApps_GetCurrentGameLanguage(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);

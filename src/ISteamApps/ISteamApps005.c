@@ -19,7 +19,7 @@ static const struct ISteamApps005Vtbl ISteamApps005_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamApps_GetCurrentBetaName,
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
