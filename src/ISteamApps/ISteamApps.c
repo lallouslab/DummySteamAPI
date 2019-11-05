@@ -59,6 +59,11 @@ MEMBER steam_bool_t ISteamApps_BIsSubscribedApp(struct ISteamApps *iface, steam_
 	return STEAM_TRUE;
 }
 
+EXPORT steam_bool_t SteamAPI_ISteamApps_BIsSubscribedApp(struct ISteamApps *iface, steam_app_id_t app_id)
+{
+	return ISteamApps_BIsSubscribedApp(iface, app_id);
+}
+
 MEMBER steam_bool_t ISteamApps_BIsVACBanned(struct ISteamApps *iface)
 {
 	struct ISteamAppsImpl *This = impl_from_ISteamApps(iface);
@@ -93,6 +98,11 @@ MEMBER const char *ISteamApps_GetCurrentGameLanguage(struct ISteamApps *iface)
 	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
 
 	return "french";
+}
+
+EXPORT const char *SteamAPI_ISteamApps_GetCurrentGameLanguage(struct ISteamApps *iface)
+{
+	return ISteamApps_GetCurrentGameLanguage(iface);
 }
 
 MEMBER int ISteamApps_GetDLCCount(struct ISteamApps *iface)

@@ -52,6 +52,15 @@ DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamUser_GetSteamID, struct ISt
 	DSA_MEMBER_RETURN_STRUCT_RETURN(ret, steam_id);
 }
 
+EXPORT uint64_t SteamAPI_ISteamUser_GetSteamID(struct ISteamUser *iface)
+{
+	union CSteamID steam_id;
+
+	DSA_CALL_MEMBER_RETURN_STRUCT0(ISteamUser_GetSteamID, &steam_id, iface);
+
+	return steam_id.raw;
+}
+
 MEMBER int ISteamUser_InitiateGameConnection(struct ISteamUser *iface, void *auth_blob, int auth_blob_size, union CSteamID steam_id_game_server, steam_app_id_t app_id, uint32_t server_ip, uint16_t server_port, steam_bool_t secure)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);

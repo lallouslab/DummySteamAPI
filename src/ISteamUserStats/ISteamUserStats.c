@@ -117,6 +117,11 @@ MEMBER steam_bool_t ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *
 	return STEAM_TRUE;
 }
 
+EXPORT steam_bool_t SteamAPI_ISteamUserStats_RequestCurrentStats(struct ISteamUserStats *iface)
+{
+	return ISteamUserStats_RequestCurrentStats(iface);
+}
+
 MEMBER steam_bool_t ISteamUserStats_GetStatI32(struct ISteamUserStats *iface, const char *name, int32_t *data)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
@@ -495,6 +500,11 @@ MEMBER steam_api_call_t ISteamUserStats_FindOrCreateLeaderboard(struct ISteamUse
 	api_call = callbacks_await_api_call_result_output();
 	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_FIND_RESULT, STEAM_FALSE, &leaderboard_find_result, sizeof(leaderboard_find_result));
 	return api_call;
+}
+
+EXPORT steam_api_call_t SteamAPI_ISteamUserStats_FindOrCreateLeaderboard(struct ISteamUserStats *iface, const char *name, enum steam_user_stats_leaderboard_sort_method sort_method, enum steam_user_stats_leaderboard_display_type display_type)
+{
+	return ISteamUserStats_FindOrCreateLeaderboard(iface, name, sort_method, display_type);
 }
 
 MEMBER steam_api_call_t ISteamUserStats_FindLeaderboard(struct ISteamUserStats *iface, const char *name)

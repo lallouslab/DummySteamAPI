@@ -47,6 +47,11 @@ MEMBER steam_handle_pipe_t ISteamClient_CreateSteamPipe(struct ISteamClient *ifa
 	return 1;
 }
 
+EXPORT steam_handle_pipe_t SteamAPI_ISteamClient_CreateSteamPipe(struct ISteamClient *iface)
+{
+	return ISteamClient_CreateSteamPipe(iface);
+}
+
 MEMBER steam_bool_t ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -54,6 +59,11 @@ MEMBER steam_bool_t ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, s
 	LOG_ENTER_NOTIMPL("(This = %p, steam_pipe = %d)", VOIDPTR(This), steam_pipe);
 
 	return STEAM_TRUE;
+}
+
+EXPORT steam_bool_t SteamAPI_ISteamClient_BReleaseSteamPipe(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe)
+{
+	return ISteamClient_BReleaseSteamPipe(iface, steam_pipe);
 }
 
 MEMBER steam_user_t ISteamClient_ConnectToGlobalUser(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe)
@@ -65,11 +75,21 @@ MEMBER steam_user_t ISteamClient_ConnectToGlobalUser(struct ISteamClient *iface,
 	return ISteamUser019_GetHSteamUser(SteamUser019());
 }
 
+EXPORT steam_user_t SteamAPI_ISteamClient_ConnectToGlobalUser(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe)
+{
+	return ISteamClient_ConnectToGlobalUser(iface, steam_pipe);
+}
+
 MEMBER void ISteamClient_ReleaseUser(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, steam_user_t steam_user)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, steam_pipe = %u, steam_user = %u)", VOIDPTR(This), steam_pipe, steam_user);
+}
+
+EXPORT void SteamAPI_ISteamClient_ReleaseUser(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, steam_user_t steam_user)
+{
+	ISteamClient_ReleaseUser(iface, steam_pipe, steam_user);
 }
 
 MEMBER struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -81,6 +101,11 @@ MEMBER struct ISteamAppList *ISteamClient_GetISteamAppList(struct ISteamClient *
 	return SteamAppList_generic(version);
 }
 
+EXPORT struct ISteamAppList *SteamAPI_ISteamClient_GetISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamAppList(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamApps *ISteamClient_GetISteamApps(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -88,6 +113,11 @@ MEMBER struct ISteamApps *ISteamClient_GetISteamApps(struct ISteamClient *iface,
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamApps_generic(version);
+}
+
+EXPORT struct ISteamApps *SteamAPI_ISteamClient_GetISteamApps(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamApps(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamClient *ISteamClient_GetISteamClient(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version)
@@ -99,6 +129,11 @@ MEMBER struct ISteamClient *ISteamClient_GetISteamClient(struct ISteamClient *if
 	return SteamClient_generic(version);
 }
 
+EXPORT struct ISteamClient *SteamAPI_ISteamClient_GetISteamClient(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamClient(iface, steam_pipe, version);
+}
+
 MEMBER struct ISteamController *ISteamClient_GetISteamController(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -106,6 +141,11 @@ MEMBER struct ISteamController *ISteamClient_GetISteamController(struct ISteamCl
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamController_generic(version);
+}
+
+EXPORT struct ISteamController *SteamAPI_ISteamClient_GetISteamController(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamController(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamFriends *ISteamClient_GetISteamFriends(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -117,6 +157,11 @@ MEMBER struct ISteamFriends *ISteamClient_GetISteamFriends(struct ISteamClient *
 	return SteamFriends_generic(version);
 }
 
+EXPORT struct ISteamFriends *SteamAPI_ISteamClient_GetISteamFriends(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamFriends(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamGameCoordinator *ISteamClient_GetISteamGameCoordinator(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -124,6 +169,11 @@ MEMBER struct ISteamGameCoordinator *ISteamClient_GetISteamGameCoordinator(struc
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamGameCoordinator_generic(version);
+}
+
+EXPORT struct ISteamGameCoordinator *SteamAPI_ISteamClient_GetISteamGameCoordinator(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamGameCoordinator(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamGameServer *ISteamClient_GetISteamGameServer(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -135,6 +185,11 @@ MEMBER struct ISteamGameServer *ISteamClient_GetISteamGameServer(struct ISteamCl
 	return SteamGameServer_generic(version);
 }
 
+EXPORT struct ISteamGameServer *SteamAPI_ISteamClient_GetISteamGameServer(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamGameServer(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamGameServerStats *ISteamClient_GetISteamGameServerStats(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -142,6 +197,11 @@ MEMBER struct ISteamGameServerStats *ISteamClient_GetISteamGameServerStats(struc
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamGameServerStats_generic(version);
+}
+
+EXPORT struct ISteamGameServerStats *SteamAPI_ISteamClient_GetISteamGameServerStats(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamGameServerStats(iface, steam_user, steam_pipe, version);
 }
 
 static void *get_generic_ISteamAppList(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -331,6 +391,11 @@ fail:
 	return INVAL_PTR;
 }
 
+EXPORT void *SteamAPI_ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamGenericInterface(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamHTMLSurface *ISteamClient_GetISteamHTMLSurface(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -338,6 +403,11 @@ MEMBER struct ISteamHTMLSurface *ISteamClient_GetISteamHTMLSurface(struct ISteam
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamHTMLSurface_generic(version);
+}
+
+EXPORT struct ISteamHTMLSurface *SteamAPI_ISteamClient_GetISteamHTMLSurface(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamHTMLSurface(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamHTTP *ISteamClient_GetISteamHTTP(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -349,6 +419,11 @@ MEMBER struct ISteamHTTP *ISteamClient_GetISteamHTTP(struct ISteamClient *iface,
 	return SteamHTTP_generic(version);
 }
 
+EXPORT struct ISteamHTTP *SteamAPI_ISteamClient_GetISteamHTTP(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamHTTP(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamInventory *ISteamClient_GetISteamInventory(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -356,6 +431,11 @@ MEMBER struct ISteamInventory *ISteamClient_GetISteamInventory(struct ISteamClie
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamInventory_generic(version);
+}
+
+EXPORT struct ISteamInventory *SteamAPI_ISteamClient_GetISteamInventory(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamInventory(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamMatchmaking *ISteamClient_GetISteamMatchmaking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -367,6 +447,11 @@ MEMBER struct ISteamMatchmaking *ISteamClient_GetISteamMatchmaking(struct ISteam
 	return SteamMatchmaking_generic(version);
 }
 
+EXPORT struct ISteamMatchmaking *SteamAPI_ISteamClient_GetISteamMatchmaking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamMatchmaking(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamMatchmakingServers *ISteamClient_GetISteamMatchmakingServers(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -374,6 +459,11 @@ MEMBER struct ISteamMatchmakingServers *ISteamClient_GetISteamMatchmakingServers
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamMatchmakingServers_generic(version);
+}
+
+EXPORT struct ISteamMatchmakingServers *SteamAPI_ISteamClient_GetISteamMatchmakingServers(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamMatchmakingServers(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamMusic *ISteamClient_GetISteamMusic(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -385,6 +475,11 @@ MEMBER struct ISteamMusic *ISteamClient_GetISteamMusic(struct ISteamClient *ifac
 	return SteamMusic_generic(version);
 }
 
+EXPORT struct ISteamMusic *SteamAPI_ISteamClient_GetISteamMusic(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamMusic(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamMusicRemote *ISteamClient_GetISteamMusicRemote(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -392,6 +487,11 @@ MEMBER struct ISteamMusicRemote *ISteamClient_GetISteamMusicRemote(struct ISteam
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamMusicRemote_generic(version);
+}
+
+EXPORT struct ISteamMusicRemote *SteamAPI_ISteamClient_GetISteamMusicRemote(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamMusicRemote(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamNetworking *ISteamClient_GetISteamNetworking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -403,6 +503,11 @@ MEMBER struct ISteamNetworking *ISteamClient_GetISteamNetworking(struct ISteamCl
 	return SteamNetworking_generic(version);
 }
 
+EXPORT struct ISteamNetworking *SteamAPI_ISteamClient_GetISteamNetworking(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamNetworking(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamParentalSettings *ISteamClient_GetISteamParentalSettings(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -410,6 +515,11 @@ MEMBER struct ISteamParentalSettings *ISteamClient_GetISteamParentalSettings(str
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamParentalSettings_generic(version);
+}
+
+EXPORT struct ISteamParentalSettings *SteamAPI_ISteamClient_GetISteamParentalSettings(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamParentalSettings(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamRemoteStorage *ISteamClient_GetISteamRemoteStorage(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -421,6 +531,11 @@ MEMBER struct ISteamRemoteStorage *ISteamClient_GetISteamRemoteStorage(struct IS
 	return SteamRemoteStorage_generic(version);
 }
 
+EXPORT struct ISteamRemoteStorage *SteamAPI_ISteamClient_GetISteamRemoteStorage(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamRemoteStorage(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamScreenshots *ISteamClient_GetISteamScreenshots(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -428,6 +543,11 @@ MEMBER struct ISteamScreenshots *ISteamClient_GetISteamScreenshots(struct ISteam
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamScreenshots_generic(version);
+}
+
+EXPORT struct ISteamScreenshots *SteamAPI_ISteamClient_GetISteamScreenshots(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamScreenshots(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamUGC *ISteamClient_GetISteamUGC(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -439,6 +559,11 @@ MEMBER struct ISteamUGC *ISteamClient_GetISteamUGC(struct ISteamClient *iface, s
 	return SteamUGC_generic(version);
 }
 
+EXPORT struct ISteamUGC *SteamAPI_ISteamClient_GetISteamUGC(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamUGC(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamUnifiedMessages *ISteamClient_GetISteamUnifiedMessages(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -446,6 +571,11 @@ MEMBER struct ISteamUnifiedMessages *ISteamClient_GetISteamUnifiedMessages(struc
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamUnifiedMessages_generic(version);
+}
+
+EXPORT struct ISteamUnifiedMessages *SteamAPI_ISteamClient_GetISteamUnifiedMessages(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamUnifiedMessages(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamUser *ISteamClient_GetISteamUser(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
@@ -457,6 +587,11 @@ MEMBER struct ISteamUser *ISteamClient_GetISteamUser(struct ISteamClient *iface,
 	return SteamUser_generic(version);
 }
 
+EXPORT struct ISteamUser *SteamAPI_ISteamClient_GetISteamUser(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamUser(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER struct ISteamUserStats *ISteamClient_GetISteamUserStats(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -464,6 +599,11 @@ MEMBER struct ISteamUserStats *ISteamClient_GetISteamUserStats(struct ISteamClie
 	LOG_ENTER("(This = %p, steam_user = %u, steam_pipe = %u, version = \"%s\")", VOIDPTR(This), steam_user, steam_pipe, debug_str(version));
 
 	return SteamUserStats_generic(version);
+}
+
+EXPORT struct ISteamUserStats *SteamAPI_ISteamClient_GetISteamUserStats(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamUserStats(iface, steam_user, steam_pipe, version);
 }
 
 MEMBER struct ISteamUtils *ISteamClient_GetISteamUtils(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version)
@@ -475,6 +615,11 @@ MEMBER struct ISteamUtils *ISteamClient_GetISteamUtils(struct ISteamClient *ifac
 	return SteamUtils_generic(version);
 }
 
+EXPORT struct ISteamUtils *SteamAPI_ISteamClient_GetISteamUtils(struct ISteamClient *iface, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamUtils(iface, steam_pipe, version);
+}
+
 MEMBER struct ISteamVideo *ISteamClient_GetISteamVideo(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
@@ -484,11 +629,21 @@ MEMBER struct ISteamVideo *ISteamClient_GetISteamVideo(struct ISteamClient *ifac
 	return SteamVideo_generic(version);
 }
 
+EXPORT struct ISteamVideo *SteamAPI_ISteamClient_GetISteamVideo(struct ISteamClient *iface, steam_user_t steam_user, steam_handle_pipe_t steam_pipe, const char *version)
+{
+	return ISteamClient_GetISteamVideo(iface, steam_user, steam_pipe, version);
+}
+
 MEMBER void ISteamClient_SetWarningMessageHook(struct ISteamClient *iface, void *callback)
 {
 	struct ISteamClientImpl *This = impl_from_ISteamClient(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, callback = %p)", VOIDPTR(This), callback);
+}
+
+EXPORT void SteamAPI_ISteamClient_SetWarningMessageHook(struct ISteamClient *iface, void *callback)
+{
+	ISteamClient_SetWarningMessageHook(iface, callback);
 }
 
 struct ISteamClient *SteamClient_generic(const char *version)
