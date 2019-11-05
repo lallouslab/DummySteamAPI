@@ -321,11 +321,13 @@ MEMBER void *ISteamClient_GetISteamGenericInterface(struct ISteamClient *iface, 
 			if (ifaces[i].iface_getter)
 				return ifaces[i].iface_getter(iface, steam_user, steam_pipe, debug_str(version));
 
-			return INVAL_PTR;
+			goto fail;
 		}
 		i++;
 	}
 
+fail:
+	WARN("Unable to find an interface for version \"%s\".", debug_str(version));
 	return INVAL_PTR;
 }
 
