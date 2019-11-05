@@ -156,6 +156,15 @@ MEMBER void ISteamUser_CancelAuthTicket(struct ISteamUser *iface, steam_auth_tic
 	LOG_ENTER_NOTIMPL("(This = %p, ticket_handle = %u)", VOIDPTR(This), ticket_handle);
 }
 
+MEMBER steam_bool_t ISteamUser_BIsBehindNAT(struct ISteamUser *iface)
+{
+	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+
+	return STEAM_FALSE;
+}
+
 MEMBER void ISteamUser_AdvertiseGame(struct ISteamUser *iface, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port)
 {
 	struct ISteamUserImpl *This = impl_from_ISteamUser(iface);

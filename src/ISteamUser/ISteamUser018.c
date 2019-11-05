@@ -22,7 +22,7 @@ static const struct ISteamUser018Vtbl ISteamUser018_vtbl = {
 	INVAL_PTR,
 	ISteamUser_CancelAuthTicket,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUser_BIsBehindNAT,
 	ISteamUser_AdvertiseGame,
 	ISteamUser_RequestEncryptedAppTicket,
 	INVAL_PTR,

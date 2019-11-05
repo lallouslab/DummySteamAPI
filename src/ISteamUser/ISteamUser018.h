@@ -27,7 +27,7 @@ struct ISteamUser018Vtbl
 	void *EndAuthSession;
 	MEMBER void (*CancelAuthTicket)(struct ISteamUser *iface, steam_auth_ticket_handle_t ticket_handle);
 	void *UserHasLicenseForApp;
-	void *BIsBehindNAT;
+	MEMBER steam_bool_t (*BIsBehindNAT)(struct ISteamUser *iface);
 	MEMBER void (*AdvertiseGame)(struct ISteamUser *iface, union CSteamID steam_id_game_server, uint32_t server_ip, uint16_t server_port);
 	MEMBER steam_api_call_t (*RequestEncryptedAppTicket)(struct ISteamUser *iface, void *data, int data_size);
 	void *GetEncryptedAppTicket;
