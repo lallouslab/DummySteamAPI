@@ -35,7 +35,7 @@ static const struct ISteamUserStats011Vtbl ISteamUserStats011_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamUserStats_UploadLeaderboardScore,
 	INVAL_PTR,
 	ISteamUserStats_GetNumberOfCurrentPlayers,
 	INVAL_PTR,

@@ -523,6 +523,30 @@ MEMBER steam_api_call_t ISteamUserStats_FindLeaderboard(struct ISteamUserStats *
 	return api_call;
 }
 
+MEMBER steam_api_call_t ISteamUserStats_UploadLeaderboardScore(struct ISteamUserStats *iface, steam_leaderboard_t leaderboard, enum steam_user_stats_leaderboard_upload_score_method upload_score_method, int32_t score, const int32_t *score_details, int score_detail_count)
+{
+	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);
+	struct steam_callback_data_user_stats_leaderboard_score_uploaded leaderboard_score_uploaded;
+	steam_api_call_t api_call;
+
+	LOG_ENTER_NOTIMPL("(This = %p, leaderboard = %#" PRIx64 ", upload_score_method = %u, score = %" PRIi32 ", score_details = %p, score_detail_count = %" PRIi32 ")", VOIDPTR(This), leaderboard, upload_score_method, score, VOIDPTR(score_details), score_detail_count);
+
+	leaderboard_score_uploaded.success = 1;
+	if (score_detail_count > STEAM_USER_STATS_LIMIT_LEADERBOARD_DETAILS_MAX)
+	    leaderboard_score_uploaded.success = 0;
+
+	leaderboard_score_uploaded.leaderboard = leaderboard;
+	leaderboard_score_uploaded.score = score;
+	leaderboard_score_uploaded.score_changed = STEAM_TRUE;
+	leaderboard_score_uploaded.global_rank = 1;
+	/* 0 = no previous rank existed for this player */
+	leaderboard_score_uploaded.prev_global_rank = 0;
+
+	api_call = callbacks_await_api_call_result_output();
+	callbacks_dispatch_api_call_result_output(api_call, STEAM_CALLBACK_TYPE_USER_STATS_LEADERBOARD_SCORE_UPLOADED, STEAM_FALSE, &leaderboard_score_uploaded, sizeof(leaderboard_score_uploaded));
+	return api_call;
+}
+
 MEMBER steam_api_call_t ISteamUserStats_GetNumberOfCurrentPlayers(struct ISteamUserStats *iface)
 {
 	struct ISteamUserStatsImpl *This = impl_from_ISteamUserStats(iface);

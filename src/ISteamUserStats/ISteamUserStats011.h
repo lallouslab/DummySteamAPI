@@ -40,7 +40,7 @@ struct ISteamUserStats011Vtbl
 	void *DownloadLeaderboardEntries;
 	void *DownloadLeaderboardEntriesForUsers;
 	void *GetDownloadedLeaderboardEntry;
-	void *UploadLeaderboardScore;
+	MEMBER steam_api_call_t (*UploadLeaderboardScore)(struct ISteamUserStats *iface, steam_leaderboard_t leaderboard, enum steam_user_stats_leaderboard_upload_score_method upload_score_method, int32_t score, const int32_t *score_details, int score_detail_count);
 	void *AttachLeaderboardUGC;
 	MEMBER steam_api_call_t (*GetNumberOfCurrentPlayers)(struct ISteamUserStats *iface);
 	void *RequestGlobalAchievementPercentages;

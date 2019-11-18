@@ -38,6 +38,13 @@ enum steam_user_stats_leaderboard_sort_method
 	STEAM_USER_STATS_LEADERBOARD_SORT_METHOD_DESCENDING = 2u
 };
 
+enum steam_user_stats_leaderboard_upload_score_method
+{
+	STEAM_USER_STATS_LEADERBOARD_UPLOAD_SCORE_METHOD_NONE = 0u,
+	STEAM_USER_STATS_LEADERBOARD_UPLOAD_SCORE_METHOD_KEEP_BEST = 1u,
+	STEAM_USER_STATS_LEADERBOARD_UPLOAD_SCORE_METHOD_FORCE_UPDATE = 2u
+};
+
 PACKED_STRUCT steam_callback_data_user_stats_user_stats_received
 {
 	union CGameID game_id;
@@ -64,6 +71,16 @@ PACKED_STRUCT steam_callback_data_user_stats_leaderboard_find_result
 {
 	steam_leaderboard_t leaderboard;
 	steam_bool_t found;
+};
+
+PACKED_STRUCT steam_callback_data_user_stats_leaderboard_score_uploaded
+{
+	uint8_t success;
+	steam_leaderboard_t leaderboard;
+	int32_t score;
+	uint8_t score_changed;
+	int global_rank;
+	int prev_global_rank;
 };
 
 PACKED_STRUCT steam_callback_data_user_stats_number_of_current_players
