@@ -41,7 +41,7 @@ static const struct ISteamGameServer011Vtbl ISteamGameServer011_vtbl = {
 	INVAL_PTR,
 	INVAL_PTR,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamGameServer_HandleIncomingPacket,
 	INVAL_PTR,
 	ISteamGameServer_EnableHeartbeats,
 	INVAL_PTR,

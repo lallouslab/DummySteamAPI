@@ -35,6 +35,7 @@ MEMBER void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const c
 MEMBER steam_bool_t ISteamGameServer_SendUserConnectAndAuthenticate(struct ISteamGameServer *iface, uint32_t client_ip, const void *auth_blob, uint32_t auth_blob_size, union CSteamID *steam_id_user);
 DSA_MEMBER_RETURN_STRUCT0(union CSteamID, ret, ISteamGameServer_CreateUnauthenticatedUserConnection, struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_SendUserDisconnect(struct ISteamGameServer *iface, union CSteamID steam_id_user);
+MEMBER steam_bool_t ISteamGameServer_HandleIncomingPacket(struct ISteamGameServer *iface, const void *data, int data_size, uint32_t src_ip, uint16_t src_port);
 MEMBER void ISteamGameServer_EnableHeartbeats(struct ISteamGameServer *iface, steam_bool_t enabled);
 
 #endif /* ISTEAMGAMESERVER_PRIV_H */

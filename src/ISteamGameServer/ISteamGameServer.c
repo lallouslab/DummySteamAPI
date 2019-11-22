@@ -158,7 +158,7 @@ MEMBER steam_bool_t ISteamGameServer_SendUserConnectAndAuthenticate(struct IStea
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
 	struct steam_callback_data_game_server_client_approve client_approve;
 
-	LOG_ENTER_NOTIMPL("(This = %p, client_ip = %#x, auth_blob = %p, auth_blob_size = %u, steam_id_user = %p)", VOIDPTR(This), client_ip, auth_blob, auth_blob_size, VOIDPTR(steam_id_user));
+	LOG_ENTER_NOTIMPL("(This = %p, client_ip = %#" PRIx32 ", auth_blob = %p, auth_blob_size = %u, steam_id_user = %p)", VOIDPTR(This), client_ip, auth_blob, auth_blob_size, VOIDPTR(steam_id_user));
 
 	if (auth_blob_size < sizeof(client_approve.steam_id))
 		return STEAM_FALSE;
@@ -190,6 +190,15 @@ MEMBER void ISteamGameServer_SendUserDisconnect(struct ISteamGameServer *iface, 
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
 
 	LOG_ENTER_NOTIMPL("(This = %p, steam_id_user = %#" PRIx64 ")", VOIDPTR(This), steam_id_user.raw);
+}
+
+MEMBER steam_bool_t ISteamGameServer_HandleIncomingPacket(struct ISteamGameServer *iface, const void *data, int data_size, uint32_t src_ip, uint16_t src_port)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p, data = %p, data_size = %d, src_ip = %#" PRIx32 ", src_port = %" PRIu16 ")", VOIDPTR(This), data, data_size, src_ip, src_port);
+
+	return STEAM_TRUE;
 }
 
 MEMBER void ISteamGameServer_EnableHeartbeats(struct ISteamGameServer *iface, steam_bool_t enabled)
