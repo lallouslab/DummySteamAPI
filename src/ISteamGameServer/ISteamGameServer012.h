@@ -28,7 +28,7 @@ struct ISteamGameServer012Vtbl
 	MEMBER void (*SetPasswordProtected)(struct ISteamGameServer *iface, steam_bool_t protected);
 	MEMBER void (*SetSpectatorPort)(struct ISteamGameServer *iface, uint16_t port);
 	void *SetSpectatorServerName;
-	void *ClearAllKeyValues;
+	MEMBER void (*ClearAllKeyValues)(struct ISteamGameServer *iface);
 	MEMBER void (*SetKeyValue)(struct ISteamGameServer *iface, const char *key, const char *value);
 	MEMBER void (*SetGameTags)(struct ISteamGameServer *iface, const char *tags);
 	void *SetGameData;

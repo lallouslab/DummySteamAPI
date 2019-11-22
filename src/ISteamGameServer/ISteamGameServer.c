@@ -139,6 +139,13 @@ MEMBER void ISteamGameServer_SetSpectatorPort(struct ISteamGameServer *iface, ui
 	LOG_ENTER_NOTIMPL("(This = %p, port = %u)", VOIDPTR(This), port);
 }
 
+MEMBER void ISteamGameServer_ClearAllKeyValues(struct ISteamGameServer *iface)
+{
+	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);
+
+	LOG_ENTER_NOTIMPL("(This = %p)", VOIDPTR(This));
+}
+
 MEMBER void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value)
 {
 	struct ISteamGameServerImpl *This = impl_from_ISteamGameServer(iface);

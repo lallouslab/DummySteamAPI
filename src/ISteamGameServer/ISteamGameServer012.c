@@ -23,7 +23,7 @@ static const struct ISteamGameServer012Vtbl ISteamGameServer012_vtbl = {
 	ISteamGameServer_SetPasswordProtected,
 	ISteamGameServer_SetSpectatorPort,
 	INVAL_PTR,
-	INVAL_PTR,
+	ISteamGameServer_ClearAllKeyValues,
 	ISteamGameServer_SetKeyValue,
 	ISteamGameServer_SetGameTags,
 	INVAL_PTR,

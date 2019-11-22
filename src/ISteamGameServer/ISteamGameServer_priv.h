@@ -30,6 +30,7 @@ MEMBER void ISteamGameServer_SetServerName(struct ISteamGameServer *iface, const
 MEMBER void ISteamGameServer_SetMapName(struct ISteamGameServer *iface, const char *name);
 MEMBER void ISteamGameServer_SetPasswordProtected(struct ISteamGameServer *iface, steam_bool_t protected);
 MEMBER void ISteamGameServer_SetSpectatorPort(struct ISteamGameServer *iface, uint16_t port);
+MEMBER void ISteamGameServer_ClearAllKeyValues(struct ISteamGameServer *iface);
 MEMBER void ISteamGameServer_SetKeyValue(struct ISteamGameServer *iface, const char *key, const char *value);
 MEMBER void ISteamGameServer_SetGameTags(struct ISteamGameServer *iface, const char *tags);
 MEMBER steam_bool_t ISteamGameServer_SendUserConnectAndAuthenticate(struct ISteamGameServer *iface, uint32_t client_ip, const void *auth_blob, uint32_t auth_blob_size, union CSteamID *steam_id_user);
