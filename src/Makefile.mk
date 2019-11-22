@@ -28,9 +28,9 @@ SUBDIRS-y := \
 	vdf
 EXTDIRS-y :=
 
-out_dir := ../bin
+out_dir := $(MKS_TOP_BUILDDIR)/bin
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I.
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 CFLAGS-$(CONFIG_OS_LINUX) += -pthread
 
 libsteam_api := $(out_dir)/libsteam_api$(DYN_LIB_EXT)

@@ -10,7 +10,7 @@ libs := \
 
 objs :=
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden
 
 LIBS-$(libos)-y := $(libs)
 OBJS-$(libos)-y := $(objs)

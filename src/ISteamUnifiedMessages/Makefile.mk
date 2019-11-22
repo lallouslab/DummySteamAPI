@@ -9,6 +9,6 @@ objs := \
 	ISteamUnifiedMessages.c.o \
 	ISteamUnifiedMessages001.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamunifiedmessages)-y := $(objs)

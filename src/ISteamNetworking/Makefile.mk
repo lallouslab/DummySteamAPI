@@ -10,6 +10,6 @@ objs := \
 	ISteamNetworking001.c.o \
 	ISteamNetworking005.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamnetworking)-y := $(objs)

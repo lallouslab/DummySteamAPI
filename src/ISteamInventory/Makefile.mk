@@ -10,6 +10,6 @@ objs := \
 	ISteamInventory001.c.o \
 	ISteamInventory002.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteaminventory)-y := $(objs)

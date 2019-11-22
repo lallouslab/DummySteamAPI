@@ -12,6 +12,6 @@ objs := \
 	ISteamRemoteStorage013.c.o \
 	ISteamRemoteStorage014.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamremotestorage)-y := $(objs)

@@ -9,6 +9,6 @@ objs := \
 	ISteamGameServerStats.c.o \
 	ISteamGameServerStats001.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamgameserverstats)-y := $(objs)

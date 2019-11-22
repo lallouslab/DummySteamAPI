@@ -8,6 +8,6 @@ STATICLIBS-y := $(libos_windows)
 objs := \
 	windows.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I../..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libos_windows)-y := $(objs)

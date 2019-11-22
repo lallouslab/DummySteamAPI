@@ -14,6 +14,6 @@ objs := \
 	ISteamApps007.c.o \
 	ISteamApps008.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamapps)-y := $(objs)

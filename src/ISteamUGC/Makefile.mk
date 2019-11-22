@@ -13,6 +13,6 @@ objs := \
 	ISteamUGC009.c.o \
 	ISteamUGC010.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamugc)-y := $(objs)

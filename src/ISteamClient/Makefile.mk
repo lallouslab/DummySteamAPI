@@ -13,6 +13,6 @@ objs := \
 	ISteamClient016.c.o \
 	ISteamClient017.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamclient)-y := $(objs)

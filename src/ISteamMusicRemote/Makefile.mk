@@ -9,6 +9,6 @@ objs := \
 	ISteamMusicRemote.c.o \
 	ISteamMusicRemote001.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteammusicremote)-y := $(objs)

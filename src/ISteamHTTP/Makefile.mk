@@ -10,6 +10,6 @@ objs := \
 	ISteamHTTP001.c.o \
 	ISteamHTTP002.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamhttp)-y := $(objs)

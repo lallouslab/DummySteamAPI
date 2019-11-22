@@ -12,6 +12,6 @@ objs := \
 	ISteamFriends014.c.o \
 	ISteamFriends015.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamfriends)-y := $(objs)

@@ -13,6 +13,6 @@ objs := \
 	ISteamUser018.c.o \
 	ISteamUser019.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamuser)-y := $(objs)

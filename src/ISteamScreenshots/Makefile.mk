@@ -11,6 +11,6 @@ objs := \
 	ISteamScreenshots002.c.o \
 	ISteamScreenshots003.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamscreenshots)-y := $(objs)

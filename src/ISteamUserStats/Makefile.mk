@@ -9,6 +9,6 @@ objs := \
 	ISteamUserStats.c.o \
 	ISteamUserStats011.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteamuserstats)-y := $(objs)

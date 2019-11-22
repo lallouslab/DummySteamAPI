@@ -47,8 +47,6 @@ OS ?= linux
 
 ##### Do NOT edit anything after this comment #####
 
-CFLAGS-y += -I$(TOP) -I$(TOP)/include
-
 LDFLAGS_SHARED := -shared
 STATIC_LIB_EXT := .a
 

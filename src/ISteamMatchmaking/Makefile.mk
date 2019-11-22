@@ -10,6 +10,6 @@ objs := \
 	ISteamMatchmaking001.c.o \
 	ISteamMatchmaking009.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden -I$(MKS_PROJDIR)/src
 
 OBJS-$(libsteammatchmaking)-y := $(objs)

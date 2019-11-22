@@ -7,6 +7,6 @@ STATICLIBS-y := $(libvdf)
 
 objs := vdf.c.o
 
-CFLAGS-y += -fPIC -fvisibility=hidden -I..
+CFLAGS-y += -fPIC -fvisibility=hidden
 
 OBJS-$(libvdf)-y := $(objs)
