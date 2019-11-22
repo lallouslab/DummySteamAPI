@@ -1,5 +1,8 @@
 image: registry.git.bitmycode.com:443/docker/buildingtools:latest
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 stages:
   - build
   - build-targets
