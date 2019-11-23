@@ -25,7 +25,7 @@ $(targets): mks
 	@true
 
 mks: $(THIS)
-	$(call mks_make,$(MAKECMDGOALS))
+	+$(call mks_make,$(MAKECMDGOALS))
 
 $(THIS): $(MKS)/Makefile.stub
-	$(call mks_make,setup)
+	+$(call mks_make,setup)
